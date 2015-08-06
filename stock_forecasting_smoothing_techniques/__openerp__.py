@@ -19,7 +19,10 @@
     "depends": [
         "product",
     ],
-    "data": [],
+    "data": [
+        "security/forecasting_smoothing_techniques_security.xml",
+        "security/ir.model.access.csv",
+    ],
     "demo": [],
     "test": [],
     "qweb": [],
