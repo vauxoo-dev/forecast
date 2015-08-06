@@ -9,3 +9,4 @@
 #    planned by: Nhomar Hernandez <nhomar@vauxoo.com>
 #                Gabriela Quilarque <gabriela@vauxoo.com>
 ############################################################################
+from . import forecasting_smoothing_techniques
