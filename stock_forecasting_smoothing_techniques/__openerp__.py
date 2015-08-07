@@ -22,6 +22,7 @@
     "data": [
         "security/forecasting_smoothing_techniques_security.xml",
         "security/ir.model.access.csv",
+        "views/forecasting_smoothing_techniques_view.xml",
     ],
     "demo": [],
     "test": [],
