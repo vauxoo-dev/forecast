@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<openerp>
+    <data>
+
+        <record id="view_id" model="ir.ui.view">
+            <field name="name">view.name</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='buttons']" position="inside">
+                    <button class="oe_inline oe_stat_button" string="Forecasting" name="%(action_view_stock_forecasting)d" type="action" icon="fa-bar-chart-o"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>
