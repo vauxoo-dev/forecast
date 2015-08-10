@@ -20,6 +20,10 @@ class ForecastingSmoothingTechniques(models.Model):
     _description = 'Forecasting Smoothing Techniques'
 
     # Forecast Values range(80)
+    # for item in range(1, 81):
+    #     print \
+    #       "fv_{num:02d} = fields.Float('Forecast Value {num:02d}')".format(
+    #         num=item)
     fv_01 = fields.Float('Forecast Value 01')
     fv_02 = fields.Float('Forecast Value 02')
     fv_03 = fields.Float('Forecast Value 03')
