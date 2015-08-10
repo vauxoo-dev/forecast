@@ -193,8 +193,29 @@ class ForecastingSmoothingTechniques(models.Model):
     @api.depends('wma_forecast', 'wma_ma_error')
     def _compute_weighted_move_average(self):
         """
-        TODO function compute3
+        WEIGHTED MOVING AVERAGE
+        Note: Represente function compute3
         """
+        fv_list = self.get_forecasting_values()
+        if not fv_list:
+            return True
+        numv = len(fv_list)
+        period = self.period
+        avg = []
+        ma_error = 0.0
+        weight = (period * (period + 1)) / 2
+        for item in range(0, len(fv_list)):
+            fv_set = fv_list[item:item+period]
+            if len(fv_set) < period:
+                break
+            avg += [sum(
+                [(1 / weight) * value
+                 for value in fv_set])]
+            ma_error += abs(avg[-1] - fv_set[-1])
+
+        self.wma_forecast = avg[-1]
+        ma_error = ma_error/(numv - period + 1)
+        self.wma_ma_error = ma_error
         return True
 
     @api.depends('exp_alpha', 'single_forecast', 'single_ma_error',
