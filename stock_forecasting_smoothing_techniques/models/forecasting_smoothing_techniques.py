@@ -11,6 +11,7 @@
 ############################################################################
 
 from openerp import models, fields, api, _
+from openerp.exceptions import ValidationError
 
 
 class ForecastingSmoothingTechniques(models.Model):
@@ -101,7 +102,7 @@ class ForecastingSmoothingTechniques(models.Model):
     fv_80 = fields.Float('Forecast Value 80')
 
     # Moving Average
-    period = fields.Integer('Period')
+    period = fields.Integer('Period', default=5)
     ma_forecast = fields.Float('Forcast', compute='_compute_move_average')
     ma_ma_error = fields.Float('MA Error', compute='_compute_move_average')
 
@@ -134,11 +135,59 @@ class ForecastingSmoothingTechniques(models.Model):
     holt_ma_error = fields.Float(
         'MA Error', compute='_compute_holt')
 
+    @api.constrains('period')
+    def _check_period(self):
+        if self.period <= 1:
+            raise ValidationError("Period must be an integer greater than 1.")
+
     @api.depends('period', 'ma_forecast', 'ma_ma_error')
     def _compute_move_average(self):
         """
-        TODO function compute1
+        MOVING AVERAGE
+        Note: Represente function compute1
         """
+        fv_list = self.get_forecasting_values()
+        if not fv_list:
+            return True
+        numv = len(fv_list)
+        period = self.period
+        avg = []
+        ma_error = 0.0
+        for item, value in enumerate(fv_list):
+            fv_set = fv_list[item:item+period]
+            if len(fv_set) < period:
+                break
+            avg += [sum(fv_set) / period]
+            ma_error += abs(avg[-1] - fv_set[-1])
+        self.ma_forecast = avg[-1]
+        ma_error = ma_error/(numv - period + 1)
+        self.ma_ma_error = ma_error
+        return True
+
+    def get_forecasting_values(self):
+        """
+        This method will return the forecast input values in a list.
+        """
+        fv_set = []
+        for item in range(1, 81):
+            cfv = getattr(self, 'fv_{num:02d}'.format(num=item))
+            if cfv:
+                fv_set += [cfv]
+        return fv_set
+
+    @api.multi
+    def set_test_forecast_values(self):
+        """
+        This method will return the forecast input values in a list.
+        """
+        val = 1
+        for item in range(1, 81):
+            fvfield = 'fv_{num:02d}'.format(num=item)
+            setattr(self, fvfield, val)
+            if val == 30:
+                val = 1
+            else:
+                val += 1
         return True
 
     @api.depends('wma_forecast', 'wma_ma_error')
