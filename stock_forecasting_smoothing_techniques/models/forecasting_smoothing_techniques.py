@@ -113,7 +113,7 @@ class ForecastingSmoothingTechniques(models.Model):
         'MA Error', compute='_compute_weighted_move_average')
 
     # Single, Double, & Triple Exponential Smoothing
-    exp_alpha = fields.Float('Alpha')
+    exp_alpha = fields.Float('Alpha', default=0.3)
     single_forecast = fields.Float(
         'Forcast', compute='_compute_exp_smoothing')
     single_ma_error = fields.Float(
@@ -128,8 +128,8 @@ class ForecastingSmoothingTechniques(models.Model):
         'MA Error', compute='_compute_exp_smoothing')
 
     # Holt's Linear Smoothing
-    holt_alpha = fields.Float('Alpha')
-    beta = fields.Float('Beta')
+    holt_alpha = fields.Float('Alpha', default=0.3)
+    beta = fields.Float('Beta', default=0.03)
     holt_forecast = fields.Float(
         'Forcast', compute='_compute_holt')
     holt_ma_error = fields.Float(
