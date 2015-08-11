@@ -151,6 +151,18 @@ class ForecastingSmoothingTechniques(models.Model):
             raise ValidationError(
                 _("Alpha should be between 0 and 1."))
 
+    @api.constrains('holt_alpha')
+    def _check_holt_alpha(self):
+        if self.holt_alpha <= 0 and self.holt_alpha >= 1:
+            raise ValidationError(
+                _("Alpha should be between 0 and 1."))
+
+    @api.constrains('beta')
+    def _check_beta(self):
+        if self.beta <= 0 and self.beta >= 1:
+            raise ValidationError(
+                _("Beta should be between 0 and 1."))
+
     @api.depends('period', 'ma_forecast', 'ma_ma_error')
     def _compute_move_average(self):
         """
@@ -282,6 +294,33 @@ class ForecastingSmoothingTechniques(models.Model):
     @api.depends('holt_alpha', 'beta', 'holt_forecast', 'holt_ma_error')
     def _compute_holt(self):
         """
-        TODO function compute20
+        Holt's Linear Smoothing
+        Note: Represente function compute20
         """
+        fv_list = self.get_forecasting_values()
+        if not fv_list:
+            return True
+        numv = len(fv_list)
+        alpha = self.holt_alpha
+        beta = self.beta
+
+        level = list()
+        trend = list()
+        func = list()
+
+        level.append(fv_list[1])
+        trend.append(fv_list[1] - fv_list[0])
+        func.append(level[0] + trend[0])
+
+        for item in range(numv):
+            level.append(alpha * fv_list[item] + (1-alpha) * func[item])
+            trend.append((beta * (level[item] - level[item-1]) + (1 - beta) *
+                          trend[item-1]))
+            func.append(level[item] + trend[item])
+
+        self.holt_forecast = func[-1]
+        ma_error = 0.0
+        for item in range(3, numv):
+            ma_error += abs(func[item] - fv_list[item])
+        self.holt_ma_error = ma_error / (numv - 3)
         return True
