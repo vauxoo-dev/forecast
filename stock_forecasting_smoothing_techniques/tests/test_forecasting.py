@@ -35,14 +35,36 @@ class TestForecasting(common.TransactionCase):
             if real.get(key) != value:
                 _logger.error('%s %s != %s', key, real.get(key), value)
 
-    def test_01(self):
+    def test_all(self):
         """
-        Run 80 values, count for 1 to 30 and repeat.
+        Run all the test cases know.
         """
-        values = self.get_test_01_in()
-        forecast = self.forecast_obj.create(values)
-        out = self.get_test_01_out()
-        self.compare_res(out, forecast.read([])[0])
+        for test_num in range(1, 5):
+            test_name = 'test_{num:02d}'.format(num=test_num)
+            values, out = self.get_test_data(test_name)
+            forecast = self.forecast_obj.create(values)
+            self.compare_res(out, forecast.read([])[0])
+
+    def get_test_data(self, test_name):
+        """
+        return tupla in, out with the values to use in the test.
+        """
+        data = {
+            'test_01': {'in': self.get_test_01_in(),
+                        'out': self.get_test_01_out(),
+                        },
+            'test_02': {'in': self.get_test_02_in(),
+                        'out': self.get_test_02_out(),
+                        },
+            'test_03': {'in': self.get_test_03_in(),
+                        'out': self.get_test_03_out(),
+                        },
+            'test_04': {'in': self.get_test_04_in(),
+                        'out': self.get_test_04_out(),
+                        },
+        }
+        test_data = data.get(test_name)
+        return test_data.get('in'), test_data.get('out')
 
     def get_test_01_in(self):
         """
@@ -57,6 +79,7 @@ class TestForecasting(common.TransactionCase):
                 val = 1
             else:
                 val += 1
+
         return data
 
     def get_test_01_out(self):
@@ -77,16 +100,6 @@ class TestForecasting(common.TransactionCase):
             holt_forecast=18.221501,
             holt_ma_error=3.003755
         )
-
-    def test_02(self):
-        """
-        Run 10 values
-        - Only 10 forecast values of the 80 spaces.
-        """
-        values = self.get_test_02_in()
-        forecast = self.forecast_obj.create(values)
-        out = self.get_test_02_out()
-        self.compare_res(out, forecast.read([])[0])
 
     def get_test_02_in(self):
         """
@@ -118,16 +131,6 @@ class TestForecasting(common.TransactionCase):
             holt_forecast=11,
             holt_ma_error=0
         )
-
-    def test_03(self):
-        """
-        Run 10 values
-        - Only 10 forecast values of the 80 spaces.
-        """
-        values = self.get_test_03_in()
-        forecast = self.forecast_obj.create(values)
-        out = self.get_test_03_out()
-        self.compare_res(out, forecast.read([])[0])
 
     def get_test_03_in(self):
         """
@@ -163,15 +166,6 @@ class TestForecasting(common.TransactionCase):
         return dict(
             holt_forecast=372.6,
         )
-
-    def test_04(self):
-        """
-        Run 12 values to check MA y WMA.
-        """
-        values = self.get_test_04_in()
-        forecast = self.forecast_obj.create(values)
-        out = self.get_test_04_out()
-        self.compare_res(out, forecast.read([])[0])
 
     def get_test_04_in(self):
         """
