@@ -118,3 +118,48 @@ class TestForecasting(common.TransactionCase):
             holt_forecast=11,
             holt_ma_error=0
         )
+
+    def test_03(self):
+        """
+        Run 10 values
+        - Only 10 forecast values of the 80 spaces.
+        """
+        values = self.get_test_03_in()
+        forecast = self.forecast_obj.create(values)
+        out = self.get_test_03_out()
+        self.compare_res(out, forecast.read([])[0])
+
+    def get_test_03_in(self):
+        """
+        This method will return the forecast input values in a list.
+        """
+        data = {
+            'fv_01': 133,
+            'fv_02': 155,
+            'fv_03': 165,
+            'fv_04': 171,
+            'fv_05': 194,
+            'fv_06': 231,
+            'fv_07': 274,
+            'fv_08': 312,
+            'fv_09': 313,
+            'fv_10': 333,
+            'fv_11': 343,
+            'holt_alpha': 0.7,
+            'beta': 0.6,
+            'period': 2,
+        }
+        return data
+
+    def get_test_03_out(self):
+        """
+        Return a dictionary with the expected result of the test.
+        """
+        # period forecast
+        # 1	359.7
+        # 2	372.6
+        # 3	385.4
+        # 4	398.3
+        return dict(
+            holt_forecast=372.6,
+        )
