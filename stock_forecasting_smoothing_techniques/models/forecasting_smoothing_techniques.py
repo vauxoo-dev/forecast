@@ -142,7 +142,8 @@ class ForecastingSmoothingTechniques(models.Model):
     @api.constrains('period')
     def _check_period(self):
         if self.period <= 1:
-            raise ValidationError("Period must be an integer greater than 1.")
+            raise ValidationError(
+                _("Period must be an integer greater than 1."))
 
     @api.depends('period', 'ma_forecast', 'ma_ma_error')
     def _compute_move_average(self):
