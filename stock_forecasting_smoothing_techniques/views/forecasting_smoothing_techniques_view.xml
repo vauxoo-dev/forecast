@@ -1,0 +1,161 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<openerp>
+    <data>
+
+        <template id="assets_backend" name="stock_forecasting_smoothing_techniques assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" href="/stock_forecasting_smoothing_techniques/static/src/css/stock_forecasting_smoothing_techniques.css"/>
+            </xpath>
+        </template>
+
+        <record id="stock_forecastiong_view_form" model="ir.ui.view">
+            <field name="name">stock.forecastiong.view.form</field>
+            <field name="model">forecasting.smoothing.techniques</field>
+            <field name="arch" type="xml">
+                <form string="Forescasting by Smoothing Techniques">
+                    <header>
+                    </header>
+                    <sheet>
+                        <div name="forecasting-values" class="stock_forecasting">
+                            <separator string="Forecasting Data"/>
+                            <div class="col-md-12">
+                                <div class="col-md-1"><field name="fv_01" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_02" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_03" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_04" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_05" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_06" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_07" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_08" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_09" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_10" class="oe_inline"/></div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="col-md-1"><field name="fv_11" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_12" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_13" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_14" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_15" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_16" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_17" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_18" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_19" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_20" class="oe_inline"/></div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="col-md-1"><field name="fv_21" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_22" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_23" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_24" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_25" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_26" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_27" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_28" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_29" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_30" class="oe_inline"/></div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="col-md-1"><field name="fv_31" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_32" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_33" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_34" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_35" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_36" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_37" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_38" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_39" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_40" class="oe_inline"/></div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="col-md-1"><field name="fv_41" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_42" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_43" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_44" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_45" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_46" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_47" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_48" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_49" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_50" class="oe_inline"/></div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="col-md-1"><field name="fv_51" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_52" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_53" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_54" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_55" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_56" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_57" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_58" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_59" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_60" class="oe_inline"/></div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="col-md-1"><field name="fv_61" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_62" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_63" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_64" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_65" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_66" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_67" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_68" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_69" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_70" class="oe_inline"/></div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="col-md-1"><field name="fv_71" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_72" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_73" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_74" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_75" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_76" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_77" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_78" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_79" class="oe_inline"/></div>
+                                <div class="col-md-1"><field name="fv_80" class="oe_inline"/></div>
+                            </div>
+                        </div>
+                        <group string="Moving Average" name="move-average" colspan="4" col="4">
+                            <field name="period"/>
+                            <button name="set_test_forecast_values" type="object" string="Fill Forecast Values"/>
+                            <newline/>
+                            <field name="ma_forecast"/>
+                            <field name="ma_ma_error"/>
+                        </group>
+                        <group string="Weighted Moving Average" name="weighted-move-average" colspan="4" col="4">
+                            <field name="wma_forecast"/>
+                            <field name="wma_ma_error"/>
+                        </group>
+                        <group string="Single, Double, &amp; Triple Exponential Smoothing" name="exp-smoothing" colspan="4" col="4">
+                            <field name="exp_alpha"/>
+                            <newline/>
+                            <field name="single_forecast"/>
+                            <field name="single_ma_error"/>
+                            <field name="double_forecast"/>
+                            <field name="double_ma_error"/>
+                            <field name="triple_forecast"/>
+                            <field name="triple_ma_error"/>
+                        </group>
+                        <group string="Holt's Linear Smotting" name="holt-smoothing" colspan="4" col="4">
+                            <field name="holt_alpha"/>
+                            <newline/>
+                            <field name="beta"/>
+                            <newline/>
+                            <field name="holt_forecast"/>
+                            <field name="holt_ma_error"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_view_stock_forecasting">
+            <field name="name">Forecasting by Smoothing Techniques</field>
+            <field name="res_model">forecasting.smoothing.techniques</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="stock_forecastiong_view_form"/>
+        </record>
+
+    </data>
+</openerp>
