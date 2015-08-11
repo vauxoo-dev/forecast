@@ -163,3 +163,55 @@ class TestForecasting(common.TransactionCase):
         return dict(
             holt_forecast=372.6,
         )
+
+    def test_04(self):
+        """
+        Run 12 values to check MA y WMA.
+        """
+        values = self.get_test_04_in()
+        forecast = self.forecast_obj.create(values)
+        out = self.get_test_04_out()
+        self.compare_res(out, forecast.read([])[0])
+
+    def get_test_04_in(self):
+        """
+        This are data to run the forecast test_04
+        """
+        data = {
+            'fv_01': 105,
+            'fv_02': 100,
+            'fv_03': 105,
+            'fv_04': 95,
+            'fv_05': 100,
+            'fv_06': 95,
+            'fv_07': 105,
+            'fv_08': 120,
+            'fv_09': 115,
+            'fv_10': 125,
+            'fv_11': 120,
+            'fv_12': 120,
+        }
+        return data
+
+    def get_test_04_out(self):
+        """
+        Return a dictionary with the expected result of the test.
+
+        Week	Sales ($1000)	MA(5)	WMA(5)
+        1	105	-	-
+        2	100	-	-
+        3	105	-	-
+        4	95	-	-
+        5	100	101	100
+        6	95	99	98
+        7	105	100	100
+        8	120	103	107
+        9	115	107	111
+        10	125	117	116
+        11	120	120	119
+        12	120	120	119
+        """
+        return dict(
+            ma=120,
+            wma=119,
+        )
