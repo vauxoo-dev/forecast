@@ -145,6 +145,12 @@ class ForecastingSmoothingTechniques(models.Model):
             raise ValidationError(
                 _("Period must be an integer greater than 1."))
 
+    @api.constrains('exp_alpha')
+    def _check_exp_alpha(self):
+        if self.exp_alpha <= 0 and self.exp_alpha >= 1:
+            raise ValidationError(
+                _("Alpha should be between 0 and 1."))
+
     @api.depends('period', 'ma_forecast', 'ma_ma_error')
     def _compute_move_average(self):
         """
@@ -228,8 +234,49 @@ class ForecastingSmoothingTechniques(models.Model):
                  'triple_ma_error')
     def _compute_exp_smoothing(self):
         """
-        TODO function compute2
+        Single, Double, & Triple Exponential Smoothing
+        Note: Represente function compute3
         """
+        # TODO check. this method do not use period at all.
+        fv_list = self.get_forecasting_values()
+        if not fv_list:
+            return True
+        numv = len(fv_list)
+        alpha = self.exp_alpha
+        st1 = [fv_list[1]]
+        st2 = [fv_list[1]]
+        st3 = [fv_list[1]]
+
+        for value in range(1, numv):
+            st1.append(alpha * fv_list[value] + (1 - alpha) * st1[value-1])
+            st2.append(alpha * st1[value] + (1 - alpha) * st2[value-1])
+            st3.append(alpha * st2[value] + (1 - alpha) * st3[value-1])
+
+        a2 = 2 * st1[numv-1] - st2[numv-1]
+        b2 = (alpha/(1-alpha)) * (st1[numv-1] - st2[numv-1])
+        a3 = 3 * st1[numv-1] - 3 * st2[numv-1] + st3[numv-1]
+        b3 = ((alpha/(2 * pow(1-alpha, 2))) *
+              ((6 - 5 * alpha) * st1[numv-1] - (10 - 8 * alpha) * st2[numv-1] +
+               (4 - 3 * alpha) * st3[numv-1]))
+        c3 = (pow((alpha/(1 - alpha)), 2) *
+              (st1[numv-1] - 2 * st2[numv-1] + st3[numv-1]))
+
+        self.single_forecast = st1[-1]
+        self.double_forecast = a2 + b2
+        self.triple_forecast = a3 + b3 + 0.5 * c3
+
+        st1_ma_error = 0.0
+        st2_ma_error = 0.0
+        st3_ma_error = 0.0
+
+        for value in range(0, numv):
+            st1_ma_error += abs((st1[value] - fv_list[value]))
+            st2_ma_error += abs((st2[value] - fv_list[value]))
+            st3_ma_error += abs((st3[value] - fv_list[value]))
+
+        self.single_ma_error = st1_ma_error / numv
+        self.double_ma_error = st2_ma_error / numv
+        self.triple_ma_error = st3_ma_error / numv
         return True
 
     @api.depends('holt_alpha', 'beta', 'holt_forecast', 'holt_ma_error')
