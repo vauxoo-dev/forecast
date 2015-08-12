@@ -176,7 +176,7 @@ class ForecastingSmoothingTechniques(models.Model):
         period = self.period
         avg = []
         ma_error = 0.0
-        for item, value in enumerate(fv_list):
+        for item in range(0, len(fv_list)):
             fv_set = fv_list[item:item+period]
             if len(fv_set) < period:
                 break
