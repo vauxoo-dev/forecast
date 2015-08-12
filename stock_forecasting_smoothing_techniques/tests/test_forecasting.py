@@ -50,12 +50,8 @@ class TestForecasting(common.TransactionCase):
         return tupla in, out with the values to use in the test.
         """
         data = {
-            'test_01': {'in': self.get_test_01_in(),
-                        'out': self.get_test_01_out(),
-                        },
-            'test_02': {'in': self.get_test_02_in(),
-                        'out': self.get_test_02_out(),
-                        },
+            'test_01': self.get_test_01_data(),
+            'test_02': self.get_test_02_data(),
             'test_03': {'in': self.get_test_03_in(),
                         'out': self.get_test_03_out(),
                         },
@@ -66,27 +62,23 @@ class TestForecasting(common.TransactionCase):
         test_data = data.get(test_name)
         return test_data.get('in'), test_data.get('out')
 
-    def get_test_01_in(self):
+    def get_test_01_data(self):
         """
-        config the values for the forecasting model to test.
+        return dictionary with the keys (in, out).
+        - in: values to create the forecast record. Used to config the test.
+        - out: the expected results of the test.
         """
-        data = {}
+        values = {}
         val = 1
         for item in range(1, 81):
             fvfield = 'fv_{num:02d}'.format(num=item)
-            data.update({fvfield: val})
+            values.update({fvfield: val})
             if val == 30:
                 val = 1
             else:
                 val += 1
 
-        return data
-
-    def get_test_01_out(self):
-        """
-        Return a dictionary with the expected result of the test.
-        """
-        return dict(
+        out = dict(
             ma_forecast=14.0,
             ma_ma_error=3.157895,
             wma_forecast=4.666667,
@@ -100,24 +92,21 @@ class TestForecasting(common.TransactionCase):
             holt_forecast=18.221501,
             holt_ma_error=3.003755
         )
+        return {'in': values, 'out': out}
 
-    def get_test_02_in(self):
+    def get_test_02_data(self):
         """
-        This method will return the forecast input values in a list.
+        return dictionary with the keys (in, out).
+        - in: values to create the forecast record. Used to config the test.
+        - out: the expected results of the test.
         """
-        data = {}
+        values = {}
         val = 1
         for item in range(1, 11):
             fvfield = 'fv_{num:02d}'.format(num=item)
-            data.update({fvfield: val})
+            values.update({fvfield: val})
             val += 1
-        return data
-
-    def get_test_02_out(self):
-        """
-        Return a dictionary with the expected result of the test.
-        """
-        return dict(
+        out = dict(
             ma_forecast=4.0,
             ma_ma_error=2,
             wma_forecast=1.333333,
@@ -131,6 +120,7 @@ class TestForecasting(common.TransactionCase):
             holt_forecast=11,
             holt_ma_error=0
         )
+        return {'in': values, 'out': out}
 
     def get_test_03_in(self):
         """
