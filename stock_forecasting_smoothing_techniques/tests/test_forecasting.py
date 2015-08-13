@@ -130,15 +130,15 @@ class TestForecasting(common.TransactionCase):
             holt_ma_error=0
         )
 
-    def test_all(self):
-        """
-        Run all the test cases know.
-        """
-        for test_num in range(1, 5):
-            test_name = 'test_{num:02d}'.format(num=test_num)
-            values, out = self.get_test_data(test_name)
-            forecast = self.forecast_obj.create(values)
-            self.compare_res(out, forecast.read([])[0])
+    # def _test_all(self):
+    #     """
+    #     Run all the test cases know.
+    #     """
+    #     for test_num in range(1, 5):
+    #         test_name = 'test_{num:02d}'.format(num=test_num)
+    #         values, out = self.get_test_data(test_name)
+    #         forecast = self.forecast_obj.create(values)
+    #         self.compare_res(out, forecast.read([])[0])
 
     def get_test_data(self, test_name):
         """
