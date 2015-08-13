@@ -215,8 +215,8 @@ class ForecastingSmoothingTechniques(models.Model):
         period = self.period
         avg = [None for item in range(period)]
         ma_error = []
-        for item in range(period, len(fv_list)):
-            fv_set = fv_list[item-period:item]
+        for item in range(period+1, len(fv_list)+1):
+            fv_set = fv_list[item-period-1:item-1]
             avg += [sum(fv_set) / float(period)]
             ma_error += [abs(avg[-1] - fv_set[-1])]
             # _logger.debug(
