@@ -10,7 +10,8 @@
 #                Gabriela Quilarque <gabriela@vauxoo.com>
 ############################################################################
 
-from openerp import _
+from openerp import api, _
+from openerp.exceptions import ValidationError
 from openerp.tests import common
 
 
@@ -50,6 +51,71 @@ class TestForecasting(common.TransactionCase):
 
         error_msg = '\n'.join(['\n', _('Fall forecast calculation ')] + elist)
         self.assertTrue(elist == [], error_msg)
+
+    def test_00(self):
+        """ Test CRUD, Check models constrains and empty fields """
+        # TODO: integrete test with users groups (secutiry)
+
+        # Test Create
+        forecast = self.forecast_obj.create({})
+        forecast.calculate()
+
+        # Test Read + Check defaults values
+        defaults = {
+            'period': 5, 'exp_alpha': 0.3, 'holt_alpha': 0.3,
+            'beta': 0.03, 'holt_period': 1,
+        }
+        self.compare(defaults, forecast.read(defaults.keys())[0])
+
+        # Test Write
+        forecast.period = 3
+
+        # Test Duplicate
+        forecast2 = forecast.copy()
+
+        # Test Contraints
+        for item in [1, 0, -2]:
+            with self.assertRaisesRegexp(
+                    ValidationError,
+                    "Period must be an integer greater than 1."):
+                forecast.period = item
+
+        for item in [0, 1, 2, -2]:
+            with self.assertRaisesRegexp(
+                    ValidationError, 'Alpha should be between 0 and 1.'):
+                forecast.exp_alpha = item
+
+        for item in [0, 1, 2, -2]:
+            with self.assertRaisesRegexp(
+                    ValidationError, 'Beta should be between 0 and 1.'):
+                forecast.beta = item
+
+        for item in [0, 1, 2, -2]:
+            with self.assertRaisesRegexp(
+                    ValidationError, 'Alpha should be between 0 and 1.'):
+                forecast.holt_alpha = item
+
+        # Check that forecasting = 0.0 when data is 0.0
+        fv_list = forecast.get_forecasting_values()
+        self.assertFalse(any(fv_list), 'Must be blank')
+        keys = [
+            'sma_forecast',
+            'sma_ma_error',
+            'cma_forecast',
+            'cma_ma_error',
+            'wma_forecast',
+            'wma_ma_error',
+            'single_forecast',
+            'single_ma_error',
+            'double_forecast',
+            'double_ma_error',
+            'triple_forecast',
+            'triple_ma_error',
+            'holt_forecast',
+            'holt_ma_error',
+        ]
+        out = {}.fromkeys(keys, 0.0)
+        self.compare(out, forecast.read(keys)[0])
 
     def test_01(self):
         """
