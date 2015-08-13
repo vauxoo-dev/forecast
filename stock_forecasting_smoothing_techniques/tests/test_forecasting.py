@@ -26,7 +26,7 @@ class TestForecasting(common.TransactionCase):
         super(TestForecasting, self).setUp()
         self.forecast_obj = self.env['forecasting.smoothing.techniques']
 
-    def compare_res(self, correct, real):
+    def compare(self, correct, real):
         """
         Compare the correct result with the real result. Print logger with
         error tag.
@@ -53,7 +53,7 @@ class TestForecasting(common.TransactionCase):
         values = self.get_test_01_in()
         forecast = self.forecast_obj.create(values)
         out = self.get_test_01_out()
-        self.compare_res(out, forecast.read(out.keys())[0])
+        self.compare(out, forecast.read(out.keys())[0])
 
     def get_test_01_in(self):
         """
@@ -97,7 +97,7 @@ class TestForecasting(common.TransactionCase):
         values = self.get_test_02_in()
         forecast = self.forecast_obj.create(values)
         out = self.get_test_02_out()
-        self.compare_res(out, forecast.read(out.keys())[0])
+        self.compare(out, forecast.read(out.keys())[0])
 
     def get_test_02_in(self):
         """
@@ -138,7 +138,7 @@ class TestForecasting(common.TransactionCase):
     #         test_name = 'test_{num:02d}'.format(num=test_num)
     #         values, out = self.get_test_data(test_name)
     #         forecast = self.forecast_obj.create(values)
-    #         self.compare_res(out, forecast.read([])[0])
+    #         self.compare(out, forecast.read([])[0])
 
     def get_test_data(self, test_name):
         """
@@ -226,7 +226,7 @@ class TestForecasting(common.TransactionCase):
         values = self.get_test_03_in()
         forecast = self.forecast_obj.create(values)
         out = self.get_test_03_out()
-        self.compare_res(out, forecast.read(out.keys())[0])
+        self.compare(out, forecast.read(out.keys())[0])
 
     def get_test_03_in(self):
         """
