@@ -174,7 +174,6 @@ class TestForecasting(common.TransactionCase):
         )
         return {'in': values, 'out': out}
 
-
     def get_test_02_data(self):
         """
         return dictionary with the keys (in, out).
