@@ -148,21 +148,18 @@ class ForecastingSmoothingTechniques(models.Model):
 
     @api.constrains('exp_alpha')
     def _check_exp_alpha(self):
-        if self.exp_alpha <= 0 and self.exp_alpha >= 1:
-            raise ValidationError(
-                _("Alpha should be between 0 and 1."))
+        if self.exp_alpha <= 0 or self.exp_alpha >= 1:
+            raise ValidationError(_("Alpha should be between 0 and 1."))
 
     @api.constrains('holt_alpha')
     def _check_holt_alpha(self):
-        if self.holt_alpha <= 0 and self.holt_alpha >= 1:
-            raise ValidationError(
-                _("Alpha should be between 0 and 1."))
+        if self.holt_alpha <= 0 or self.holt_alpha >= 1:
+            raise ValidationError(_("Alpha should be between 0 and 1."))
 
     @api.constrains('beta')
     def _check_beta(self):
-        if self.beta <= 0 and self.beta >= 1:
-            raise ValidationError(
-                _("Beta should be between 0 and 1."))
+        if self.beta <= 0 or self.beta >= 1:
+            raise ValidationError(_("Beta should be between 0 and 1."))
 
     @api.multi
     def calculate(self):
