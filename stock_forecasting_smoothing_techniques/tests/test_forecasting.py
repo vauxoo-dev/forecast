@@ -26,21 +26,27 @@ class TestForecasting(common.TransactionCase):
         super(TestForecasting, self).setUp()
         self.forecast_obj = self.env['forecasting.smoothing.techniques']
 
-    def compare(self, correct, real):
+    def compare(self, expected, real):
         """
         Compare the correct result with the real result. Print logger with
         error tag.
         """
         elist = list()
-        for (key, value) in correct.iteritems():
-            if real.get(key) != value:
-                elist += [
-                    "{key:15} {real:15} != {expected:15} {ca} {diff:15}".format(
+        keys = expected.keys()
+        keys.sort()
+        error_msg = "{key:15} {real:15} != {expected:15} {ca} {diff:15}"
+        for key in keys:
+            vreal = real.get(key)
+            vexpected  = expected.get(key)
+            vdiff = abs(vreal - vexpected)
+            allowed_error = 0.1
+            if vdiff > allowed_error:
+                elist += [error_msg.format(
                     key=key,
-                    real=real.get(key),
-                    expected=value,
-                    ca= value > real.get(key) and '>' or '<',
-                    diff=abs(real.get(key) - value))]
+                    real=vreal,
+                    expected=vexpected,
+                    ca=vexpected < vreal and '>' or '<',
+                    diff=vdiff)]
 
         error_msg = '\n'.join([_('Fall forecast calculation ')] + elist)
         self.assertTrue(elist == [], error_msg)
