@@ -20,10 +20,6 @@ class ForecastingSmoothingTechniques(models.Model):
     _description = 'Forecasting Smoothing Techniques'
 
     # Forecast Values range(80)
-    # for item in range(1, 81):
-    #     print \
-    #       "fv_{num:02d} = fields.Float('Forecast Value {num:02d}')".format(
-    #         num=item)
     fv_01 = fields.Float('Forecast Value 01')
     fv_02 = fields.Float('Forecast Value 02')
     fv_03 = fields.Float('Forecast Value 03')
@@ -107,37 +103,42 @@ class ForecastingSmoothingTechniques(models.Model):
 
     # Moving Average
     period = fields.Integer('Period', default=5)
-    ma_forecast = fields.Float('Forcast', compute='_compute_move_average')
-    ma_ma_error = fields.Float('MA Error', compute='_compute_move_average')
+
+    # Simple Moving Average
+    sma_forecast = fields.Float('Forcast')
+    sma_ma_error = fields.Float('MA Error')
+
+    # Cumulative Moving Average
+    cma_forecast = fields.Float('Forcast')
+    cma_ma_error = fields.Float('MA Error')
 
     # Weighted Moving Average
-    wma_forecast = fields.Float(
-        'Forcast', compute='_compute_weighted_move_average')
-    wma_ma_error = fields.Float(
-        'MA Error', compute='_compute_weighted_move_average')
+    wma_forecast = fields.Float('Forcast')
+    wma_ma_error = fields.Float('MA Error')
 
     # Single, Double, & Triple Exponential Smoothing
-    exp_alpha = fields.Float('Alpha', default=0.3)
-    single_forecast = fields.Float(
-        'Forcast', compute='_compute_exp_smoothing')
-    single_ma_error = fields.Float(
-        'MA Error', compute='_compute_exp_smoothing')
-    double_forecast = fields.Float(
-        'Forcast', compute='_compute_exp_smoothing')
-    double_ma_error = fields.Float(
-        'MA Error', compute='_compute_exp_smoothing')
-    triple_forecast = fields.Float(
-        'Forcast', compute='_compute_exp_smoothing')
-    triple_ma_error = fields.Float(
-        'MA Error', compute='_compute_exp_smoothing')
+    exp_alpha = fields.Float(
+        'Alpha', default=0.3,
+        help='A small alpha provides a detectable and visible smoothing.'
+             ' While a large alpha provides a fast response to the recent'
+             ' changes in the time series but provides a smaller amount'
+             ' of smoothing')
+
+    single_forecast = fields.Float('Forcast')
+    single_ma_error = fields.Float('MA Error')
+    double_forecast = fields.Float('Forcast')
+    double_ma_error = fields.Float('MA Error')
+    triple_forecast = fields.Float('Forcast')
+    triple_ma_error = fields.Float('MA Error')
 
     # Holt's Linear Smoothing
     holt_alpha = fields.Float('Alpha', default=0.3)
     beta = fields.Float('Beta', default=0.03)
-    holt_forecast = fields.Float(
-        'Forcast', compute='_compute_holt')
-    holt_ma_error = fields.Float(
-        'MA Error', compute='_compute_holt')
+    holt_forecast = fields.Float('Forcast')
+    holt_ma_error = fields.Float('MA Error')
+    holt_period = fields.Float(
+        'Period', default=1,
+        help='forecasting K periods into the future')
 
     @api.constrains('period')
     def _check_period(self):
@@ -147,26 +148,30 @@ class ForecastingSmoothingTechniques(models.Model):
 
     @api.constrains('exp_alpha')
     def _check_exp_alpha(self):
-        if self.exp_alpha <= 0 and self.exp_alpha >= 1:
-            raise ValidationError(
-                _("Alpha should be between 0 and 1."))
+        if self.exp_alpha <= 0 or self.exp_alpha >= 1:
+            raise ValidationError(_("Alpha should be between 0 and 1."))
 
     @api.constrains('holt_alpha')
     def _check_holt_alpha(self):
-        if self.holt_alpha <= 0 and self.holt_alpha >= 1:
-            raise ValidationError(
-                _("Alpha should be between 0 and 1."))
+        if self.holt_alpha <= 0 or self.holt_alpha >= 1:
+            raise ValidationError(_("Alpha should be between 0 and 1."))
 
     @api.constrains('beta')
     def _check_beta(self):
-        if self.beta <= 0 and self.beta >= 1:
-            raise ValidationError(
-                _("Beta should be between 0 and 1."))
+        if self.beta <= 0 or self.beta >= 1:
+            raise ValidationError(_("Beta should be between 0 and 1."))
 
-    @api.depends('period', 'ma_forecast', 'ma_ma_error')
-    def _compute_move_average(self):
+    @api.multi
+    def calculate(self):
+        self._compute_simple_move_average()
+        self._compute_cummulative_move_average()
+        self._compute_weighted_move_average()
+        self._compute_exp_smoothing()
+        self._compute_holt()
+
+    def _compute_cummulative_move_average(self):
         """
-        MOVING AVERAGE
+        CUMULATIVE MOVING AVERAGE
         Note: Represente function compute1
         """
         fv_list = self.get_forecasting_values()
@@ -174,17 +179,36 @@ class ForecastingSmoothingTechniques(models.Model):
             return True
         numv = len(fv_list)
         period = self.period
-        avg = []
-        ma_error = 0.0
-        for item, value in enumerate(fv_list):
-            fv_set = fv_list[item:item+period]
-            if len(fv_set) < period:
-                break
-            avg += [sum(fv_set) / period]
-            ma_error += abs(avg[-1] - fv_set[-1])
-        self.ma_forecast = avg[-1]
-        ma_error = ma_error/(numv - period + 1)
-        self.ma_ma_error = ma_error
+        avg = [None for item in range(period)]
+        ma_error = []
+        for item in range(period, numv+1):
+            fv_set = fv_list[item-period:item]
+            avg += [sum(fv_set) / float(period)]
+            ma_error += [abs(avg[-1] - fv_set[-1])]
+        self.cma_forecast = avg[-1]
+        ma_error = sum(ma_error)/len(ma_error)
+        self.cma_ma_error = ma_error
+        return True
+
+    def _compute_simple_move_average(self):
+        """
+        SIMPLE MOVING AVERAGE
+        Note: Represente function compute1
+        """
+        fv_list = self.get_forecasting_values()
+        if not fv_list:
+            return True
+        numv = len(fv_list)
+        period = self.period
+        avg = [None for item in range(period)]
+        ma_error = []
+        for item in range(period+1, numv+1):
+            fv_set = fv_list[item-period-1:item-1]
+            avg += [sum(fv_set) / float(period)]
+            ma_error += [abs(avg[-1] - fv_list[item-1])]
+        self.sma_forecast = avg[-1]
+        ma_error = sum(ma_error)/len(ma_error)
+        self.sma_ma_error = ma_error
         return True
 
     def get_forecasting_values(self):
@@ -213,7 +237,6 @@ class ForecastingSmoothingTechniques(models.Model):
                 val += 1
         return True
 
-    @api.depends('wma_forecast', 'wma_ma_error')
     def _compute_weighted_move_average(self):
         """
         WEIGHTED MOVING AVERAGE
@@ -224,26 +247,23 @@ class ForecastingSmoothingTechniques(models.Model):
             return True
         numv = len(fv_list)
         period = self.period
-        avg = []
-        ma_error = 0.0
-        weight = (period * (period + 1)) / 2
-        for item in range(0, len(fv_list)):
-            fv_set = fv_list[item:item+period]
+        fperiod = float(period)
+        avg = [None for item in range(4)]
+        ma_error = []
+        weight = (fperiod * (fperiod + 1.0)) / 2.0
+        for item in range(period, numv+1):
+            fv_set = fv_list[item-period:item]
             if len(fv_set) < period:
                 break
             avg += [sum(
-                [(1 / weight) * value
-                 for value in fv_set])]
-            ma_error += abs(avg[-1] - fv_set[-1])
-
+                [((day) / weight) * value
+                 for (day, value) in enumerate(fv_set, 1)])]
+            ma_error += [abs(avg[-1] - fv_set[-1])]
         self.wma_forecast = avg[-1]
-        ma_error = ma_error/(numv - period + 1)
+        ma_error = sum(ma_error)/(float(len(ma_error)))
         self.wma_ma_error = ma_error
         return True
 
-    @api.depends('exp_alpha', 'single_forecast', 'single_ma_error',
-                 'double_forecast', 'double_ma_error', 'triple_forecast',
-                 'triple_ma_error')
     def _compute_exp_smoothing(self):
         """
         Single, Double, & Triple Exponential Smoothing
@@ -260,18 +280,19 @@ class ForecastingSmoothingTechniques(models.Model):
         st3 = [fv_list[1]]
 
         for value in range(1, numv):
-            st1.append(alpha * fv_list[value] + (1 - alpha) * st1[value-1])
-            st2.append(alpha * st1[value] + (1 - alpha) * st2[value-1])
-            st3.append(alpha * st2[value] + (1 - alpha) * st3[value-1])
+            st1.append(alpha * fv_list[value] + (1.0 - alpha) * st1[value-1])
+            st2.append(alpha * st1[value] + (1.0 - alpha) * st2[value-1])
+            st3.append(alpha * st2[value] + (1.0 - alpha) * st3[value-1])
 
-        a2 = 2 * st1[numv-1] - st2[numv-1]
-        b2 = (alpha/(1-alpha)) * (st1[numv-1] - st2[numv-1])
-        a3 = 3 * st1[numv-1] - 3 * st2[numv-1] + st3[numv-1]
-        b3 = ((alpha/(2 * pow(1-alpha, 2))) *
-              ((6 - 5 * alpha) * st1[numv-1] - (10 - 8 * alpha) * st2[numv-1] +
-               (4 - 3 * alpha) * st3[numv-1]))
-        c3 = (pow((alpha/(1 - alpha)), 2) *
-              (st1[numv-1] - 2 * st2[numv-1] + st3[numv-1]))
+        a2 = 2.0 * st1[numv-1] - st2[numv-1]
+        b2 = (alpha/(1.0-alpha)) * (st1[numv-1] - st2[numv-1])
+        a3 = 3.0 * st1[numv-1] - 3.0 * st2[numv-1] + st3[numv-1]
+        b3 = ((alpha/(2.0 * pow(1.0-alpha, 2.0))) * (
+            (6.0 - 5.0 * alpha) * st1[numv-1] -
+            (10.0 - 8.0 * alpha) * st2[numv-1] +
+            (4.0 - 3.0 * alpha) * st3[numv-1]))
+        c3 = (pow((alpha/(1.0 - alpha)), 2.0) *
+              (st1[numv-1] - 2.0 * st2[numv-1] + st3[numv-1]))
 
         self.single_forecast = st1[-1]
         self.double_forecast = a2 + b2
@@ -286,12 +307,11 @@ class ForecastingSmoothingTechniques(models.Model):
             st2_ma_error += abs((st2[value] - fv_list[value]))
             st3_ma_error += abs((st3[value] - fv_list[value]))
 
-        self.single_ma_error = st1_ma_error / numv
-        self.double_ma_error = st2_ma_error / numv
-        self.triple_ma_error = st3_ma_error / numv
+        self.single_ma_error = st1_ma_error / float(numv)
+        self.double_ma_error = st2_ma_error / float(numv)
+        self.triple_ma_error = st3_ma_error / float(numv)
         return True
 
-    @api.depends('holt_alpha', 'beta', 'holt_forecast', 'holt_ma_error')
     def _compute_holt(self):
         """
         Holt's Linear Smoothing
@@ -303,24 +323,25 @@ class ForecastingSmoothingTechniques(models.Model):
         numv = len(fv_list)
         alpha = self.holt_alpha
         beta = self.beta
+        period = self.holt_period
 
-        level = list()
-        trend = list()
-        func = list()
+        level = [None]
+        trend = [None]
+        func = [None, None]
 
         level.append(fv_list[1])
         trend.append(fv_list[1] - fv_list[0])
-        func.append(level[0] + trend[0])
+        func.append(level[-1] + trend[-1])
 
-        for item in range(numv):
-            level.append(alpha * fv_list[item] + (1-alpha) * func[item])
-            trend.append((beta * (level[item] - level[item-1]) + (1 - beta) *
-                          trend[item-1]))
+        for item in range(2, numv):
+            level.append(alpha * fv_list[item] + (1.0 - alpha) * func[item])
+            trend.append((beta * (level[item] - level[item-1])
+                          + (1.0 - beta) * trend[item-1]))
             func.append(level[item] + trend[item])
 
-        self.holt_forecast = func[-1]
+        self.holt_forecast = level[-1] + period * trend[-1]
         ma_error = 0.0
         for item in range(3, numv):
             ma_error += abs(func[item] - fv_list[item])
-        self.holt_ma_error = ma_error / (numv - 3)
+        self.holt_ma_error = ma_error / (float(numv) - 3.0)
         return True
