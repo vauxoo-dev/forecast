@@ -154,6 +154,25 @@
             </field>
         </record>
 
+        <record id="stock_forecastiong_view_tree" model="ir.ui.view">
+            <field name="name">stock.forecastiong.view.tree</field>
+            <field name="model">forecasting.smoothing.techniques</field>
+            <field name="arch" type="xml">
+                <tree string="Forescasting by Smoothing Techniques">
+                    <field name="id"/>
+                    <field name="period" string="MA Period"/>
+                    <field name="sma_forecast" string="SMA"/>
+                    <field name="cma_forecast" string="CMA"/>
+                    <field name="wma_forecast" string="WMA"/>
+                    <field name="single_forecast" string="EXP1"/>
+                    <field name="double_forecast" string="EXP2"/>
+                    <field name="triple_forecast" string="EXP3"/>
+                    <field name="holt_period" string="Holt Future Period"/>
+                    <field name="holt_forecast" string="HOLT"/>
+                </tree>
+            </field>
+        </record>
+
         <record model="ir.actions.act_window" id="action_view_stock_forecasting">
             <field name="name">Forecasting by Smoothing Techniques</field>
             <field name="res_model">forecasting.smoothing.techniques</field>
