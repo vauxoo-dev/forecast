@@ -14,6 +14,7 @@
             <field name="arch" type="xml">
                 <form string="Forescasting by Smoothing Techniques">
                     <header>
+                        <button name="calculate" type="object" string="Calculate"/>
                     </header>
                     <sheet>
                         <div name="forecasting-values" class="stock_forecasting">
@@ -117,7 +118,6 @@
                         </div>
                         <group string="Moving Average" name="move-average" colspan="4" col="4">
                             <field name="period"/>
-                            <button name="set_test_forecast_values" type="object" string="Fill Forecast Values"/>
                             <newline/>
                             <field name="ma_forecast"/>
                             <field name="ma_ma_error"/>

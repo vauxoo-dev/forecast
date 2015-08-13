@@ -110,37 +110,27 @@ class ForecastingSmoothingTechniques(models.Model):
 
     # Moving Average
     period = fields.Integer('Period', default=5)
-    ma_forecast = fields.Float('Forcast', compute='_compute_move_average')
-    ma_ma_error = fields.Float('MA Error', compute='_compute_move_average')
+    ma_forecast = fields.Float('Forcast')
+    ma_ma_error = fields.Float('MA Error')
 
     # Weighted Moving Average
-    wma_forecast = fields.Float(
-        'Forcast', compute='_compute_weighted_move_average')
-    wma_ma_error = fields.Float(
-        'MA Error', compute='_compute_weighted_move_average')
+    wma_forecast = fields.Float('Forcast')
+    wma_ma_error = fields.Float('MA Error')
 
     # Single, Double, & Triple Exponential Smoothing
     exp_alpha = fields.Float('Alpha', default=0.3)
-    single_forecast = fields.Float(
-        'Forcast', compute='_compute_exp_smoothing')
-    single_ma_error = fields.Float(
-        'MA Error', compute='_compute_exp_smoothing')
-    double_forecast = fields.Float(
-        'Forcast', compute='_compute_exp_smoothing')
-    double_ma_error = fields.Float(
-        'MA Error', compute='_compute_exp_smoothing')
-    triple_forecast = fields.Float(
-        'Forcast', compute='_compute_exp_smoothing')
-    triple_ma_error = fields.Float(
-        'MA Error', compute='_compute_exp_smoothing')
+    single_forecast = fields.Float('Forcast')
+    single_ma_error = fields.Float('MA Error')
+    double_forecast = fields.Float('Forcast')
+    double_ma_error = fields.Float('MA Error')
+    triple_forecast = fields.Float('Forcast')
+    triple_ma_error = fields.Float('MA Error')
 
     # Holt's Linear Smoothing
     holt_alpha = fields.Float('Alpha', default=0.3)
     beta = fields.Float('Beta', default=0.03)
-    holt_forecast = fields.Float(
-        'Forcast', compute='_compute_holt')
-    holt_ma_error = fields.Float(
-        'MA Error', compute='_compute_holt')
+    holt_forecast = fields.Float('Forcast')
+    holt_ma_error = fields.Float('MA Error')
 
     @api.constrains('period')
     def _check_period(self):
@@ -166,7 +156,13 @@ class ForecastingSmoothingTechniques(models.Model):
             raise ValidationError(
                 _("Beta should be between 0 and 1."))
 
-    @api.depends('period', 'ma_forecast', 'ma_ma_error')
+    @api.multi
+    def calculate(self):
+        self._compute_move_average()
+        self._compute_weighted_move_average()
+        self._compute_exp_smoothing()
+        self._compute_holt()
+
     def _compute_move_average(self):
         """
         MOVING AVERAGE
@@ -217,7 +213,6 @@ class ForecastingSmoothingTechniques(models.Model):
                 val += 1
         return True
 
-    @api.depends('wma_forecast', 'wma_ma_error')
     def _compute_weighted_move_average(self):
         """
         WEIGHTED MOVING AVERAGE
@@ -246,9 +241,6 @@ class ForecastingSmoothingTechniques(models.Model):
         self.wma_ma_error = ma_error
         return True
 
-    @api.depends('exp_alpha', 'single_forecast', 'single_ma_error',
-                 'double_forecast', 'double_ma_error', 'triple_forecast',
-                 'triple_ma_error')
     def _compute_exp_smoothing(self):
         """
         Single, Double, & Triple Exponential Smoothing
@@ -297,7 +289,6 @@ class ForecastingSmoothingTechniques(models.Model):
         self.triple_ma_error = st3_ma_error / float(numv)
         return True
 
-    @api.depends('holt_alpha', 'beta', 'holt_forecast', 'holt_ma_error')
     def _compute_holt(self):
         """
         Holt's Linear Smoothing
