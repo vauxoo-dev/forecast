@@ -50,7 +50,6 @@ class TestForecasting(common.TransactionCase):
 
         error_msg = '\n'.join(['\n', _('Fall forecast calculation ')] + elist)
         self.assertTrue(elist == [], error_msg)
-        # self.assertDictEqual(correct, real)
 
     def test_01(self):
         """
