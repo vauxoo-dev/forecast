@@ -110,8 +110,14 @@ class ForecastingSmoothingTechniques(models.Model):
 
     # Moving Average
     period = fields.Integer('Period', default=5)
-    ma_forecast = fields.Float('Forcast')
-    ma_ma_error = fields.Float('MA Error')
+
+    # Simple Moving Average
+    sma_forecast = fields.Float('Forcast')
+    sma_ma_error = fields.Float('MA Error')
+
+    # Cumulative Moving Average
+    cma_forecast = fields.Float('Forcast')
+    cma_ma_error = fields.Float('MA Error')
 
     # Weighted Moving Average
     wma_forecast = fields.Float('Forcast')
@@ -158,14 +164,39 @@ class ForecastingSmoothingTechniques(models.Model):
 
     @api.multi
     def calculate(self):
-        self._compute_move_average()
+        self._compute_simple_move_average()
+        self._compute_cummulative_move_average()
         self._compute_weighted_move_average()
         self._compute_exp_smoothing()
         self._compute_holt()
 
-    def _compute_move_average(self):
+    def _compute_cummulative_move_average(self):
         """
-        MOVING AVERAGE
+        CUMULATIVE MOVING AVERAGE
+        Note: Represente function compute1
+        """
+        fv_list = self.get_forecasting_values()
+        if not fv_list:
+            return True
+        numv = len(fv_list)
+        period = self.period
+        avg = [None for item in range(period)]
+        ma_error = []
+        for item in range(period, len(fv_list)):
+            fv_set = fv_list[item-period+1:item+1]
+            avg += [sum(fv_set) / float(period)]
+            ma_error += [abs(avg[-1] - fv_set[-1])]
+            # _logger.debug(
+            #     '{num:02d} avg {avg:10f} mae {mae:10f} set {fset} '.format(
+            #         num=item, fset=fv_set, avg=avg[-1], mae=ma_error[-1]))
+        self.cma_forecast = avg[-1]
+        ma_error = sum(ma_error)/(numv - period + 1)
+        self.cma_ma_error = ma_error
+        return True
+
+    def _compute_simple_move_average(self):
+        """
+        SIMPLE MOVING AVERAGE
         Note: Represente function compute1
         """
         fv_list = self.get_forecasting_values()
@@ -182,9 +213,9 @@ class ForecastingSmoothingTechniques(models.Model):
             # _logger.debug(
             #     '{num:02d} avg {avg:10f} mae {mae:10f} set {fset} '.format(
             #         num=item, fset=fv_set, avg=avg[-1], mae=ma_error[-1]))
-        self.ma_forecast = avg[-1]
+        self.sma_forecast = avg[-1]
         ma_error = sum(ma_error)/(numv - period + 1)
-        self.ma_ma_error = ma_error
+        self.sma_ma_error = ma_error
         return True
 
     def get_forecasting_values(self):
