@@ -199,7 +199,7 @@ class ForecastingSmoothingTechniques(models.Model):
             #     '{num:02d} avg {avg:10f} mae {mae:10f} set {fset} '.format(
             #         num=item, fset=fv_set, avg=avg[-1], mae=ma_error[-1]))
         self.cma_forecast = avg[-1]
-        ma_error = sum(ma_error)/(numv - period + 1)
+        ma_error = sum(ma_error)/len(ma_error)
         self.cma_ma_error = ma_error
         return True
 
@@ -218,12 +218,12 @@ class ForecastingSmoothingTechniques(models.Model):
         for item in range(period+1, len(fv_list)+1):
             fv_set = fv_list[item-period-1:item-1]
             avg += [sum(fv_set) / float(period)]
-            ma_error += [abs(avg[-1] - fv_set[-1])]
+            ma_error += [abs(avg[-1] - fv_list[item-1])]
             # _logger.debug(
             #     '{num:02d} avg {avg:10f} mae {mae:10f} set {fset} '.format(
             #         num=item, fset=fv_set, avg=avg[-1], mae=ma_error[-1]))
         self.sma_forecast = avg[-1]
-        ma_error = sum(ma_error)/(numv - period + 1)
+        ma_error = sum(ma_error)/len(ma_error)
         self.sma_ma_error = ma_error
         return True
 
@@ -283,7 +283,7 @@ class ForecastingSmoothingTechniques(models.Model):
             #         ))
 
         self.wma_forecast = avg[-1]
-        ma_error = sum(ma_error)/(float(numv) - fperiod + 1.0)
+        ma_error = sum(ma_error)/(float(len(ma_error)))
         self.wma_ma_error = ma_error
         return True
 
