@@ -1,5 +1,5 @@
 [![Build Status](http://runbot.odoo.com/logo.png)](http://runbot.vauxoo.com/runbot/)
-[![Build Status](https://travis-ci.org/Vauxoo/addons-vauxoo.svg)](https://travis-ci.org/Vauxoo/addons-vauxoo)
+[![Build Status](https://travis-ci.org/Vauxoo/stock-forecasting.svg)](https://travis-ci.org/Vauxoo/stock-forecasting)
 
 Stock Forecasting modules for Odoo
 ===
