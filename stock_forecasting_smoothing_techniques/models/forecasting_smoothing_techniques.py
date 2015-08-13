@@ -224,20 +224,21 @@ class ForecastingSmoothingTechniques(models.Model):
             return True
         numv = len(fv_list)
         period = self.period
+        fperiod = float(period)
         avg = []
         ma_error = 0.0
-        weight = (period * (period + 1)) / 2
+        weight = (fperiod * (fperiod + 1.0)) / 2.0
         for item in range(0, len(fv_list)):
             fv_set = fv_list[item:item+period]
             if len(fv_set) < period:
                 break
             avg += [sum(
-                [(1 / weight) * value
+                [(1.0 / weight) * value
                  for value in fv_set])]
             ma_error += abs(avg[-1] - fv_set[-1])
 
         self.wma_forecast = avg[-1]
-        ma_error = ma_error/(numv - period + 1)
+        ma_error = ma_error/(float(numv) - fperiod + 1.0)
         self.wma_ma_error = ma_error
         return True
 
@@ -260,18 +261,19 @@ class ForecastingSmoothingTechniques(models.Model):
         st3 = [fv_list[1]]
 
         for value in range(1, numv):
-            st1.append(alpha * fv_list[value] + (1 - alpha) * st1[value-1])
-            st2.append(alpha * st1[value] + (1 - alpha) * st2[value-1])
-            st3.append(alpha * st2[value] + (1 - alpha) * st3[value-1])
+            st1.append(alpha * fv_list[value] + (1.0 - alpha) * st1[value-1])
+            st2.append(alpha * st1[value] + (1.0 - alpha) * st2[value-1])
+            st3.append(alpha * st2[value] + (1.0 - alpha) * st3[value-1])
 
-        a2 = 2 * st1[numv-1] - st2[numv-1]
-        b2 = (alpha/(1-alpha)) * (st1[numv-1] - st2[numv-1])
-        a3 = 3 * st1[numv-1] - 3 * st2[numv-1] + st3[numv-1]
-        b3 = ((alpha/(2 * pow(1-alpha, 2))) *
-              ((6 - 5 * alpha) * st1[numv-1] - (10 - 8 * alpha) * st2[numv-1] +
-               (4 - 3 * alpha) * st3[numv-1]))
-        c3 = (pow((alpha/(1 - alpha)), 2) *
-              (st1[numv-1] - 2 * st2[numv-1] + st3[numv-1]))
+        a2 = 2.0 * st1[numv-1] - st2[numv-1]
+        b2 = (alpha/(1.0-alpha)) * (st1[numv-1] - st2[numv-1])
+        a3 = 3.0 * st1[numv-1] - 3.0 * st2[numv-1] + st3[numv-1]
+        b3 = ((alpha/(2.0 * pow(1.0-alpha, 2.0))) * (
+            (6.0 - 5.0 * alpha) * st1[numv-1] -
+            (10.0 - 8.0 * alpha) * st2[numv-1] +
+            (4.0 - 3.0 * alpha) * st3[numv-1]))
+        c3 = (pow((alpha/(1.0 - alpha)), 2.0) *
+              (st1[numv-1] - 2.0 * st2[numv-1] + st3[numv-1]))
 
         self.single_forecast = st1[-1]
         self.double_forecast = a2 + b2
@@ -286,9 +288,9 @@ class ForecastingSmoothingTechniques(models.Model):
             st2_ma_error += abs((st2[value] - fv_list[value]))
             st3_ma_error += abs((st3[value] - fv_list[value]))
 
-        self.single_ma_error = st1_ma_error / numv
-        self.double_ma_error = st2_ma_error / numv
-        self.triple_ma_error = st3_ma_error / numv
+        self.single_ma_error = st1_ma_error / float(numv)
+        self.double_ma_error = st2_ma_error / float(numv)
+        self.triple_ma_error = st3_ma_error / float(numv)
         return True
 
     @api.depends('holt_alpha', 'beta', 'holt_forecast', 'holt_ma_error')
@@ -313,14 +315,14 @@ class ForecastingSmoothingTechniques(models.Model):
         func.append(level[0] + trend[0])
 
         for item in range(numv):
-            level.append(alpha * fv_list[item] + (1-alpha) * func[item])
-            trend.append((beta * (level[item] - level[item-1]) + (1 - beta) *
-                          trend[item-1]))
+            level.append(alpha * fv_list[item] + (1.0-alpha) * func[item])
+            trend.append((beta * (level[item] - level[item-1])
+                + (1.0 - beta) * trend[item-1]))
             func.append(level[item] + trend[item])
 
         self.holt_forecast = func[-1]
         ma_error = 0.0
         for item in range(3, numv):
             ma_error += abs(func[item] - fv_list[item])
-        self.holt_ma_error = ma_error / (numv - 3)
+        self.holt_ma_error = ma_error / (float(numv) - 3.0)
         return True
