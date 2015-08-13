@@ -17,6 +17,12 @@
                         <button name="calculate" type="object" string="Calculate"/>
                     </header>
                     <sheet>
+                        <h1>
+                            <field name="id" class="oe_inline"/>
+                        </h1>
+                        <h2>
+                            <field name="name" placeholder="Name..." />
+                        </h2>
                         <div name="forecasting-values" class="stock_forecasting">
                             <separator string="Forecasting Data"/>
                             <div class="col-md-12">
@@ -160,6 +166,7 @@
             <field name="arch" type="xml">
                 <tree string="Forescasting by Smoothing Techniques">
                     <field name="id"/>
+                    <field name="name"/>
                     <field name="period" string="MA Period"/>
                     <field name="sma_forecast" string="SMA"/>
                     <field name="cma_forecast" string="CMA"/>

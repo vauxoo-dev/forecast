@@ -19,6 +19,8 @@ class ForecastingSmoothingTechniques(models.Model):
     _name = 'forecasting.smoothing.techniques'
     _description = 'Forecasting Smoothing Techniques'
 
+    name = fields.Char('Name')
+
     # Forecast Values range(80)
     fv_01 = fields.Float('Forecast Value 01')
     fv_02 = fields.Float('Forecast Value 02')
