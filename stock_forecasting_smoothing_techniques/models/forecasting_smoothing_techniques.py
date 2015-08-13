@@ -258,8 +258,8 @@ class ForecastingSmoothingTechniques(models.Model):
         avg = []
         ma_error = 0.0
         weight = (fperiod * (fperiod + 1.0)) / 2.0
-        for item in range(0, len(fv_list)):
-            fv_set = fv_list[item:item+period]
+        for item in range(period, len(fv_list)):
+            fv_set = fv_list[item-period:item]
             if len(fv_set) < period:
                 break
             avg += [sum(
@@ -332,16 +332,16 @@ class ForecastingSmoothingTechniques(models.Model):
         alpha = self.holt_alpha
         beta = self.beta
 
-        level = list()
-        trend = list()
-        func = list()
+        level = [None]
+        trend = [None]
+        func = [None, None]
 
         level.append(fv_list[1])
         trend.append(fv_list[1] - fv_list[0])
-        func.append(level[0] + trend[0])
+        func.append(level[-1] + trend[-1])
 
-        for item in range(numv):
-            level.append(alpha * fv_list[item] + (1.0-alpha) * func[item])
+        for item in range(2, numv):
+            level.append(alpha * fv_list[item] + (1.0 - alpha) * func[item])
             trend.append((beta * (level[item] - level[item-1])
                 + (1.0 - beta) * trend[item-1]))
             func.append(level[item] + trend[item])
