@@ -157,9 +157,8 @@
         <record model="ir.actions.act_window" id="action_view_stock_forecasting">
             <field name="name">Forecasting by Smoothing Techniques</field>
             <field name="res_model">forecasting.smoothing.techniques</field>
-            <field name="view_type">form</field>
+            <field name="view_type">tree</field>
             <field name="view_mode">tree,form</field>
-            <field name="view_id" ref="stock_forecastiong_view_form"/>
         </record>
 
     </data>
