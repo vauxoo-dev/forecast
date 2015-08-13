@@ -48,7 +48,7 @@ class TestForecasting(common.TransactionCase):
                     ca=vexpected < vreal and '>' or '<',
                     diff=vdiff)]
 
-        error_msg = '\n'.join([_('Fall forecast calculation ')] + elist)
+        error_msg = '\n'.join(['\n', _('Fall forecast calculation ')] + elist)
         self.assertTrue(elist == [], error_msg)
         # self.assertDictEqual(correct, real)
 
