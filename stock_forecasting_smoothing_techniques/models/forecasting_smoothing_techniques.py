@@ -124,7 +124,13 @@ class ForecastingSmoothingTechniques(models.Model):
     wma_ma_error = fields.Float('MA Error')
 
     # Single, Double, & Triple Exponential Smoothing
-    exp_alpha = fields.Float('Alpha', default=0.3)
+    exp_alpha = fields.Float(
+        'Alpha', default=0.3,
+        help='A small alpha provides a detectable and visible smoothing.'
+             ' While a large alpha provides a fast response to the recent'
+             ' changes in the time series but provides a smaller amount'
+             ' of smoothing')
+
     single_forecast = fields.Float('Forcast')
     single_ma_error = fields.Float('MA Error')
     double_forecast = fields.Float('Forcast')
