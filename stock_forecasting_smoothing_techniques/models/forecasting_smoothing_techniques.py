@@ -258,20 +258,26 @@ class ForecastingSmoothingTechniques(models.Model):
         numv = len(fv_list)
         period = self.period
         fperiod = float(period)
-        avg = []
-        ma_error = 0.0
+        avg = [None for item in range(4)]
+        ma_error = []
         weight = (fperiod * (fperiod + 1.0)) / 2.0
-        for item in range(period, len(fv_list)):
+        for item in range(period, numv+1):
+            #fv_set = fv_list[item-period+1:item+1]
             fv_set = fv_list[item-period:item]
             if len(fv_set) < period:
                 break
             avg += [sum(
-                [(1.0 / weight) * value
-                 for value in fv_set])]
-            ma_error += abs(avg[-1] - fv_set[-1])
+                [((day)/ weight) * value
+                 for (day, value) in enumerate(fv_set, 1)])]
+            ma_error += [abs(avg[-1] - fv_set[-1])]
+            # _logger.debug(
+            #     '{num:02d} avg {avg:10f} mae {mae:10f} weight {weight} set {fset} '.format(
+            #         num=item, fset=fv_set, avg=avg[-1], mae=ma_error[-1],
+            #         weight=weight,
+            #         ))
 
         self.wma_forecast = avg[-1]
-        ma_error = ma_error/(float(numv) - fperiod + 1.0)
+        ma_error = sum(ma_error)/(float(numv) - fperiod + 1.0)
         self.wma_ma_error = ma_error
         return True
 
