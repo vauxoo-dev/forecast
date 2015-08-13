@@ -12,6 +12,9 @@
 
 from openerp import models, fields, api, _
 from openerp.exceptions import ValidationError
+# import logging
+
+# _logger = logging.getLogger(__name__)
 
 
 class ForecastingSmoothingTechniques(models.Model):
@@ -174,16 +177,17 @@ class ForecastingSmoothingTechniques(models.Model):
             return True
         numv = len(fv_list)
         period = self.period
-        avg = []
-        ma_error = 0.0
-        for item in range(0, len(fv_list)):
-            fv_set = fv_list[item:item+period]
-            if len(fv_set) < period:
-                break
-            avg += [sum(fv_set) / period]
-            ma_error += abs(avg[-1] - fv_set[-1])
+        avg = [None for item in range(period)]
+        ma_error = []
+        for item in range(period, len(fv_list)):
+            fv_set = fv_list[item-period:item]
+            avg += [sum(fv_set) / float(period)]
+            ma_error += [abs(avg[-1] - fv_set[-1])]
+            # _logger.debug(
+            #     '{num:02d} avg {avg:10f} mae {mae:10f} set {fset} '.format(
+            #         num=item, fset=fv_set, avg=avg[-1], mae=ma_error[-1]))
         self.ma_forecast = avg[-1]
-        ma_error = ma_error/(numv - period + 1)
+        ma_error = sum(ma_error)/(numv - period + 1)
         self.ma_ma_error = ma_error
         return True
 
