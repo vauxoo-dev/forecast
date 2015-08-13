@@ -137,6 +137,9 @@ class ForecastingSmoothingTechniques(models.Model):
     beta = fields.Float('Beta', default=0.03)
     holt_forecast = fields.Float('Forcast')
     holt_ma_error = fields.Float('MA Error')
+    holt_period = fields.Float(
+        'Period', default=1,
+        help='forecasting K periods into the future')
 
     @api.constrains('period')
     def _check_period(self):
@@ -331,6 +334,7 @@ class ForecastingSmoothingTechniques(models.Model):
         numv = len(fv_list)
         alpha = self.holt_alpha
         beta = self.beta
+        period = self.holt_period
 
         level = [None]
         trend = [None]
@@ -346,7 +350,7 @@ class ForecastingSmoothingTechniques(models.Model):
                 + (1.0 - beta) * trend[item-1]))
             func.append(level[item] + trend[item])
 
-        self.holt_forecast = func[-1]
+        self.holt_forecast = level[-1] + period * trend[-1]
         ma_error = 0.0
         for item in range(3, numv):
             ma_error += abs(func[item] - fv_list[item])

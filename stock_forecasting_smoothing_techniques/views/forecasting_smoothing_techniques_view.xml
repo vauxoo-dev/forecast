@@ -141,10 +141,11 @@
                             <field name="triple_ma_error"/>
                         </group>
                         <group string="Holt's Linear Smotting" name="holt-smoothing" colspan="4" col="4">
-                            <field name="holt_alpha"/>
-                            <newline/>
-                            <field name="beta"/>
-                            <newline/>
+                            <group colspan="4" col="2">
+                                <field name="holt_period"/>
+                                <field name="holt_alpha"/>
+                                <field name="beta"/>
+                            </group>
                             <field name="holt_forecast"/>
                             <field name="holt_ma_error"/>
                         </group>
