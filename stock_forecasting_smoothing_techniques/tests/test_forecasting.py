@@ -10,7 +10,7 @@
 #                Gabriela Quilarque <gabriela@vauxoo.com>
 ############################################################################
 
-from openerp import api, _
+from openerp import _
 from openerp.exceptions import ValidationError
 from openerp.tests import common
 
@@ -72,6 +72,7 @@ class TestForecasting(common.TransactionCase):
 
         # Test Duplicate
         forecast2 = forecast.copy()
+        self.compare(defaults, forecast2.read(defaults.keys())[0])
 
         # Test Contraints
         for item in [1, 0, -2]:
