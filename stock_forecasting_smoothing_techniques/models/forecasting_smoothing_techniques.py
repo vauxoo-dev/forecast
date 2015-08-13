@@ -12,9 +12,6 @@
 
 from openerp import models, fields, api, _
 from openerp.exceptions import ValidationError
-# import logging
-
-# _logger = logging.getLogger(__name__)
 
 
 class ForecastingSmoothingTechniques(models.Model):
@@ -23,10 +20,6 @@ class ForecastingSmoothingTechniques(models.Model):
     _description = 'Forecasting Smoothing Techniques'
 
     # Forecast Values range(80)
-    # for item in range(1, 81):
-    #     print \
-    #       "fv_{num:02d} = fields.Float('Forecast Value {num:02d}')".format(
-    #         num=item)
     fv_01 = fields.Float('Forecast Value 01')
     fv_02 = fields.Float('Forecast Value 02')
     fv_03 = fields.Float('Forecast Value 03')
@@ -195,9 +188,6 @@ class ForecastingSmoothingTechniques(models.Model):
             fv_set = fv_list[item-period:item]
             avg += [sum(fv_set) / float(period)]
             ma_error += [abs(avg[-1] - fv_set[-1])]
-            # _logger.debug(
-            #     '{num:02d} avg {avg:10f} mae {mae:10f} set {fset} '.format(
-            #         num=item, fset=fv_set, avg=avg[-1], mae=ma_error[-1]))
         self.cma_forecast = avg[-1]
         ma_error = sum(ma_error)/len(ma_error)
         self.cma_ma_error = ma_error
@@ -219,9 +209,6 @@ class ForecastingSmoothingTechniques(models.Model):
             fv_set = fv_list[item-period-1:item-1]
             avg += [sum(fv_set) / float(period)]
             ma_error += [abs(avg[-1] - fv_list[item-1])]
-            # _logger.debug(
-            #     '{num:02d} avg {avg:10f} mae {mae:10f} set {fset} '.format(
-            #         num=item, fset=fv_set, avg=avg[-1], mae=ma_error[-1]))
         self.sma_forecast = avg[-1]
         ma_error = sum(ma_error)/len(ma_error)
         self.sma_ma_error = ma_error
@@ -268,7 +255,6 @@ class ForecastingSmoothingTechniques(models.Model):
         ma_error = []
         weight = (fperiod * (fperiod + 1.0)) / 2.0
         for item in range(period, numv+1):
-            #fv_set = fv_list[item-period+1:item+1]
             fv_set = fv_list[item-period:item]
             if len(fv_set) < period:
                 break
@@ -276,12 +262,6 @@ class ForecastingSmoothingTechniques(models.Model):
                 [((day)/ weight) * value
                  for (day, value) in enumerate(fv_set, 1)])]
             ma_error += [abs(avg[-1] - fv_set[-1])]
-            # _logger.debug(
-            #     '{num:02d} avg {avg:10f} mae {mae:10f} weight {weight} set {fset} '.format(
-            #         num=item, fset=fv_set, avg=avg[-1], mae=ma_error[-1],
-            #         weight=weight,
-            #         ))
-
         self.wma_forecast = avg[-1]
         ma_error = sum(ma_error)/(float(len(ma_error)))
         self.wma_ma_error = ma_error
