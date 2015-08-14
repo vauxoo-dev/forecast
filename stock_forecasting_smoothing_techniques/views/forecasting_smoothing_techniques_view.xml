@@ -15,6 +15,7 @@
                 <form string="Forescasting by Smoothing Techniques">
                     <header>
                         <button name="calculate" type="object" string="Calculate"/>
+                        <button name="clear" type="object" string="Clear" context="{'dtype': 'all'}"/>
                     </header>
                     <sheet>
                         <h1>
@@ -121,30 +122,40 @@
                                 <div class="col-md-1"><field name="fv_79" class="oe_inline"/></div>
                                 <div class="col-md-1"><field name="fv_80" class="oe_inline"/></div>
                             </div>
+                            <button name="clear" type="object" string="Clear" context="{'dtype': 'data'}"/>
                         </div>
-                        <group string="Simple Moving Average" name="move-average" colspan="4" col="4">
+                        <group string="Simple Moving Average" name="move-average" colspan="4" col="6">
                             <field name="period"/>
                             <newline/>
                             <field name="sma_forecast"/>
                             <field name="sma_ma_error"/>
+                            <button name="clear" type="object" string="Clear" context="{'dtype': 'sma'}"/>
                         </group>
-                        <group string="Cummulative Moving Average" name="move-average" colspan="4" col="4">
+                        <group string="Cummulative Moving Average" name="move-average" colspan="4" col="6">
                             <field name="cma_forecast"/>
                             <field name="cma_ma_error"/>
+                            <button name="clear" type="object" string="Clear" context="{'dtype': 'cma'}"/>
                         </group>
-                        <group string="Weighted Moving Average" name="weighted-move-average" colspan="4" col="4">
+                        <group string="Weighted Moving Average" name="weighted-move-average" colspan="4" col="6">
                             <field name="wma_forecast"/>
                             <field name="wma_ma_error"/>
+                            <button name="clear" type="object" string="Clear" context="{'dtype': 'wma'}"/>
                         </group>
                         <group string="Single, Double, &amp; Triple Exponential Smoothing" name="exp-smoothing" colspan="4" col="4">
-                            <field name="exp_alpha"/>
-                            <newline/>
-                            <field name="single_forecast"/>
-                            <field name="single_ma_error"/>
-                            <field name="double_forecast"/>
-                            <field name="double_ma_error"/>
-                            <field name="triple_forecast"/>
-                            <field name="triple_ma_error"/>
+                            <group colspan="4" col="4">
+                                <field name="exp_alpha"/>
+                            </group>
+                            <group colspan="4" col="5">
+                                <field name="single_forecast"/>
+                                <field name="single_ma_error"/>
+                                <button name="clear" type="object" string="Clear" context="{'dtype': 'single'}"/>
+                                <field name="double_forecast"/>
+                                <field name="double_ma_error"/>
+                                <button name="clear" type="object" string="Clear" context="{'dtype': 'double'}"/>
+                                <field name="triple_forecast"/>
+                                <field name="triple_ma_error"/>
+                                <button name="clear" type="object" string="Clear" context="{'dtype': 'triple'}"/>
+                            </group>
                         </group>
                         <group string="Holt's Linear Smotting" name="holt-smoothing" colspan="4" col="4">
                             <group colspan="4" col="2">
@@ -152,8 +163,11 @@
                                 <field name="holt_alpha"/>
                                 <field name="beta"/>
                             </group>
-                            <field name="holt_forecast"/>
-                            <field name="holt_ma_error"/>
+                            <group colspan="4" col="6">
+                                <field name="holt_forecast"/>
+                                <field name="holt_ma_error"/>
+                                <button name="clear" type="object" string="Clear" context="{'dtype': 'holt'}"/>
+                            </group>
                         </group>
                     </sheet>
                 </form>

@@ -118,6 +118,31 @@ class TestForecasting(common.TransactionCase):
         out = {}.fromkeys(keys, 0.0)
         self.compare(out, forecast.read(keys)[0])
 
+    def test_00_1(self):
+        """ Check Clear method/button works propertly """
+        sections = [
+            'all', 'sma', 'cma', 'wma', 'single', 'double', 'triple',
+            'holt',
+        ]
+        for section in sections:
+            values = self.get_test_01_in()
+            forecast = self.forecast_obj.create(values)
+            forecast.calculate()
+            self._clear_section_test(forecast, section)
+
+    def _clear_section_test(self, forecast, dtype):
+        """ Clear a specific section onyl clear the section """
+        # Prepare compare dictionaries
+        field_to_clear = forecast._fields_to_clear().get(dtype)
+        forecast_full = forecast.read(field_to_clear)[0]
+        forecast_clean = forecast_full.copy()
+        forecast_clean.update({}.fromkeys(field_to_clear, 0.0))
+
+        # Clear section and check that result is the expected
+        forecast.with_context(dtype=dtype).clear()
+        forecast_res = forecast.read(field_to_clear)[0]
+        self.compare(forecast_clean, forecast_res)
+
     def test_01(self):
         """
         Run 80 values, count for 1 to 30 and repeat.

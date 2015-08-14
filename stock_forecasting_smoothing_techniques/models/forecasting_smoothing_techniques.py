@@ -11,7 +11,7 @@
 ############################################################################
 
 from openerp import models, fields, api, _
-from openerp.exceptions import ValidationError
+from openerp.exceptions import ValidationError, Warning as UserError
 
 
 class ForecastingSmoothingTechniques(models.Model):
@@ -170,6 +170,67 @@ class ForecastingSmoothingTechniques(models.Model):
         self._compute_weighted_move_average()
         self._compute_exp_smoothing()
         self._compute_holt()
+
+    def _fields_to_clear(self):
+        """
+        @return fields to clear by section group. Dictionary (key group,
+        values list of field names).
+        """
+        fields_section = dict(
+            data=[
+                'fv_01', 'fv_02', 'fv_03', 'fv_04', 'fv_05',
+                'fv_06', 'fv_07', 'fv_08', 'fv_09', 'fv_10',
+                'fv_11', 'fv_12', 'fv_13', 'fv_14', 'fv_15',
+                'fv_16', 'fv_17', 'fv_18', 'fv_19', 'fv_20',
+                'fv_21', 'fv_22', 'fv_23', 'fv_24', 'fv_25',
+                'fv_26', 'fv_27', 'fv_28', 'fv_29', 'fv_30',
+                'fv_31', 'fv_32', 'fv_33', 'fv_34', 'fv_35',
+                'fv_36', 'fv_37', 'fv_38', 'fv_39', 'fv_40',
+                'fv_41', 'fv_42', 'fv_43', 'fv_44', 'fv_45',
+                'fv_46', 'fv_47', 'fv_48', 'fv_49', 'fv_50',
+                'fv_51', 'fv_52', 'fv_53', 'fv_54', 'fv_55',
+                'fv_56', 'fv_57', 'fv_58', 'fv_59', 'fv_60',
+                'fv_61', 'fv_62', 'fv_63', 'fv_64', 'fv_65',
+                'fv_66', 'fv_67', 'fv_68', 'fv_69', 'fv_70',
+                'fv_71', 'fv_72', 'fv_73', 'fv_74', 'fv_75',
+                'fv_76', 'fv_77', 'fv_78', 'fv_79', 'fv_80'],
+            sma=['sma_forecast', 'sma_ma_error'],
+            cma=['cma_forecast', 'cma_ma_error'],
+            wma=['wma_forecast', 'wma_ma_error'],
+            single=['single_forecast', 'single_ma_error'],
+            double=['double_forecast', 'double_ma_error'],
+            triple=['triple_forecast', 'triple_ma_error'],
+            holt=['holt_forecast', 'holt_ma_error'],
+        )
+        fields_section.update({'all': [
+            fname
+            for fgroup in fields_section.values()
+            for fname in fgroup]})
+        return fields_section
+
+    @api.multi
+    def clear(self):
+        """
+        Clear all the fields.
+        """
+        dtype = self._context.get('dtype', False)
+        if not dtype:
+            raise UserError(_('Indicate what you want to delete'))
+
+        fields_section = self._fields_to_clear()
+        if dtype not in fields_section:
+            raise UserError(_('There is not groups of fields defined'))
+
+        self._clear_method(fields_section[dtype])
+        return True
+
+    @api.multi
+    def _clear_method(self, field_list):
+        """
+        Clean the method forecast values.
+        """
+        values = {}.fromkeys(field_list, 0.0)
+        self.write(values)
 
     def _compute_cummulative_move_average(self):
         """
