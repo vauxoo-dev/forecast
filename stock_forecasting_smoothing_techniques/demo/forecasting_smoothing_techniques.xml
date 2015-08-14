@@ -1,0 +1,153 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<openerp>
+  <data noupdate="1">
+    <record id="fst_demo_01" model="forecasting.smoothing.techniques">
+      <field name="fv_01">1</field>
+      <field name="fv_02">2</field>
+      <field name="fv_03">3</field>
+      <field name="fv_04">4</field>
+      <field name="fv_05">5</field>
+      <field name="fv_06">6</field>
+      <field name="fv_07">7</field>
+      <field name="fv_08">8</field>
+      <field name="fv_09">9</field>
+      <field name="fv_10">10</field>
+      <field name="fv_11">11</field>
+      <field name="fv_12">12</field>
+      <field name="fv_13">13</field>
+      <field name="fv_14">14</field>
+      <field name="fv_15">15</field>
+      <field name="fv_16">16</field>
+      <field name="fv_17">17</field>
+      <field name="fv_18">18</field>
+      <field name="fv_19">19</field>
+      <field name="fv_20">20</field>
+      <field name="fv_21">21</field>
+      <field name="fv_22">22</field>
+      <field name="fv_23">23</field>
+      <field name="fv_24">24</field>
+      <field name="fv_25">25</field>
+      <field name="fv_26">26</field>
+      <field name="fv_27">27</field>
+      <field name="fv_28">28</field>
+      <field name="fv_29">29</field>
+      <field name="fv_30">30</field>
+      <field name="fv_31">1</field>
+      <field name="fv_32">2</field>
+      <field name="fv_33">3</field>
+      <field name="fv_34">4</field>
+      <field name="fv_35">5</field>
+      <field name="fv_36">6</field>
+      <field name="fv_37">7</field>
+      <field name="fv_38">8</field>
+      <field name="fv_39">9</field>
+      <field name="fv_40">10</field>
+      <field name="fv_41">11</field>
+      <field name="fv_42">12</field>
+      <field name="fv_43">13</field>
+      <field name="fv_44">14</field>
+      <field name="fv_45">15</field>
+      <field name="fv_46">16</field>
+      <field name="fv_47">17</field>
+      <field name="fv_48">18</field>
+      <field name="fv_49">19</field>
+      <field name="fv_50">20</field>
+      <field name="fv_51">21</field>
+      <field name="fv_52">22</field>
+      <field name="fv_53">23</field>
+      <field name="fv_54">24</field>
+      <field name="fv_55">25</field>
+      <field name="fv_56">26</field>
+      <field name="fv_57">27</field>
+      <field name="fv_58">28</field>
+      <field name="fv_59">29</field>
+      <field name="fv_60">30</field>
+      <field name="fv_61">1</field>
+      <field name="fv_62">2</field>
+      <field name="fv_63">3</field>
+      <field name="fv_64">4</field>
+      <field name="fv_65">5</field>
+      <field name="fv_66">6</field>
+      <field name="fv_67">7</field>
+      <field name="fv_68">8</field>
+      <field name="fv_69">9</field>
+      <field name="fv_70">10</field>
+      <field name="fv_71">11</field>
+      <field name="fv_72">12</field>
+      <field name="fv_73">13</field>
+      <field name="fv_74">14</field>
+      <field name="fv_75">15</field>
+      <field name="fv_76">16</field>
+      <field name="fv_77">17</field>
+      <field name="fv_78">18</field>
+      <field name="fv_79">19</field>
+      <field name="fv_80">20</field>
+      <field name="name">Test 01</field>
+      <field name="period">5</field>
+    </record>
+    <record id="fst_demo_02" model="forecasting.smoothing.techniques">
+      <field name="fv_01">1</field>
+      <field name="fv_02">2</field>
+      <field name="fv_03">3</field>
+      <field name="fv_04">4</field>
+      <field name="fv_05">5</field>
+      <field name="fv_06">6</field>
+      <field name="fv_07">7</field>
+      <field name="fv_08">8</field>
+      <field name="fv_09">9</field>
+      <field name="fv_10">10</field>
+      <field name="name">Test 02</field>
+      <field name="period">5</field>
+    </record>
+    <record id="fst_demo_03" model="forecasting.smoothing.techniques">
+      <field name="beta">0.6</field>
+      <field name="fv_01">133</field>
+      <field name="fv_02">155</field>
+      <field name="fv_03">165</field>
+      <field name="fv_04">171</field>
+      <field name="fv_05">194</field>
+      <field name="fv_06">231</field>
+      <field name="fv_07">274</field>
+      <field name="fv_08">312</field>
+      <field name="fv_09">313</field>
+      <field name="fv_10">333</field>
+      <field name="fv_11">343</field>
+      <field name="holt_alpha">0.7</field>
+      <field name="holt_period">2</field>
+      <field name="name">Test 03</field>
+      <field name="period">5</field>
+    </record>
+    <record id="fst_demo_04" model="forecasting.smoothing.techniques">
+      <field name="fv_01">105</field>
+      <field name="fv_02">100</field>
+      <field name="fv_03">105</field>
+      <field name="fv_04">95</field>
+      <field name="fv_05">100</field>
+      <field name="fv_06">95</field>
+      <field name="fv_07">105</field>
+      <field name="fv_08">120</field>
+      <field name="fv_09">115</field>
+      <field name="fv_10">125</field>
+      <field name="fv_11">120</field>
+      <field name="fv_12">120</field>
+      <field name="name">Test 04</field>
+      <field name="period">5</field>
+    </record>
+    <record id="fst_demo_05" model="forecasting.smoothing.techniques">
+      <field name="fv_01">80</field>
+      <field name="fv_02">90</field>
+      <field name="fv_03">85</field>
+      <field name="fv_04">70</field>
+      <field name="fv_05">80</field>
+      <field name="fv_06">105</field>
+      <field name="fv_07">100</field>
+      <field name="fv_08">105</field>
+      <field name="fv_09">100</field>
+      <field name="fv_10">105</field>
+      <field name="fv_11">100</field>
+      <field name="fv_12">150</field>
+      <field name="name">Test 05</field>
+      <field name="period">3</field>
+    </record>
+  </data>
+</openerp>

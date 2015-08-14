@@ -24,6 +24,7 @@
         "security/ir.model.access.csv",
         "views/forecasting_smoothing_techniques_view.xml",
         "views/product_view.xml",
+        "demo/forecasting_smoothing_techniques.xml",
     ],
     "demo": [],
     "test": [],
