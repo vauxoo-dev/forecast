@@ -194,6 +194,17 @@
             </field>
         </record>
 
+        <record id="stock_forecastiong_view_search" model="ir.ui.view">
+            <field name="name">stock.forecastiong.view.search</field>
+            <field name="model">forecasting.smoothing.techniques</field>
+            <field name="arch" type="xml">
+                <search string="Forescasting by Smoothing Techniques">
+                    <field name="id"/>
+                    <field name="name"/>
+                </search>
+            </field>
+        </record>
+
         <record model="ir.actions.act_window" id="action_view_stock_forecasting">
             <field name="name">Forecasting by Smoothing Techniques</field>
             <field name="res_model">forecasting.smoothing.techniques</field>
