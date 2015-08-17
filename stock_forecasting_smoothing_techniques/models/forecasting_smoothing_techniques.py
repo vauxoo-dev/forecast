@@ -279,6 +279,7 @@ class ForecastingSmoothingTechniques(models.Model):
         values = {}.fromkeys(field_list, 0.0)
         self.write(values)
 
+    @api.one
     @api.depends()
     def _compute_cummulative_move_average(self):
         """
@@ -301,6 +302,7 @@ class ForecastingSmoothingTechniques(models.Model):
         self.cma_ma_error = ma_error
         return True
 
+    @api.one
     @api.depends()
     def _compute_simple_move_average(self):
         """
@@ -352,6 +354,7 @@ class ForecastingSmoothingTechniques(models.Model):
                 val += 1
         return True
 
+    @api.one
     @api.depends()
     def _compute_weighted_move_average(self):
         """
@@ -380,6 +383,7 @@ class ForecastingSmoothingTechniques(models.Model):
         self.wma_ma_error = ma_error
         return True
 
+    @api.one
     @api.depends()
     def _compute_exp_smoothing(self):
         """
@@ -429,6 +433,7 @@ class ForecastingSmoothingTechniques(models.Model):
         self.triple_ma_error = st3_ma_error / float(numv)
         return True
 
+    @api.one
     @api.depends()
     def _compute_holt(self):
         """
