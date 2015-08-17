@@ -205,14 +205,6 @@ class ForecastingSmoothingTechniques(models.Model):
         if self.beta <= 0 or self.beta >= 1:
             raise ValidationError(_("Beta should be between 0 and 1."))
 
-    @api.multi
-    def calculate(self):
-        self._compute_simple_move_average()
-        self._compute_cummulative_move_average()
-        self._compute_weighted_move_average()
-        self._compute_exp_smoothing()
-        self._compute_holt()
-
     def fields_section(self, fsection='all'):
         """
         This is used for get or clear section group fields.

@@ -14,7 +14,6 @@
             <field name="arch" type="xml">
                 <form string="Forescasting by Smoothing Techniques">
                     <header>
-                        <button name="calculate" type="object" string="Calculate"/>
                     </header>
                     <sheet>
                         <h1>
