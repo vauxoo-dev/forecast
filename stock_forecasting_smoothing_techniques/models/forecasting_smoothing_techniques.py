@@ -213,7 +213,7 @@ class ForecastingSmoothingTechniques(models.Model):
         self._compute_exp_smoothing()
         self._compute_holt()
 
-    def fields_section(self, fsection):
+    def fields_section(self, fsection='all'):
         """
         This is used for get or clear section group fields.
         @return fields the list of fileds by section.  Dictionary (key group,
@@ -252,7 +252,7 @@ class ForecastingSmoothingTechniques(models.Model):
 
         if fsection not in fields_section.keys():
             raise UserError(
-                _('This section fields key is not valid') + ' ' + fsection)
+                _('There is not groups of fields defined') + ' ' + fsection)
         elif fsection:
             return fields_section.get(fsection)
         else:
@@ -266,12 +266,7 @@ class ForecastingSmoothingTechniques(models.Model):
         dtype = self._context.get('dtype', False)
         if not dtype:
             raise UserError(_('Indicate what you want to delete'))
-
-        fields_section = self.fields_section()
-        if dtype not in fields_section:
-            raise UserError(_('There is not groups of fields defined'))
-
-        self._clear_method(fields_section[dtype])
+        self._clear_method(self.fields_section(dtype))
         return True
 
     @api.multi
