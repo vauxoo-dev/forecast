@@ -14,6 +14,7 @@
             <field name="arch" type="xml">
                 <form string="Forescasting by Smoothing Techniques">
                     <header>
+                        <button name="reset_defaults" type="object" string="Reset Defaults"/>
                     </header>
                     <sheet>
                         <h1>

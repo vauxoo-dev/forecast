@@ -251,6 +251,16 @@ class ForecastingSmoothingTechniques(models.Model):
             return fields_section
 
     @api.multi
+    def reset_defaults(self):
+        """
+        Reset defaults for the variables used in the current calc.
+        ['period', 'exp_alpha', 'holt_alpha', 'beta', 'holt_period']
+        """
+        defaults = self.default_get([])
+        self.write(defaults)
+        return True
+
+    @api.multi
     def clear(self):
         """
         Clear all the fields.
