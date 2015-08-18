@@ -19,7 +19,8 @@ class ForecastingSmoothingTechniques(models.Model):
     _name = 'forecasting.smoothing.techniques'
     _description = 'Forecasting Smoothing Techniques'
 
-    name = fields.Char('Name')
+    name = fields.Char(
+        help='Name given by the user to quick reference the forecasting')
 
     # Forecast Values range(80)
     fv_01 = fields.Float('Forecast Value 01')
@@ -104,85 +105,107 @@ class ForecastingSmoothingTechniques(models.Model):
     fv_80 = fields.Float('Forecast Value 80')
 
     # Moving Average
-    period = fields.Integer('Period', default=5)
+    period = fields.Integer(
+        'Period', default=5, help="Moving Average Period")
 
     # Simple Moving Average
     sma_forecast = fields.Float(
         'Forecast',
         compute='_compute_simple_move_average',
+        help="Simple Moving Average Forcasting (SMA)"
     )
     sma_ma_error = fields.Float(
         'MA Error',
         compute='_compute_simple_move_average',
+        help="Mean Absolute Error for SMA"
     )
 
     # Cumulative Moving Average
     cma_forecast = fields.Float(
         'Forecast',
         compute='_compute_cummulative_move_average',
+        help="Cumulative Moving Average Forcasting (CMA)"
     )
     cma_ma_error = fields.Float(
         'MA Error',
         compute='_compute_cummulative_move_average',
+        help="Mean Absolute Error for CMA"
     )
 
     # Weighted Moving Average
     wma_forecast = fields.Float(
         'Forecast',
         compute='_compute_weighted_move_average',
+        help="Weighted Moving Average Forcasting (WMA)"
     )
     wma_ma_error = fields.Float(
         'MA Error',
         compute='_compute_weighted_move_average',
+        help="Mean Absolute Error for WMA"
     )
 
     # Single, Double, & Triple Exponential Smoothing
     exp_alpha = fields.Float(
         'Alpha', default=0.3,
-        help='A small alpha provides a detectable and visible smoothing.'
-             ' While a large alpha provides a fast response to the recent'
-             ' changes in the time series but provides a smaller amount'
-             ' of smoothing')
+        help='Exponential Alpha. A small alpha provides a detectable and'
+             ' visible smoothing. While a large alpha provides a fast'
+             ' response to the recent changes in the time series but'
+             ' provides a smaller amount of smoothing')
 
     single_forecast = fields.Float(
         'Forecast',
         compute='_compute_exp_smoothing',
+        help="Single Exponential Smoothing (SES)"
     )
     single_ma_error = fields.Float(
         'MA Error',
         compute='_compute_exp_smoothing',
+        help="Mean Absolute Error for SES"
     )
     double_forecast = fields.Float(
         'Forecast',
         compute='_compute_exp_smoothing',
+        help="Double Exponential Smoothing (DES)"
     )
     double_ma_error = fields.Float(
         'MA Error',
         compute='_compute_exp_smoothing',
+        help="Mean Absolute Error for DES"
     )
     triple_forecast = fields.Float(
         'Forecast',
         compute='_compute_exp_smoothing',
+        help="Triple Exponential Smoothing (TES)"
     )
     triple_ma_error = fields.Float(
         'MA Error',
         compute='_compute_exp_smoothing',
+        help="Mean Absolute Error for TES"
     )
 
     # Holt's Linear Smoothing
-    holt_alpha = fields.Float('Alpha', default=0.3)
-    beta = fields.Float('Beta', default=0.03)
+    holt_alpha = fields.Float(
+        'Alpha', default=0.3,
+        help="Holt's Alpha Parameter"
+    )
+    beta = fields.Float(
+        'Beta', default=0.03,
+        help="Holt's Beta Parameter"
+    )
     holt_forecast = fields.Float(
         'Forecast',
-        compute='_compute_holt'
+        compute='_compute_holt',
+        help="Holt's Linear Smoothing (HOLT)"
     )
     holt_ma_error = fields.Float(
         'MA Error',
-        compute='_compute_holt'
+        compute='_compute_holt',
+        help="Mean Absolute Error for HOLT"
     )
     holt_period = fields.Float(
-        'Period', default=1,
-        help='forecasting K periods into the future')
+        "Holt's Period", default=1,
+        help="Forecasting K periods into the future to calculate Holt's"
+              " Linear Smoothing")
 
     @api.constrains('period')
     def _check_period(self):
