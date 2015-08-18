@@ -256,7 +256,9 @@ class ForecastingSmoothingTechniques(models.Model):
         Reset defaults for the variables used in the current calc.
         ['period', 'exp_alpha', 'holt_alpha', 'beta', 'holt_period']
         """
-        defaults = self.default_get([])
+        parameter_fields = [
+            'period', 'exp_alpha', 'holt_alpha', 'beta', 'holt_period']
+        defaults = self.default_get(parameter_fields)
         self.write(defaults)
         return True
 
