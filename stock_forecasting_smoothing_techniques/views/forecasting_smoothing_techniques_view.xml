@@ -32,15 +32,23 @@
                                         <p class="mt_32">
                                             A time series is a sequence of observations which are ordered in time. Inherent in the collection of data taken over time is some form of random variation. There exist methods for reducing of canceling the effect due to random variation. Widely used techniques are "smoothing". These techniques, when properly applied, reveals more clearly the underlying trends.
                                         </p>
+                                        <p class="mt_32">
+                                            For deep mathematical explanation of the method you can check in
+                                            <a class="reference external" href="https://home.ubalt.edu/ntsbarsh/business-stat/stat-data/Forecast.htm#rhomave">
+                                                this link
+                                            </a>
+                                        </p>
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="alert alert-success" role="alert">
-                                            <strong>Step 1:</strong> Fill the above values.  Enter the time series Row-wise in sequence, starting from the left-upper corner
-                                            Blank boxes are not included in the calculations.
+                                            <strong>Step 1:</strong> Fill the above values.  Enter the time series Row-wise in sequence, starting from
+                                            the left-upper corner. Blank boxes are not included in the calculations.
                                             In entering your data to move from cell to cell in the data-matrix use the <strong>Tab</strong> key not arrow or enter keys.
+                                            0.0 Values are consider <strong>NULL</strong> .
+                                            After you add the forecast values and save this form the forcastings will be compute automactly.
                                         </div>
                                     </div>
                                 </div>
