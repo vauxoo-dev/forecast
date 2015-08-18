@@ -13,154 +13,321 @@
             <field name="model">forecasting.smoothing.techniques</field>
             <field name="arch" type="xml">
                 <form string="Forescasting by Smoothing Techniques">
-                    <header>
-                        <button name="reset_defaults" type="object" string="Reset Defaults"/>
-                    </header>
                     <sheet>
-                        <h1>
-                            <field name="id" class="oe_inline"/>
-                        </h1>
-                        <h2>
-                            <field name="name" placeholder="Name..." />
-                        </h2>
-                        <div name="forecasting-values" class="stock_forecasting">
-                            <separator string="Forecasting Data"/>
-                            <div class="col-md-12">
-                                <div class="col-md-1"><field name="fv_01" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_02" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_03" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_04" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_05" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_06" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_07" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_08" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_09" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_10" class="oe_inline"/></div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="col-md-1"><field name="fv_11" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_12" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_13" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_14" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_15" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_16" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_17" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_18" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_19" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_20" class="oe_inline"/></div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="col-md-1"><field name="fv_21" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_22" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_23" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_24" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_25" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_26" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_27" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_28" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_29" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_30" class="oe_inline"/></div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="col-md-1"><field name="fv_31" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_32" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_33" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_34" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_35" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_36" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_37" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_38" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_39" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_40" class="oe_inline"/></div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="col-md-1"><field name="fv_41" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_42" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_43" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_44" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_45" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_46" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_47" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_48" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_49" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_50" class="oe_inline"/></div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="col-md-1"><field name="fv_51" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_52" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_53" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_54" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_55" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_56" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_57" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_58" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_59" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_60" class="oe_inline"/></div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="col-md-1"><field name="fv_61" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_62" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_63" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_64" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_65" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_66" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_67" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_68" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_69" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_70" class="oe_inline"/></div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="col-md-1"><field name="fv_71" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_72" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_73" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_74" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_75" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_76" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_77" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_78" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_79" class="oe_inline"/></div>
-                                <div class="col-md-1"><field name="fv_80" class="oe_inline"/></div>
-                            </div>
-                            <button name="clear" type="object" string="Clear" context="{'dtype': 'data'}"/>
+                        <div class="oe_right oe_button_box" name="button_box">
+                            <button name="reset_defaults" type="object" string="Reset Defaults" class="oe_inline oe_stat_button" icon="fa-refresh" help="Reset the forecasting methods default parameter values"/>
+                            <button name="clear" type="object" string="Clear" context="{'dtype': 'data'}"  class="oe_inline oe_stat_button" icon="fa-times-circle" help="Clear the forecast values data to run the forcasting"/>
                         </div>
-                        <group string="Simple Moving Average" name="move-average" colspan="4" col="6">
-                            <field name="period"/>
-                            <newline/>
-                            <field name="sma_forecast"/>
-                            <field name="sma_ma_error"/>
-                        </group>
-                        <group string="Cummulative Moving Average" name="move-average" colspan="4" col="6">
-                            <field name="cma_forecast"/>
-                            <field name="cma_ma_error"/>
-                        </group>
-                        <group string="Weighted Moving Average" name="weighted-move-average" colspan="4" col="6">
-                            <field name="wma_forecast"/>
-                            <field name="wma_ma_error"/>
-                        </group>
-                        <group string="Single, Double, &amp; Triple Exponential Smoothing" name="exp-smoothing" colspan="4" col="4">
-                            <group colspan="4" col="4">
-                                <field name="exp_alpha"/>
-                            </group>
-                            <group colspan="4" col="5">
-                                <field name="single_forecast"/>
-                                <field name="single_ma_error"/>
-                                <field name="double_forecast"/>
-                                <field name="double_ma_error"/>
-                                <field name="triple_forecast"/>
-                                <field name="triple_ma_error"/>
-                            </group>
-                        </group>
-                        <group string="Holt's Linear Smotting" name="holt-smoothing" colspan="4" col="4">
-                            <group colspan="4" col="2">
-                                <field name="holt_period"/>
-                                <field name="holt_alpha"/>
-                                <field name="beta"/>
-                            </group>
-                            <group colspan="4" col="6">
-                                <field name="holt_forecast"/>
-                                <field name="holt_ma_error"/>
-                            </group>
-                        </group>
+                        <h1>
+                            <field name="id"/>
+                            <field name="name" placeholder="Name..."/>
+                        </h1>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Forecasting Data</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <p class="mt_32">
+                                            A time series is a sequence of observations which are ordered in time. Inherent in the collection of data taken over time is some form of random variation. There exist methods for reducing of canceling the effect due to random variation. Widely used techniques are "smoothing". These techniques, when properly applied, reveals more clearly the underlying trends.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="alert alert-success" role="alert">
+                                            <strong>Step 1:</strong> Fill the above values.  Enter the time series Row-wise in sequence, starting from the left-upper corner
+                                            Blank boxes are not included in the calculations.
+                                            In entering your data to move from cell to cell in the data-matrix use the <strong>Tab</strong> key not arrow or enter keys.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="col-md-1 col-md-offset-1"><field name="fv_01" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_02" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_03" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_04" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_05" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_06" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_07" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_08" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_09" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_10" class="oe_inline"/></div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="col-md-1 col-md-offset-1"><field name="fv_11" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_12" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_13" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_14" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_15" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_16" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_17" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_18" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_19" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_20" class="oe_inline"/></div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="col-md-1 col-md-offset-1"><field name="fv_21" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_22" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_23" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_24" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_25" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_26" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_27" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_28" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_29" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_30" class="oe_inline"/></div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="col-md-1 col-md-offset-1"><field name="fv_31" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_32" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_33" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_34" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_35" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_36" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_37" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_38" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_39" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_40" class="oe_inline"/></div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="col-md-1 col-md-offset-1"><field name="fv_41" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_42" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_43" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_44" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_45" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_46" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_47" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_48" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_49" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_50" class="oe_inline"/></div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="col-md-1 col-md-offset-1"><field name="fv_51" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_52" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_53" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_54" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_55" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_56" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_57" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_58" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_59" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_60" class="oe_inline"/></div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="col-md-1 col-md-offset-1"><field name="fv_61" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_62" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_63" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_64" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_65" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_66" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_67" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_68" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_69" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_70" class="oe_inline"/></div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="col-md-1 col-md-offset-1"><field name="fv_71" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_72" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_73" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_74" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_75" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_76" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_77" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_78" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_79" class="oe_inline"/></div>
+                                        <div class="col-md-1"><field name="fv_80" class="oe_inline"/></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+
+                                        <p class="mt_32">
+                                            <strong>How to compare several smoothing methods</strong>. Although there are numerical indicators for assessing the accuracy of the forecasting technique, the most widely approach is in using visual comparison of several forecasts to assess their accuracy and choose among the various forecasting methods. In this approach, one must plot (using, e.g., Excel) on the same graph the original values of a time series variable and the predicted values from several different forecasting methods, thus facilitating a visual comparison.
+                                        </p>
+
+
+                                        <p class="mt_32">
+                                            The single exponential smoothing emphasizes the short-range perspective; it sets the level to the last observation and is based on the condition that there is no trend. The linear regression, which fits a least squares line to the historical data (or transformed historical data), represents the long range, which is conditioned on the basic trend. Holt’s linear exponential smoothing captures information about recent trend. The parameters in Holt’s model is levels-parameter which should be decreased when the amount of data variation is large, and trends-parameter should be increased if the recent trend direction is supported by the causal some factors.
+
+                                        </p>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Moving Averages</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <p class="mt_32">
+                                            Moving averages rank among the most popular techniques for the preprocessing of time series. They are used to filter random "white noise" from the data, to make the time series smoother or even to emphasize certain informational components contained in the time series.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="alert alert-success" role="alert">
+                                            <strong>Step 2:</strong> Set the Period parameter to calculate the moving average forecasting. This period must be greater than one.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <p class="text-center">
+                                            <label for="period"/>
+                                            <field name="period" class="oe_inline"/>
+                                        </p>
+                                    </div>
+                                </div>
+                                <table class="table">
+                                    <tr>
+                                        <td></td>
+                                        <td><label string="Forecast"/></td>
+                                        <td><label string="MA Error"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label string="Simple Moving Average"/></td>
+                                        <td><field name="sma_forecast"/></td>
+                                        <td><field name="sma_ma_error"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label string="Cummulative Moving Average"/></td>
+                                        <td><field name="cma_forecast"/></td>
+                                        <td><field name="cma_ma_error"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label string="Weighted Moving Average"/></td>
+                                        <td><field name="wma_forecast"/></td>
+                                        <td><field name="wma_ma_error"/></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Exponential Smoothing</h3>
+                            </div>
+                            <div class="panel-body">
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <p class="mt_32">
+                                            This is a very popular scheme to produce a smoothed Time Series. Whereas in Moving Averages the past observations are weighted equally, Exponential Smoothing assigns exponentially decreasing weights as the observation get older. In other words, recent observations are given relatively more weight in forecasting than the older observations. <strong>Double Exponential Smoothing</strong> is better at handling trends. <strong>Triple Exponential Smoothing</strong> is better at handling parabola trends.
+                                        </p>
+                                        <p class="mt_32">
+                                            An exponenentially weighted moving average with a smoothing constant a, corresponds roughly to a simple moving average of length (i.e., period) n, where a and n are related by:
+                                        </p>
+                                        <p class="mt_32 text-center">
+                                            a = 2/(n+1)    OR    n = (2 - a)/a.
+                                        </p>
+                                        <p class="mt_32">
+                                            Thus, for example, an exponenentially weighted moving average with a smoothing constant equal to 0.1 would correspond roughly to a 19 day moving average. And a 40-day simple moving average would correspond roughly to an exponentially weighted moving average with a smoothing constant equal to 0.04878.
+                                        </p>
+                                        <p class="mt_32">
+                                            Notice that the simple moving average is special case of the exponential smoothing by setting the period of the moving average to the integer part of (2-Alpha)/Alpha.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="alert alert-success" role="alert">
+                                            <strong>Step 3:</strong> Set the Alpha to use to calculate the exponential smoothing forecasts.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3 col-md-offset-5">
+                                        <div class="form-group">
+                                            <label for="exp_alpha"/>
+                                            <field name="exp_alpha" class="oe_inline"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <table class="table">
+                                    <tr>
+                                        <td></td>
+                                        <td><label string="Forecast"/></td>
+                                        <td><label string="MA Error"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label string="Single Exponential Smoothing"/></td>
+                                        <td><field name="single_forecast"/></td>
+                                        <td><field name="single_ma_error"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label string="Double Exponential Smoothing"/></td>
+                                        <td><field name="double_forecast"/></td>
+                                        <td><field name="double_ma_error"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label string="Triple Exponential Smoothing"/></td>
+                                        <td><field name="triple_forecast"/></td>
+                                        <td><field name="triple_ma_error"/></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Holt's Linear Smotting</h3>
+                            </div>
+                            <div class="panel-body">
+                                <p class="mt_32">
+                                    Suppose that the time series is non-seasonal but does display trend. Holt’s method estimates both the current level and the current trend.
+                                </p>
+                                <p class="mt_32">
+                                    For most business data an Alpha parameter smaller than 0.40 is often effective. However, one may perform a grid search of the parameter space, with = 0.1 to = 0.9, with increments of 0.1. Then the best alpha has the smallest Mean Absolute Error (MA Error).
+                                </p>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="alert alert-success" role="alert">
+                                            <strong>Step 4:</strong> Set Holt's parameters to calculate the forecasting.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3 col-md-offset-1">
+                                        <p class="text-center">
+                                            <label for="holt_period"/>
+                                            <field name="holt_period" class="oe_inline"/>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <p class="text-center">
+                                            <label for="holt_alpha"/>
+                                            <field name="holt_alpha" class="oe_inline"/>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <p class="text-center">
+                                            <label for="beta"/>
+                                            <field name="beta" class="oe_inline"/>
+                                        </p>
+                                    </div>
+                                </div>
+                                <table class="table">
+                                    <tr>
+                                        <td></td>
+                                        <td><label string="Forecast"/></td>
+                                        <td><label string="MA Error"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label string="Holt's Linear Smotting"/></td>
+                                        <td><field name="holt_forecast"/></td>
+                                        <td><field name="holt_ma_error"/></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
                     </sheet>
                 </form>
             </field>
