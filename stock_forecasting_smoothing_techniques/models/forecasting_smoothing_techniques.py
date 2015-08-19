@@ -24,7 +24,8 @@ class ForecastingSmoothingTechniques(models.Model):
 
     product_tmpl_id = fields.Many2one(
         'product.template',
-        help='Product realted to the current forecasting')
+        string='Product',
+        help='Product related to the current forecasting')
 
     # Forecast Values range(80)
     fv_01 = fields.Float('Forecast Value 01')
@@ -336,7 +337,7 @@ class ForecastingSmoothingTechniques(models.Model):
     def _compute_simple_move_average(self):
         """
         SIMPLE MOVING AVERAGE
-        Note: Represente function compute1
+        Note: It represents function compute1
         """
         fv_list = self.get_forecasting_values()
         if not fv_list:
@@ -467,7 +468,7 @@ class ForecastingSmoothingTechniques(models.Model):
     def _compute_holt(self):
         """
         Holt's Linear Smoothing
-        Note: Represente function compute20
+        Note: It represent function compute20
         """
         fv_list = self.get_forecasting_values()
         if not fv_list:
