@@ -189,7 +189,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <p class="mt_32">
-                                            Moving averages rank among the most popular techniques for the preprocessing of time series. They are used to filter random "white noise" from the data, to make the time series smoother or even to emphasize certain informational components contained in the time series.
+                                            Moving averages rank among the most popular techniques for the pre processing of time series. They are used to filter random "white noise" from the data, to make the time series smoother or even to emphasize certain informational components contained in the time series.
                                         </p>
                                     </div>
                                 </div>
@@ -220,7 +220,7 @@
                                         <td><field name="sma_ma_error"/></td>
                                     </tr>
                                     <tr>
-                                        <td><label string="Cummulative Moving Average"/></td>
+                                        <td><label string="Cumulative Moving Average"/></td>
                                         <td><field name="cma_forecast"/></td>
                                         <td><field name="cma_ma_error"/></td>
                                     </tr>
@@ -244,13 +244,13 @@
                                             This is a very popular scheme to produce a smoothed Time Series. Whereas in Moving Averages the past observations are weighted equally, Exponential Smoothing assigns exponentially decreasing weights as the observation get older. In other words, recent observations are given relatively more weight in forecasting than the older observations. <strong>Double Exponential Smoothing</strong> is better at handling trends. <strong>Triple Exponential Smoothing</strong> is better at handling parabola trends.
                                         </p>
                                         <p class="mt_32">
-                                            An exponenentially weighted moving average with a smoothing constant a, corresponds roughly to a simple moving average of length (i.e., period) n, where a and n are related by:
+                                            An exponentially weighted moving average with a smoothing constant a, corresponds roughly to a simple moving average of length (i.e., period) n, where a and n are related by:
                                         </p>
                                         <p class="mt_32 text-center">
                                             a = 2/(n+1)    OR    n = (2 - a)/a.
                                         </p>
                                         <p class="mt_32">
-                                            Thus, for example, an exponenentially weighted moving average with a smoothing constant equal to 0.1 would correspond roughly to a 19 day moving average. And a 40-day simple moving average would correspond roughly to an exponentially weighted moving average with a smoothing constant equal to 0.04878.
+                                            Thus, for example, an exponentially weighted moving average with a smoothing constant equal to 0.1 would correspond roughly to a 19 day moving average. And a 40-day simple moving average would correspond roughly to an exponentially weighted moving average with a smoothing constant equal to 0.04878.
                                         </p>
                                         <p class="mt_32">
                                             Notice that the simple moving average is special case of the exponential smoothing by setting the period of the moving average to the integer part of (2-Alpha)/Alpha.
@@ -298,7 +298,7 @@
                         </div>
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h3 class="panel-title">Holt's Linear Smotting</h3>
+                                <h3 class="panel-title">Holt's Linear Smoothing</h3>
                             </div>
                             <div class="panel-body">
                                 <p class="mt_32">
@@ -354,7 +354,7 @@
         </record>
 
         <record id="stock_forecastiong_view_tree" model="ir.ui.view">
-            <field name="name">stock.forecastiong.view.tree</field>
+            <field name="name">stock.forecasting.view.tree</field>
             <field name="model">forecasting.smoothing.techniques</field>
             <field name="arch" type="xml">
                 <tree string="Forecasting by Smoothing Techniques">
@@ -374,7 +374,7 @@
         </record>
 
         <record id="stock_forecasting_view_search" model="ir.ui.view">
-            <field name="name">stock.forecastiong.view.search</field>
+            <field name="name">stock.forecasting.view.search</field>
             <field name="model">forecasting.smoothing.techniques</field>
             <field name="arch" type="xml">
                 <search string="Forecasting by Smoothing Techniques">
