@@ -305,7 +305,7 @@
                                 <div class="row">
                                     <div class="col-md-3 col-md-offset-1">
                                         <p class="text-center">
-                                            <label for="holt_period"/>
+                                            <label for="holt_period" string="Period"/>
                                             <field name="holt_period" class="oe_inline"/>
                                         </p>
                                     </div>
