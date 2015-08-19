@@ -11,13 +11,16 @@
 ############################################################################
 
 from openerp import models, fields, api, _
-from openerp.exceptions import ValidationError
+from openerp.exceptions import ValidationError, Warning as UserError
 
 
 class ForecastingSmoothingTechniques(models.Model):
 
     _name = 'forecasting.smoothing.techniques'
     _description = 'Forecasting Smoothing Techniques'
+
+    name = fields.Char(
+        help='Name given by the user to quick reference the forecasting')
 
     # Forecast Values range(80)
     fv_01 = fields.Float('Forecast Value 01')
@@ -102,43 +105,107 @@ class ForecastingSmoothingTechniques(models.Model):
     fv_80 = fields.Float('Forecast Value 80')
 
     # Moving Average
-    period = fields.Integer('Period', default=5)
+    period = fields.Integer(
+        'Period', default=5, help="Moving Average Period")
 
     # Simple Moving Average
-    sma_forecast = fields.Float('Forcast')
-    sma_ma_error = fields.Float('MA Error')
+    sma_forecast = fields.Float(
+        'Forecast',
+        compute='_compute_simple_move_average',
+        help="Simple Moving Average Forcasting (SMA)"
+    )
+    sma_ma_error = fields.Float(
+        'MA Error',
+        compute='_compute_simple_move_average',
+        help="Mean Absolute Error for SMA"
+    )
 
     # Cumulative Moving Average
-    cma_forecast = fields.Float('Forcast')
-    cma_ma_error = fields.Float('MA Error')
+    cma_forecast = fields.Float(
+        'Forecast',
+        compute='_compute_cummulative_move_average',
+        help="Cumulative Moving Average Forcasting (CMA)"
+    )
+    cma_ma_error = fields.Float(
+        'MA Error',
+        compute='_compute_cummulative_move_average',
+        help="Mean Absolute Error for CMA"
+    )
 
     # Weighted Moving Average
-    wma_forecast = fields.Float('Forcast')
-    wma_ma_error = fields.Float('MA Error')
+    wma_forecast = fields.Float(
+        'Forecast',
+        compute='_compute_weighted_move_average',
+        help="Weighted Moving Average Forcasting (WMA)"
+    )
+    wma_ma_error = fields.Float(
+        'MA Error',
+        compute='_compute_weighted_move_average',
+        help="Mean Absolute Error for WMA"
+    )
 
     # Single, Double, & Triple Exponential Smoothing
     exp_alpha = fields.Float(
         'Alpha', default=0.3,
-        help='A small alpha provides a detectable and visible smoothing.'
-             ' While a large alpha provides a fast response to the recent'
-             ' changes in the time series but provides a smaller amount'
-             ' of smoothing')
+        help='Exponential Alpha. A small alpha provides a detectable and'
+             ' visible smoothing. While a large alpha provides a fast'
+             ' response to the recent changes in the time series but'
+             ' provides a smaller amount of smoothing')
 
-    single_forecast = fields.Float('Forcast')
-    single_ma_error = fields.Float('MA Error')
-    double_forecast = fields.Float('Forcast')
-    double_ma_error = fields.Float('MA Error')
-    triple_forecast = fields.Float('Forcast')
-    triple_ma_error = fields.Float('MA Error')
+    single_forecast = fields.Float(
+        'Forecast',
+        compute='_compute_exp_smoothing',
+        help="Single Exponential Smoothing (SES)"
+    )
+    single_ma_error = fields.Float(
+        'MA Error',
+        compute='_compute_exp_smoothing',
+        help="Mean Absolute Error for SES"
+    )
+    double_forecast = fields.Float(
+        'Forecast',
+        compute='_compute_exp_smoothing',
+        help="Double Exponential Smoothing (DES)"
+    )
+    double_ma_error = fields.Float(
+        'MA Error',
+        compute='_compute_exp_smoothing',
+        help="Mean Absolute Error for DES"
+    )
+    triple_forecast = fields.Float(
+        'Forecast',
+        compute='_compute_exp_smoothing',
+        help="Triple Exponential Smoothing (TES)"
+    )
+    triple_ma_error = fields.Float(
+        'MA Error',
+        compute='_compute_exp_smoothing',
+        help="Mean Absolute Error for TES"
+    )
 
     # Holt's Linear Smoothing
-    holt_alpha = fields.Float('Alpha', default=0.3)
-    beta = fields.Float('Beta', default=0.03)
-    holt_forecast = fields.Float('Forcast')
-    holt_ma_error = fields.Float('MA Error')
+    holt_alpha = fields.Float(
+        'Alpha', default=0.3,
+        help="Holt's Alpha Parameter"
+    )
+    beta = fields.Float(
+        'Beta', default=0.03,
+        help="Holt's Beta Parameter"
+    )
+    holt_forecast = fields.Float(
+        'Forecast',
+        compute='_compute_holt',
+        help="Holt's Linear Smoothing (HOLT)"
+    )
+    holt_ma_error = fields.Float(
+        'MA Error',
+        compute='_compute_holt',
+        help="Mean Absolute Error for HOLT"
+    )
     holt_period = fields.Float(
-        'Period', default=1,
-        help='forecasting K periods into the future')
+        "Holt's Period", default=1,
+        help="Forecasting K periods into the future to calculate Holt's"
+              " Linear Smoothing")
 
     @api.constrains('period')
     def _check_period(self):
@@ -161,14 +228,84 @@ class ForecastingSmoothingTechniques(models.Model):
         if self.beta <= 0 or self.beta >= 1:
             raise ValidationError(_("Beta should be between 0 and 1."))
 
-    @api.multi
-    def calculate(self):
-        self._compute_simple_move_average()
-        self._compute_cummulative_move_average()
-        self._compute_weighted_move_average()
-        self._compute_exp_smoothing()
-        self._compute_holt()
+    def fields_section(self, fsection='all'):
+        """
+        This is used for get or clear section group fields.
+        @return fields the list of fileds by section.  Dictionary (key group,
+        values list of field names).
+        """
+        fields_section = dict(
+            data=[
+                'fv_01', 'fv_02', 'fv_03', 'fv_04', 'fv_05',
+                'fv_06', 'fv_07', 'fv_08', 'fv_09', 'fv_10',
+                'fv_11', 'fv_12', 'fv_13', 'fv_14', 'fv_15',
+                'fv_16', 'fv_17', 'fv_18', 'fv_19', 'fv_20',
+                'fv_21', 'fv_22', 'fv_23', 'fv_24', 'fv_25',
+                'fv_26', 'fv_27', 'fv_28', 'fv_29', 'fv_30',
+                'fv_31', 'fv_32', 'fv_33', 'fv_34', 'fv_35',
+                'fv_36', 'fv_37', 'fv_38', 'fv_39', 'fv_40',
+                'fv_41', 'fv_42', 'fv_43', 'fv_44', 'fv_45',
+                'fv_46', 'fv_47', 'fv_48', 'fv_49', 'fv_50',
+                'fv_51', 'fv_52', 'fv_53', 'fv_54', 'fv_55',
+                'fv_56', 'fv_57', 'fv_58', 'fv_59', 'fv_60',
+                'fv_61', 'fv_62', 'fv_63', 'fv_64', 'fv_65',
+                'fv_66', 'fv_67', 'fv_68', 'fv_69', 'fv_70',
+                'fv_71', 'fv_72', 'fv_73', 'fv_74', 'fv_75',
+                'fv_76', 'fv_77', 'fv_78', 'fv_79', 'fv_80'],
+            sma=['sma_forecast', 'sma_ma_error'],
+            cma=['cma_forecast', 'cma_ma_error'],
+            wma=['wma_forecast', 'wma_ma_error'],
+            single=['single_forecast', 'single_ma_error'],
+            double=['double_forecast', 'double_ma_error'],
+            triple=['triple_forecast', 'triple_ma_error'],
+            holt=['holt_forecast', 'holt_ma_error'],
+        )
+        fields_section.update({'all': [
+            fname
+            for fgroup in fields_section.values()
+            for fname in fgroup]})
 
+        if fsection not in fields_section.keys():
+            raise UserError(
+                _('There is not groups of fields defined') + ' ' + fsection)
+        elif fsection:
+            return fields_section.get(fsection)
+        else:
+            return fields_section
+
+    @api.multi
+    def reset_defaults(self):
+        """
+        Reset defaults for the variables used in the current calc.
+        ['period', 'exp_alpha', 'holt_alpha', 'beta', 'holt_period']
+        """
+        parameter_fields = [
+            'period', 'exp_alpha', 'holt_alpha', 'beta', 'holt_period']
+        defaults = self.default_get(parameter_fields)
+        self.write(defaults)
+        return True
+
+    @api.multi
+    def clear(self):
+        """
+        Clear all the fields.
+        """
+        dtype = self._context.get('dtype', False)
+        if not dtype:
+            raise UserError(_('Indicate what you want to delete'))
+        self._clear_method(self.fields_section(dtype))
+        return True
+
+    @api.multi
+    def _clear_method(self, field_list):
+        """
+        Clean the method forecast values.
+        """
+        values = {}.fromkeys(field_list, 0.0)
+        self.write(values)
+
+    @api.one
+    @api.depends()
     def _compute_cummulative_move_average(self):
         """
         CUMULATIVE MOVING AVERAGE
@@ -190,6 +327,8 @@ class ForecastingSmoothingTechniques(models.Model):
         self.cma_ma_error = ma_error
         return True
 
+    @api.one
+    @api.depends()
     def _compute_simple_move_average(self):
         """
         SIMPLE MOVING AVERAGE
@@ -211,15 +350,18 @@ class ForecastingSmoothingTechniques(models.Model):
         self.sma_ma_error = ma_error
         return True
 
+    @api.multi
     def get_forecasting_values(self):
         """
         This method will return the forecast input values in a list.
         """
         fv_set = []
-        for item in range(1, 81):
-            cfv = getattr(self, 'fv_{num:02d}'.format(num=item))
-            if cfv:
-                fv_set += [cfv]
+        field_list = self.fields_section('data')
+        values = self.read(field_list)[0]
+        for fname in field_list:
+            val = values.get(fname)
+            if val:
+                fv_set.append(val)
         return fv_set
 
     @api.multi
@@ -237,6 +379,8 @@ class ForecastingSmoothingTechniques(models.Model):
                 val += 1
         return True
 
+    @api.one
+    @api.depends()
     def _compute_weighted_move_average(self):
         """
         WEIGHTED MOVING AVERAGE
@@ -264,6 +408,8 @@ class ForecastingSmoothingTechniques(models.Model):
         self.wma_ma_error = ma_error
         return True
 
+    @api.one
+    @api.depends()
     def _compute_exp_smoothing(self):
         """
         Single, Double, & Triple Exponential Smoothing
@@ -312,6 +458,8 @@ class ForecastingSmoothingTechniques(models.Model):
         self.triple_ma_error = st3_ma_error / float(numv)
         return True
 
+    @api.one
+    @api.depends()
     def _compute_holt(self):
         """
         Holt's Linear Smoothing
