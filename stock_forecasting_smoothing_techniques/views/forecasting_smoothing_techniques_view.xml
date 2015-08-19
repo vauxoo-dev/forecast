@@ -8,11 +8,11 @@
             </xpath>
         </template>
 
-        <record id="stock_forecastiong_view_form" model="ir.ui.view">
-            <field name="name">stock.forecastiong.view.form</field>
+        <record id="stock_forecasting_view_form" model="ir.ui.view">
+            <field name="name">stock.forecasting.view.form</field>
             <field name="model">forecasting.smoothing.techniques</field>
             <field name="arch" type="xml">
-                <form string="Forescasting by Smoothing Techniques">
+                <form string="Forecasting by Smoothing Techniques">
                     <sheet>
                         <div class="row">
                             <div class="col-md-2">
@@ -60,7 +60,7 @@
                                             the left-upper corner. Blank boxes are not included in the calculations.
                                             In entering your data to move from cell to cell in the data-matrix use the <strong>Tab</strong> key not arrow or enter keys.
                                             0.0 Values are consider <strong>NULL</strong> .
-                                            After you add the forecast values and save this form the forcastings will be compute automactly.
+                                            After you add the forecast values and save this form the forecasting will be compute automatically.
                                         </div>
                                     </div>
                                 </div>
@@ -357,7 +357,7 @@
             <field name="name">stock.forecastiong.view.tree</field>
             <field name="model">forecasting.smoothing.techniques</field>
             <field name="arch" type="xml">
-                <tree string="Forescasting by Smoothing Techniques">
+                <tree string="Forecasting by Smoothing Techniques">
                     <field name="id"/>
                     <field name="name"/>
                     <field name="period" string="MA Period"/>
@@ -373,11 +373,11 @@
             </field>
         </record>
 
-        <record id="stock_forecastiong_view_search" model="ir.ui.view">
+        <record id="stock_forecasting_view_search" model="ir.ui.view">
             <field name="name">stock.forecastiong.view.search</field>
             <field name="model">forecasting.smoothing.techniques</field>
             <field name="arch" type="xml">
-                <search string="Forescasting by Smoothing Techniques">
+                <search string="Forecasting by Smoothing Techniques">
                     <field name="id"/>
                     <field name="name"/>
                 </search>
