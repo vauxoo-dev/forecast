@@ -209,7 +209,7 @@ class ForecastingSmoothingTechniques(models.Model):
     holt_period = fields.Float(
         "Holt's Period", default=1,
         help="Forecasting K periods into the future to calculate Holt's"
-              " Linear Smoothing")
+             " Linear Smoothing")
 
     @api.constrains('period')
     def _check_period(self):
