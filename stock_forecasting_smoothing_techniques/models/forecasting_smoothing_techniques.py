@@ -22,6 +22,10 @@ class ForecastingSmoothingTechniques(models.Model):
     name = fields.Char(
         help='Name given by the user to quick reference the forecasting')
 
+    product_tmpl_id = fields.Many2one(
+        'product.template',
+        help='Product realted to the current forecasting')
+
     # Forecast Values range(80)
     fv_01 = fields.Float('Forecast Value 01')
     fv_02 = fields.Float('Forecast Value 02')
