@@ -21,7 +21,7 @@
                             </div>
                             <div class="col-md-5">
                                 <label for="name" string='Title of this forcast'/>
-                                <h2 class="oe_inline"><field name="name" placeholder="Name..."/></h2>
+                                <h2 class="oe_inline"><field name="name" placeholder="Name..." required="1"/></h2>
                             </div>
                             <div class="col-md-5 oe_button_box" name="button_box" style="width: 41.6667%">
                                 <button name="reset_defaults" type="object" string="Reset Defaults" class="oe_inline oe_stat_button" icon="fa-refresh" help="Reset the forecasting methods default parameter values"/>
