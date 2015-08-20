@@ -2,9 +2,9 @@
 <openerp>
     <data>
 
-        <template id="assets_backend" name="stock_forecasting_smoothing_techniques assets" inherit_id="web.assets_backend">
+        <template id="assets_backend" name="forecasting_smoothing_techniques assets" inherit_id="web.assets_backend">
             <xpath expr="." position="inside">
-                <link rel="stylesheet" href="/stock_forecasting_smoothing_techniques/static/src/css/stock_forecasting_smoothing_techniques.css"/>
+                <link rel="stylesheet" href="/forecasting_smoothing_techniques/static/src/css/forecasting_smoothing_techniques.css"/>
             </xpath>
         </template>
 

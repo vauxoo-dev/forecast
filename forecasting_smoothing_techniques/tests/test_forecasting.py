@@ -122,7 +122,7 @@ class TestForecasting(common.TransactionCase):
         sections = ['data']
         for section in sections:
             forecast0 = self.forecast_obj.browse(self.ref(
-                'stock_forecasting_smoothing_techniques.fst_demo_01'))
+                'forecasting_smoothing_techniques.fst_demo_01'))
             forecast = forecast0.copy()
             self._clear_section_test(forecast, section)
 
@@ -144,7 +144,7 @@ class TestForecasting(common.TransactionCase):
         Run 80 values, count for 1 to 30 and repeat.
         """
         forecast = self.forecast_obj.browse(self.ref(
-            'stock_forecasting_smoothing_techniques.fst_demo_01'))
+            'forecasting_smoothing_techniques.fst_demo_01'))
         out = self.get_test_01_out()
         self.compare(out, forecast.read(out.keys())[0])
 
@@ -165,7 +165,7 @@ class TestForecasting(common.TransactionCase):
     def test_02(self):
         """ All Table with 10 values """
         forecast = self.forecast_obj.browse(self.ref(
-            'stock_forecasting_smoothing_techniques.fst_demo_02'))
+            'forecasting_smoothing_techniques.fst_demo_02'))
         out = self.get_test_02_out()
         self.compare(out, forecast.read(out.keys())[0])
 
@@ -186,7 +186,7 @@ class TestForecasting(common.TransactionCase):
     def _test_03(self, period):
         """ base for various periods """
         forecast = self.forecast_obj.browse(self.ref(
-            'stock_forecasting_smoothing_techniques.fst_demo_03'))
+            'forecasting_smoothing_techniques.fst_demo_03'))
         forecast.write({'holt_period': period})
         out = self.get_test_03_out(period)
         self.compare(out, forecast.read(out.keys())[0])
@@ -238,7 +238,7 @@ class TestForecasting(common.TransactionCase):
     def test_04(self):
         """ SMA(5) and WMA(5) in 12 integer values """
         forecast = self.forecast_obj.browse(self.ref(
-            'stock_forecasting_smoothing_techniques.fst_demo_04'))
+            'forecasting_smoothing_techniques.fst_demo_04'))
         out = self.get_test_04_out()
         self.compare(out, forecast.read(out.keys())[0])
 
@@ -255,7 +255,7 @@ class TestForecasting(common.TransactionCase):
     def test_05(self):
         """ SMA(3) in 12 integer values """
         forecast = self.forecast_obj.browse(self.ref(
-            'stock_forecasting_smoothing_techniques.fst_demo_05'))
+            'forecasting_smoothing_techniques.fst_demo_05'))
         self.assertEqual(forecast.period, 3)
         out = self.get_test_05_out()
         self.compare(out, forecast.read(out.keys())[0])
