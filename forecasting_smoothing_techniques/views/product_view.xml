@@ -8,7 +8,7 @@
             <field name="inherit_id" ref="product.product_template_form_view"/>
             <field name="arch" type="xml">
                 <xpath expr="//div[@name='buttons']" position="inside">
-                    <button class="oe_inline oe_stat_button" string="Forecasting" name="%(action_view_stock_forecasting)d" type="action" icon="fa-bar-chart-o"/>
+                    <button class="oe_inline oe_stat_button" string="Forecasting" name="%(action_view_stock_forecasting)d" type="action" icon="fa-bar-chart-o"  context="{'product_tmpl_id': id}"/>
                 </xpath>
             </field>
         </record>

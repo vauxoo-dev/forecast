@@ -14,18 +14,68 @@ from openerp import models, fields, api, _
 from openerp.exceptions import ValidationError, Warning as UserError
 
 
+class ForecastingSmoothingData(models.Model):
+    _name = 'forecasting.smoothing.data'
+    _description = 'Forecasting Smoothing Data'
+    _rec_name = 'sequence'
+
+    @api.model
+    def _default_forecast(self):
+        forecast_id = self._context.get('forecast_id', False)
+        return forecast_id
+
+    sequence = fields.Integer(
+        help="Position in the list regarding this list and this forecast",
+        default=10)
+    value = fields.Float()
+    forecast_id = fields.Many2one(
+        'forecasting.smoothing.techniques',
+        required=True,
+        default=_default_forecast,
+        help="Forecast which this data is related to")
+
+
 class ForecastingSmoothingTechniques(models.Model):
 
     _name = 'forecasting.smoothing.techniques'
     _description = 'Forecasting Smoothing Techniques'
 
+    @api.model
+    def _default_product(self):
+        '''
+        Usability feature -
+        TODO: move for product_forecasting module
+        :return:
+        '''
+        product_id = self._context.get('product_tmpl_id', False)
+        return product_id
+
+    @api.model
+    def _default_name(self):
+        '''
+        Usability feature -
+        TODO: move for product_forecasting module
+        :return:
+        '''
+        product_id = self._context.get('product_tmpl_id', False)
+        return '%s: ' % self.env['product.template'].browse(product_id).name
+
     name = fields.Char(
-        help='Name given by the user to quick reference the forecasting')
+        help='Name given by the user to quick reference the forecasting',
+        default=_default_name)
+
+    value_ids = fields.One2many(
+        'forecasting.smoothing.data',
+        'forecast_id',
+        string='Values',
+        help='List of values to be used to compute this forecast')
 
     product_tmpl_id = fields.Many2one(
         'product.template',
         string='Product',
-        help='Product related to the current forecasting')
+        help='Product related to the current forecasting',
+        default=_default_product,
+        track_visibility='always')
 
     # Forecast Values range(80)
     fv_01 = fields.Float('Forecast Value 01')
@@ -141,7 +191,7 @@ class ForecastingSmoothingTechniques(models.Model):
     wma_forecast = fields.Float(
         'Forecast',
         compute='_compute_weighted_move_average',
-        help="Weighted Moving Average Forcasting (WMA)"
+        help="Weighted Moving Average Forecasting (WMA)"
     )
     wma_ma_error = fields.Float(
         'MA Error',

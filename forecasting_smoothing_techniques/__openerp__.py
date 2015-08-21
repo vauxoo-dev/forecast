@@ -18,15 +18,17 @@
     "category": "",
     "depends": [
         "product",
+        "web_widget_x2many_2d_matrix",
     ],
     "data": [
         "security/forecasting_smoothing_techniques_security.xml",
         "security/ir.model.access.csv",
         "views/forecasting_smoothing_techniques_view.xml",
         "views/product_view.xml",
+    ],
+    "demo": [
         "demo/forecasting_smoothing_techniques.xml",
     ],
-    "demo": [],
     "test": [],
     "qweb": [],
     "js": [],

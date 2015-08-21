@@ -1,6 +1,45 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <openerp>
     <data>
+        <record id="stock_forecasting_data_view_form" model="ir.ui.view">
+            <field name="name">stock.forecasting.data.form</field>
+            <field name="model">forecasting.smoothing.data</field>
+            <field name="arch" type="xml">
+                <form string="Forecasting by Smoothing Techniques">
+                    <field name="sequence"/>
+                    <field name="value"/>
+                </form>
+            </field>
+        </record>
+        <record id="stock_forecasting_data_view_tree" model="ir.ui.view">
+            <field name="name">stock.forecasting.data.tree</field>
+            <field name="model">forecasting.smoothing.data</field>
+            <field name="arch" type="xml">
+                <tree string="Forecasting by Smoothing Techniques">
+                    <field name="sequence"/>
+                    <field name="value"/>
+                    <field name="forecast_id" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+        <record id="stock_forecasting_data_view_graph" model="ir.ui.view">
+            <field name="name">stock.forecasting.data.graph</field>
+            <field name="model">forecasting.smoothing.data</field>
+            <field name="arch" type="xml">
+                <graph string="Forecasting by Smoothing Techniques" type="line">
+                    <field name="sequence"/>
+                    <field name="value" operator="+"/>
+                </graph>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_view_forecasting_data">
+            <field name="name">Forecasting Data</field>
+            <field name="res_model">forecasting.smoothing.data</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,graph</field>
+            <field name="domain">[('forecast_id', '=', context.get('forecast_id'))]</field>
+        </record>
 
         <template id="assets_backend" name="forecasting_smoothing_techniques assets" inherit_id="web.assets_backend">
             <xpath expr="." position="inside">
@@ -26,6 +65,7 @@
                             <div class="col-md-5 oe_button_box" name="button_box" style="width: 41.6667%">
                                 <button name="reset_defaults" type="object" string="Reset Defaults" class="oe_inline oe_stat_button" icon="fa-refresh" help="Reset the forecasting methods default parameter values"/>
                                 <button name="clear" type="object" string="Clear" context="{'dtype': 'data'}"  class="oe_inline oe_stat_button" icon="fa-times-circle" help="Clear the forecast values data to run the forcasting"/>
+                                <button name="%(action_view_forecasting_data)d" type="action" string="List of values" class="oe_inline oe_stat_button" icon="fa-database" help="List of Values" context="{'forecast_id': id}"/>
                             </div>
                         </div>
                         <div class="row">
@@ -34,6 +74,7 @@
                                 <h2><field name="product_tmpl_id" required="1"/></h2>
                             </div>
                         </div>
+                        <field name="value_ids" nolabel="1" view_mode="tree,form,graph"/>
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h3 class="panel-title">Forecasting Data</h3>
@@ -380,6 +421,7 @@
                 <search string="Forecasting by Smoothing Techniques">
                     <field name="id"/>
                     <field name="name"/>
+                    <field name="product_tmpl_id"/>
                 </search>
             </field>
         </record>
@@ -389,6 +431,8 @@
             <field name="res_model">forecasting.smoothing.techniques</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="stock_forecasting_view_search"/>
+            <field name="domain">[('product_tmpl_id', '=', context.get('product_tmpl_id', False))]</field>
         </record>
 
     </data>
