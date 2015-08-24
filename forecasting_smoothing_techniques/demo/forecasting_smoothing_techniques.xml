@@ -84,6 +84,7 @@
       <field name="fv_80">20</field>
       <field name="name">Test 01</field>
       <field name="period">5</field>
+      <field name="product_tmpl_id" ref="product.product_product_7_product_template"/>
     </record>
     <record id="fst_demo_02" model="forecasting.smoothing.techniques">
       <field name="fv_01">1</field>
@@ -98,6 +99,7 @@
       <field name="fv_10">10</field>
       <field name="name">Test 02</field>
       <field name="period">5</field>
+      <field name="product_tmpl_id" ref="product.product_product_7_product_template"/>
     </record>
     <record id="fst_demo_03" model="forecasting.smoothing.techniques">
       <field name="beta">0.6</field>
@@ -116,6 +118,7 @@
       <field name="holt_period">2</field>
       <field name="name">Test 03</field>
       <field name="period">5</field>
+      <field name="product_tmpl_id" ref="product.product_product_7_product_template"/>
     </record>
     <record id="fst_demo_04" model="forecasting.smoothing.techniques">
       <field name="fv_01">105</field>
@@ -132,6 +135,7 @@
       <field name="fv_12">120</field>
       <field name="name">Test 04</field>
       <field name="period">5</field>
+      <field name="product_tmpl_id" ref="product.product_product_7_product_template"/>
     </record>
     <record id="fst_demo_05" model="forecasting.smoothing.techniques">
       <field name="fv_01">80</field>
@@ -148,6 +152,7 @@
       <field name="fv_12">150</field>
       <field name="name">Test 05</field>
       <field name="period">3</field>
+      <field name="product_tmpl_id" ref="product.product_product_7_product_template"/>
     </record>
   </data>
 </openerp>
