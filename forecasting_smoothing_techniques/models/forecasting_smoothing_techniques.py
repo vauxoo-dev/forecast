@@ -33,6 +33,11 @@ class ForecastingSmoothingData(models.Model):
         required=True,
         default=_default_forecast,
         help="Forecast which this data is related to")
+    
+    _sql_constraints = [
+        ('sequence_uniq', 'unique(sequence, forecast_id)',
+            'Several sequences with the same value do not make sense yet!'),
+    ]
 
 
 class ForecastingSmoothingTechniques(models.Model):
@@ -68,6 +73,7 @@ class ForecastingSmoothingTechniques(models.Model):
         'forecasting.smoothing.data',
         'forecast_id',
         string='Values',
+        copy=False,
         help='List of values to be used to compute this forecast')
 
     product_tmpl_id = fields.Many2one(

@@ -6,8 +6,10 @@
             <field name="model">forecasting.smoothing.data</field>
             <field name="arch" type="xml">
                 <form string="Forecasting by Smoothing Techniques">
-                    <field name="sequence"/>
-                    <field name="value"/>
+                    <group string="Data information">
+                        <field name="sequence"/>
+                        <field name="value"/>
+                    </group>
                 </form>
             </field>
         </record>
@@ -20,6 +22,16 @@
                     <field name="value"/>
                     <field name="forecast_id" invisible="1"/>
                 </tree>
+            </field>
+        </record>
+        <record id="stock_forecasting_data_view_search" model="ir.ui.view">
+            <field name="name">stock.forecasting.data.search</field>
+            <field name="model">forecasting.smoothing.data</field>
+            <field name="arch" type="xml">
+                <search string="Forecasting by Smoothing Techniques">
+                    <field name="sequence"/>
+                    <field name="value"/>
+                </search>
             </field>
         </record>
         <record id="stock_forecasting_data_view_graph" model="ir.ui.view">
@@ -74,7 +86,12 @@
                                 <h2><field name="product_tmpl_id" required="1"/></h2>
                             </div>
                         </div>
-                        <field name="value_ids" nolabel="1" view_mode="tree,form,graph"/>
+                        <field name="value_ids" nolabel="1" widget="x2many_graph">
+                            <graph type="line">
+                                <field name="sequence"/>
+                                <field name="value" operator="+"/>
+                            </graph>
+                        </field>
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h3 class="panel-title">Forecasting Data</h3>

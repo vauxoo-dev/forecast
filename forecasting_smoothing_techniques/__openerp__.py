@@ -17,8 +17,9 @@
     "website": "http://www.vauxoo.com/",
     "category": "",
     "depends": [
-        "product",
-        "web_widget_x2many_2d_matrix",
+        "board", # Just because we need some graphic stuff from here
+        "product", # may be we need refactor this in a separate module for such dependency.
+        "web_widget_x2many_graph",  # To show one2many values as graphs
     ],
     "data": [
         "security/forecasting_smoothing_techniques_security.xml",
