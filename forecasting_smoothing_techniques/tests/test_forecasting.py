@@ -96,8 +96,8 @@ class TestForecasting(common.TransactionCase):
                 forecast.holt_alpha = item
 
         # Check that forecasting = 0.0 when data is 0.0
-        fv_list = forecast.get_forecasting_values()
-        self.assertFalse(any(fv_list), 'Must be blank')
+        values = forecast.value_ids
+        self.assertFalse(any(values), 'Must be blank')
         keys = [
             'sma_forecast',
             'sma_ma_error',
@@ -119,25 +119,11 @@ class TestForecasting(common.TransactionCase):
 
     def test_00_1(self):
         """ Check Clear method/button works propertly """
-        sections = ['data']
-        for section in sections:
-            forecast0 = self.forecast_obj.browse(self.ref(
-                'forecasting_smoothing_techniques.fst_demo_01'))
-            forecast = forecast0.copy()
-            self._clear_section_test(forecast, section)
-
-    def _clear_section_test(self, forecast, dtype):
-        """ Clear a specific section onyl clear the section """
-        # Prepare compare dictionaries
-        field_to_clear = forecast.fields_section(dtype)
-        forecast_full = forecast.read(field_to_clear)[0]
-        forecast_clean = forecast_full.copy()
-        forecast_clean.update({}.fromkeys(field_to_clear, 0.0))
-
-        # Clear section and check that result is the expected
-        forecast.with_context(dtype=dtype).clear()
-        forecast_res = forecast.read(field_to_clear)[0]
-        self.compare(forecast_clean, forecast_res)
+        forecast = self.forecast_obj.browse(self.ref(
+            'forecasting_smoothing_techniques.fst_demo_01'))
+        self.assertTrue(len(forecast.value_ids))
+        forecast.clear()
+        self.assertFalse(len(forecast.value_ids))
 
     def test_01(self):
         """

@@ -2,152 +2,657 @@
 <openerp>
   <data noupdate="1">
     <record id="fst_demo_01" model="forecasting.smoothing.techniques">
-      <field name="fv_01">1</field>
-      <field name="fv_02">2</field>
-      <field name="fv_03">3</field>
-      <field name="fv_04">4</field>
-      <field name="fv_05">5</field>
-      <field name="fv_06">6</field>
-      <field name="fv_07">7</field>
-      <field name="fv_08">8</field>
-      <field name="fv_09">9</field>
-      <field name="fv_10">10</field>
-      <field name="fv_11">11</field>
-      <field name="fv_12">12</field>
-      <field name="fv_13">13</field>
-      <field name="fv_14">14</field>
-      <field name="fv_15">15</field>
-      <field name="fv_16">16</field>
-      <field name="fv_17">17</field>
-      <field name="fv_18">18</field>
-      <field name="fv_19">19</field>
-      <field name="fv_20">20</field>
-      <field name="fv_21">21</field>
-      <field name="fv_22">22</field>
-      <field name="fv_23">23</field>
-      <field name="fv_24">24</field>
-      <field name="fv_25">25</field>
-      <field name="fv_26">26</field>
-      <field name="fv_27">27</field>
-      <field name="fv_28">28</field>
-      <field name="fv_29">29</field>
-      <field name="fv_30">30</field>
-      <field name="fv_31">1</field>
-      <field name="fv_32">2</field>
-      <field name="fv_33">3</field>
-      <field name="fv_34">4</field>
-      <field name="fv_35">5</field>
-      <field name="fv_36">6</field>
-      <field name="fv_37">7</field>
-      <field name="fv_38">8</field>
-      <field name="fv_39">9</field>
-      <field name="fv_40">10</field>
-      <field name="fv_41">11</field>
-      <field name="fv_42">12</field>
-      <field name="fv_43">13</field>
-      <field name="fv_44">14</field>
-      <field name="fv_45">15</field>
-      <field name="fv_46">16</field>
-      <field name="fv_47">17</field>
-      <field name="fv_48">18</field>
-      <field name="fv_49">19</field>
-      <field name="fv_50">20</field>
-      <field name="fv_51">21</field>
-      <field name="fv_52">22</field>
-      <field name="fv_53">23</field>
-      <field name="fv_54">24</field>
-      <field name="fv_55">25</field>
-      <field name="fv_56">26</field>
-      <field name="fv_57">27</field>
-      <field name="fv_58">28</field>
-      <field name="fv_59">29</field>
-      <field name="fv_60">30</field>
-      <field name="fv_61">1</field>
-      <field name="fv_62">2</field>
-      <field name="fv_63">3</field>
-      <field name="fv_64">4</field>
-      <field name="fv_65">5</field>
-      <field name="fv_66">6</field>
-      <field name="fv_67">7</field>
-      <field name="fv_68">8</field>
-      <field name="fv_69">9</field>
-      <field name="fv_70">10</field>
-      <field name="fv_71">11</field>
-      <field name="fv_72">12</field>
-      <field name="fv_73">13</field>
-      <field name="fv_74">14</field>
-      <field name="fv_75">15</field>
-      <field name="fv_76">16</field>
-      <field name="fv_77">17</field>
-      <field name="fv_78">18</field>
-      <field name="fv_79">19</field>
-      <field name="fv_80">20</field>
       <field name="name">Test 01</field>
       <field name="period">5</field>
+      <field name="product_tmpl_id" ref="product.product_product_7_product_template"/>
     </record>
     <record id="fst_demo_02" model="forecasting.smoothing.techniques">
-      <field name="fv_01">1</field>
-      <field name="fv_02">2</field>
-      <field name="fv_03">3</field>
-      <field name="fv_04">4</field>
-      <field name="fv_05">5</field>
-      <field name="fv_06">6</field>
-      <field name="fv_07">7</field>
-      <field name="fv_08">8</field>
-      <field name="fv_09">9</field>
-      <field name="fv_10">10</field>
       <field name="name">Test 02</field>
       <field name="period">5</field>
+      <field name="product_tmpl_id" ref="product.product_product_7_product_template"/>
     </record>
     <record id="fst_demo_03" model="forecasting.smoothing.techniques">
-      <field name="beta">0.6</field>
-      <field name="fv_01">133</field>
-      <field name="fv_02">155</field>
-      <field name="fv_03">165</field>
-      <field name="fv_04">171</field>
-      <field name="fv_05">194</field>
-      <field name="fv_06">231</field>
-      <field name="fv_07">274</field>
-      <field name="fv_08">312</field>
-      <field name="fv_09">313</field>
-      <field name="fv_10">333</field>
-      <field name="fv_11">343</field>
       <field name="holt_alpha">0.7</field>
-      <field name="holt_period">2</field>
       <field name="name">Test 03</field>
       <field name="period">5</field>
+      <field name="holt_period">2</field>
+      <field name="product_tmpl_id" ref="product.product_product_7_product_template"/>
+      <field name="beta">0.6</field>
     </record>
     <record id="fst_demo_04" model="forecasting.smoothing.techniques">
-      <field name="fv_01">105</field>
-      <field name="fv_02">100</field>
-      <field name="fv_03">105</field>
-      <field name="fv_04">95</field>
-      <field name="fv_05">100</field>
-      <field name="fv_06">95</field>
-      <field name="fv_07">105</field>
-      <field name="fv_08">120</field>
-      <field name="fv_09">115</field>
-      <field name="fv_10">125</field>
-      <field name="fv_11">120</field>
-      <field name="fv_12">120</field>
       <field name="name">Test 04</field>
       <field name="period">5</field>
+      <field name="product_tmpl_id" ref="product.product_product_7_product_template"/>
     </record>
     <record id="fst_demo_05" model="forecasting.smoothing.techniques">
-      <field name="fv_01">80</field>
-      <field name="fv_02">90</field>
-      <field name="fv_03">85</field>
-      <field name="fv_04">70</field>
-      <field name="fv_05">80</field>
-      <field name="fv_06">105</field>
-      <field name="fv_07">100</field>
-      <field name="fv_08">105</field>
-      <field name="fv_09">100</field>
-      <field name="fv_10">105</field>
-      <field name="fv_11">100</field>
-      <field name="fv_12">150</field>
       <field name="name">Test 05</field>
       <field name="period">3</field>
+      <field name="product_tmpl_id" ref="product.product_product_7_product_template"/>
+    </record>
+    <record id="fsd_demo_01_01" model="forecasting.smoothing.data">
+      <field name="sequence">1</field>
+      <field name="value">1</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_02" model="forecasting.smoothing.data">
+      <field name="sequence">2</field>
+      <field name="value">2</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_03" model="forecasting.smoothing.data">
+      <field name="sequence">3</field>
+      <field name="value">3</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_04" model="forecasting.smoothing.data">
+      <field name="sequence">4</field>
+      <field name="value">4</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_05" model="forecasting.smoothing.data">
+      <field name="sequence">5</field>
+      <field name="value">5</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_06" model="forecasting.smoothing.data">
+      <field name="sequence">6</field>
+      <field name="value">6</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_07" model="forecasting.smoothing.data">
+      <field name="sequence">7</field>
+      <field name="value">7</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_08" model="forecasting.smoothing.data">
+      <field name="sequence">8</field>
+      <field name="value">8</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_09" model="forecasting.smoothing.data">
+      <field name="sequence">9</field>
+      <field name="value">9</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_10" model="forecasting.smoothing.data">
+      <field name="sequence">10</field>
+      <field name="value">10</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_11" model="forecasting.smoothing.data">
+      <field name="sequence">11</field>
+      <field name="value">11</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_12" model="forecasting.smoothing.data">
+      <field name="sequence">12</field>
+      <field name="value">12</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_13" model="forecasting.smoothing.data">
+      <field name="sequence">13</field>
+      <field name="value">13</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_14" model="forecasting.smoothing.data">
+      <field name="sequence">14</field>
+      <field name="value">14</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_15" model="forecasting.smoothing.data">
+      <field name="sequence">15</field>
+      <field name="value">15</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_16" model="forecasting.smoothing.data">
+      <field name="sequence">16</field>
+      <field name="value">16</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_17" model="forecasting.smoothing.data">
+      <field name="sequence">17</field>
+      <field name="value">17</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_18" model="forecasting.smoothing.data">
+      <field name="sequence">18</field>
+      <field name="value">18</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_19" model="forecasting.smoothing.data">
+      <field name="sequence">19</field>
+      <field name="value">19</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_20" model="forecasting.smoothing.data">
+      <field name="sequence">20</field>
+      <field name="value">20</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_21" model="forecasting.smoothing.data">
+      <field name="sequence">21</field>
+      <field name="value">21</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_22" model="forecasting.smoothing.data">
+      <field name="sequence">22</field>
+      <field name="value">22</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_23" model="forecasting.smoothing.data">
+      <field name="sequence">23</field>
+      <field name="value">23</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_24" model="forecasting.smoothing.data">
+      <field name="sequence">24</field>
+      <field name="value">24</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_25" model="forecasting.smoothing.data">
+      <field name="sequence">25</field>
+      <field name="value">25</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_26" model="forecasting.smoothing.data">
+      <field name="sequence">26</field>
+      <field name="value">26</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_27" model="forecasting.smoothing.data">
+      <field name="sequence">27</field>
+      <field name="value">27</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_28" model="forecasting.smoothing.data">
+      <field name="sequence">28</field>
+      <field name="value">28</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_29" model="forecasting.smoothing.data">
+      <field name="sequence">29</field>
+      <field name="value">29</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_30" model="forecasting.smoothing.data">
+      <field name="sequence">30</field>
+      <field name="value">30</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_31" model="forecasting.smoothing.data">
+      <field name="sequence">31</field>
+      <field name="value">1</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_32" model="forecasting.smoothing.data">
+      <field name="sequence">32</field>
+      <field name="value">2</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_33" model="forecasting.smoothing.data">
+      <field name="sequence">33</field>
+      <field name="value">3</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_34" model="forecasting.smoothing.data">
+      <field name="sequence">34</field>
+      <field name="value">4</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_35" model="forecasting.smoothing.data">
+      <field name="sequence">35</field>
+      <field name="value">5</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_36" model="forecasting.smoothing.data">
+      <field name="sequence">36</field>
+      <field name="value">6</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_37" model="forecasting.smoothing.data">
+      <field name="sequence">37</field>
+      <field name="value">7</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_38" model="forecasting.smoothing.data">
+      <field name="sequence">38</field>
+      <field name="value">8</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_39" model="forecasting.smoothing.data">
+      <field name="sequence">39</field>
+      <field name="value">9</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_40" model="forecasting.smoothing.data">
+      <field name="sequence">40</field>
+      <field name="value">10</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_41" model="forecasting.smoothing.data">
+      <field name="sequence">41</field>
+      <field name="value">11</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_42" model="forecasting.smoothing.data">
+      <field name="sequence">42</field>
+      <field name="value">12</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_43" model="forecasting.smoothing.data">
+      <field name="sequence">43</field>
+      <field name="value">13</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_44" model="forecasting.smoothing.data">
+      <field name="sequence">44</field>
+      <field name="value">14</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_45" model="forecasting.smoothing.data">
+      <field name="sequence">45</field>
+      <field name="value">15</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_46" model="forecasting.smoothing.data">
+      <field name="sequence">46</field>
+      <field name="value">16</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_47" model="forecasting.smoothing.data">
+      <field name="sequence">47</field>
+      <field name="value">17</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_48" model="forecasting.smoothing.data">
+      <field name="sequence">48</field>
+      <field name="value">18</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_49" model="forecasting.smoothing.data">
+      <field name="sequence">49</field>
+      <field name="value">19</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_50" model="forecasting.smoothing.data">
+      <field name="sequence">50</field>
+      <field name="value">20</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_51" model="forecasting.smoothing.data">
+      <field name="sequence">51</field>
+      <field name="value">21</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_52" model="forecasting.smoothing.data">
+      <field name="sequence">52</field>
+      <field name="value">22</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_53" model="forecasting.smoothing.data">
+      <field name="sequence">53</field>
+      <field name="value">23</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_54" model="forecasting.smoothing.data">
+      <field name="sequence">54</field>
+      <field name="value">24</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_55" model="forecasting.smoothing.data">
+      <field name="sequence">55</field>
+      <field name="value">25</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_56" model="forecasting.smoothing.data">
+      <field name="sequence">56</field>
+      <field name="value">26</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_57" model="forecasting.smoothing.data">
+      <field name="sequence">57</field>
+      <field name="value">27</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_58" model="forecasting.smoothing.data">
+      <field name="sequence">58</field>
+      <field name="value">28</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_59" model="forecasting.smoothing.data">
+      <field name="sequence">59</field>
+      <field name="value">29</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_60" model="forecasting.smoothing.data">
+      <field name="sequence">60</field>
+      <field name="value">30</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_61" model="forecasting.smoothing.data">
+      <field name="sequence">61</field>
+      <field name="value">1</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_62" model="forecasting.smoothing.data">
+      <field name="sequence">62</field>
+      <field name="value">2</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_63" model="forecasting.smoothing.data">
+      <field name="sequence">63</field>
+      <field name="value">3</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_64" model="forecasting.smoothing.data">
+      <field name="sequence">64</field>
+      <field name="value">4</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_65" model="forecasting.smoothing.data">
+      <field name="sequence">65</field>
+      <field name="value">5</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_66" model="forecasting.smoothing.data">
+      <field name="sequence">66</field>
+      <field name="value">6</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_67" model="forecasting.smoothing.data">
+      <field name="sequence">67</field>
+      <field name="value">7</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_68" model="forecasting.smoothing.data">
+      <field name="sequence">68</field>
+      <field name="value">8</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_69" model="forecasting.smoothing.data">
+      <field name="sequence">69</field>
+      <field name="value">9</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_70" model="forecasting.smoothing.data">
+      <field name="sequence">70</field>
+      <field name="value">10</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_71" model="forecasting.smoothing.data">
+      <field name="sequence">71</field>
+      <field name="value">11</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_72" model="forecasting.smoothing.data">
+      <field name="sequence">72</field>
+      <field name="value">12</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_73" model="forecasting.smoothing.data">
+      <field name="sequence">73</field>
+      <field name="value">13</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_74" model="forecasting.smoothing.data">
+      <field name="sequence">74</field>
+      <field name="value">14</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_75" model="forecasting.smoothing.data">
+      <field name="sequence">75</field>
+      <field name="value">15</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_76" model="forecasting.smoothing.data">
+      <field name="sequence">76</field>
+      <field name="value">16</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_77" model="forecasting.smoothing.data">
+      <field name="sequence">77</field>
+      <field name="value">17</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_78" model="forecasting.smoothing.data">
+      <field name="sequence">78</field>
+      <field name="value">18</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_79" model="forecasting.smoothing.data">
+      <field name="sequence">79</field>
+      <field name="value">19</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_01_80" model="forecasting.smoothing.data">
+      <field name="sequence">80</field>
+      <field name="value">20</field>
+      <field name="forecast_id" ref="fst_demo_01"/>
+    </record>
+    <record id="fsd_demo_02_01" model="forecasting.smoothing.data">
+      <field name="sequence">1</field>
+      <field name="value">1</field>
+      <field name="forecast_id" ref="fst_demo_02"/>
+    </record>
+    <record id="fsd_demo_02_02" model="forecasting.smoothing.data">
+      <field name="sequence">2</field>
+      <field name="value">2</field>
+      <field name="forecast_id" ref="fst_demo_02"/>
+    </record>
+    <record id="fsd_demo_02_03" model="forecasting.smoothing.data">
+      <field name="sequence">3</field>
+      <field name="value">3</field>
+      <field name="forecast_id" ref="fst_demo_02"/>
+    </record>
+    <record id="fsd_demo_02_04" model="forecasting.smoothing.data">
+      <field name="sequence">4</field>
+      <field name="value">4</field>
+      <field name="forecast_id" ref="fst_demo_02"/>
+    </record>
+    <record id="fsd_demo_02_05" model="forecasting.smoothing.data">
+      <field name="sequence">5</field>
+      <field name="value">5</field>
+      <field name="forecast_id" ref="fst_demo_02"/>
+    </record>
+    <record id="fsd_demo_02_06" model="forecasting.smoothing.data">
+      <field name="sequence">6</field>
+      <field name="value">6</field>
+      <field name="forecast_id" ref="fst_demo_02"/>
+    </record>
+    <record id="fsd_demo_02_07" model="forecasting.smoothing.data">
+      <field name="sequence">7</field>
+      <field name="value">7</field>
+      <field name="forecast_id" ref="fst_demo_02"/>
+    </record>
+    <record id="fsd_demo_02_08" model="forecasting.smoothing.data">
+      <field name="sequence">8</field>
+      <field name="value">8</field>
+      <field name="forecast_id" ref="fst_demo_02"/>
+    </record>
+    <record id="fsd_demo_02_09" model="forecasting.smoothing.data">
+      <field name="sequence">9</field>
+      <field name="value">9</field>
+      <field name="forecast_id" ref="fst_demo_02"/>
+    </record>
+    <record id="fsd_demo_02_10" model="forecasting.smoothing.data">
+      <field name="sequence">10</field>
+      <field name="value">10</field>
+      <field name="forecast_id" ref="fst_demo_02"/>
+    </record>
+    <record id="fsd_demo_03_01" model="forecasting.smoothing.data">
+      <field name="sequence">1</field>
+      <field name="value">133</field>
+      <field name="forecast_id" ref="fst_demo_03"/>
+    </record>
+    <record id="fsd_demo_03_02" model="forecasting.smoothing.data">
+      <field name="sequence">2</field>
+      <field name="value">155</field>
+      <field name="forecast_id" ref="fst_demo_03"/>
+    </record>
+    <record id="fsd_demo_03_03" model="forecasting.smoothing.data">
+      <field name="sequence">3</field>
+      <field name="value">165</field>
+      <field name="forecast_id" ref="fst_demo_03"/>
+    </record>
+    <record id="fsd_demo_03_04" model="forecasting.smoothing.data">
+      <field name="sequence">4</field>
+      <field name="value">171</field>
+      <field name="forecast_id" ref="fst_demo_03"/>
+    </record>
+    <record id="fsd_demo_03_05" model="forecasting.smoothing.data">
+      <field name="sequence">5</field>
+      <field name="value">194</field>
+      <field name="forecast_id" ref="fst_demo_03"/>
+    </record>
+    <record id="fsd_demo_03_06" model="forecasting.smoothing.data">
+      <field name="sequence">6</field>
+      <field name="value">231</field>
+      <field name="forecast_id" ref="fst_demo_03"/>
+    </record>
+    <record id="fsd_demo_03_07" model="forecasting.smoothing.data">
+      <field name="sequence">7</field>
+      <field name="value">274</field>
+      <field name="forecast_id" ref="fst_demo_03"/>
+    </record>
+    <record id="fsd_demo_03_08" model="forecasting.smoothing.data">
+      <field name="sequence">8</field>
+      <field name="value">312</field>
+      <field name="forecast_id" ref="fst_demo_03"/>
+    </record>
+    <record id="fsd_demo_03_09" model="forecasting.smoothing.data">
+      <field name="sequence">9</field>
+      <field name="value">313</field>
+      <field name="forecast_id" ref="fst_demo_03"/>
+    </record>
+    <record id="fsd_demo_03_10" model="forecasting.smoothing.data">
+      <field name="sequence">10</field>
+      <field name="value">333</field>
+      <field name="forecast_id" ref="fst_demo_03"/>
+    </record>
+    <record id="fsd_demo_03_11" model="forecasting.smoothing.data">
+      <field name="sequence">11</field>
+      <field name="value">343</field>
+      <field name="forecast_id" ref="fst_demo_03"/>
+    </record>
+    <record id="fsd_demo_04_01" model="forecasting.smoothing.data">
+      <field name="sequence">1</field>
+      <field name="value">105</field>
+      <field name="forecast_id" ref="fst_demo_04"/>
+    </record>
+    <record id="fsd_demo_04_02" model="forecasting.smoothing.data">
+      <field name="sequence">2</field>
+      <field name="value">100</field>
+      <field name="forecast_id" ref="fst_demo_04"/>
+    </record>
+    <record id="fsd_demo_04_03" model="forecasting.smoothing.data">
+      <field name="sequence">3</field>
+      <field name="value">105</field>
+      <field name="forecast_id" ref="fst_demo_04"/>
+    </record>
+    <record id="fsd_demo_04_04" model="forecasting.smoothing.data">
+      <field name="sequence">4</field>
+      <field name="value">95</field>
+      <field name="forecast_id" ref="fst_demo_04"/>
+    </record>
+    <record id="fsd_demo_04_05" model="forecasting.smoothing.data">
+      <field name="sequence">5</field>
+      <field name="value">100</field>
+      <field name="forecast_id" ref="fst_demo_04"/>
+    </record>
+    <record id="fsd_demo_04_06" model="forecasting.smoothing.data">
+      <field name="sequence">6</field>
+      <field name="value">95</field>
+      <field name="forecast_id" ref="fst_demo_04"/>
+    </record>
+    <record id="fsd_demo_04_07" model="forecasting.smoothing.data">
+      <field name="sequence">7</field>
+      <field name="value">105</field>
+      <field name="forecast_id" ref="fst_demo_04"/>
+    </record>
+    <record id="fsd_demo_04_08" model="forecasting.smoothing.data">
+      <field name="sequence">8</field>
+      <field name="value">120</field>
+      <field name="forecast_id" ref="fst_demo_04"/>
+    </record>
+    <record id="fsd_demo_04_09" model="forecasting.smoothing.data">
+      <field name="sequence">9</field>
+      <field name="value">115</field>
+      <field name="forecast_id" ref="fst_demo_04"/>
+    </record>
+    <record id="fsd_demo_04_10" model="forecasting.smoothing.data">
+      <field name="sequence">10</field>
+      <field name="value">125</field>
+      <field name="forecast_id" ref="fst_demo_04"/>
+    </record>
+    <record id="fsd_demo_04_11" model="forecasting.smoothing.data">
+      <field name="sequence">11</field>
+      <field name="value">120</field>
+      <field name="forecast_id" ref="fst_demo_04"/>
+    </record>
+    <record id="fsd_demo_04_12" model="forecasting.smoothing.data">
+      <field name="sequence">12</field>
+      <field name="value">120</field>
+      <field name="forecast_id" ref="fst_demo_04"/>
+    </record>
+    <record id="fsd_demo_05_01" model="forecasting.smoothing.data">
+      <field name="sequence">1</field>
+      <field name="value">80</field>
+      <field name="forecast_id" ref="fst_demo_05"/>
+    </record>
+    <record id="fsd_demo_05_02" model="forecasting.smoothing.data">
+      <field name="sequence">2</field>
+      <field name="value">90</field>
+      <field name="forecast_id" ref="fst_demo_05"/>
+    </record>
+    <record id="fsd_demo_05_03" model="forecasting.smoothing.data">
+      <field name="sequence">3</field>
+      <field name="value">85</field>
+      <field name="forecast_id" ref="fst_demo_05"/>
+    </record>
+    <record id="fsd_demo_05_04" model="forecasting.smoothing.data">
+      <field name="sequence">4</field>
+      <field name="value">70</field>
+      <field name="forecast_id" ref="fst_demo_05"/>
+    </record>
+    <record id="fsd_demo_05_05" model="forecasting.smoothing.data">
+      <field name="sequence">5</field>
+      <field name="value">80</field>
+      <field name="forecast_id" ref="fst_demo_05"/>
+    </record>
+    <record id="fsd_demo_05_06" model="forecasting.smoothing.data">
+      <field name="sequence">6</field>
+      <field name="value">105</field>
+      <field name="forecast_id" ref="fst_demo_05"/>
+    </record>
+    <record id="fsd_demo_05_07" model="forecasting.smoothing.data">
+      <field name="sequence">7</field>
+      <field name="value">100</field>
+      <field name="forecast_id" ref="fst_demo_05"/>
+    </record>
+    <record id="fsd_demo_05_08" model="forecasting.smoothing.data">
+      <field name="sequence">8</field>
+      <field name="value">105</field>
+      <field name="forecast_id" ref="fst_demo_05"/>
+    </record>
+    <record id="fsd_demo_05_09" model="forecasting.smoothing.data">
+      <field name="sequence">9</field>
+      <field name="value">100</field>
+      <field name="forecast_id" ref="fst_demo_05"/>
+    </record>
+    <record id="fsd_demo_05_10" model="forecasting.smoothing.data">
+      <field name="sequence">10</field>
+      <field name="value">105</field>
+      <field name="forecast_id" ref="fst_demo_05"/>
+    </record>
+    <record id="fsd_demo_05_11" model="forecasting.smoothing.data">
+      <field name="sequence">11</field>
+      <field name="value">100</field>
+      <field name="forecast_id" ref="fst_demo_05"/>
+    </record>
+    <record id="fsd_demo_05_12" model="forecasting.smoothing.data">
+      <field name="sequence">12</field>
+      <field name="value">150</field>
+      <field name="forecast_id" ref="fst_demo_05"/>
     </record>
   </data>
 </openerp>
