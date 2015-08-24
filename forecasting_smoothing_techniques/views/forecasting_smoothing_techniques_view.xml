@@ -21,6 +21,22 @@
                     <field name="sequence"/>
                     <field name="value"/>
                     <field name="forecast_id" invisible="1"/>
+                    <field name="sma"/>
+                    <field name="sma_error"/>
+                    <field name="cma"/>
+                    <field name="cma_error"/>
+                    <field name="wma"/>
+                    <field name="wma_error"/>
+                    <field name="es1"/>
+                    <field name="es1_error"/>
+                    <field name="es2"/>
+                    <field name="es2_error"/>
+                    <field name="es3"/>
+                    <field name="es3_error"/>
+                    <field name="holt"/>
+                    <field name="holt_level"/>
+                    <field name="holt_trend"/>
+                    <field name="holt_error"/>
                 </tree>
             </field>
         </record>
@@ -76,7 +92,7 @@
                             </div>
                             <div class="col-md-5 oe_button_box" name="button_box" style="width: 41.6667%">
                                 <button name="reset_defaults" type="object" string="Reset Defaults" class="oe_inline oe_stat_button" icon="fa-refresh" help="Reset the forecasting methods default parameter values"/>
-                                <button name="clear" type="object" string="Clear" context="{'dtype': 'data'}"  class="oe_inline oe_stat_button" icon="fa-times-circle" help="Clear the forecast values data to run the forcasting"/>
+                                <button name="clear" type="object" string="Clear" class="oe_inline oe_stat_button" icon="fa-times-circle" help="Clear the forecast values data to run the forcasting"/>
                                 <button name="%(action_view_forecasting_data)d" type="action" string="List of values" class="oe_inline oe_stat_button" icon="fa-database" help="List of Values" context="{'forecast_id': id}"/>
                             </div>
                         </div>
@@ -122,105 +138,14 @@
                                         </div>
                                     </div>
                                 </div>
-
+                                <!--
+                                TODO add o2m widget to show the list of values
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <div class="col-md-1 col-md-offset-1"><field name="fv_01" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_02" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_03" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_04" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_05" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_06" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_07" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_08" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_09" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_10" class="oe_inline"/></div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="col-md-1 col-md-offset-1"><field name="fv_11" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_12" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_13" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_14" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_15" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_16" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_17" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_18" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_19" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_20" class="oe_inline"/></div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="col-md-1 col-md-offset-1"><field name="fv_21" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_22" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_23" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_24" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_25" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_26" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_27" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_28" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_29" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_30" class="oe_inline"/></div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="col-md-1 col-md-offset-1"><field name="fv_31" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_32" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_33" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_34" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_35" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_36" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_37" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_38" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_39" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_40" class="oe_inline"/></div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="col-md-1 col-md-offset-1"><field name="fv_41" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_42" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_43" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_44" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_45" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_46" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_47" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_48" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_49" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_50" class="oe_inline"/></div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="col-md-1 col-md-offset-1"><field name="fv_51" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_52" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_53" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_54" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_55" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_56" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_57" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_58" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_59" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_60" class="oe_inline"/></div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="col-md-1 col-md-offset-1"><field name="fv_61" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_62" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_63" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_64" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_65" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_66" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_67" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_68" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_69" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_70" class="oe_inline"/></div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="col-md-1 col-md-offset-1"><field name="fv_71" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_72" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_73" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_74" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_75" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_76" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_77" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_78" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_79" class="oe_inline"/></div>
-                                        <div class="col-md-1"><field name="fv_80" class="oe_inline"/></div>
+                                        <div class="col-md-1 col-md-offset-1"><field name="value_ids" class="oe_inline"/></div>
                                     </div>
                                 </div>
+                                -->
                                 <div class="row">
                                     <div class="col-md-12">
 
