@@ -33,6 +33,39 @@ class ForecastingSmoothingData(models.Model):
         required=True,
         default=_default_forecast,
         help="Forecast which this data is related to")
+
+    sma = fields.Float(
+        'SMA', help="Simple Moving Average Forcasting (SMA)")
+    sma_error = fields.Float(
+        'SMA MA Error', help="Mean Absolute Error for SMA")
+    cma = fields.Float(
+        'CMA', help="Cumulative Moving Average Forcasting (CMA)")
+    cma_error = fields.Float(
+        'CMA MA Error', help="Mean Absolute Error for CMA")
+    wma = fields.Float(
+        'WMA', help="Weighted Moving Average Forecasting (WMA)")
+    wma_error = fields.Float(
+        'WMA MA Error', help="Mean Absolute Error for WMA")
+    es1 = fields.Float(
+        'ES1', help="Single Exponential Smoothing (ES1)")
+    es1_error = fields.Float(
+        'ES1 MA Error', help="Mean Absolute Error for ES1")
+    es2 = fields.Float(
+        'ES2', help="Double Exponential Smoothing (ES2)")
+    es2_error = fields.Float(
+        'ES2 MA Error', help="Mean Absolute Error for ES2")
+    es3 = fields.Float(
+        'ES3', help="Triple Exponential Smoothing (ES3)")
+    es3_error = fields.Float(
+        'ES3 MA Error', help="Mean Absolute Error for ES3")
+    holt = fields.Float(
+        'HOLT', help="Holt's Linear Smoothing (HOLT)")
+    holt_error = fields.Float(
+        'HOLT MA Error', help="Mean Absolute Error for HOLT")
+    holt_level = fields.Float(
+        'HOLT LEVEL', help="Holt's Linear Smoothing Level function")
+    holt_trend = fields.Float(
+        'HOLT TREND', help="Holt's Linear Smoothing Trend function")
     
     _sql_constraints = [
         ('sequence_uniq', 'unique(sequence, forecast_id)',
@@ -82,88 +115,6 @@ class ForecastingSmoothingTechniques(models.Model):
         help='Product related to the current forecasting',
         default=_default_product,
         track_visibility='always')
-
-    # Forecast Values range(80)
-    fv_01 = fields.Float('Forecast Value 01')
-    fv_02 = fields.Float('Forecast Value 02')
-    fv_03 = fields.Float('Forecast Value 03')
-    fv_04 = fields.Float('Forecast Value 04')
-    fv_05 = fields.Float('Forecast Value 05')
-    fv_06 = fields.Float('Forecast Value 06')
-    fv_07 = fields.Float('Forecast Value 07')
-    fv_08 = fields.Float('Forecast Value 08')
-    fv_09 = fields.Float('Forecast Value 09')
-    fv_10 = fields.Float('Forecast Value 10')
-    fv_11 = fields.Float('Forecast Value 11')
-    fv_12 = fields.Float('Forecast Value 12')
-    fv_13 = fields.Float('Forecast Value 13')
-    fv_14 = fields.Float('Forecast Value 14')
-    fv_15 = fields.Float('Forecast Value 15')
-    fv_16 = fields.Float('Forecast Value 16')
-    fv_17 = fields.Float('Forecast Value 17')
-    fv_18 = fields.Float('Forecast Value 18')
-    fv_19 = fields.Float('Forecast Value 19')
-    fv_20 = fields.Float('Forecast Value 20')
-    fv_21 = fields.Float('Forecast Value 21')
-    fv_22 = fields.Float('Forecast Value 22')
-    fv_23 = fields.Float('Forecast Value 23')
-    fv_24 = fields.Float('Forecast Value 24')
-    fv_25 = fields.Float('Forecast Value 25')
-    fv_26 = fields.Float('Forecast Value 26')
-    fv_27 = fields.Float('Forecast Value 27')
-    fv_28 = fields.Float('Forecast Value 28')
-    fv_29 = fields.Float('Forecast Value 29')
-    fv_30 = fields.Float('Forecast Value 30')
-    fv_31 = fields.Float('Forecast Value 31')
-    fv_32 = fields.Float('Forecast Value 32')
-    fv_33 = fields.Float('Forecast Value 33')
-    fv_34 = fields.Float('Forecast Value 34')
-    fv_35 = fields.Float('Forecast Value 35')
-    fv_36 = fields.Float('Forecast Value 36')
-    fv_37 = fields.Float('Forecast Value 37')
-    fv_38 = fields.Float('Forecast Value 38')
-    fv_39 = fields.Float('Forecast Value 39')
-    fv_40 = fields.Float('Forecast Value 40')
-    fv_41 = fields.Float('Forecast Value 41')
-    fv_42 = fields.Float('Forecast Value 42')
-    fv_43 = fields.Float('Forecast Value 43')
-    fv_44 = fields.Float('Forecast Value 44')
-    fv_45 = fields.Float('Forecast Value 45')
-    fv_46 = fields.Float('Forecast Value 46')
-    fv_47 = fields.Float('Forecast Value 47')
-    fv_48 = fields.Float('Forecast Value 48')
-    fv_49 = fields.Float('Forecast Value 49')
-    fv_50 = fields.Float('Forecast Value 50')
-    fv_51 = fields.Float('Forecast Value 51')
-    fv_52 = fields.Float('Forecast Value 52')
-    fv_53 = fields.Float('Forecast Value 53')
-    fv_54 = fields.Float('Forecast Value 54')
-    fv_55 = fields.Float('Forecast Value 55')
-    fv_56 = fields.Float('Forecast Value 56')
-    fv_57 = fields.Float('Forecast Value 57')
-    fv_58 = fields.Float('Forecast Value 58')
-    fv_59 = fields.Float('Forecast Value 59')
-    fv_60 = fields.Float('Forecast Value 60')
-    fv_61 = fields.Float('Forecast Value 61')
-    fv_62 = fields.Float('Forecast Value 62')
-    fv_63 = fields.Float('Forecast Value 63')
-    fv_64 = fields.Float('Forecast Value 64')
-    fv_65 = fields.Float('Forecast Value 65')
-    fv_66 = fields.Float('Forecast Value 66')
-    fv_67 = fields.Float('Forecast Value 67')
-    fv_68 = fields.Float('Forecast Value 68')
-    fv_69 = fields.Float('Forecast Value 69')
-    fv_70 = fields.Float('Forecast Value 70')
-    fv_71 = fields.Float('Forecast Value 71')
-    fv_72 = fields.Float('Forecast Value 72')
-    fv_73 = fields.Float('Forecast Value 73')
-    fv_74 = fields.Float('Forecast Value 74')
-    fv_75 = fields.Float('Forecast Value 75')
-    fv_76 = fields.Float('Forecast Value 76')
-    fv_77 = fields.Float('Forecast Value 77')
-    fv_78 = fields.Float('Forecast Value 78')
-    fv_79 = fields.Float('Forecast Value 79')
-    fv_80 = fields.Float('Forecast Value 80')
 
     # Moving Average
     period = fields.Integer(
@@ -253,6 +204,10 @@ class ForecastingSmoothingTechniques(models.Model):
         'Beta', default=0.03,
         help="Holt's Beta Parameter"
     )
+    holt_period = fields.Float(
+        "Holt's Period", default=1,
+        help="Forecasting K periods into the future to calculate Holt's"
+             " Linear Smoothing")
     holt_forecast = fields.Float(
         'Forecast',
         compute='_compute_holt',
@@ -263,10 +218,6 @@ class ForecastingSmoothingTechniques(models.Model):
         compute='_compute_holt',
         help="Mean Absolute Error for HOLT"
     )
-    holt_period = fields.Float(
-        "Holt's Period", default=1,
-        help="Forecasting K periods into the future to calculate Holt's"
-             " Linear Smoothing")
 
     @api.constrains('period')
     def _check_period(self):
@@ -296,23 +247,6 @@ class ForecastingSmoothingTechniques(models.Model):
         values list of field names).
         """
         fields_section = dict(
-            data=[
-                'fv_01', 'fv_02', 'fv_03', 'fv_04', 'fv_05',
-                'fv_06', 'fv_07', 'fv_08', 'fv_09', 'fv_10',
-                'fv_11', 'fv_12', 'fv_13', 'fv_14', 'fv_15',
-                'fv_16', 'fv_17', 'fv_18', 'fv_19', 'fv_20',
-                'fv_21', 'fv_22', 'fv_23', 'fv_24', 'fv_25',
-                'fv_26', 'fv_27', 'fv_28', 'fv_29', 'fv_30',
-                'fv_31', 'fv_32', 'fv_33', 'fv_34', 'fv_35',
-                'fv_36', 'fv_37', 'fv_38', 'fv_39', 'fv_40',
-                'fv_41', 'fv_42', 'fv_43', 'fv_44', 'fv_45',
-                'fv_46', 'fv_47', 'fv_48', 'fv_49', 'fv_50',
-                'fv_51', 'fv_52', 'fv_53', 'fv_54', 'fv_55',
-                'fv_56', 'fv_57', 'fv_58', 'fv_59', 'fv_60',
-                'fv_61', 'fv_62', 'fv_63', 'fv_64', 'fv_65',
-                'fv_66', 'fv_67', 'fv_68', 'fv_69', 'fv_70',
-                'fv_71', 'fv_72', 'fv_73', 'fv_74', 'fv_75',
-                'fv_76', 'fv_77', 'fv_78', 'fv_79', 'fv_80'],
             sma=['sma_forecast', 'sma_ma_error'],
             cma=['cma_forecast', 'cma_ma_error'],
             wma=['wma_forecast', 'wma_ma_error'],
@@ -351,206 +285,180 @@ class ForecastingSmoothingTechniques(models.Model):
         """
         Clear all the fields.
         """
-        dtype = self._context.get('dtype', False)
-        if not dtype:
-            raise UserError(_('Indicate what you want to delete'))
-        self._clear_method(self.fields_section(dtype))
+        self.write({'value_ids':
+            [(2, value.id) for value in self.value_ids]})
         return True
 
-    @api.multi
-    def _clear_method(self, field_list):
-        """
-        Clean the method forecast values.
-        """
-        values = {}.fromkeys(field_list, 0.0)
-        self.write(values)
-
     @api.one
-    @api.depends()
+    @api.depends('value_ids', 'period')
     def _compute_cummulative_move_average(self):
         """
-        CUMULATIVE MOVING AVERAGE
-        Note: Represente function compute1
+        This method calculate the CUMULATIVE MOVING AVERAGE forecasting
+        smoothing method (CMA) and Mean Absolute error.
         """
-        fv_list = self.get_forecasting_values()
-        if not fv_list:
+        values = self.value_ids
+        if not values:
             return True
-        numv = len(fv_list)
         period = self.period
-        avg = [None for item in range(period)]
-        ma_error = []
-        for item in range(period, numv+1):
-            fv_set = fv_list[item-period:item]
-            avg += [sum(fv_set) / float(period)]
-            ma_error += [abs(avg[-1] - fv_set[-1])]
-        self.cma_forecast = avg[-1]
-        ma_error = sum(ma_error)/len(ma_error)
-        self.cma_ma_error = ma_error
+        values_to_forecast = values[period-1:]
+        for value in values_to_forecast:
+            value_set = values[value.sequence-period:value.sequence]
+            value.write({'cma':
+                sum([val.value for val in value_set]) / float(period)})
+            value.write({'cma_error': abs(value.cma - value_set[-1].value)})
+        self.cma_forecast = values_to_forecast[-1].cma
+        self.cma_ma_error = (
+            sum([val.cma_error for val in values_to_forecast]) /
+                len(values_to_forecast))
         return True
 
     @api.one
-    @api.depends()
+    @api.depends('value_ids', 'period')
     def _compute_simple_move_average(self):
         """
-        SIMPLE MOVING AVERAGE
-        Note: It represents function compute1
+        This method calculate the SIMPLE MOVING AVERAGE forecasting
+        smoothing method (SMA) and Mean Absolute error.
         """
-        fv_list = self.get_forecasting_values()
-        if not fv_list:
+        values = self.value_ids
+        if not values:
             return True
-        numv = len(fv_list)
         period = self.period
-        avg = [None for item in range(period)]
-        ma_error = []
-        for item in range(period+1, numv+1):
-            fv_set = fv_list[item-period-1:item-1]
-            avg += [sum(fv_set) / float(period)]
-            ma_error += [abs(avg[-1] - fv_list[item-1])]
-        self.sma_forecast = avg[-1]
-        ma_error = sum(ma_error)/len(ma_error)
-        self.sma_ma_error = ma_error
-        return True
-
-    @api.multi
-    def get_forecasting_values(self):
-        """
-        This method will return the forecast input values in a list.
-        """
-        fv_set = []
-        field_list = self.fields_section('data')
-        values = self.read(field_list)[0]
-        for fname in field_list:
-            val = values.get(fname)
-            if val:
-                fv_set.append(val)
-        return fv_set
-
-    @api.multi
-    def set_test_forecast_values(self):
-        """
-        This method will return the forecast input values in a list.
-        """
-        val = 1
-        for item in range(1, 81):
-            fvfield = 'fv_{num:02d}'.format(num=item)
-            setattr(self, fvfield, val)
-            if val == 30:
-                val = 1
-            else:
-                val += 1
+        values_to_forecast = values[period:]
+        for value in values_to_forecast:
+            value_set = values[value.sequence-period-1:value.sequence-1]
+            value.write({'sma':
+                sum([val.value for val in value_set]) / float(period)})
+            value.write({'sma_error': abs(value.sma - value.value)})
+        self.sma_forecast = values_to_forecast[-1].sma
+        self.sma_ma_error = (
+            sum([val.sma_error for val in values_to_forecast]) /
+                len(values_to_forecast))
         return True
 
     @api.one
-    @api.depends()
+    @api.depends('value_ids', 'period')
     def _compute_weighted_move_average(self):
         """
-        WEIGHTED MOVING AVERAGE
-        Note: Represente function compute3
+        This method calculate the WEIGHTED MOVING AVERAGE forecasting
+        smoothing method (WMA) and Mean Absolute error.
         """
-        fv_list = self.get_forecasting_values()
-        if not fv_list:
+        values = self.value_ids
+        if not values:
             return True
-        numv = len(fv_list)
         period = self.period
-        fperiod = float(period)
-        avg = [None for item in range(4)]
-        ma_error = []
-        weight = (fperiod * (fperiod + 1.0)) / 2.0
-        for item in range(period, numv+1):
-            fv_set = fv_list[item-period:item]
-            if len(fv_set) < period:
-                break
-            avg += [sum(
-                [((day) / weight) * value
-                 for (day, value) in enumerate(fv_set, 1)])]
-            ma_error += [abs(avg[-1] - fv_set[-1])]
-        self.wma_forecast = avg[-1]
-        ma_error = sum(ma_error)/(float(len(ma_error)))
-        self.wma_ma_error = ma_error
+        weight = (float(period) * (float(period) + 1.0)) / 2.0
+        values_to_forecast = values[period-1:]
+        for value in values_to_forecast:
+            value_set = values[value.sequence-period:value.sequence]
+            value.write({'wma':
+                sum([((day) / weight) * item.value
+                     for (day, item) in enumerate(value_set, 1)])})
+            value.write({'wma_error': abs(value.wma - value_set[-1].value)})
+        self.wma_forecast = values_to_forecast[-1].wma
+        self.wma_ma_error = (
+            sum([val.wma_error for val in values_to_forecast]) /
+                len(values_to_forecast))
         return True
 
     @api.one
-    @api.depends()
+    @api.depends('value_ids', 'exp_alpha')
     def _compute_exp_smoothing(self):
         """
         Single, Double, & Triple Exponential Smoothing
         Note: Represente function compute3
         """
-        # TODO check. this method do not use period at all.
-        fv_list = self.get_forecasting_values()
-        if not fv_list:
+        values = self.value_ids
+        if not values:
             return True
-        numv = len(fv_list)
+
         alpha = self.exp_alpha
-        st1 = [fv_list[1]]
-        st2 = [fv_list[1]]
-        st3 = [fv_list[1]]
 
-        for value in range(1, numv):
-            st1.append(alpha * fv_list[value] + (1.0 - alpha) * st1[value-1])
-            st2.append(alpha * st1[value] + (1.0 - alpha) * st2[value-1])
-            st3.append(alpha * st2[value] + (1.0 - alpha) * st3[value-1])
+        values[0].write({'es1': values[1].value})
+        values[0].write({'es2': values[1].value})
+        values[0].write({'es3': values[1].value})
 
-        a2 = 2.0 * st1[numv-1] - st2[numv-1]
-        b2 = (alpha/(1.0-alpha)) * (st1[numv-1] - st2[numv-1])
-        a3 = 3.0 * st1[numv-1] - 3.0 * st2[numv-1] + st3[numv-1]
+        values_to_forecast = values[1:]
+        for value in values_to_forecast:
+            value.write({'es1':
+                alpha * value.value +
+                (1.0 - alpha) * values[value.sequence-2].es1})
+            value.write({'es2':
+                alpha * value.es1 +
+                (1.0 - alpha) * values[value.sequence-2].es2})
+            value.write({'es3':
+                alpha * value.es2 +
+                (1.0 - alpha) * values[value.sequence-2].es3})
+
+        last_value = values[-1]
+        a2 = 2.0 * last_value.es1 - last_value.es2
+        b2 = (alpha/(1.0-alpha)) * (last_value.es1 - last_value.es2)
+        a3 = 3.0 * last_value.es1 - 3.0 * last_value.es2 + last_value.es3
         b3 = ((alpha/(2.0 * pow(1.0-alpha, 2.0))) * (
-            (6.0 - 5.0 * alpha) * st1[numv-1] -
-            (10.0 - 8.0 * alpha) * st2[numv-1] +
-            (4.0 - 3.0 * alpha) * st3[numv-1]))
+            (6.0 - 5.0 * alpha) * last_value.es1 -
+            (10.0 - 8.0 * alpha) * last_value.es2 +
+            (4.0 - 3.0 * alpha) * last_value.es3))
         c3 = (pow((alpha/(1.0 - alpha)), 2.0) *
-              (st1[numv-1] - 2.0 * st2[numv-1] + st3[numv-1]))
+              (last_value.es1 - 2.0 * last_value.es2 + last_value.es3))
 
-        self.single_forecast = st1[-1]
+        self.single_forecast = last_value.es1
         self.double_forecast = a2 + b2
         self.triple_forecast = a3 + b3 + 0.5 * c3
 
-        st1_ma_error = 0.0
-        st2_ma_error = 0.0
-        st3_ma_error = 0.0
+        for value in values:
+            value.write({'es1_error': abs(value.es1 - value.value)})
+            value.write({'es2_error': abs(value.es2 - value.value)})
+            value.write({'es3_error': abs(value.es3 - value.value)})
 
-        for value in range(0, numv):
-            st1_ma_error += abs((st1[value] - fv_list[value]))
-            st2_ma_error += abs((st2[value] - fv_list[value]))
-            st3_ma_error += abs((st3[value] - fv_list[value]))
-
-        self.single_ma_error = st1_ma_error / float(numv)
-        self.double_ma_error = st2_ma_error / float(numv)
-        self.triple_ma_error = st3_ma_error / float(numv)
+        numv = float(len(values))
+        self.single_ma_error = sum(values.mapped('es1_error')) / numv
+        self.double_ma_error = sum(values.mapped('es2_error')) / numv
+        self.triple_ma_error = sum(values.mapped('es3_error')) / numv
         return True
 
     @api.one
-    @api.depends()
+    @api.depends('value_ids', 'holt_alpha', 'beta', 'holt_period')
     def _compute_holt(self):
         """
         Holt's Linear Smoothing
         Note: It represent function compute20
         """
-        fv_list = self.get_forecasting_values()
-        if not fv_list:
+        values = self.value_ids
+        if not values:
             return True
-        numv = len(fv_list)
+        numv = len(values)
         alpha = self.holt_alpha
         beta = self.beta
         period = self.holt_period
 
-        level = [None]
-        trend = [None]
-        func = [None, None]
+        values[0].write({
+            'holt': 0.0, 'holt_level': 0.0, 'holt_trend': 0.0
+        })
 
-        level.append(fv_list[1])
-        trend.append(fv_list[1] - fv_list[0])
-        func.append(level[-1] + trend[-1])
+        values[1].write({
+            'holt_level': values[1].value,
+            'holt_trend': values[1].value - values[0].value,
+            'holt': 0.0,
+        })
+        values_to_forecast = values[2:]
+        for value in values_to_forecast:
+            value.write({'holt_level':
+                alpha * value.value + (1.0 - alpha) * value.holt})
+            value.write({
+                'holt_trend':
+                    (beta * (value.holt_level -
+                             values[value.sequence-1].holt_level)
+                     + (1.0 - beta) * values[value.sequence-1].holt_trend)
+            })
+            value.write({'holt':
+                value.holt_level +
+                value.holt_trend})
+        self.holt_forecast = (values_to_forecast[-1].holt_level + period *
+                              values_to_forecast[-1].holt_trend)
+        for value in values_to_forecast:
+            value.write({'holt_error': abs(value.holt - value.value)})
+        self.holt_ma_error = sum(values.mapped('holt_error')) / (float(numv) - 3.0)
 
-        for item in range(2, numv):
-            level.append(alpha * fv_list[item] + (1.0 - alpha) * func[item])
-            trend.append((beta * (level[item] - level[item-1])
-                          + (1.0 - beta) * trend[item-1]))
-            func.append(level[item] + trend[item])
-
-        self.holt_forecast = level[-1] + period * trend[-1]
-        ma_error = 0.0
-        for item in range(3, numv):
-            ma_error += abs(func[item] - fv_list[item])
-        self.holt_ma_error = ma_error / (float(numv) - 3.0)
+        for value in values:
+            print ('value', value.sequence, value.value, value.holt,
+                    value.holt_level, value.holt_trend, value.holt_error)
         return True
