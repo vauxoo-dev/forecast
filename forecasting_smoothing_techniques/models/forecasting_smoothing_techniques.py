@@ -124,11 +124,13 @@ class ForecastingSmoothingTechniques(models.Model):
     sma_forecast = fields.Float(
         'Forecast',
         compute='_compute_simple_move_average',
+        store=True,
         help="Simple Moving Average Forcasting (SMA)"
     )
     sma_ma_error = fields.Float(
         'MA Error',
         compute='_compute_simple_move_average',
+        store=True,
         help="Mean Absolute Error for SMA"
     )
 
@@ -136,11 +138,13 @@ class ForecastingSmoothingTechniques(models.Model):
     cma_forecast = fields.Float(
         'Forecast',
         compute='_compute_cummulative_move_average',
+        store=True,
         help="Cumulative Moving Average Forcasting (CMA)"
     )
     cma_ma_error = fields.Float(
         'MA Error',
         compute='_compute_cummulative_move_average',
+        store=True,
         help="Mean Absolute Error for CMA"
     )
 
@@ -148,11 +152,13 @@ class ForecastingSmoothingTechniques(models.Model):
     wma_forecast = fields.Float(
         'Forecast',
         compute='_compute_weighted_move_average',
+        store=True,
         help="Weighted Moving Average Forecasting (WMA)"
     )
     wma_ma_error = fields.Float(
         'MA Error',
         compute='_compute_weighted_move_average',
+        store=True,
         help="Mean Absolute Error for WMA"
     )
 
@@ -167,31 +173,37 @@ class ForecastingSmoothingTechniques(models.Model):
     single_forecast = fields.Float(
         'Forecast',
         compute='_compute_exp_smoothing',
+        store=True,
         help="Single Exponential Smoothing (SES)"
     )
     single_ma_error = fields.Float(
         'MA Error',
         compute='_compute_exp_smoothing',
+        store=True,
         help="Mean Absolute Error for SES"
     )
     double_forecast = fields.Float(
         'Forecast',
         compute='_compute_exp_smoothing',
+        store=True,
         help="Double Exponential Smoothing (DES)"
     )
     double_ma_error = fields.Float(
         'MA Error',
         compute='_compute_exp_smoothing',
+        store=True,
         help="Mean Absolute Error for DES"
     )
     triple_forecast = fields.Float(
         'Forecast',
         compute='_compute_exp_smoothing',
+        store=True,
         help="Triple Exponential Smoothing (TES)"
     )
     triple_ma_error = fields.Float(
         'MA Error',
         compute='_compute_exp_smoothing',
+        store=True,
         help="Mean Absolute Error for TES"
     )
 
@@ -211,11 +223,13 @@ class ForecastingSmoothingTechniques(models.Model):
     holt_forecast = fields.Float(
         'Forecast',
         compute='_compute_holt',
+        store=True,
         help="Holt's Linear Smoothing (HOLT)"
     )
     holt_ma_error = fields.Float(
         'MA Error',
         compute='_compute_holt',
+        store=True,
         help="Mean Absolute Error for HOLT"
     )
 
@@ -290,7 +304,8 @@ class ForecastingSmoothingTechniques(models.Model):
         return True
 
     @api.one
-    @api.depends('value_ids', 'period')
+    @api.depends('value_ids', 'value_ids.value', 'value_ids.sequence',
+                 'period')
     def _compute_cummulative_move_average(self):
         """
         This method calculate the CUMULATIVE MOVING AVERAGE forecasting
@@ -314,7 +329,8 @@ class ForecastingSmoothingTechniques(models.Model):
         return True
 
     @api.one
-    @api.depends('value_ids', 'period')
+    @api.depends('value_ids', 'value_ids.value', 'value_ids.sequence',
+                 'period')
     def _compute_simple_move_average(self):
         """
         This method calculate the SIMPLE MOVING AVERAGE forecasting
@@ -338,7 +354,8 @@ class ForecastingSmoothingTechniques(models.Model):
         return True
 
     @api.one
-    @api.depends('value_ids', 'period')
+    @api.depends('value_ids', 'value_ids.value', 'value_ids.sequence',
+                 'period')
     def _compute_weighted_move_average(self):
         """
         This method calculate the WEIGHTED MOVING AVERAGE forecasting
@@ -363,7 +380,8 @@ class ForecastingSmoothingTechniques(models.Model):
         return True
 
     @api.one
-    @api.depends('value_ids', 'exp_alpha')
+    @api.depends('value_ids', 'value_ids.value', 'value_ids.sequence',
+                 'exp_alpha')
     def _compute_exp_smoothing(self):
         """
         Single, Double, & Triple Exponential Smoothing
@@ -418,7 +436,8 @@ class ForecastingSmoothingTechniques(models.Model):
         return True
 
     @api.one
-    @api.depends('value_ids', 'holt_alpha', 'beta', 'holt_period')
+    @api.depends('value_ids', 'value_ids.value', 'value_ids.sequence',
+                 'holt_alpha', 'beta', 'holt_period')
     def _compute_holt(self):
         """
         Holt's Linear Smoothing
