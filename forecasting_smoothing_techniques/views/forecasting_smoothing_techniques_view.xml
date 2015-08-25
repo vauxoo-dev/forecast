@@ -54,9 +54,12 @@
             <field name="name">stock.forecasting.data.graph</field>
             <field name="model">forecasting.smoothing.data</field>
             <field name="arch" type="xml">
-                <graph string="Forecasting by Smoothing Techniques" type="line">
+                <graph string="Forecasting by Smoothing Techniques">
                     <field name="sequence"/>
                     <field name="value" operator="+"/>
+                    <field name="sma" operator="+"/>
+                    <field name="cma" operator="+"/>
+                    <field name="wma" operator="+"/>
                 </graph>
             </field>
         </record>
@@ -103,9 +106,12 @@
                             </div>
                         </div>
                         <field name="value_ids" nolabel="1" widget="x2many_graph">
-                            <graph type="line">
+                            <graph>
                                 <field name="sequence"/>
                                 <field name="value" operator="+"/>
+                                <field name="sma" operator="+"/>
+                                <field name="cma" operator="+"/>
+                                <field name="wma" operator="+"/>
                             </graph>
                         </field>
                         <div class="panel panel-default">
