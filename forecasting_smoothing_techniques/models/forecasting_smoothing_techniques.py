@@ -66,7 +66,7 @@ class ForecastingSmoothingData(models.Model):
         'HOLT LEVEL', help="Holt's Linear Smoothing Level function")
     holt_trend = fields.Float(
         'HOLT TREND', help="Holt's Linear Smoothing Trend function")
-    
+
     _sql_constraints = [
         ('sequence_uniq', 'unique(sequence, forecast_id)',
             'Several sequences with the same value do not make sense yet!'),
@@ -285,8 +285,8 @@ class ForecastingSmoothingTechniques(models.Model):
         """
         Clear all the fields.
         """
-        self.write({'value_ids':
-            [(2, value.id) for value in self.value_ids]})
+        self.write({
+            'value_ids': [(2, value.id) for value in self.value_ids]})
         return True
 
     @api.one
@@ -303,13 +303,14 @@ class ForecastingSmoothingTechniques(models.Model):
         values_to_forecast = values[period-1:]
         for value in values_to_forecast:
             value_set = values[value.sequence-period:value.sequence]
-            value.write({'cma':
-                sum([val.value for val in value_set]) / float(period)})
+            value.write({
+                'cma': sum([val.value for val in value_set])
+                / float(period)})
             value.write({'cma_error': abs(value.cma - value_set[-1].value)})
         self.cma_forecast = values_to_forecast[-1].cma
         self.cma_ma_error = (
             sum([val.cma_error for val in values_to_forecast]) /
-                len(values_to_forecast))
+            len(values_to_forecast))
         return True
 
     @api.one
@@ -326,13 +327,14 @@ class ForecastingSmoothingTechniques(models.Model):
         values_to_forecast = values[period:]
         for value in values_to_forecast:
             value_set = values[value.sequence-period-1:value.sequence-1]
-            value.write({'sma':
-                sum([val.value for val in value_set]) / float(period)})
+            value.write({
+                'sma': sum([val.value for val in value_set]) /
+                        float(period)})
             value.write({'sma_error': abs(value.sma - value.value)})
         self.sma_forecast = values_to_forecast[-1].sma
         self.sma_ma_error = (
             sum([val.sma_error for val in values_to_forecast]) /
-                len(values_to_forecast))
+            len(values_to_forecast))
         return True
 
     @api.one
@@ -350,14 +352,14 @@ class ForecastingSmoothingTechniques(models.Model):
         values_to_forecast = values[period-1:]
         for value in values_to_forecast:
             value_set = values[value.sequence-period:value.sequence]
-            value.write({'wma':
-                sum([((day) / weight) * item.value
-                     for (day, item) in enumerate(value_set, 1)])})
+            value.write({'wma': sum(
+                [((day) / weight) * item.value
+                 for (day, item) in enumerate(value_set, 1)])})
             value.write({'wma_error': abs(value.wma - value_set[-1].value)})
         self.wma_forecast = values_to_forecast[-1].wma
         self.wma_ma_error = (
             sum([val.wma_error for val in values_to_forecast]) /
-                len(values_to_forecast))
+            len(values_to_forecast))
         return True
 
     @api.one
@@ -380,14 +382,14 @@ class ForecastingSmoothingTechniques(models.Model):
         values_to_forecast = values[1:]
         for value in values_to_forecast:
             value.write({'es1':
-                alpha * value.value +
-                (1.0 - alpha) * values[value.sequence-2].es1})
+                         alpha * value.value +
+                         (1.0 - alpha) * values[value.sequence-2].es1})
             value.write({'es2':
-                alpha * value.es1 +
-                (1.0 - alpha) * values[value.sequence-2].es2})
+                         alpha * value.es1 +
+                         (1.0 - alpha) * values[value.sequence-2].es2})
             value.write({'es3':
-                alpha * value.es2 +
-                (1.0 - alpha) * values[value.sequence-2].es3})
+                         alpha * value.es2 +
+                         (1.0 - alpha) * values[value.sequence-2].es3})
 
         last_value = values[-1]
         a2 = 2.0 * last_value.es1 - last_value.es2
@@ -441,11 +443,11 @@ class ForecastingSmoothingTechniques(models.Model):
         })
         values_to_forecast = values[2:]
         for value in values_to_forecast:
-            value.write({'holt':
-                values[value.sequence-2].holt_level +
+            value.write({
+                'holt': values[value.sequence-2].holt_level +
                 values[value.sequence-2].holt_trend})
             value.write({'holt_level':
-                alpha * value.value + (1.0 - alpha) * value.holt})
+                         alpha * value.value + (1.0 - alpha) * value.holt})
             value.write({
                 'holt_trend':
                     (beta * (value.holt_level -
@@ -456,5 +458,6 @@ class ForecastingSmoothingTechniques(models.Model):
                               values_to_forecast[-1].holt_trend)
         for value in values_to_forecast:
             value.write({'holt_error': abs(value.holt - value.value)})
-        self.holt_ma_error = sum(values.mapped('holt_error')) / (float(numv) - 3.0)
+        self.holt_ma_error = sum(values.mapped('holt_error')) / (
+            float(numv) - 3.0)
         return True

@@ -17,8 +17,8 @@
     "website": "http://www.vauxoo.com/",
     "category": "",
     "depends": [
-        "board", # Just because we need some graphic stuff from here
-        "product", # may be we need refactor this in a separate module for such dependency.
+        "board",  # Just because we need some graphic stuff from here
+        "product",  # may be we need refactor this in a separate module.
         "web_widget_x2many_graph",  # To show one2many values as graphs
     ],
     "data": [
