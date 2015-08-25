@@ -1,5 +1,7 @@
 [![Build Status](http://runbot.odoo.com/logo.png)](http://runbot.vauxoo.com/runbot/)
-[![Build Status](https://travis-ci.org/Vauxoo/stock-forecasting.svg)](https://travis-ci.org/Vauxoo/stock-forecasting)
+[![Build Status](https://travis-ci.org/Vauxoo/stock-forecasting.svg)](https://travis-ci.
+org/Vauxoo/stock-forecasting)
+[![Coverage Status](https://coveralls.io/repos/Vauxoo/stock-forecasting/badge.svg?branch=master&service=github)](https://coveralls.io/github/Vauxoo/stock-forecasting?branch=8.0)
 
 Stock Forecasting modules for Odoo
 ===
