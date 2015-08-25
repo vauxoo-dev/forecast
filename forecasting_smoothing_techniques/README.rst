@@ -35,9 +35,55 @@ Usage
 
 To use this module, you need to:
 
-* Go to a ``Product Variant`` form view and click on the ``Forecasting``
+* Go to a ``Products`` form view and click on the ``Forecasting``
   button at the top right of the form. There you can check or create a new
-  forecasting.
+  forecasting. Forecasting list view show you a result summary ``ID`` and
+  ``name`` and a forecasting parameters and resultis summary.
+
+  .. image:: forecast_tree_view.png
+     :alt: Forecast List View
+
+* When click over a Forecasting record o over the ``Create`` button will take
+  you to the Forecasting Form View. This view show up at the top the basic
+  forecast data and some buttons:
+
+  - ``Reset Details``: Reset the default parameters of the forecasting.
+  - ``Clear``: Clear the forecasting incomming data values.
+  - ``List of Values``: Go to the list of the forecating incomming data so
+    you can edit them. Also you can see a table with all the forecasting
+    results per data point (detail results).
+
+  .. image:: forecast_buttons.png
+     :alt: Forecast Buttons
+
+  In the first view of the forecasting form view you can view a graph with
+  the results of all the forecasting methods applied over the data you
+  sumbit.
+
+* In a more complete view of all the forecasting form view you can review the
+  total forecasting summary and the forecasting methods paramters to configure
+  to run the forecasting. If you have any doubt there is an explanation about
+  every forecasting methods so will be more easy to use.
+
+.. image:: forecast_form_view.png
+   :alt: Forecast Form View
+
+* When editing the forecast values (Click over the ``List of Values`` button)
+  you can observe all the values in the table with all the detail forecasting
+  results per data point with the mathematical absolute error (MAE).
+
+.. image:: forecast_data_tree_view.png
+   :alt: Forecast Data List View
+
+* To edit the list of values just click over the value in the forecasting data
+  list view to go tothe form view and edit the values. You can edit the
+  Sequence and the Value itself indicating in the ``Data Information``
+  section. As you can check all the ``Forecaasting Results`` for this
+  particular point can be also review in the form view, this results fields
+  are not editable only readonly.
+
+.. image:: forecast_data_form_view.png
+   :alt: Forecasr Data Form View
 
 For further information, please visit:
 

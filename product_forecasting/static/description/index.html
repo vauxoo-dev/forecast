@@ -9,29 +9,13 @@
    <object data="https://img.shields.io/badge/licence-AGPL--3-blue.svg" type="image/svg+xml">
     License: AGPL-3
    </object>
-   <div class="section oe_span12" id="forecasting-by-smoothing-techniques">
+   <div class="section oe_span12" id="product-relation-forecasting">
     <h2 class="oe_slogan">
-     Forecasting by Smoothing Techniques
+     Product Relation Forecasting
     </h2>
     <p class="oe_mt32">
-     Data collected over time is likely to show some form of random variation.
-"Smoothing techniques" can be used to reduce or cancel the effect of these
-variations. These techniques, when properly applied, will
-     <code class="docutils literal">
-      smooth
-     </code>
-     out the
-random variation in the time series data to reveal any underlying trends that
-may exist.
-    </p>
-    <p class="oe_mt32">
-     <strong>
-      NOTE
-     </strong>
-     : This module add a calculator to odoo that simulate the application in
-     <a class="reference external" href="http://home.ubalt.edu/ntsbarsh/Business-stat/otherapplets/ForecaSmo.htm">
-      this link
-     </a>
+     This module add the components to integrate the forecasting with the product
+records.
     </p>
    </div>
    <div class="section oe_span12" id="installation">
@@ -84,109 +68,20 @@ may exist.
     <p class="oe_mt32">
      To use this module, you need to:
     </p>
-    <ul>
-     <li>
-      <p class="oe_mt32">
-       Go to a
-       <code class="docutils literal">
-        Products
-       </code>
-       form view and click on the
-       <code class="docutils literal">
-        Forecasting
-       </code>
-       button at the top right of the form. There you can check or create a new
-forecasting. Forecasting list view show you a result summary
-       <code class="docutils literal">
-        ID
-       </code>
-       and
-       <code class="docutils literal">
-        name
-       </code>
-       and a forecasting parameters and resultis summary.
-      </p>
-      <img alt="Forecast List View" class="oe_picture oe_screenshot" src="forecast_tree_view.png"/>
-     </li>
-     <li>
-      <p class="oe_mt32">
-       When click over a Forecasting record o over the
-       <code class="docutils literal">
-        Create
-       </code>
-       button will take
-you to the Forecasting Form View. This view show up at the top the basic
-forecast data and some buttons:
-      </p>
-      <ul class="simple">
-       <li>
-        <code class="docutils literal">
-         Reset Details
-        </code>
-        : Reset the default parameters of the forecasting.
-       </li>
-       <li>
-        <code class="docutils literal">
-         Clear
-        </code>
-        : Clear the forecasting incomming data values.
-       </li>
-       <li>
-        <code class="docutils literal">
-         List of Values
-        </code>
-        : Go to the list of the forecating incomming data so
-you can edit them. Also you can see a table with all the forecasting
-results per data point (detail results).
-       </li>
-      </ul>
-      <img alt="Forecast Buttons" class="oe_picture oe_screenshot" src="forecast_buttons.png"/>
-      <p class="oe_mt32">
-       In the first view of the forecasting form view you can view a graph with
-the results of all the forecasting methods applied over the data you
-sumbit (still in beta).
-      </p>
-     </li>
-     <li>
-      <p class="oe_mt32">
-       In a more complete view of all the forecasting form view you can review the
-total forecasting summary and the forecasting methods paramters to configure
-to run the forecasting. If you have any doubt there is an explanation about
-every forecasting methods so will be more easy to use.
-      </p>
-     </li>
-    </ul>
-    <img alt="Forecast Form View" class="oe_picture oe_screenshot" src="forecast_form_view.png"/>
     <ul class="simple">
      <li>
-      When editing the forecast values (Click over the
+      Go to a
       <code class="docutils literal">
-       List of Values
+       Product
       </code>
-      button)
-you can observe all the values in the table with all the detail forecasting
-results per data point with the mathematical absolute error (MAE).
+      form view and click on the
+      <code class="docutils literal">
+       Forecasting
+      </code>
+      button at the top right of the form. There you can check or create a new
+forecasting.
      </li>
     </ul>
-    <img alt="Forecast Data List View" class="oe_picture oe_screenshot" src="forecast_data_tree_view.png"/>
-    <ul class="simple">
-     <li>
-      To edit the list of values just click over the value in the forecasting data
-list view to go tothe form view and edit the values. You can edit the
-Sequence and the Value itself indicating in the
-      <code class="docutils literal">
-       Data Information
-      </code>
-      section. As you can check all the
-      <code class="docutils literal">
-       Forecaasting Results
-      </code>
-      for this
-particular point can be also review in the form view, this results fields
-are not editable only readonly.
-     </li>
-    </ul>
-    <img alt="Forecasr Data Form View" class="oe_picture oe_screenshot" src="forecast_data_form_view.png"/>
     <p class="oe_mt32">
      For further information, please visit:
     </p>
@@ -204,7 +99,12 @@ are not editable only readonly.
     </h1>
     <ul class="simple">
      <li>
-      There is not known issues.
+      This module is empty. Is expected that in a future the
+      <code class="docutils literal">
+       forecasting_smoothing_techniques
+      </code>
+      module will be slice into various
+modules taking into account the kind of functionality.
      </li>
     </ul>
    </div>
@@ -220,7 +120,7 @@ are not editable only readonly.
      .
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed feedback
-     <a class="reference external" href="https://github.com/Vauxoo/stock-forecasting/issues/new?body=module:%20{forecasting_smoothing_techniques}%0Aversion:%20{8.0.1.0.0}%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">
+     <a class="reference external" href="https://github.com/Vauxoo/stock-forecasting/issues/new?body=module:%20{product_forecasting}%0Aversion:%20{8.0.1.0.0}%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">
       here
      </a>
     </p>
@@ -240,13 +140,6 @@ If you spotted it first, help us smashing it by providing a detailed and welcome
         nhomar@vauxoo.com
        </a>
        &gt; (Planner/Auditor)
-      </li>
-      <li>
-       Maria Gabriela Quilarque &lt;
-       <a class="reference external" href="mailto:gabriela@vauxoo.com">
-        gabriela@vauxoo.com
-       </a>
-       &gt; (Planner)
       </li>
       <li>
        Katherine Zaoral &lt;

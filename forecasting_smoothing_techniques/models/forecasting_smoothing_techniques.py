@@ -11,7 +11,8 @@
 ############################################################################
 
 from openerp import models, fields, api, _
-from openerp.exceptions import ValidationError, Warning as UserError
+from openerp.exceptions import ValidationError
+import pandas as pd
 
 
 class ForecastingSmoothingData(models.Model):
@@ -66,7 +67,7 @@ class ForecastingSmoothingData(models.Model):
         'HOLT LEVEL', help="Holt's Linear Smoothing Level function")
     holt_trend = fields.Float(
         'HOLT TREND', help="Holt's Linear Smoothing Trend function")
-    
+
     _sql_constraints = [
         ('sequence_uniq', 'unique(sequence, forecast_id)',
             'Several sequences with the same value do not make sense yet!'),
@@ -83,7 +84,7 @@ class ForecastingSmoothingTechniques(models.Model):
         '''
         Usability feature -
         TODO: move for product_forecasting module
-        :return:
+        :return: product.template id.
         '''
         product_id = self._context.get('product_tmpl_id', False)
         return product_id
@@ -93,7 +94,8 @@ class ForecastingSmoothingTechniques(models.Model):
         '''
         Usability feature -
         TODO: move for product_forecasting module
-        :return:
+        :return: the forcasting name with the product.template name as
+        prefix.
         '''
         product_id = self._context.get('product_tmpl_id', False)
         return '%s: ' % self.env['product.template'].browse(product_id).name
@@ -123,36 +125,36 @@ class ForecastingSmoothingTechniques(models.Model):
     # Simple Moving Average
     sma_forecast = fields.Float(
         'Forecast',
-        compute='_compute_simple_move_average',
+        compute='_compute_sma',
         help="Simple Moving Average Forcasting (SMA)"
     )
     sma_ma_error = fields.Float(
         'MA Error',
-        compute='_compute_simple_move_average',
+        compute='_compute_sma',
         help="Mean Absolute Error for SMA"
     )
 
     # Cumulative Moving Average
     cma_forecast = fields.Float(
         'Forecast',
-        compute='_compute_cummulative_move_average',
+        compute='_compute_cma',
         help="Cumulative Moving Average Forcasting (CMA)"
     )
     cma_ma_error = fields.Float(
         'MA Error',
-        compute='_compute_cummulative_move_average',
+        compute='_compute_cma',
         help="Mean Absolute Error for CMA"
     )
 
     # Weighted Moving Average
     wma_forecast = fields.Float(
         'Forecast',
-        compute='_compute_weighted_move_average',
+        compute='_compute_wma',
         help="Weighted Moving Average Forecasting (WMA)"
     )
     wma_ma_error = fields.Float(
         'MA Error',
-        compute='_compute_weighted_move_average',
+        compute='_compute_wma',
         help="Mean Absolute Error for WMA"
     )
 
@@ -166,32 +168,32 @@ class ForecastingSmoothingTechniques(models.Model):
 
     single_forecast = fields.Float(
         'Forecast',
-        compute='_compute_exp_smoothing',
+        compute='_compute_exp',
         help="Single Exponential Smoothing (SES)"
     )
     single_ma_error = fields.Float(
         'MA Error',
-        compute='_compute_exp_smoothing',
+        compute='_compute_exp',
         help="Mean Absolute Error for SES"
     )
     double_forecast = fields.Float(
         'Forecast',
-        compute='_compute_exp_smoothing',
+        compute='_compute_exp',
         help="Double Exponential Smoothing (DES)"
     )
     double_ma_error = fields.Float(
         'MA Error',
-        compute='_compute_exp_smoothing',
+        compute='_compute_exp',
         help="Mean Absolute Error for DES"
     )
     triple_forecast = fields.Float(
         'Forecast',
-        compute='_compute_exp_smoothing',
+        compute='_compute_exp',
         help="Triple Exponential Smoothing (TES)"
     )
     triple_ma_error = fields.Float(
         'MA Error',
-        compute='_compute_exp_smoothing',
+        compute='_compute_exp',
         help="Mean Absolute Error for TES"
     )
 
@@ -221,240 +223,425 @@ class ForecastingSmoothingTechniques(models.Model):
 
     @api.constrains('period')
     def _check_period(self):
+        """
+        Check that the period to make the move average forcasting is at least
+        greather than one. If not, there is not way to calculate the average.
+        """
         if self.period <= 1:
             raise ValidationError(
                 _("Period must be an integer greater than 1."))
 
     @api.constrains('exp_alpha')
     def _check_exp_alpha(self):
+        """
+        Check that the alpha used to calculate exponential smoothing
+        forecasting is a value between 0 and 1 thus is specificated in the
+        exponential smoothing method rules.
+        """
         if self.exp_alpha <= 0 or self.exp_alpha >= 1:
             raise ValidationError(_("Alpha should be between 0 and 1."))
 
     @api.constrains('holt_alpha')
     def _check_holt_alpha(self):
+        """
+        Check that the alpha used to calculate holt linear smoothing
+        forecasting is a value between 0 and 1 thus is specificated in the
+        holt linear smoothing method rules.
+        """
         if self.holt_alpha <= 0 or self.holt_alpha >= 1:
             raise ValidationError(_("Alpha should be between 0 and 1."))
 
     @api.constrains('beta')
     def _check_beta(self):
+        """
+        Check that the beta used to calculate holt linear smoothing
+        forecasting is a value between 0 and 1 thus is specificated in the
+        holt linear smoothing method rules.
+        """
         if self.beta <= 0 or self.beta >= 1:
             raise ValidationError(_("Beta should be between 0 and 1."))
-
-    def fields_section(self, fsection='all'):
-        """
-        This is used for get or clear section group fields.
-        @return fields the list of fileds by section.  Dictionary (key group,
-        values list of field names).
-        """
-        fields_section = dict(
-            sma=['sma_forecast', 'sma_ma_error'],
-            cma=['cma_forecast', 'cma_ma_error'],
-            wma=['wma_forecast', 'wma_ma_error'],
-            single=['single_forecast', 'single_ma_error'],
-            double=['double_forecast', 'double_ma_error'],
-            triple=['triple_forecast', 'triple_ma_error'],
-            holt=['holt_forecast', 'holt_ma_error'],
-        )
-        fields_section.update({'all': [
-            fname
-            for fgroup in fields_section.values()
-            for fname in fgroup]})
-
-        if fsection not in fields_section.keys():
-            raise UserError(
-                _('There is not groups of fields defined') + ' ' + fsection)
-        elif fsection:
-            return fields_section.get(fsection)
-        else:
-            return fields_section
 
     @api.multi
     def reset_defaults(self):
         """
         Reset defaults for the variables used in the current calc.
         ['period', 'exp_alpha', 'holt_alpha', 'beta', 'holt_period']
+
+        This is used in a button called Reset Defaults in the
+        forecasting.smoothing.techniques form view.
+
+        :return: True
         """
         parameter_fields = [
             'period', 'exp_alpha', 'holt_alpha', 'beta', 'holt_period']
         defaults = self.default_get(parameter_fields)
         self.write(defaults)
-        return True
 
     @api.multi
     def clear(self):
         """
-        Clear all the fields.
+        Clear all the forecast data fields.
+
+        This is used in a button called Clear in the
+        forecasting.smoothing.techniques form view.
+
+        :return: True
         """
-        self.write({'value_ids':
-            [(2, value.id) for value in self.value_ids]})
-        return True
+        self.write({
+            'value_ids': [(2, value.id) for value in self.value_ids]})
+
+    @api.model
+    def get_value_ids_dict(self, data):
+        """
+        Transform the pandas.DataFrame object to a list of values to be
+        written as a o2m field in odoo named value_ids.
+
+        :data: DataFrame object with the forecasting results per point
+
+        :returns: list with the values to update the o2m forecast.value_ids
+        field
+        """
+        value_ids = list()
+        data.fillna(0.0, inplace=True)
+        for index in range(1, len(data) + 1):
+            new_values = data.loc[index].to_dict()
+            new_values.pop('value')
+            value_ids.append((1, int(new_values.pop('id')), new_values))
+        return value_ids
+
+    @api.multi
+    def get_values_dataframe(self, values, forecast_cols):
+        """
+        Transform forecasting data into a pandas.DataFrame object to be use
+        to calculate the forecastings.
+
+        By default the ['id', 'value', 'sequence'] forecast data fields are
+        added to DataFrame object by default. The user can add another
+        parameter forecast_cols to indicate the name of the columns that want
+        to add the the DataFrame object to save the forcasting calculation
+        values.
+
+        :values: list of 'forecasting.smoothing.data' ids
+        :forecast_cols: list of columns to add to the DataFrame (this columns
+        are mean to be used to save the forecasting calculation) By example
+        the simple moving averga (sma) add two columns sma and sma_error to
+        save the forecasting and the absolute mean error.
+
+        :returns: DataFrame object with the datas value.
+        """
+        fdata_obj = self.env['forecasting.smoothing.data']
+        values = fdata_obj.browse(values).read(['value', 'sequence'])
+        cols = ['id', 'value', 'sequence'] + forecast_cols
+        data = pd.DataFrame(values, columns=cols)
+        data.set_index('sequence', inplace=True)
+        return data
+
+    @api.model
+    def almost_equal(self, actual, expected):
+        """
+        Compare two values: actual and expected one and check if there are
+        close enoght to consider as equals.
+
+        :actual: real value of the forecasting (float number)
+        :expected: expected value of the forecasting (float or int number)
+
+        :returns: True if the actual and expected values are almost equal
+        False if not.
+        """
+        vdiff = abs(actual - float(expected))
+        allowed_error = 2
+        if int(round(vdiff)) > allowed_error:
+            return True
+        return False
 
     @api.one
-    @api.depends('value_ids', 'period')
-    def _compute_cummulative_move_average(self):
+    @api.depends('period')
+    def _compute_cma(self):
         """
         This method calculate the CUMULATIVE MOVING AVERAGE forecasting
         smoothing method (CMA) and Mean Absolute error.
+
+        Update the forecast fields ['cma_forecast', 'cma_ma_error']  and the
+        forecast values ['cma', 'cma_error']
         """
-        values = self.value_ids
+        # Get basic parameters to calculate
+        forecast = self.read()[0]
+        values = forecast.get('value_ids', [])
+        period = forecast.get('period')
+
+        # Check minimum data
         if not values:
-            return True
-        period = self.period
-        values_to_forecast = values[period-1:]
-        for value in values_to_forecast:
-            value_set = values[value.sequence-period:value.sequence]
-            value.write({'cma':
-                sum([val.value for val in value_set]) / float(period)})
-            value.write({'cma_error': abs(value.cma - value_set[-1].value)})
-        self.cma_forecast = values_to_forecast[-1].cma
-        self.cma_ma_error = (
-            sum([val.cma_error for val in values_to_forecast]) /
-                len(values_to_forecast))
-        return True
+            return
+
+        # Transform value data to Dataframe pandas object
+        data = self.get_values_dataframe(values, ['cma', 'cma_error'])
+
+        # Calculate Forecasting for the other points
+        for index in range(period, len(data) + 1):
+            value_set = data[:index].tail(period)
+            cma = value_set.value.sum() / float(period)
+            data.at[index, 'cma'] = cma
+
+        # Calculate mean errors
+        # TODO can be improve using mean() method
+        data = data.assign(
+            cma_error=lambda x: abs(x.cma - x.value),
+        )
+
+        # Save global results
+        cma_forecast = cma
+        cma_ma_error = data.cma_error.sum() / data.cma.count()
+
+        # Save individual values results
+        value_ids = self.get_value_ids_dict(data)
+
+        # Write values
+        self.cma_forecast = cma_forecast
+        self.cma_ma_error = cma_ma_error
+        self.write({'value_ids': value_ids})
 
     @api.one
-    @api.depends('value_ids', 'period')
-    def _compute_simple_move_average(self):
+    @api.depends('period')
+    def _compute_sma(self):
         """
         This method calculate the SIMPLE MOVING AVERAGE forecasting
         smoothing method (SMA) and Mean Absolute error.
+
+        Update the forecast fields ['sma_forecast', 'sma_ma_error']  and the
+        forecast values ['sma', 'sma_error']
         """
-        values = self.value_ids
+        # Get basic parameters to calculate
+        forecast = self.read()[0]
+        values = forecast.get('value_ids', [])
+        period = forecast.get('period')
+
+        # Check minimum data
         if not values:
-            return True
-        period = self.period
-        values_to_forecast = values[period:]
-        for value in values_to_forecast:
-            value_set = values[value.sequence-period-1:value.sequence-1]
-            value.write({'sma':
-                sum([val.value for val in value_set]) / float(period)})
-            value.write({'sma_error': abs(value.sma - value.value)})
-        self.sma_forecast = values_to_forecast[-1].sma
-        self.sma_ma_error = (
-            sum([val.sma_error for val in values_to_forecast]) /
-                len(values_to_forecast))
-        return True
+            return
+
+        # Transform value data to Dataframe pandas object
+        data = self.get_values_dataframe(values, ['sma', 'sma_error'])
+
+        # Calculate Forecasting for the other points
+        for index in range(period+1, len(data) + 1):
+            value_set = data[:index-1].tail(period)
+            sma = value_set.value.sum() / float(period)
+            data.at[index, 'sma'] = sma
+
+        # Calculate mean errors
+        # TODO can be improve using mean() method
+        data = data.assign(
+            sma_error=lambda x: abs(x.sma - x.value),
+        )
+
+        # Save global results
+        sma_forecast = sma
+        sma_ma_error = data.sma_error.sum() / data.sma.count()
+
+        # Save individual values results
+        value_ids = self.get_value_ids_dict(data)
+
+        # Write values
+        self.sma_forecast = sma_forecast
+        self.sma_ma_error = sma_ma_error
+        self.write({'value_ids': value_ids})
 
     @api.one
-    @api.depends('value_ids', 'period')
-    def _compute_weighted_move_average(self):
+    @api.depends('period')
+    def _compute_wma(self):
         """
         This method calculate the WEIGHTED MOVING AVERAGE forecasting
         smoothing method (WMA) and Mean Absolute error.
+
+        Update the forecast fields ['wma_forecast', 'wma_ma_error']  and the
+        forecast values ['wma', 'wma_error']
         """
-        values = self.value_ids
+        # Get basic parameters to calculate
+        forecast = self.read()[0]
+        values = forecast.get('value_ids', [])
+        period = forecast.get('period')
+
+        # Check minimum data
         if not values:
-            return True
-        period = self.period
+            return
+
+        # Transform value data to Dataframe pandas object
+        data = self.get_values_dataframe(values, ['wma', 'wma_error'])
+
         weight = (float(period) * (float(period) + 1.0)) / 2.0
-        values_to_forecast = values[period-1:]
-        for value in values_to_forecast:
-            value_set = values[value.sequence-period:value.sequence]
-            value.write({'wma':
-                sum([((day) / weight) * item.value
-                     for (day, item) in enumerate(value_set, 1)])})
-            value.write({'wma_error': abs(value.wma - value_set[-1].value)})
-        self.wma_forecast = values_to_forecast[-1].wma
-        self.wma_ma_error = (
-            sum([val.wma_error for val in values_to_forecast]) /
-                len(values_to_forecast))
-        return True
+
+        # Calculate Forecasting for the other points
+        for index in range(period, len(data) + 1):
+            value_set = data[:index].tail(period)
+            wma = sum([
+                ((day) / weight) * value
+                for (day, value) in enumerate(value_set.value.values, 1)])
+            data.at[index, 'wma'] = wma
+
+        # Calculate mean errors
+        # TODO can be improve using mean() method
+        data = data.assign(
+            wma_error=lambda x: abs(x.wma - x.value),
+        )
+
+        # Save global results
+        wma_forecast = wma
+        wma_ma_error = data.wma_error.sum() / data.wma.count()
+
+        # Save individual values results
+        value_ids = self.get_value_ids_dict(data)
+
+        # Write values
+        self.wma_forecast = wma_forecast
+        self.wma_ma_error = wma_ma_error
+        self.write({'value_ids': value_ids})
 
     @api.one
-    @api.depends('value_ids', 'exp_alpha')
-    def _compute_exp_smoothing(self):
+    @api.depends('exp_alpha')
+    def _compute_exp(self):
         """
-        Single, Double, & Triple Exponential Smoothing
-        Note: Represente function compute3
+        This method calculate the SINGLE, DOUBLE, & TRIPLE EXPONENTIAL
+        SMOOTHING forecasting smoothing method (ES1, ES2, ES3) and
+        Mean Absolute error for each forecast result.
+
+        Update the forecast fields [
+            'single_forecast', 'single_ma_error',
+            'double_forecast', 'double_ma_error',
+            'triple_forecast', 'triple_ma_error' ]
+        and the forecast values [
+            'es1', 'es1_error',
+            'es2', 'es2_error',
+            'es3', 'es3_error' ]
+            ]
         """
-        values = self.value_ids
+
+        # Get basic parameters to calculate
+        forecast = self.read()[0]
+        values = forecast.get('value_ids', [])
+        alpha = forecast.get('exp_alpha')
+
+        # Check minimum data
         if not values:
-            return True
+            return
 
-        alpha = self.exp_alpha
+        # Transform value data to Dataframe pandas object
+        data = self.get_values_dataframe(values, ['es1', 'es1_error',
+                                                  'es2', 'es2_error',
+                                                  'es3', 'es3_error'])
 
-        values[0].write({'es1': values[1].value})
-        values[0].write({'es2': values[1].value})
-        values[0].write({'es3': values[1].value})
+        # Calculate Forecasting per first point
+        val1 = data.loc[2].value
+        data[:1] = data.query('sequence == 1').assign(
+            es1=val1, es2=val1, es3=val1)
 
-        values_to_forecast = values[1:]
-        for value in values_to_forecast:
-            value.write({'es1':
-                alpha * value.value +
-                (1.0 - alpha) * values[value.sequence-2].es1})
-            value.write({'es2':
-                alpha * value.es1 +
-                (1.0 - alpha) * values[value.sequence-2].es2})
-            value.write({'es3':
-                alpha * value.es2 +
-                (1.0 - alpha) * values[value.sequence-2].es3})
+        # Calculate Forecasting for the other points
+        for index in range(2, len(data) + 1):
+            value = data.loc[index].value
+            last_item = data.loc[index-1]
+            es1 = alpha * value + (1.0 - alpha) * last_item.es1
+            es2 = alpha * es1 + (1.0 - alpha) * last_item.es2
+            es3 = alpha * es2 + (1.0 - alpha) * last_item.es3
+            data.at[index, 'es1'] = es1
+            data.at[index, 'es2'] = es2
+            data.at[index, 'es3'] = es3
 
-        last_value = values[-1]
-        a2 = 2.0 * last_value.es1 - last_value.es2
-        b2 = (alpha/(1.0-alpha)) * (last_value.es1 - last_value.es2)
-        a3 = 3.0 * last_value.es1 - 3.0 * last_value.es2 + last_value.es3
+        # Calculate mean errors
+        # TODO can be improve using mean() method
+        data = data.assign(
+            es1_error=lambda x: abs(x.es1 - x.value),
+            es2_error=lambda x: abs(x.es2 - x.value),
+            es3_error=lambda x: abs(x.es3 - x.value),
+        )
+
+        # Save global results
+        last = data.tail(1).iloc[-1]
+        a2 = 2.0 * last.es1 - last.es2
+        b2 = (alpha/(1.0-alpha)) * (last.es1 - last.es2)
+        a3 = 3.0 * last.es1 - 3.0 * last.es2 + last.es3
         b3 = ((alpha/(2.0 * pow(1.0-alpha, 2.0))) * (
-            (6.0 - 5.0 * alpha) * last_value.es1 -
-            (10.0 - 8.0 * alpha) * last_value.es2 +
-            (4.0 - 3.0 * alpha) * last_value.es3))
+            (6.0 - 5.0 * alpha) * last.es1 - (10.0 - 8.0 * alpha) * last.es2
+            + (4.0 - 3.0 * alpha) * last.es3))
         c3 = (pow((alpha/(1.0 - alpha)), 2.0) *
-              (last_value.es1 - 2.0 * last_value.es2 + last_value.es3))
+              (last.es1 - 2.0 * last.es2 + last.es3))
+        single_forecast = last.es1
+        double_forecast = a2 + b2
+        triple_forecast = a3 + b3 + 0.5 * c3
+        single_ma_error = data.es1_error.sum() / len(data)
+        double_ma_error = data.es2_error.sum() / len(data)
+        triple_ma_error = data.es3_error.sum() / len(data)
 
-        self.single_forecast = last_value.es1
-        self.double_forecast = a2 + b2
-        self.triple_forecast = a3 + b3 + 0.5 * c3
+        # Save individual values results
+        value_ids = self.get_value_ids_dict(data)
 
-        for value in values:
-            value.write({'es1_error': abs(value.es1 - value.value)})
-            value.write({'es2_error': abs(value.es2 - value.value)})
-            value.write({'es3_error': abs(value.es3 - value.value)})
-
-        numv = float(len(values))
-        self.single_ma_error = sum(values.mapped('es1_error')) / numv
-        self.double_ma_error = sum(values.mapped('es2_error')) / numv
-        self.triple_ma_error = sum(values.mapped('es3_error')) / numv
-        return True
+        # Write values
+        self.single_forecast = single_forecast
+        self.double_forecast = double_forecast
+        self.triple_forecast = triple_forecast
+        self.single_ma_error = single_ma_error
+        self.double_ma_error = double_ma_error
+        self.triple_ma_error = triple_ma_error
+        self.write({'value_ids': value_ids})
 
     @api.one
-    @api.depends('value_ids', 'holt_alpha', 'beta', 'holt_period')
+    @api.depends('holt_alpha', 'beta', 'holt_period')
     def _compute_holt(self):
         """
-        Holt's Linear Smoothing
-        Note: It represent function compute20
+        This method calculate the HOLT'S LINEAR SMOOTHING forecasting
+        smoothing method (HOLT) and Mean Absolute error.
+
+        Update the forecast fields ['holt_forecast', 'holt_ma_error'] and the
+        forecast values ['holt', 'holt_error', 'holt_level', 'holt_trend']
         """
-        values = self.value_ids
+        # Get basic parameters to make the forecasting calculation
+        forecast = self.read()[0]
+        values = forecast.get('value_ids', [])
+        alpha = forecast.get('holt_alpha')
+        beta = forecast.get('beta')
+        period = forecast.get('holt_period')
+
+        # Check minimum data
         if not values:
-            return True
-        numv = len(values)
-        alpha = self.holt_alpha
-        beta = self.beta
-        period = self.holt_period
+            return
 
-        values[0].write({
-            'holt': 0.0, 'holt_level': 0.0, 'holt_trend': 0.0
-        })
+        # Transform value data to pandas.Dataframe object
+        data = self.get_values_dataframe(values, [
+            'holt', 'holt_level', 'holt_trend', 'holt_error'])
 
-        values[1].write({
-            'holt_level': values[1].value,
-            'holt_trend': values[1].value - values[0].value,
-            'holt': 0.0,
-        })
-        values_to_forecast = values[2:]
-        for value in values_to_forecast:
-            value.write({'holt':
-                values[value.sequence-2].holt_level +
-                values[value.sequence-2].holt_trend})
-            value.write({'holt_level':
-                alpha * value.value + (1.0 - alpha) * value.holt})
-            value.write({
-                'holt_trend':
-                    (beta * (value.holt_level -
-                             values[value.sequence-2].holt_level)
-                     + (1.0 - beta) * values[value.sequence-2].holt_trend)
-            })
-        self.holt_forecast = (values_to_forecast[-1].holt_level + period *
-                              values_to_forecast[-1].holt_trend)
-        for value in values_to_forecast:
-            value.write({'holt_error': abs(value.holt - value.value)})
-        self.holt_ma_error = sum(values.mapped('holt_error')) / (float(numv) - 3.0)
-        return True
+        # NOTE: Forecasting first point do not exist for this forcasting
+
+        # Calculate Forecasting second point
+        holt_level = data.loc[2].value,
+        holt_trend = data.loc[2].value - data.loc[1].value,
+
+        data[1:2] = data.query('sequence == 2').assign(
+            holt_level=holt_level, holt_trend=holt_trend)
+
+        # Calculate Forecasting for the other 2+n points
+        for index in range(3, len(data) + 1):
+            value = data.loc[index].value
+            prev = data.loc[index-1]
+            holt_func = prev.holt_level + prev.holt_trend
+            holt_level = alpha * value + (1.0 - alpha) * holt_func
+            holt_trend = (
+                beta * (holt_level - prev.holt_level) + (1.0 - beta) *
+                prev.holt_trend)
+            data.at[index, 'holt'] = holt_func
+            data.at[index, 'holt_level'] = holt_level
+            data.at[index, 'holt_trend'] = holt_trend
+
+        # Calculate mean error
+        # TODO can be improve using mean() method?
+        data = data.assign(holt_error=lambda x: abs(x.holt - x.value))
+
+        # Save global results
+        last = data.tail(1).iloc[-1]
+        holt_forecast = last.holt_level + period * last.holt_trend
+        holt_ma_error = data.holt_error.sum() / (len(data) - 3.0)
+
+        # Save individual values results
+        value_ids = self.get_value_ids_dict(data)
+
+        # Write values
+        self.holt_forecast = holt_forecast
+        self.holt_ma_error = holt_ma_error
+        self.write({'value_ids': value_ids})
