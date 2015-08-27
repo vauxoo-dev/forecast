@@ -314,28 +314,38 @@ class ForecastingSmoothingTechniques(models.Model):
         return True
 
     @api.one
-    @api.depends('value_ids', 'period')
+    @api.depends()
     def _compute_simple_move_average(self):
         """
         This method calculate the SIMPLE MOVING AVERAGE forecasting
         smoothing method (SMA) and Mean Absolute error.
         """
-        values = self.value_ids
+        forecast = self.read()[0]
+        values = forecast.get('value_ids', [])
+        period = forecast.get('period')
         if not values:
             return True
-        period = self.period
+        fdata_obj = self.env['forecasting.smoothing.data']
+        values = fdata_obj.browse(values).read(['value', 'sequence'])
         values_to_forecast = values[period:]
+        value_ids = []
+        sma_error_total = 0.0
+
         for value in values_to_forecast:
-            value_set = values[value.sequence-period-1:value.sequence-1]
-            value.write({
-                'sma': sum([val.value for val in value_set]) /
-                        float(period)})
-            value.write({'sma_error': abs(value.sma - value.value)})
-        self.sma_forecast = values_to_forecast[-1].sma
-        self.sma_ma_error = (
-            sum([val.sma_error for val in values_to_forecast]) /
-            len(values_to_forecast))
-        return True
+            sequence = value.get('sequence')
+            first = sequence - period - 1
+            last = sequence - 1
+            value_set = values[first:last]
+            sma = sum(
+                [val.get('value') for val in value_set]) / float(period)
+            sma_error = abs(sma - value.get('value'))
+            value_ids.append(
+                (1, value.get('id'), {'sma': sma, 'sma_error': sma_error}))
+            sma_error_total += sma_error
+
+        self.sma_forecast = sma
+        self.sma_ma_error = sma_error_total/len(values_to_forecast)
+        self.write({'value_ids': value_ids})
 
     @api.one
     @api.depends('value_ids', 'period')
