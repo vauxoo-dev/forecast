@@ -290,28 +290,36 @@ class ForecastingSmoothingTechniques(models.Model):
         return True
 
     @api.one
-    @api.depends('value_ids', 'period')
+    @api.depends()
     def _compute_cummulative_move_average(self):
         """
         This method calculate the CUMULATIVE MOVING AVERAGE forecasting
         smoothing method (CMA) and Mean Absolute error.
         """
-        values = self.value_ids
+        forecast = self.read()[0]
+        values = forecast.get('value_ids', [])
+        period = forecast.get('period')
         if not values:
             return True
-        period = self.period
+        fdata_obj = self.env['forecasting.smoothing.data']
+        values = fdata_obj.browse(values).read(['value', 'sequence'])
         values_to_forecast = values[period-1:]
+        value_ids = []
+        cma_error_total = 0.0
+
         for value in values_to_forecast:
-            value_set = values[value.sequence-period:value.sequence]
-            value.write({
-                'cma': sum([val.value for val in value_set])
-                / float(period)})
-            value.write({'cma_error': abs(value.cma - value_set[-1].value)})
-        self.cma_forecast = values_to_forecast[-1].cma
-        self.cma_ma_error = (
-            sum([val.cma_error for val in values_to_forecast]) /
-            len(values_to_forecast))
-        return True
+            sequence = value.get('sequence')
+            value_set = values[sequence-period:sequence]
+            cma = sum([
+                val.get('value') for val in value_set]) / float(period)
+            cma_error = abs(cma - value_set[-1].get('value'))
+            value_ids.append(
+                (1, value.get('id'), {'cma': cma, 'cma_error': cma_error}))
+            cma_error_total += cma_error
+
+        self.cma_forecast = cma
+        self.cma_ma_error = cma_error_total/len(values_to_forecast)
+        self.write({'value_ids': value_ids})
 
     @api.one
     @api.depends()
