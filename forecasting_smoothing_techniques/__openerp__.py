@@ -30,6 +30,9 @@
     "demo": [
         "demo/forecasting_smoothing_techniques.xml",
     ],
+    "external_dependencies": {
+        "python": ["numpy", "pandas", "numexpr"],
+        },
     "test": [],
     "qweb": [],
     "js": [],

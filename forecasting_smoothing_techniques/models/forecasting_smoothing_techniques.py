@@ -12,6 +12,7 @@
 
 from openerp import models, fields, api, _
 from openerp.exceptions import ValidationError, Warning as UserError
+import pandas as pd
 
 
 class ForecastingSmoothingData(models.Model):
@@ -378,7 +379,7 @@ class ForecastingSmoothingTechniques(models.Model):
             sequence = value.get('sequence')
             value_set = values[sequence-period:sequence]
             wma = sum([((day) / weight) * item.get('value')
-                        for (day, item) in enumerate(value_set, 1)])
+                       for (day, item) in enumerate(value_set, 1)])
             wma_error = abs(wma - value_set[-1].get('value'))
             wma_error_total += wma_error
             value_ids.append(
@@ -389,59 +390,85 @@ class ForecastingSmoothingTechniques(models.Model):
         self.write({'value_ids': value_ids})
 
     @api.one
-    @api.depends('value_ids', 'exp_alpha')
+    @api.depends('exp_alpha')
     def _compute_exp_smoothing(self):
         """
         Single, Double, & Triple Exponential Smoothing
         Note: Represente function compute3
         """
-        values = self.value_ids
+
+        # Get basic parameters to calculate
+        forecast = self.read()[0]
+        values = forecast.get('value_ids', [])
+        alpha = forecast.get('exp_alpha')
+
+        # Check minimum data
         if not values:
             return True
 
-        alpha = self.exp_alpha
+        # Transform value data to Dataframe pandas object
+        fdata_obj = self.env['forecasting.smoothing.data']
+        values = fdata_obj.browse(values).read(['value', 'sequence'])
+        cols = ['id', 'value', 'sequence',
+                'es1', 'es1_error',
+                'es2', 'es2_error',
+                'es3', 'es3_error']
+        data = pd.DataFrame(values, columns=cols)
+        data.set_index('sequence', inplace=True)
 
-        values[0].write({'es1': values[1].value})
-        values[0].write({'es2': values[1].value})
-        values[0].write({'es3': values[1].value})
+        # Calculate Forecasting per first point
+        val1 = data.loc[2].value
+        data[:1] = data.query('sequence == 1').assign(
+            es1=val1, es2=val1, es3=val1)
 
-        values_to_forecast = values[1:]
-        for value in values_to_forecast:
-            value.write({'es1':
-                         alpha * value.value +
-                         (1.0 - alpha) * values[value.sequence-2].es1})
-            value.write({'es2':
-                         alpha * value.es1 +
-                         (1.0 - alpha) * values[value.sequence-2].es2})
-            value.write({'es3':
-                         alpha * value.es2 +
-                         (1.0 - alpha) * values[value.sequence-2].es3})
+        # Calculate Forecasting for the other points
+        for index in range(2, len(data) + 1):
+            value = data.loc[index].value
+            last_item = data.loc[index-1]
+            es1 = alpha * value + (1.0 - alpha) * last_item.es1
+            es2 = alpha * es1 + (1.0 - alpha) * last_item.es2
+            es3 = alpha * es2 + (1.0 - alpha) * last_item.es3
+            data.at[index, 'es1'] = es1
+            data.at[index, 'es2'] = es2
+            data.at[index, 'es3'] = es3
 
-        last_value = values[-1]
-        a2 = 2.0 * last_value.es1 - last_value.es2
-        b2 = (alpha/(1.0-alpha)) * (last_value.es1 - last_value.es2)
-        a3 = 3.0 * last_value.es1 - 3.0 * last_value.es2 + last_value.es3
+        # Calculate mean errors
+        # TODO can be improve using mean() method
+        data = data.assign(
+            es1_error=lambda x: abs(x.es1 - x.value),
+            es2_error=lambda x: abs(x.es2 - x.value),
+            es3_error=lambda x: abs(x.es3 - x.value),
+        )
+
+        # Save individual values results
+        value_ids = list()
+        for index in range(1, len(data) + 1):
+            new_values = data.loc[index].to_dict()
+            new_values.pop('value')
+            value_ids.append((1, int(new_values.pop('id')), new_values))
+
+        # Save global results
+        last = data.tail(1).iloc[-1]
+        a2 = 2.0 * last.es1 - last.es2
+        b2 = (alpha/(1.0-alpha)) * (last.es1 - last.es2)
+        a3 = 3.0 * last.es1 - 3.0 * last.es2 + last.es3
         b3 = ((alpha/(2.0 * pow(1.0-alpha, 2.0))) * (
-            (6.0 - 5.0 * alpha) * last_value.es1 -
-            (10.0 - 8.0 * alpha) * last_value.es2 +
-            (4.0 - 3.0 * alpha) * last_value.es3))
+            (6.0 - 5.0 * alpha) * last.es1 - (10.0 - 8.0 * alpha) * last.es2
+            + (4.0 - 3.0 * alpha) * last.es3))
         c3 = (pow((alpha/(1.0 - alpha)), 2.0) *
-              (last_value.es1 - 2.0 * last_value.es2 + last_value.es3))
+              (last.es1 - 2.0 * last.es2 + last.es3))
+        single_forecast = last.es1
+        double_forecast = a2 + b2
+        triple_forecast = a3 + b3 + 0.5 * c3
 
-        self.single_forecast = last_value.es1
-        self.double_forecast = a2 + b2
-        self.triple_forecast = a3 + b3 + 0.5 * c3
-
-        for value in values:
-            value.write({'es1_error': abs(value.es1 - value.value)})
-            value.write({'es2_error': abs(value.es2 - value.value)})
-            value.write({'es3_error': abs(value.es3 - value.value)})
-
-        numv = float(len(values))
-        self.single_ma_error = sum(values.mapped('es1_error')) / numv
-        self.double_ma_error = sum(values.mapped('es2_error')) / numv
-        self.triple_ma_error = sum(values.mapped('es3_error')) / numv
-        return True
+        # Write values
+        self.single_forecast = single_forecast
+        self.double_forecast = double_forecast
+        self.triple_forecast = triple_forecast
+        self.single_ma_error = data.es1_error.sum() / len(data)
+        self.double_ma_error = data.es2_error.sum() / len(data)
+        self.triple_ma_error = data.es3_error.sum() / len(data)
+        self.write({'value_ids': value_ids})
 
     @api.one
     @api.depends('value_ids', 'holt_alpha', 'beta', 'holt_period')
