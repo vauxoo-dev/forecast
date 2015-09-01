@@ -291,7 +291,7 @@ class ForecastingSmoothingTechniques(models.Model):
         return True
 
     @api.one
-    @api.depends()
+    @api.depends('period')
     def _compute_cummulative_move_average(self):
         """
         This method calculate the CUMULATIVE MOVING AVERAGE forecasting
@@ -346,7 +346,7 @@ class ForecastingSmoothingTechniques(models.Model):
         self.write({'value_ids': value_ids})
 
     @api.one
-    @api.depends()
+    @api.depends('period')
     def _compute_simple_move_average(self):
         """
         This method calculate the SIMPLE MOVING AVERAGE forecasting
@@ -401,7 +401,7 @@ class ForecastingSmoothingTechniques(models.Model):
         self.write({'value_ids': value_ids})
 
     @api.one
-    @api.depends()
+    @api.depends('period')
     def _compute_weighted_move_average(self):
         """
         This method calculate the WEIGHTED MOVING AVERAGE forecasting
