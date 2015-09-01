@@ -297,29 +297,51 @@ class ForecastingSmoothingTechniques(models.Model):
         This method calculate the CUMULATIVE MOVING AVERAGE forecasting
         smoothing method (CMA) and Mean Absolute error.
         """
+        # Get basic parameters to calculate
         forecast = self.read()[0]
         values = forecast.get('value_ids', [])
         period = forecast.get('period')
+
+        # Check minimum data
         if not values:
             return True
+
+        # Transform value data to Dataframe pandas object
         fdata_obj = self.env['forecasting.smoothing.data']
         values = fdata_obj.browse(values).read(['value', 'sequence'])
-        values_to_forecast = values[period-1:]
-        value_ids = []
-        cma_error_total = 0.0
+        cols = ['id', 'value', 'sequence',
+                'cma', 'cma_error']
+        data = pd.DataFrame(values, columns=cols)
+        data.set_index('sequence', inplace=True)
 
-        for value in values_to_forecast:
-            sequence = value.get('sequence')
-            value_set = values[sequence-period:sequence]
-            cma = sum([
-                val.get('value') for val in value_set]) / float(period)
-            cma_error = abs(cma - value_set[-1].get('value'))
-            value_ids.append(
-                (1, value.get('id'), {'cma': cma, 'cma_error': cma_error}))
-            cma_error_total += cma_error
+        weight = (float(period) * (float(period) + 1.0)) / 2.0
 
-        self.cma_forecast = cma
-        self.cma_ma_error = cma_error_total/len(values_to_forecast)
+        # Calculate Forecasting for the other points
+        for index in range(period, len(data) + 1):
+            value_set = data[:index].tail(period)
+            cma = value_set.value.sum() / float(period)
+            data.at[index, 'cma'] = cma
+
+        # Calculate mean errors
+        # TODO can be improve using mean() method
+        data = data.assign(
+            cma_error=lambda x: abs(x.cma - x.value),
+        )
+
+        # Save individual values results
+        value_ids = list()
+        for index in range(1, len(data) + 1):
+            new_values = data.loc[index].to_dict()
+            new_values.pop('value')
+            value_ids.append((1, int(new_values.pop('id')), new_values))
+
+        # Save global results
+        cma_forecast = cma
+        cma_ma_error = data.cma_error.sum() / data.cma.count()
+
+        # Write values
+        self.cma_forecast = cma_forecast
+        self.cma_ma_error = cma_ma_error
         self.write({'value_ids': value_ids})
 
     @api.one
