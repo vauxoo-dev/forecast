@@ -327,6 +327,7 @@ class ForecastingSmoothingTechniques(models.Model):
         data = data.assign(
             cma_error=lambda x: abs(x.cma - x.value),
         )
+        data.fillna(0.0, inplace=True)
 
         # Save individual values results
         value_ids = list()
@@ -381,6 +382,7 @@ class ForecastingSmoothingTechniques(models.Model):
         data = data.assign(
             sma_error=lambda x: abs(x.sma - x.value),
         )
+        data.fillna(0.0, inplace=True)
 
         # Save individual values results
         value_ids = list()
@@ -437,6 +439,7 @@ class ForecastingSmoothingTechniques(models.Model):
         data = data.assign(
             wma_error=lambda x: abs(x.wma - x.value),
         )
+        data.fillna(0.0, inplace=True)
 
         # Save individual values results
         value_ids = list()
@@ -504,6 +507,7 @@ class ForecastingSmoothingTechniques(models.Model):
             es2_error=lambda x: abs(x.es2 - x.value),
             es3_error=lambda x: abs(x.es3 - x.value),
         )
+        data.fillna(0.0, inplace=True)
 
         # Save individual values results
         value_ids = list()
@@ -585,6 +589,7 @@ class ForecastingSmoothingTechniques(models.Model):
         # Calculate mean error
         # TODO can be improve using mean() method?
         data = data.assign(holt_error=lambda x: abs(x.holt - x.value))
+        data.fillna(0.0, inplace=True)
 
         # Save individual values results
         value_ids = list()
