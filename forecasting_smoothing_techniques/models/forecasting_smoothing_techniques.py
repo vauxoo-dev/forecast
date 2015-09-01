@@ -124,36 +124,36 @@ class ForecastingSmoothingTechniques(models.Model):
     # Simple Moving Average
     sma_forecast = fields.Float(
         'Forecast',
-        compute='_compute_simple_move_average',
+        compute='_compute_sma',
         help="Simple Moving Average Forcasting (SMA)"
     )
     sma_ma_error = fields.Float(
         'MA Error',
-        compute='_compute_simple_move_average',
+        compute='_compute_sma',
         help="Mean Absolute Error for SMA"
     )
 
     # Cumulative Moving Average
     cma_forecast = fields.Float(
         'Forecast',
-        compute='_compute_cummulative_move_average',
+        compute='_compute_cma',
         help="Cumulative Moving Average Forcasting (CMA)"
     )
     cma_ma_error = fields.Float(
         'MA Error',
-        compute='_compute_cummulative_move_average',
+        compute='_compute_cma',
         help="Mean Absolute Error for CMA"
     )
 
     # Weighted Moving Average
     wma_forecast = fields.Float(
         'Forecast',
-        compute='_compute_weighted_move_average',
+        compute='_compute_wma',
         help="Weighted Moving Average Forecasting (WMA)"
     )
     wma_ma_error = fields.Float(
         'MA Error',
-        compute='_compute_weighted_move_average',
+        compute='_compute_wma',
         help="Mean Absolute Error for WMA"
     )
 
@@ -167,32 +167,32 @@ class ForecastingSmoothingTechniques(models.Model):
 
     single_forecast = fields.Float(
         'Forecast',
-        compute='_compute_exp_smoothing',
+        compute='_compute_exp',
         help="Single Exponential Smoothing (SES)"
     )
     single_ma_error = fields.Float(
         'MA Error',
-        compute='_compute_exp_smoothing',
+        compute='_compute_exp',
         help="Mean Absolute Error for SES"
     )
     double_forecast = fields.Float(
         'Forecast',
-        compute='_compute_exp_smoothing',
+        compute='_compute_exp',
         help="Double Exponential Smoothing (DES)"
     )
     double_ma_error = fields.Float(
         'MA Error',
-        compute='_compute_exp_smoothing',
+        compute='_compute_exp',
         help="Mean Absolute Error for DES"
     )
     triple_forecast = fields.Float(
         'Forecast',
-        compute='_compute_exp_smoothing',
+        compute='_compute_exp',
         help="Triple Exponential Smoothing (TES)"
     )
     triple_ma_error = fields.Float(
         'MA Error',
-        compute='_compute_exp_smoothing',
+        compute='_compute_exp',
         help="Mean Absolute Error for TES"
     )
 
@@ -292,7 +292,7 @@ class ForecastingSmoothingTechniques(models.Model):
 
     @api.one
     @api.depends('period')
-    def _compute_cummulative_move_average(self):
+    def _compute_cma(self):
         """
         This method calculate the CUMULATIVE MOVING AVERAGE forecasting
         smoothing method (CMA) and Mean Absolute error.
@@ -347,7 +347,7 @@ class ForecastingSmoothingTechniques(models.Model):
 
     @api.one
     @api.depends('period')
-    def _compute_simple_move_average(self):
+    def _compute_sma(self):
         """
         This method calculate the SIMPLE MOVING AVERAGE forecasting
         smoothing method (SMA) and Mean Absolute error.
@@ -402,7 +402,7 @@ class ForecastingSmoothingTechniques(models.Model):
 
     @api.one
     @api.depends('period')
-    def _compute_weighted_move_average(self):
+    def _compute_wma(self):
         """
         This method calculate the WEIGHTED MOVING AVERAGE forecasting
         smoothing method (WMA) and Mean Absolute error.
@@ -459,7 +459,7 @@ class ForecastingSmoothingTechniques(models.Model):
 
     @api.one
     @api.depends('exp_alpha')
-    def _compute_exp_smoothing(self):
+    def _compute_exp(self):
         """
         Single, Double, & Triple Exponential Smoothing
         Note: Represente function compute3
