@@ -10,9 +10,13 @@
 #                Gabriela Quilarque <gabriela@vauxoo.com>
 ############################################################################
 
-from openerp import _
+from openerp import _, tools
 from openerp.exceptions import ValidationError
 from openerp.tests import common
+import pandas as pd
+import numpy.testing as npt
+import numpy as np
+import csv
 
 
 class TestForecasting(common.TransactionCase):
@@ -26,6 +30,7 @@ class TestForecasting(common.TransactionCase):
     def setUp(self):
         super(TestForecasting, self).setUp()
         self.forecast_obj = self.env['forecasting.smoothing.techniques']
+        self.fdata_obj = self.env['forecasting.smoothing.data']
 
     def compare(self, expected, real):
         """
@@ -35,22 +40,83 @@ class TestForecasting(common.TransactionCase):
         elist = list()
         keys = expected.keys()
         keys.sort()
-        error_msg = "{key:15} {real:15} != {expected:15} {ca} {diff:15}"
         for key in keys:
             vreal = real.get(key)
             vexpected = expected.get(key)
-            vdiff = abs(vreal - float(vexpected))
-            allowed_error = 2
-            if int(round(vdiff)) > allowed_error:
-                elist += [error_msg.format(
-                    key=key,
-                    real=vreal,
-                    expected=vexpected,
-                    ca=vexpected < vreal and '>' or '<',
-                    diff=vdiff)]
+
+            if isinstance(vexpected, (float,)):
+                elist += self.compare_values(key, vreal, vexpected)
+            elif isinstance(vexpected, (pd.DataFrame,)):
+
+                vexpected = vexpected.to_dict(orient='dict')
+
+                # Get real result of the values
+                fields_to_compare = vexpected.keys() + ['sequence']
+                value_ids = self.fdata_obj.browse(vreal).read(
+                    fields_to_compare)
+                for item in value_ids:
+                    item.pop('id')
+
+                # Transform to DataFrame object to make it easy to manage.
+                vreal = pd.DataFrame(value_ids)
+                vreal.set_index('sequence', inplace=True)
+                vreal = vreal.reindex_axis(sorted(vreal.columns), axis=1)
+
+                # Compare actual and expected values (Transform to dict)
+                vreal = vreal.to_dict(orient='dict')
+                for (fname, values) in vreal.iteritems():
+                    for val in values:
+                        actual = vreal.get(fname).get(val)
+                        if np.isnan(actual):
+                            actual = np.nan_to_num(actual)
+                        wanted = vexpected.get(fname).get(val)
+                        elist += self.compare_values(
+                            fname, actual, wanted, val=val)
 
         error_msg = '\n'.join(['\n', _('Fall forecast calculation ')] + elist)
         self.assertTrue(elist == [], error_msg)
+
+    def compare_values(self, key, vreal, vexpected, val=False):
+        """
+        Compare two float values add return an error message.
+        """
+        error_msg = "{key:15} {real:15} != {expected:15} {ca} {diff:15}"
+        if val:
+            error_msg += '   at value with sequence {val}'
+        vdiff = abs(vreal - float(vexpected))
+        elist = []
+        if not np.allclose([vreal], [float(vexpected)], 0.9):
+            elist = [error_msg.format(
+                key=key,
+                real=vreal,
+                expected=vexpected,
+                ca=vexpected < vreal and '>' or '<',
+                val=val,
+                diff=vdiff)]
+        return elist
+
+    def get_expected_value_ids_results(self, test_file):
+        """
+        return a pandas.DataFrame object with the expected value_ids
+        forecasting results.
+        """
+        infile = tools.file_open(test_file)
+        reader = csv.DictReader(infile)
+        result = {}
+        for row in reader:
+            key = int(row.pop('sequence'))
+            if key in result:
+                # implement your duplicate row handling here
+                pass
+            result[key] = dict([
+                (kval, val != '' and float(val) or 0.0)
+                for kval, val in row.iteritems()
+            ])
+        result = pd.DataFrame.from_dict(result, orient='index')
+        result['sequence'] = result.index
+        result.set_index('sequence', inplace=True)
+        result = result.reindex_axis(sorted(result.columns), axis=1)
+        return result
 
     def test_00(self):
         """ Test CRUD, Check models constrains and empty fields """
@@ -138,7 +204,10 @@ class TestForecasting(common.TransactionCase):
         """
         Return a dictionary with the expected result of the test.
         """
+        test_file = 'forecasting_smoothing_techniques/tests/test_01_out.csv'
+        value_ids = self.get_expected_value_ids_results(test_file)
         return dict(
+            value_ids=value_ids,
             cma_forecast=18.0, cma_ma_error=3.15,
             sma_forecast=17.0, sma_ma_error=4.6,
             wma_forecast=18.666667, wma_ma_error=2.10,
@@ -159,7 +228,10 @@ class TestForecasting(common.TransactionCase):
         """
         Return a dictionary with the expected result of the test.
         """
+        test_file = 'forecasting_smoothing_techniques/tests/test_02_out.csv'
+        value_ids = self.get_expected_value_ids_results(test_file)
         return dict(
+            value_ids=value_ids,
             sma_forecast=7.0, sma_ma_error=3.0,
             cma_forecast=8.0, cma_ma_error=2.0,
             wma_forecast=8.66666, wma_ma_error=1.33,
@@ -198,22 +270,25 @@ class TestForecasting(common.TransactionCase):
         Return a list with the result values.
         """
         out = dict()
+        test_file = 'forecasting_smoothing_techniques/tests/test_03_out.csv'
+        value_ids = self.get_expected_value_ids_results(test_file)
+        out.update(value_ids=value_ids)
         if period == 1:
-            out = dict(
+            out.update(
                 holt_period=1, holt_forecast=359.70, holt_ma_error=17.67,
                 sma_forecast=292.60, sma_ma_error=76.4,
                 cma_forecast=315.00, cma_ma_error=48.2,
             )
         elif period == 2:
-            out = dict(
+            out.update(
                 holt_period=2, holt_forecast=372.6,
             )
         elif period == 3:
-            out = dict(
+            out.update(
                 holt_period=3, holt_forecast=385.4,
             )
         elif period == 4:
-            out = dict(
+            out.update(
                 holt_period=4, holt_forecast=398.3,
             )
         else:
@@ -232,7 +307,10 @@ class TestForecasting(common.TransactionCase):
         """
         Return a dictionary with the expected result of the test.
         """
+        test_file = 'forecasting_smoothing_techniques/tests/test_04_out.csv'
+        value_ids = self.get_expected_value_ids_results(test_file)
         return dict(
+            value_ids=value_ids,
             sma_forecast=117.00, sma_ma_error=10.42,
             cma_forecast=120.00, cma_ma_error=6.37,
             wma_forecast=120.33, wma_ma_error=4.37,
@@ -250,7 +328,10 @@ class TestForecasting(common.TransactionCase):
         """
         Return a dictionary with the expected result of the test.
         """
+        test_file = 'forecasting_smoothing_techniques/tests/test_05_out.csv'
+        value_ids = self.get_expected_value_ids_results(test_file)
         return dict(
+            value_ids=value_ids,
             sma_forecast=101.66, sma_ma_error=14.07,
             cma_forecast=118.33, cma_ma_error=7.9,
         )
