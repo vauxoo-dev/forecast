@@ -471,46 +471,69 @@ class ForecastingSmoothingTechniques(models.Model):
         self.write({'value_ids': value_ids})
 
     @api.one
-    @api.depends('value_ids', 'holt_alpha', 'beta', 'holt_period')
+    @api.depends('holt_alpha', 'beta', 'holt_period')
     def _compute_holt(self):
         """
-        Holt's Linear Smoothing
-        Note: It represent function compute20
+        Holt's Linear Smoothing forecasting calculation
         """
-        values = self.value_ids
+        # Get basic parameters to make the forecasting calculation
+        forecast = self.read()[0]
+        values = forecast.get('value_ids', [])
+        alpha = forecast.get('holt_alpha')
+        beta = forecast.get('beta')
+        period = forecast.get('holt_period')
+
+        # Check minimum data
         if not values:
             return True
-        numv = len(values)
-        alpha = self.holt_alpha
-        beta = self.beta
-        period = self.holt_period
 
-        values[0].write({
-            'holt': 0.0, 'holt_level': 0.0, 'holt_trend': 0.0
-        })
+        # Transform value data to pandas.Dataframe object
+        fdata_obj = self.env['forecasting.smoothing.data']
+        values = fdata_obj.browse(values).read(['value', 'sequence'])
+        cols = ['id', 'value', 'sequence',
+                'holt', 'holt_level', 'holt_trend', 'holt_error']
+        data = pd.DataFrame(values, columns=cols)
+        data.set_index('sequence', inplace=True)
 
-        values[1].write({
-            'holt_level': values[1].value,
-            'holt_trend': values[1].value - values[0].value,
-            'holt': 0.0,
-        })
-        values_to_forecast = values[2:]
-        for value in values_to_forecast:
-            value.write({
-                'holt': values[value.sequence-2].holt_level +
-                values[value.sequence-2].holt_trend})
-            value.write({'holt_level':
-                         alpha * value.value + (1.0 - alpha) * value.holt})
-            value.write({
-                'holt_trend':
-                    (beta * (value.holt_level -
-                             values[value.sequence-2].holt_level)
-                     + (1.0 - beta) * values[value.sequence-2].holt_trend)
-            })
-        self.holt_forecast = (values_to_forecast[-1].holt_level + period *
-                              values_to_forecast[-1].holt_trend)
-        for value in values_to_forecast:
-            value.write({'holt_error': abs(value.holt - value.value)})
-        self.holt_ma_error = sum(values.mapped('holt_error')) / (
-            float(numv) - 3.0)
-        return True
+        # NOTE: Forecasting first point do not exist for this forcasting
+
+        # Calculate Forecasting second point
+        holt_level = data.loc[2].value,
+        holt_trend = data.loc[2].value - data.loc[1].value,
+
+        data[1:2] = data.query('sequence == 2').assign(
+            holt_level=holt_level, holt_trend=holt_trend)
+
+        # Calculate Forecasting for the other 2+n points
+        for index in range(3, len(data) + 1):
+            value = data.loc[index].value
+            prev = data.loc[index-1]
+            holt_func = prev.holt_level + prev.holt_trend
+            holt_level = alpha * value + (1.0 - alpha) * holt_func
+            holt_trend = (
+                beta * (holt_level - prev.holt_level) + (1.0 - beta) *
+                prev.holt_trend)
+            data.at[index, 'holt'] = holt_func
+            data.at[index, 'holt_level'] = holt_level
+            data.at[index, 'holt_trend'] = holt_trend
+
+        # Calculate mean error
+        # TODO can be improve using mean() method?
+        data = data.assign(holt_error=lambda x: abs(x.holt - x.value))
+
+        # Save individual values results
+        value_ids = list()
+        for index in range(2, len(data) + 1):
+            new_values = data.loc[index].to_dict()
+            new_values.pop('value')
+            value_ids.append((1, int(new_values.pop('id')), new_values))
+
+        # Save global results
+        last = data.tail(1).iloc[-1]
+        holt_forecast = last.holt_level + period * last.holt_trend
+        holt_ma_error = data.holt_error.sum() / (len(data) - 3.0)
+
+        # Write values
+        self.holt_forecast = holt_forecast
+        self.holt_ma_error = holt_ma_error
+        self.write({'value_ids': value_ids})
