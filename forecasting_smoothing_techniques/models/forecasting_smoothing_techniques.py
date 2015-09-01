@@ -329,31 +329,51 @@ class ForecastingSmoothingTechniques(models.Model):
         This method calculate the SIMPLE MOVING AVERAGE forecasting
         smoothing method (SMA) and Mean Absolute error.
         """
+        # Get basic parameters to calculate
         forecast = self.read()[0]
         values = forecast.get('value_ids', [])
         period = forecast.get('period')
+
+        # Check minimum data
         if not values:
             return True
+
+        # Transform value data to Dataframe pandas object
         fdata_obj = self.env['forecasting.smoothing.data']
         values = fdata_obj.browse(values).read(['value', 'sequence'])
-        values_to_forecast = values[period:]
-        value_ids = []
-        sma_error_total = 0.0
+        cols = ['id', 'value', 'sequence',
+                'sma', 'sma_error']
+        data = pd.DataFrame(values, columns=cols)
+        data.set_index('sequence', inplace=True)
 
-        for value in values_to_forecast:
-            sequence = value.get('sequence')
-            first = sequence - period - 1
-            last = sequence - 1
-            value_set = values[first:last]
-            sma = sum(
-                [val.get('value') for val in value_set]) / float(period)
-            sma_error = abs(sma - value.get('value'))
-            value_ids.append(
-                (1, value.get('id'), {'sma': sma, 'sma_error': sma_error}))
-            sma_error_total += sma_error
+        weight = (float(period) * (float(period) + 1.0)) / 2.0
 
-        self.sma_forecast = sma
-        self.sma_ma_error = sma_error_total/len(values_to_forecast)
+        # Calculate Forecasting for the other points
+        for index in range(period+1, len(data) + 1):
+            value_set = data[:index-1].tail(period)
+            sma = value_set.value.sum() / float(period)
+            data.at[index, 'sma'] = sma
+
+        # Calculate mean errors
+        # TODO can be improve using mean() method
+        data = data.assign(
+            sma_error=lambda x: abs(x.sma - x.value),
+        )
+
+        # Save individual values results
+        value_ids = list()
+        for index in range(1, len(data) + 1):
+            new_values = data.loc[index].to_dict()
+            new_values.pop('value')
+            value_ids.append((1, int(new_values.pop('id')), new_values))
+
+        # Save global results
+        sma_forecast = sma
+        sma_ma_error = data.sma_error.sum() / data.sma.count()
+
+        # Write values
+        self.sma_forecast = sma_forecast
+        self.sma_ma_error = sma_ma_error
         self.write({'value_ids': value_ids})
 
     @api.one
