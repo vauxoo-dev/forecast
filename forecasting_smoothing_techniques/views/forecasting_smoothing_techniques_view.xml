@@ -10,6 +10,25 @@
                         <field name="sequence"/>
                         <field name="value"/>
                     </group>
+                    <group string="Forecasting Results" col="4">
+                        <field name="sma" readonly="1"/>
+                        <field name="sma_error" readonly="1"/>
+                        <field name="cma" readonly="1"/>
+                        <field name="cma_error" readonly="1"/>
+                        <field name="wma" readonly="1"/>
+                        <field name="wma_error" readonly="1"/>
+                        <field name="es1" readonly="1"/>
+                        <field name="es1_error" readonly="1"/>
+                        <field name="es2" readonly="1"/>
+                        <field name="es2_error" readonly="1"/>
+                        <field name="es3" readonly="1"/>
+                        <field name="es3_error" readonly="1"/>
+                        <field name="holt" readonly="1"/>
+                        <field name="holt_error" readonly="1"/>
+                        <field name="holt_level" readonly="1"/>
+                        <newline/>
+                        <field name="holt_trend" readonly="1"/>
+                    </group>
                 </form>
             </field>
         </record>
