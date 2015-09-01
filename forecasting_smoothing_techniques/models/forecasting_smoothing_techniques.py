@@ -290,6 +290,33 @@ class ForecastingSmoothingTechniques(models.Model):
             'value_ids': [(2, value.id) for value in self.value_ids]})
         return True
 
+    @api.multi
+    def get_value_ids_dict(self, data):
+        """
+        @param data: DataFrame object with the forecasting results per
+        point.
+        return a list with the to update the o2m values value_ids in the
+        forecasting object.
+        """
+        value_ids = list()
+        for index in range(1, len(data) + 1):
+            new_values = data.loc[index].to_dict()
+            new_values.pop('value')
+            value_ids.append((1, int(new_values.pop('id')), new_values))
+        return value_ids
+
+    @api.multi
+    def get_values_dataframe(self, values, forecast_cols):
+        """
+        Transform value data to pandas.DataFrame object
+        """
+        fdata_obj = self.env['forecasting.smoothing.data']
+        values = fdata_obj.browse(values).read(['value', 'sequence'])
+        cols = ['id', 'value', 'sequence'] + forecast_cols
+        data = pd.DataFrame(values, columns=cols)
+        data.set_index('sequence', inplace=True)
+        return data
+
     @api.one
     @api.depends('period')
     def _compute_cma(self):
@@ -307,12 +334,7 @@ class ForecastingSmoothingTechniques(models.Model):
             return True
 
         # Transform value data to Dataframe pandas object
-        fdata_obj = self.env['forecasting.smoothing.data']
-        values = fdata_obj.browse(values).read(['value', 'sequence'])
-        cols = ['id', 'value', 'sequence',
-                'cma', 'cma_error']
-        data = pd.DataFrame(values, columns=cols)
-        data.set_index('sequence', inplace=True)
+        data = self.get_values_dataframe(values, ['cma', 'cma_error'])
 
         # Calculate Forecasting for the other points
         for index in range(period, len(data) + 1):
@@ -328,11 +350,7 @@ class ForecastingSmoothingTechniques(models.Model):
         data.fillna(0.0, inplace=True)
 
         # Save individual values results
-        value_ids = list()
-        for index in range(1, len(data) + 1):
-            new_values = data.loc[index].to_dict()
-            new_values.pop('value')
-            value_ids.append((1, int(new_values.pop('id')), new_values))
+        value_ids = self.get_value_ids_dict(data)
 
         # Save global results
         cma_forecast = cma
@@ -360,12 +378,7 @@ class ForecastingSmoothingTechniques(models.Model):
             return True
 
         # Transform value data to Dataframe pandas object
-        fdata_obj = self.env['forecasting.smoothing.data']
-        values = fdata_obj.browse(values).read(['value', 'sequence'])
-        cols = ['id', 'value', 'sequence',
-                'sma', 'sma_error']
-        data = pd.DataFrame(values, columns=cols)
-        data.set_index('sequence', inplace=True)
+        data = self.get_values_dataframe(values, ['sma', 'sma_error'])
 
         # Calculate Forecasting for the other points
         for index in range(period+1, len(data) + 1):
@@ -381,11 +394,7 @@ class ForecastingSmoothingTechniques(models.Model):
         data.fillna(0.0, inplace=True)
 
         # Save individual values results
-        value_ids = list()
-        for index in range(1, len(data) + 1):
-            new_values = data.loc[index].to_dict()
-            new_values.pop('value')
-            value_ids.append((1, int(new_values.pop('id')), new_values))
+        value_ids = self.get_value_ids_dict(data)
 
         # Save global results
         sma_forecast = sma
@@ -413,12 +422,7 @@ class ForecastingSmoothingTechniques(models.Model):
             return True
 
         # Transform value data to Dataframe pandas object
-        fdata_obj = self.env['forecasting.smoothing.data']
-        values = fdata_obj.browse(values).read(['value', 'sequence'])
-        cols = ['id', 'value', 'sequence',
-                'wma', 'wma_error']
-        data = pd.DataFrame(values, columns=cols)
-        data.set_index('sequence', inplace=True)
+        data = self.get_values_dataframe(values, ['wma', 'wma_error'])
 
         weight = (float(period) * (float(period) + 1.0)) / 2.0
 
@@ -438,11 +442,7 @@ class ForecastingSmoothingTechniques(models.Model):
         data.fillna(0.0, inplace=True)
 
         # Save individual values results
-        value_ids = list()
-        for index in range(1, len(data) + 1):
-            new_values = data.loc[index].to_dict()
-            new_values.pop('value')
-            value_ids.append((1, int(new_values.pop('id')), new_values))
+        value_ids = self.get_value_ids_dict(data)
 
         # Save global results
         wma_forecast = wma
@@ -471,14 +471,9 @@ class ForecastingSmoothingTechniques(models.Model):
             return True
 
         # Transform value data to Dataframe pandas object
-        fdata_obj = self.env['forecasting.smoothing.data']
-        values = fdata_obj.browse(values).read(['value', 'sequence'])
-        cols = ['id', 'value', 'sequence',
-                'es1', 'es1_error',
-                'es2', 'es2_error',
-                'es3', 'es3_error']
-        data = pd.DataFrame(values, columns=cols)
-        data.set_index('sequence', inplace=True)
+        data = self.get_values_dataframe(values, ['es1', 'es1_error',
+                                                  'es2', 'es2_error',
+                                                  'es3', 'es3_error'])
 
         # Calculate Forecasting per first point
         val1 = data.loc[2].value
@@ -506,11 +501,7 @@ class ForecastingSmoothingTechniques(models.Model):
         data.fillna(0.0, inplace=True)
 
         # Save individual values results
-        value_ids = list()
-        for index in range(1, len(data) + 1):
-            new_values = data.loc[index].to_dict()
-            new_values.pop('value')
-            value_ids.append((1, int(new_values.pop('id')), new_values))
+        value_ids = self.get_value_ids_dict(data)
 
         # Save global results
         last = data.tail(1).iloc[-1]
@@ -553,12 +544,8 @@ class ForecastingSmoothingTechniques(models.Model):
             return True
 
         # Transform value data to pandas.Dataframe object
-        fdata_obj = self.env['forecasting.smoothing.data']
-        values = fdata_obj.browse(values).read(['value', 'sequence'])
-        cols = ['id', 'value', 'sequence',
-                'holt', 'holt_level', 'holt_trend', 'holt_error']
-        data = pd.DataFrame(values, columns=cols)
-        data.set_index('sequence', inplace=True)
+        data = self.get_values_dataframe(values, [
+            'holt', 'holt_level', 'holt_trend', 'holt_error'])
 
         # NOTE: Forecasting first point do not exist for this forcasting
 
@@ -588,11 +575,7 @@ class ForecastingSmoothingTechniques(models.Model):
         data.fillna(0.0, inplace=True)
 
         # Save individual values results
-        value_ids = list()
-        for index in range(2, len(data) + 1):
-            new_values = data.loc[index].to_dict()
-            new_values.pop('value')
-            value_ids.append((1, int(new_values.pop('id')), new_values))
+        value_ids = self.get_value_ids_dict(data)
 
         # Save global results
         last = data.tail(1).iloc[-1]
