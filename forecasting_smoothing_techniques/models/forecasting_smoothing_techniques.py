@@ -314,8 +314,6 @@ class ForecastingSmoothingTechniques(models.Model):
         data = pd.DataFrame(values, columns=cols)
         data.set_index('sequence', inplace=True)
 
-        weight = (float(period) * (float(period) + 1.0)) / 2.0
-
         # Calculate Forecasting for the other points
         for index in range(period, len(data) + 1):
             value_set = data[:index].tail(period)
@@ -368,8 +366,6 @@ class ForecastingSmoothingTechniques(models.Model):
                 'sma', 'sma_error']
         data = pd.DataFrame(values, columns=cols)
         data.set_index('sequence', inplace=True)
-
-        weight = (float(period) * (float(period) + 1.0)) / 2.0
 
         # Calculate Forecasting for the other points
         for index in range(period+1, len(data) + 1):
