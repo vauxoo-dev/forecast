@@ -363,30 +363,53 @@ class ForecastingSmoothingTechniques(models.Model):
         This method calculate the WEIGHTED MOVING AVERAGE forecasting
         smoothing method (WMA) and Mean Absolute error.
         """
+        # Get basic parameters to calculate
         forecast = self.read()[0]
         values = forecast.get('value_ids', [])
         period = forecast.get('period')
+
+        # Check minimum data
         if not values:
             return True
+
+        # Transform value data to Dataframe pandas object
         fdata_obj = self.env['forecasting.smoothing.data']
         values = fdata_obj.browse(values).read(['value', 'sequence'])
+        cols = ['id', 'value', 'sequence',
+                'wma', 'wma_error']
+        data = pd.DataFrame(values, columns=cols)
+        data.set_index('sequence', inplace=True)
+
         weight = (float(period) * (float(period) + 1.0)) / 2.0
-        values_to_forecast = values[period-1:]
 
-        value_ids = []
-        wma_error_total = 0.0
-        for value in values_to_forecast:
-            sequence = value.get('sequence')
-            value_set = values[sequence-period:sequence]
-            wma = sum([((day) / weight) * item.get('value')
-                       for (day, item) in enumerate(value_set, 1)])
-            wma_error = abs(wma - value_set[-1].get('value'))
-            wma_error_total += wma_error
-            value_ids.append(
-                (1, value.get('id'), {'wma': wma, 'wma_error': wma_error}))
+        # Calculate Forecasting for the other points
+        for index in range(period, len(data) + 1):
+            value_set = data[:index].tail(period)
+            wma = sum([
+                ((day) / weight) * value
+                for (day, value) in enumerate(value_set.value.values, 1)])
+            data.at[index, 'wma'] = wma
 
-        self.wma_forecast = wma
-        self.wma_ma_error = wma_error_total / len(values_to_forecast)
+        # Calculate mean errors
+        # TODO can be improve using mean() method
+        data = data.assign(
+            wma_error=lambda x: abs(x.wma - x.value),
+        )
+
+        # Save individual values results
+        value_ids = list()
+        for index in range(1, len(data) + 1):
+            new_values = data.loc[index].to_dict()
+            new_values.pop('value')
+            value_ids.append((1, int(new_values.pop('id')), new_values))
+
+        # Save global results
+        wma_forecast = wma
+        wma_ma_error = data.wma_error.sum() / data.wma.count()
+
+        # Write values
+        self.wma_forecast = wma_forecast
+        self.wma_ma_error = wma_ma_error
         self.write({'value_ids': value_ids})
 
     @api.one
