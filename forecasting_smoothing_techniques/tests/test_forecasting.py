@@ -14,7 +14,6 @@ from openerp import _, tools
 from openerp.exceptions import ValidationError
 from openerp.tests import common
 import pandas as pd
-import numpy.testing as npt
 import numpy as np
 import csv
 
