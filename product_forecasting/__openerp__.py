@@ -11,7 +11,7 @@
 ############################################################################
 
 {
-    "name": "Product relation forecasting",
+    "name": "Product Relation Forecasting",
     "version": "8.0.1.0.0",
     "author": "Vauxoo",
     "website": "http://www.vauxoo.com/",
