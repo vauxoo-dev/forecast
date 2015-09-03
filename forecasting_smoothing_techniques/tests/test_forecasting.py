@@ -30,6 +30,7 @@ class TestForecasting(common.TransactionCase):
         super(TestForecasting, self).setUp()
         self.forecast_obj = self.env['forecasting.smoothing.techniques']
         self.fdata_obj = self.env['forecasting.smoothing.data']
+        self.fres_obj = self.env['forecasting.smoothing.result']
 
     def compare(self, expected, real):
         """
@@ -51,13 +52,13 @@ class TestForecasting(common.TransactionCase):
 
                 # Get real result of the values
                 fields_to_compare = vexpected.keys() + ['sequence']
-                value_ids = self.fdata_obj.browse(vreal).read(
+                result_ids = self.fres_obj.browse(vreal).read(
                     fields_to_compare)
-                for item in value_ids:
+                for item in result_ids:
                     item.pop('id')
 
                 # Transform to DataFrame object to make it easy to manage.
-                vreal = pd.DataFrame(value_ids)
+                vreal = pd.DataFrame(result_ids)
                 vreal.set_index('sequence', inplace=True)
                 vreal = vreal.reindex_axis(sorted(vreal.columns), axis=1)
 
@@ -115,6 +116,7 @@ class TestForecasting(common.TransactionCase):
         result['sequence'] = result.index
         result.set_index('sequence', inplace=True)
         result = result.reindex_axis(sorted(result.columns), axis=1)
+        result.insert(0, 'sequence', result.index)
         return result
 
     def test_00(self):

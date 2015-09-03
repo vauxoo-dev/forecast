@@ -35,6 +35,24 @@ class ForecastingSmoothingData(models.Model):
         default=_default_forecast,
         help="Forecast which this data is related to")
 
+    _sql_constraints = [
+        ('sequence_uniq', 'unique(sequence, forecast_id)',
+            'Several sequences with the same value do not make sense yet!'),
+    ]
+
+
+class ForecastingSmoothingResult(models.Model):
+    _name = 'forecasting.smoothing.result'
+    _description = 'Forecasting Smoothing Results'
+
+    forecast_id = fields.Many2one(
+        'forecasting.smoothing.techniques',
+        # required=True,
+        help="Forecast which this data is related to")
+    value_id = fields.Many2one(
+        'forecasting.smoothing.data', 'Forecast Data')
+    sequence = fields.Integer(
+        help="Position in the list regarding this list and this forecast")
     sma = fields.Float(
         'SMA', help="Simple Moving Average Forcasting (SMA)")
     sma_error = fields.Float(
@@ -67,11 +85,6 @@ class ForecastingSmoothingData(models.Model):
         'HOLT LEVEL', help="Holt's Linear Smoothing Level function")
     holt_trend = fields.Float(
         'HOLT TREND', help="Holt's Linear Smoothing Trend function")
-
-    _sql_constraints = [
-        ('sequence_uniq', 'unique(sequence, forecast_id)',
-            'Several sequences with the same value do not make sense yet!'),
-    ]
 
 
 class ForecastingSmoothingTechniques(models.Model):
@@ -109,6 +122,11 @@ class ForecastingSmoothingTechniques(models.Model):
         string='Values',
         copy=False,
         help='List of values to be used to compute this forecast')
+
+    result_ids = fields.One2many(
+        'forecasting.smoothing.result',
+        'forecast_id',
+        'Results')
 
     product_tmpl_id = fields.Many2one(
         'product.template',
@@ -291,19 +309,21 @@ class ForecastingSmoothingTechniques(models.Model):
         return True
 
     @api.multi
-    def get_value_ids_dict(self, data):
+    def get_result_ids_dict(self, data):
         """
         @param data: DataFrame object with the forecasting results per
         point.
         return a list with the to update the o2m values value_ids in the
         forecasting object.
         """
-        value_ids = list()
+        result_ids = list()
         for index in range(1, len(data) + 1):
             new_values = data.loc[index].to_dict()
             new_values.pop('value')
-            value_ids.append((1, int(new_values.pop('id')), new_values))
-        return value_ids
+            value_id = int(new_values.pop('id'))
+            new_values.update(value_id=value_id, forecast_id=self.id)
+            result_ids.append((0, 0, new_values))
+        return result_ids
 
     @api.multi
     def get_values_dataframe(self, values, forecast_cols):
@@ -315,6 +335,7 @@ class ForecastingSmoothingTechniques(models.Model):
         cols = ['id', 'value', 'sequence'] + forecast_cols
         data = pd.DataFrame(values, columns=cols)
         data.set_index('sequence', inplace=True)
+        data.insert(0, 'sequence', data.index)
         return data
 
     @api.one
@@ -348,9 +369,10 @@ class ForecastingSmoothingTechniques(models.Model):
             cma_error=lambda x: abs(x.cma - x.value),
         )
         data.fillna(0.0, inplace=True)
+        data.set_index('sequence', inplace=True)
 
         # Save individual values results
-        value_ids = self.get_value_ids_dict(data)
+        result_ids = self.get_result_ids_dict(data)
 
         # Save global results
         cma_forecast = cma
@@ -359,7 +381,14 @@ class ForecastingSmoothingTechniques(models.Model):
         # Write values
         self.cma_forecast = cma_forecast
         self.cma_ma_error = cma_ma_error
-        self.write({'value_ids': value_ids})
+
+        # Write individual values
+        self.result_ids.unlink()
+        self.write({'result_ids': result_ids})
+
+        # TODO check what to do with this
+        # result = fres_obj.create(new_values)
+        # fres_obj = self.env['forecasting.smoothing.result']
 
     @api.one
     @api.depends('period')
@@ -392,9 +421,10 @@ class ForecastingSmoothingTechniques(models.Model):
             sma_error=lambda x: abs(x.sma - x.value),
         )
         data.fillna(0.0, inplace=True)
+        data.set_index('sequence', inplace=True)
 
         # Save individual values results
-        value_ids = self.get_value_ids_dict(data)
+        result_ids = self.get_result_ids_dict(data)
 
         # Save global results
         sma_forecast = sma
@@ -403,7 +433,10 @@ class ForecastingSmoothingTechniques(models.Model):
         # Write values
         self.sma_forecast = sma_forecast
         self.sma_ma_error = sma_ma_error
-        self.write({'value_ids': value_ids})
+
+        # Write individual values
+        self.result_ids.unlink()
+        self.write({'result_ids': result_ids})
 
     @api.one
     @api.depends('period')
@@ -440,9 +473,10 @@ class ForecastingSmoothingTechniques(models.Model):
             wma_error=lambda x: abs(x.wma - x.value),
         )
         data.fillna(0.0, inplace=True)
+        data.set_index('sequence', inplace=True)
 
         # Save individual values results
-        value_ids = self.get_value_ids_dict(data)
+        result_ids = self.get_result_ids_dict(data)
 
         # Save global results
         wma_forecast = wma
@@ -451,7 +485,10 @@ class ForecastingSmoothingTechniques(models.Model):
         # Write values
         self.wma_forecast = wma_forecast
         self.wma_ma_error = wma_ma_error
-        self.write({'value_ids': value_ids})
+
+        # Write individual values
+        self.result_ids.unlink()
+        self.write({'result_ids': result_ids})
 
     @api.one
     @api.depends('exp_alpha')
@@ -499,9 +536,10 @@ class ForecastingSmoothingTechniques(models.Model):
             es3_error=lambda x: abs(x.es3 - x.value),
         )
         data.fillna(0.0, inplace=True)
+        data.set_index('sequence', inplace=True)
 
         # Save individual values results
-        value_ids = self.get_value_ids_dict(data)
+        result_ids = self.get_result_ids_dict(data)
 
         # Save global results
         last = data.tail(1).iloc[-1]
@@ -524,7 +562,10 @@ class ForecastingSmoothingTechniques(models.Model):
         self.single_ma_error = data.es1_error.sum() / len(data)
         self.double_ma_error = data.es2_error.sum() / len(data)
         self.triple_ma_error = data.es3_error.sum() / len(data)
-        self.write({'value_ids': value_ids})
+
+        # Write individual values
+        self.result_ids.unlink()
+        self.write({'result_ids': result_ids})
 
     @api.one
     @api.depends('holt_alpha', 'beta', 'holt_period')
@@ -573,9 +614,10 @@ class ForecastingSmoothingTechniques(models.Model):
         # TODO can be improve using mean() method?
         data = data.assign(holt_error=lambda x: abs(x.holt - x.value))
         data.fillna(0.0, inplace=True)
+        data.set_index('sequence', inplace=True)
 
         # Save individual values results
-        value_ids = self.get_value_ids_dict(data)
+        result_ids = self.get_result_ids_dict(data)
 
         # Save global results
         last = data.tail(1).iloc[-1]
@@ -585,4 +627,7 @@ class ForecastingSmoothingTechniques(models.Model):
         # Write values
         self.holt_forecast = holt_forecast
         self.holt_ma_error = holt_ma_error
-        self.write({'value_ids': value_ids})
+
+        # Write individual values
+        self.result_ids.unlink()
+        self.write({'result_ids': result_ids})
