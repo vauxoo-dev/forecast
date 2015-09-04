@@ -3,17 +3,17 @@
     <data noupdate="0">
 
         <record model="ir.module.category" id="module_stock_forecasting">
-            <field name="name">Forecasting Smoothing Techniques</field>
+            <field name="name">Forecasting</field>
             <field name="sequence">999</field>
         </record>
 
         <record id="stock_forecasting_group_user" model="res.groups">
-            <field name="name">User</field>
+            <field name="name">Forecast User</field>
             <field name="category_id" ref="module_stock_forecasting"/>
         </record>
 
         <record id="stock_forecasting_group_manager" model="res.groups">
-            <field name="name">Manager</field>
+            <field name="name">Forecast Manager</field>
             <field name="category_id" ref="module_stock_forecasting"/>
             <field name="implied_ids" eval="[(6, 0, [ref('stock_forecasting_group_user')])]"/>
         </record>

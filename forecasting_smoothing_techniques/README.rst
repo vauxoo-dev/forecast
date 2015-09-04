@@ -35,13 +35,32 @@ Usage
 
 To use this module, you need to:
 
-* Go to a ``Products`` form view and click on the ``Forecasting``
-  button at the top right of the form. There you can check or create a new
-  forecasting. Forecasting list view show you a result summary ``ID`` and
-  ``name`` and a forecasting parameters and resultis summary.
+* You need to set the Forecasting permission for your user to be able to use
+  this module new features. Go to  ``Settings > Users > Users`` menu and
+  select your user from the list view. In the the user form view activate the
+  ``Forecasting`` permission as User or Manager.
 
-  .. image:: forecast_tree_view.png
-     :alt: Forecast List View
+  .. image:: forecasting_permission.png
+     :alt: Forecasting Permission
+
+* Go to a ``Settings > Technical > Forecasting`` menu. There you will find
+  the ``Forecast`` submenu that will show you a list view with all the
+  Forecast Records. There you just simply can check or create a new
+  forecasting.  Forecasting list view have the forecast ``ID`` and ``name``
+  for quick identification, forecasting parameters, and some columns with a
+  brief result summary.
+
+  .. image:: forecasting_menu.png
+     :alt: Forecasting Menu and List view
+
+.. TODO: move all this to the product_forecasting module:..
+
+* Also, you could go to a ``Products`` form view and click on the
+  ``Forecasting`` button at the top right of the form.
+  
+
+  .. image:: product_button_forcast.png
+     :alt: Forecasting button at the Product Form View
 
 * When click over a Forecasting record o over the ``Create`` button will take
   you to the Forecasting Form View. This view show up at the top the basic
