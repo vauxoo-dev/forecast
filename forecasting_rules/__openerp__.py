@@ -7,33 +7,27 @@
 #    info Vauxoo (info@vauxoo.com)
 #    coded by: Katherine Zaoral <kathy@vauxoo.com>
 #    planned by: Nhomar Hernandez <nhomar@vauxoo.com>
-#                Gabriela Quilarque <gabriela@vauxoo.com>
 ############################################################################
 
 {
-    "name": "Forecasting by Smoothing Techniques",
+    "name": "Forecasting Rules",
+    "summary": "Manage forecasting data and results",
     "version": "8.0.1.0",
     "license": "Affero GPL-3",
     "author": "Vauxoo",
     "website": "http://www.vauxoo.com/",
     "category": "",
     "depends": [
-        "board",  # Just because we need some graphic stuff from here
-        "product",  # may be we need refactor this in a separate module.
-        "web_widget_x2many_graph",  # To show one2many values as graphs
-    ],
+        "forecasting_smoothing_techniques",
+        ],
     "data": [
-        "security/forecasting_smoothing_techniques_security.xml",
+        "security/forecasting_rules_security.xml",
         "security/ir.model.access.csv",
-        "views/forecasting_smoothing_techniques_view.xml",
-        "views/product_view.xml",
-    ],
+        "views/forecasting_rule_view.xml",
+        ],
     "demo": [
-        "demo/forecasting_smoothing_techniques.xml",
-    ],
-    "external_dependencies": {
-        "python": ["pandas", "numexpr"],
-        },
+        "demo/forecasting_rules_demo.xml",
+        ],
     "test": [],
     "qweb": [],
     "js": [],

@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<openerp>
+    <data noupdate="1">
+
+        <record id="filter_demo_01" model="ir.filters">
+            <field name="name">Partners Credits Forcast next month (Test 01)</field>
+            <field name="model_id">res.partner</field>
+            <field name="context">{
+                'forecast_value': 'credit_limit',
+                'forecast_order': 'date',
+            }</field>
+        </record>
+
+        <record id="forecast_rule_demo_01" model="forecasting.rule">
+            <field name="name">Forecasting Rule (Test 01)</field>
+            <field name="model">res.partner</field>
+            <field name="filter_id" ref="filter_demo_01"/>
+            <field name="forecast_id" ref="forecasting_smoothing_techniques.fst_demo_01"/>
+        </record>
+
+    </data>
+</openerp>

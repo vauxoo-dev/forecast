@@ -28,6 +28,7 @@ class ForecastingSmoothingData(models.Model):
     sequence = fields.Integer(
         help="Position in the list regarding this list and this forecast",
         default=10)
+    label = fields.Char()
     value = fields.Float()
     forecast_id = fields.Many2one(
         'forecasting.smoothing.techniques',

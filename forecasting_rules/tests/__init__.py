@@ -7,24 +7,8 @@
 #    info Vauxoo (info@vauxoo.com)
 #    coded by: Katherine Zaoral <kathy@vauxoo.com>
 #    planned by: Nhomar Hernandez <nhomar@vauxoo.com>
-#                Gabriela Quilarque <gabriela@vauxoo.com>
 ############################################################################
 
-{
-    "name": "Product Relation Forecasting",
-    "version": "8.0.1.0",
-    "license": "Affero GPL-3",
-    "author": "Vauxoo",
-    "website": "http://www.vauxoo.com/",
-    "category": "",
-    "depends": [
-        "product",
-    ],
-    "data": [
-    ],
-    "demo": [],
-    "test": [],
-    "qweb": [],
-    "js": [],
-    "installable": True,
-}
+from . import test_forecasting_rules
+from . import test_irfilters
+from . import test_forecasting
