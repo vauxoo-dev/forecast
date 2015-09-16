@@ -26,6 +26,7 @@
         "views/forecasting_rule_view.xml",
         ],
     "demo": [
+        "demo/res_partner.xml",
         "demo/forecasting_rules_demo.xml",
         ],
     "test": [],

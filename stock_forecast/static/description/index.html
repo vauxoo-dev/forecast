@@ -9,9 +9,9 @@
    <object data="https://img.shields.io/badge/licence-AGPL--3-blue.svg" type="image/svg+xml">
     License: AGPL-3
    </object>
-   <div class="section oe_span12" id="product-relation-forecasting">
+   <div class="section oe_span12" id="stock-forecast">
     <h2 class="oe_slogan">
-     Product Relation Forecasting
+     Stock Forecast
     </h2>
     <p class="oe_mt32">
      This module add the components to integrate the forecasting with the product
@@ -68,45 +68,55 @@ records.
     <p class="oe_mt32">
      To use this module, you need to:
     </p>
-    <ul class="simple">
+    <ul>
      <li>
-      Go to a
-      <code class="docutils literal">
-       Product
-      </code>
-      form view and click on the
-      <code class="docutils literal">
-       Forecasting
-      </code>
-      button at the top right of the form. There you can check or create a new
-forecasting.
+      <p class="oe_mt32">
+       Go to a
+       <code class="docutils literal">
+        Product
+       </code>
+       form view and click on the
+       <code class="docutils literal">
+        Forecasting
+       </code>
+       button at the top right of the form. There you can check or create a new
+forecasting for you selected product product.
+      </p>
+      <img alt="Forecasting button at the Product Form View" class="oe_picture oe_screenshot" src="product_button_forcast.png"/>
+      <img alt="Forecast Buttons" class="oe_picture oe_screenshot" src="forecast_buttons.png"/>
+      <p class="oe_mt32">
+       In the first view of the forecasting form view you can view a graph with
+the results of all the forecasting methods applied over the data you
+sumbit.
+      </p>
+     </li>
+     <li>
+      <p class="oe_mt32">
+       In a more complete view of all the forecasting form view you can review the
+total forecasting summary and the forecasting methods paramters to configure
+to run the forecasting. If you have any doubt there is an explanation about
+every forecasting methods so will be more easy to use.
+      </p>
      </li>
     </ul>
-    <p class="oe_mt32">
-     For further information, please visit:
-    </p>
+    <img alt="Forecast Form View" class="oe_picture oe_screenshot" src="forecast_form_view.png"/>
     <ul class="simple">
      <li>
-      <a class="reference external" href="https://www.odoo.com/forum/help-1">
-       https://www.odoo.com/forum/help-1
-      </a>
+      When editing the forecast values (Click over the
+      <code class="docutils literal">
+       List of Values
+      </code>
+      button)
+you can observe all the values in the table with all the detail forecasting
+results per data point with the mathematical absolute error (MAE).
      </li>
     </ul>
+    <img alt="Forecast Data List View" class="oe_picture oe_screenshot" src="forecast_data_tree_view.png"/>
    </div>
    <div class="section oe_span12" id="known-issues-roadmap">
     <h1>
      Known issues / Roadmap
     </h1>
-    <ul class="simple">
-     <li>
-      This module is empty. Is expected that in a future the
-      <code class="docutils literal">
-       forecasting_smoothing_techniques
-      </code>
-      module will be slice into various
-modules taking into account the kind of functionality.
-     </li>
-    </ul>
    </div>
    <div class="section oe_span12" id="bug-tracker">
     <h1>
@@ -120,14 +130,30 @@ modules taking into account the kind of functionality.
      .
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed feedback
-     <a class="reference external" href="https://github.com/Vauxoo/stock-forecasting/issues/new?body=module:%20{product_forecasting}%0Aversion:%20{8.0.1.0.0}%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">
+     <a class="reference external" href="https://github.com/Vauxoo/stock-forecasting/issues/new?body=module:%20{stock_forecast}%0Aversion:%20{8.0.1.0.0}%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">
       here
      </a>
     </p>
    </div>
+   <div class="section oe_span12" id="todo">
+    <h1>
+     TODO
+    </h1>
+    <ul class="simple">
+     <li>
+      This module future can change its dependency from
+forecasting_smoothing_techniques module to forecasting_rules.
+     </li>
+     <li>
+      Maybe the display_name field and compute method can be defined in the
+forecasting_smoothing_techniques module and overwrite in every forecast
+module.
+     </li>
+    </ul>
+   </div>
    <div class="section oe_span12" id="credits">
     <h1>
-     Credits
+     credits
     </h1>
     <div class="section oe_span12" id="contributors">
      <h2>

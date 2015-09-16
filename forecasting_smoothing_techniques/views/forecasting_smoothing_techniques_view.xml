@@ -1,15 +1,23 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <openerp>
     <data>
-        <record id="stock_forecasting_data_view_form" model="ir.ui.view">
+        <record id="forecasting_data_view_form" model="ir.ui.view">
             <field name="name">stock.forecasting.data.form</field>
-            <field name="model">forecasting.smoothing.data</field>
+            <field name="model">forecast.data</field>
             <field name="arch" type="xml">
                 <form string="Forecasting by Smoothing Techniques">
-                    <group string="Data information">
-                        <field name="sequence"/>
-                        <field name="label"/>
-                        <field name="value"/>
+                    <group string="Data information" colspan="4" col="4">
+                        <group colspan="2">
+                            <field name="sequence"/>
+                            <field name="label"/>
+                            <field name="value"/>
+                        </group>
+                        <group colspan="2">
+                            <field name="create_date"/>
+                            <field name="create_uid"/>
+                            <field name="write_date"/>
+                            <field name="write_uid"/>
+                        </group>
                     </group>
                     <group string="Forecasting Results" col="4">
                         <field name="sma" readonly="1"/>
@@ -33,9 +41,9 @@
                 </form>
             </field>
         </record>
-        <record id="stock_forecasting_data_view_tree" model="ir.ui.view">
+        <record id="forecasting_data_view_tree" model="ir.ui.view">
             <field name="name">stock.forecasting.data.tree</field>
-            <field name="model">forecasting.smoothing.data</field>
+            <field name="model">forecast.data</field>
             <field name="arch" type="xml">
                 <tree string="Forecasting by Smoothing Techniques">
                     <field name="sequence"/>
@@ -61,9 +69,9 @@
                 </tree>
             </field>
         </record>
-        <record id="stock_forecasting_data_view_search" model="ir.ui.view">
+        <record id="forecasting_data_view_search" model="ir.ui.view">
             <field name="name">stock.forecasting.data.search</field>
-            <field name="model">forecasting.smoothing.data</field>
+            <field name="model">forecast.data</field>
             <field name="arch" type="xml">
                 <search string="Forecasting by Smoothing Techniques">
                     <field name="sequence"/>
@@ -72,9 +80,9 @@
                 </search>
             </field>
         </record>
-        <record id="stock_forecasting_data_view_graph" model="ir.ui.view">
+        <record id="forecasting_data_view_graph" model="ir.ui.view">
             <field name="name">stock.forecasting.data.graph</field>
-            <field name="model">forecasting.smoothing.data</field>
+            <field name="model">forecast.data</field>
             <field name="arch" type="xml">
                 <graph string="Forecasting by Smoothing Techniques">
                     <field name="sequence"/>
@@ -86,23 +94,17 @@
             </field>
         </record>
 
-        <record model="ir.actions.act_window" id="action_view_forecasting_data">
+        <record id="action_view_forecasting_data" model="ir.actions.act_window">
             <field name="name">Forecasting Data</field>
-            <field name="res_model">forecasting.smoothing.data</field>
+            <field name="res_model">forecast.data</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,graph</field>
             <field name="domain">[('forecast_id', '=', context.get('forecast_id'))]</field>
         </record>
 
-        <template id="assets_backend" name="forecasting_smoothing_techniques assets" inherit_id="web.assets_backend">
-            <xpath expr="." position="inside">
-                <link rel="stylesheet" href="/forecasting_smoothing_techniques/static/src/css/forecasting_smoothing_techniques.css"/>
-            </xpath>
-        </template>
-
-        <record id="stock_forecasting_view_form" model="ir.ui.view">
+        <record id="forecasting_view_form" model="ir.ui.view">
             <field name="name">stock.forecasting.view.form</field>
-            <field name="model">forecasting.smoothing.techniques</field>
+            <field name="model">forecast</field>
             <field name="arch" type="xml">
                 <form string="Forecasting by Smoothing Techniques">
                     <sheet>
@@ -121,12 +123,6 @@
                                 <button name="%(action_view_forecasting_data)d" type="action" string="List of values" class="oe_inline oe_stat_button" icon="fa-database" help="List of Values" context="{'forecast_id': id}"/>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <label for="product_tmpl_id" string='Done for product....'/>
-                                <h2><field name="product_tmpl_id" required="1"/></h2>
-                            </div>
-                        </div>
                         <field name="value_ids" nolabel="1" widget="x2many_graph" color_value="#2CA02C" color_sma="#FFBB78" color_cma="#1F77B4" color_wma="#D62728">
                             <graph >
                                 <field name="sequence"/>
@@ -134,6 +130,12 @@
                                 <field name="sma"/>
                                 <field name="cma"/>
                                 <field name="wma"/>
+                                <field name="es1"/>
+                                <field name="es2"/>
+                                <field name="es3"/>
+                                <field name="holt"/>
+                                <field name="holt_level"/>
+                                <field name="holt_trend"/>
                             </graph>
                         </field>
                         <div class="panel panel-default">
@@ -360,13 +362,17 @@
                             </div>
                         </div>
                     </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
                 </form>
             </field>
         </record>
 
-        <record id="stock_forecastiong_view_tree" model="ir.ui.view">
+        <record id="forecasting_view_tree" model="ir.ui.view">
             <field name="name">stock.forecasting.view.tree</field>
-            <field name="model">forecasting.smoothing.techniques</field>
+            <field name="model">forecast</field>
             <field name="arch" type="xml">
                 <tree string="Forecasting by Smoothing Techniques">
                     <field name="id"/>
@@ -384,30 +390,20 @@
             </field>
         </record>
 
-        <record id="stock_forecasting_view_search" model="ir.ui.view">
+        <record id="forecasting_view_search" model="ir.ui.view">
             <field name="name">stock.forecasting.view.search</field>
-            <field name="model">forecasting.smoothing.techniques</field>
+            <field name="model">forecast</field>
             <field name="arch" type="xml">
                 <search string="Forecasting by Smoothing Techniques">
                     <field name="id"/>
                     <field name="name"/>
-                    <field name="product_tmpl_id"/>
                 </search>
             </field>
         </record>
 
-        <record model="ir.actions.act_window" id="action_view_stock_forecasting">
+        <record id="action_view_forecasting" model="ir.actions.act_window">
             <field name="name">Forecasting by Smoothing Techniques</field>
-            <field name="res_model">forecasting.smoothing.techniques</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
-            <field name="search_view_id" ref="stock_forecasting_view_search"/>
-            <field name="domain">[('product_tmpl_id', '=', context.get('product_tmpl_id', False))]</field>
-        </record>
-
-        <record id="action_view_stock_forecasting_all" model="ir.actions.act_window">
-            <field name="name">Forecasting by Smoothing Techniques</field>
-            <field name="res_model">forecasting.smoothing.techniques</field>
+            <field name="res_model">forecast</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
         </record>
@@ -424,8 +420,8 @@
             parent="menu_forecasting"
             sequence="5"
             name="Forecasts"
-            action="action_view_stock_forecasting_all"
-            groups="stock_forecasting_group_user,stock_forecasting_group_manager"
+            action="action_view_forecasting"
+            groups="forecast_group_user,forecast_group_manager"
         />
 
     </data>

@@ -43,6 +43,33 @@ may exist.
     </p>
     <ul class="simple">
      <li>
+      Install python package used to calculate the forecasting:
+      <code class="docutils literal">
+       pandas
+      </code>
+      and
+      <code class="docutils literal">
+       numexpr
+      </code>
+      . You can install them manually
+      <code class="docutils literal">
+       sudo pip install package_name
+      </code>
+      or you can use this repository
+      <code class="docutils literal">
+       requirement.txt
+      </code>
+      field with the command
+      <code class="docutils literal">
+       sudo pip install
+       <span class="pre">
+        -r
+       </span>
+       requirements.txt
+      </code>
+      .
+     </li>
+     <li>
       Download this module from
       <a class="reference external" href="https://github.com/vauxoo/stock-forecasting">
        Vauxoo/stock-forecasting
@@ -71,9 +98,31 @@ may exist.
     <p class="oe_mt32">
      To configure this module, you need to:
     </p>
-    <ul class="simple">
+    <ul>
      <li>
-      There is not special configuration for this module.
+      <p class="oe_mt32">
+       Set the Forecasting permission for your user to be able to use this module
+new features. Go to
+       <code class="docutils literal">
+        Settings &gt; Users &gt; Users
+       </code>
+       menu and select your user
+from the list view. In the user form view activate the
+       <code class="docutils literal">
+        Forecasting
+       </code>
+       permission as
+       <code class="docutils literal">
+        User
+       </code>
+       or
+       <code class="docutils literal">
+        Manager
+       </code>
+       . Also need to activate the Technical
+Features to see the Forecasting Menu.
+      </p>
+      <img alt="Forecasting Permission" class="oe_picture oe_screenshot" src="forecasting_permission.png"/>
      </li>
     </ul>
    </div>
@@ -87,22 +136,6 @@ may exist.
     <ul>
      <li>
       <p class="oe_mt32">
-       You need to set the Forecasting permission for your user to be able to use
-this module new features. Go to
-       <code class="docutils literal">
-        Settings &gt; Users &gt; Users
-       </code>
-       menu and
-select your user from the list view. In the the user form view activate the
-       <code class="docutils literal">
-        Forecasting
-       </code>
-       permission as User or Manager.
-      </p>
-      <img alt="Forecasting Permission" class="oe_picture oe_screenshot" src="forecasting_permission.png"/>
-     </li>
-     <li>
-      <p class="oe_mt32">
        Go to a
        <code class="docutils literal">
         Settings &gt; Technical &gt; Forecasting
@@ -110,9 +143,9 @@ select your user from the list view. In the the user form view activate the
        menu. There you will find
 the
        <code class="docutils literal">
-        Forecast
+        Forecasts
        </code>
-       submenu that will show you a list view with all the
+       sub menu that will show you a list view with all the
 Forecast Records. There you just simply can check or create a new
 forecasting.  Forecasting list view have the forecast
        <code class="docutils literal">
@@ -125,28 +158,11 @@ forecasting.  Forecasting list view have the forecast
        for quick identification, forecasting parameters, and some columns with a
 brief result summary.
       </p>
-      <img alt="Forecasting Menu and List view" class="oe_picture oe_screenshot" src="forecasting_menu.png"/>
-     </li>
-    </ul>
-    <!-- TODO: move all this to the product_forecasting module:.. -->
-    <ul>
-     <li>
-      <p class="oe_mt32">
-       Also, you could go to a
-       <code class="docutils literal">
-        Products
-       </code>
-       form view and click on the
-       <code class="docutils literal">
-        Forecasting
-       </code>
-       button at the top right of the form.
-      </p>
-      <img alt="Forecasting button at the Product Form View" class="oe_picture oe_screenshot" src="product_button_forcast.png"/>
+      <img alt="Forecasting Menu and List View" class="oe_picture oe_screenshot" src="forecasting_menu.png"/>
      </li>
      <li>
       <p class="oe_mt32">
-       When click over a Forecasting record o over the
+       When click over a Forecasting record over the
        <code class="docutils literal">
         Create
        </code>
@@ -165,34 +181,34 @@ forecast data and some buttons:
         <code class="docutils literal">
          Clear
         </code>
-        : Clear the forecasting incomming data values.
+        : Clear the forecasting incoming data values.
        </li>
        <li>
         <code class="docutils literal">
          List of Values
         </code>
-        : Go to the list of the forecating incomming data so
+        : Go to the list of the forecasting incoming data so
 you can edit them. Also you can see a table with all the forecasting
 results per data point (detail results).
        </li>
       </ul>
-      <img alt="Forecast Buttons" class="oe_picture oe_screenshot" src="forecast_buttons.png"/>
       <p class="oe_mt32">
        In the first view of the forecasting form view you can view a graph with
 the results of all the forecasting methods applied over the data you
-sumbit.
+submit.
       </p>
+      <img alt="Forecast Buttons" class="oe_picture oe_screenshot" src="forecast_buttons.png"/>
      </li>
      <li>
       <p class="oe_mt32">
        In a more complete view of all the forecasting form view you can review the
-total forecasting summary and the forecasting methods paramters to configure
-to run the forecasting. If you have any doubt there is an explanation about
-every forecasting methods so will be more easy to use.
+total forecasting summary and the forecasting methods parameters to
+configure to run the forecasting. If you have any doubt there is an
+explanation about every forecasting methods so will be more easy to use.
       </p>
      </li>
     </ul>
-    <img alt="Forecast Form View" class="oe_picture oe_screenshot" src="forecast_form_view.png"/>
+    <img alt="Forecast Complete Form View" class="oe_picture oe_screenshot" src="forecast_complete_form_view.png"/>
     <ul class="simple">
      <li>
       When editing the forecast values (Click over the
@@ -208,14 +224,14 @@ results per data point with the mathematical absolute error (MAE).
     <ul class="simple">
      <li>
       To edit the list of values just click over the value in the forecasting data
-list view to go tothe form view and edit the values. You can edit the
+list view to go to the form view and edit the values. You can edit the
 Sequence and the Value itself indicating in the
       <code class="docutils literal">
        Data Information
       </code>
       section. As you can check all the
       <code class="docutils literal">
-       Forecaasting Results
+       Forecasting Results
       </code>
       for this
 particular point can be also review in the form view, this results fields
@@ -223,16 +239,6 @@ are not editable only readonly.
      </li>
     </ul>
     <img alt="Forecasr Data Form View" class="oe_picture oe_screenshot" src="forecast_data_form_view.png"/>
-    <p class="oe_mt32">
-     For further information, please visit:
-    </p>
-    <ul class="simple">
-     <li>
-      <a class="reference external" href="https://www.odoo.com/forum/help-1">
-       https://www.odoo.com/forum/help-1
-      </a>
-     </li>
-    </ul>
    </div>
    <div class="section oe_span12" id="known-issues-roadmap">
     <h1>
@@ -241,6 +247,28 @@ are not editable only readonly.
     <ul class="simple">
      <li>
       There is not known issues.
+     </li>
+    </ul>
+   </div>
+   <div class="section oe_span12" id="todo">
+    <h1>
+     TODO
+    </h1>
+    <ul class="simple">
+     <li>
+      Actual there is not way to throw an error when the forecast list of values
+is not enough list of values to generate groups of n periods defined for the
+sma, cma and wma forecasting methods.
+     </li>
+     <li>
+      The module name can be change to just forecast or forecasting.
+     </li>
+     <li>
+      The translation template of this module exists but the translations must be
+added.
+     </li>
+     <li>
+      Review the translations spanish terms.
      </li>
     </ul>
    </div>

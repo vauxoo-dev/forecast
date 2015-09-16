@@ -5,27 +5,254 @@
   </style>
  </head>
  <body>
-  <div class="document" id="forecasting-rules">
-   <h2 class="oe_slogan">
-    Forecasting Rules
-   </h2>
-   <p class="oe_mt32">
-    This module add a new module named
-    <code class="docutils literal">
-     Forcasting Rules
-    </code>
-    that add:
-   </p>
-   <ul class="simple">
-    <li>
-     A way to fulfill forecast incoming values.
-    </li>
-    <li>
-     Add a bridge to integrate the forecasting results with the other odoo
-recods that extract data from the forecast.
-    </li>
-   </ul>
-  </div>
+  <section class="oe_container" id="description">
+   <object data="https://img.shields.io/badge/licence-AGPL--3-blue.svg" type="image/svg+xml">
+    License: AGPL-3
+   </object>
+   <div class="section oe_span12" id="forecasting-rules">
+    <h2 class="oe_slogan">
+     Forecasting Rules
+    </h2>
+    <p class="oe_mt32">
+     This module extend the forecasting functionality by adding a new model named
+     <code class="docutils literal">
+      Forecast Rule
+     </code>
+     that it is a bridge to fulfill the forecast data with odoo
+data.
+    </p>
+    <p class="oe_mt32">
+     Is expected in a future that this module will be the one that integrate the
+forecasting results with the other odoo records that extract data from the
+forecast.
+    </p>
+   </div>
+   <div class="section oe_span12" id="installation">
+    <h1>
+     Installation
+    </h1>
+    <p class="oe_mt32">
+     To install this module, you need to:
+    </p>
+    <ul class="simple">
+     <li>
+      There is not extra requirement needed, you only need to install the odoo
+module like a regular module:
+      <ul>
+       <li>
+        Download this module from
+        <a class="reference external" href="https://github.com/vauxoo/stock-forecasting">
+         Vauxoo/stock-forecasting
+        </a>
+        repository.
+       </li>
+       <li>
+        Add the repository folder into your odoo addons-path and reload you odoo
+server.
+       </li>
+       <li>
+        Go to
+        <code class="docutils literal">
+         Settings &gt; Module list
+        </code>
+        search for the current name and click
+        <code class="docutils literal">
+         Install
+        </code>
+        button.
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </div>
+   <div class="section oe_span12" id="configuration">
+    <h1>
+     Configuration
+    </h1>
+    <p class="oe_mt32">
+     You can find the Forecast Rules menu at
+     <code class="docutils literal">
+      Settings &gt; Technical &gt; Forecasting &gt;
+Forecasting Rules
+     </code>
+     .
+    </p>
+    <img alt="Forecast Rule Menu" class="oe_picture oe_screenshot" src="forecast_rule_menu.png"/>
+    <p class="oe_mt32">
+     To access to the Forecast Rules you need to at least have Forecasting basic
+permissions. To edit the Forecasting Rules you need to active a new group
+permission named
+     <code class="docutils literal">
+      Forecast Rule Manager
+     </code>
+     in the Forecasting category.
+    </p>
+    <img alt="Forecast Rule Group" class="oe_picture oe_screenshot" src="forecast_rule_group.png"/>
+   </div>
+   <div class="section oe_span12" id="usage">
+    <h1>
+     Usage
+    </h1>
+    <ul>
+     <li>
+      <p class="oe_mt32">
+       This module let to determinate explicitly the way that the forecast data is
+filled. In the forecast form view you can see two new mutually exclusive
+fields:
+      </p>
+      <ul>
+       <li>
+        <p class="oe_mt32">
+         <code class="docutils literal">
+          Use Manual Data
+         </code>
+         : Forecast data is manually introduce by the user.
+This is possible by checking to True the new boolean field. To fill the
+forecast data just go to the
+         <code class="docutils literal">
+          List of values
+         </code>
+         button and add/edit every
+forecast value.
+        </p>
+        <img alt="Use Manual Forecast Data" class="oe_picture oe_screenshot" src="forecast_form_manual.png"/>
+       </li>
+       <li>
+        <p class="oe_mt32">
+         <code class="docutils literal">
+          Forecast Rule
+         </code>
+         : When the
+         <code class="docutils literal">
+          Use Manual Data
+         </code>
+         is unset then the
+         <code class="docutils literal">
+          Forecast Rule
+         </code>
+         field is shown. This last one give the parameters to
+extract odoo data. After add the rule record just click over the new
+button named
+         <code class="docutils literal">
+          Fill Values
+         </code>
+         that will make the process to update the
+forecast data.
+        </p>
+        <img alt="Forecast using a Forecast Rule" class="oe_picture oe_screenshot" src="forecast_form_rule.png"/>
+       </li>
+      </ul>
+     </li>
+    </ul>
+    <p class="oe_mt32">
+     The Forecast Rule work this way: You need to define the odoo model where the
+data will be extract and link an
+     <code class="docutils literal">
+      ir filter
+     </code>
+     to indicate the context and
+domain used to extract the data.
+    </p>
+    <img alt="Forecast Rule" class="oe_picture oe_screenshot" src="forecast_rule_form.png"/>
+    <p class="oe_mt32">
+     The context will need two required keys
+     <code class="docutils literal">
+      ['forecast_order',
+'forecast_value']
+     </code>
+     : these keys will be used to know what float field and what
+order the data will be extract. Also you can used
+     <code class="docutils literal">
+      'group_by'
+     </code>
+     key in your
+context to group the return data, but only one group_by element.
+    </p>
+    <img alt="Forecast Filter Requirements" class="oe_picture oe_screenshot" src="forecast_ir_filter.png"/>
+   </div>
+   <div class="section oe_span12" id="known-issues-roadmap">
+    <h1>
+     Known issues / Roadmap
+    </h1>
+    <ul class="simple">
+     <li>
+      There is not known issues.
+     </li>
+    </ul>
+   </div>
+   <div class="section oe_span12" id="todo">
+    <h1>
+     TODO
+    </h1>
+    <ul class="simple">
+     <li>
+      Add security unit test.
+     </li>
+     <li>
+      Add a way to manage multiple group_by elements in the Forecast Filter.
+     </li>
+     <li>
+      Separate the context of validate the ir.filter into a new generic module.
+     </li>
+     <li>
+      Change the model field in the forecasting.rule module from string to related
+field pointing to ir.filter model.
+     </li>
+     <li>
+      Try to integrate a way to make the search group_by using pandas.
+     </li>
+     <li>
+      Change the forecasting.rule model to forecast.rule.
+     </li>
+     <li>
+      Review the spanish translations terms.
+     </li>
+    </ul>
+   </div>
+   <div class="section oe_span12" id="bug-tracker">
+    <h1>
+     Bug Tracker
+    </h1>
+    <p class="oe_mt32">
+     Bugs are tracked on
+     <a class="reference external" href="https://github.com/Vauxoo/stock-forecasting/issues">
+      GitHub Issues
+     </a>
+     .
+In case of trouble, please check there if your issue has already been reported.
+If you spotted it first, help us smashing it by providing a detailed and welcomed feedback
+     <a class="reference external" href="https://github.com/Vauxoo/stock-forecasting/issues/new?body=module:%20{forecasting_rules}%0Aversion:%20{8.0.1.0.0}%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">
+      here
+     </a>
+    </p>
+   </div>
+   <div class="section oe_span12" id="credits">
+    <h1>
+     Credits
+    </h1>
+    <div class="section oe_span12" id="contributors">
+     <h2>
+      Contributors
+     </h2>
+     <ul class="simple">
+      <li>
+       Nhomar Hernandez &lt;
+       <a class="reference external" href="mailto:nhomar@vauxoo.com">
+        nhomar@vauxoo.com
+       </a>
+       &gt; (Planner/Auditor)
+      </li>
+      <li>
+       Katherine Zaoral &lt;
+       <a class="reference external" href="mailto:kathy@vauxoo.com">
+        kathy@vauxoo.com
+       </a>
+       &gt; (Planner/Developer)
+      </li>
+     </ul>
+    </div>
+   </div>
+  </section>
   <section class="oe_container">
    <div class="oe_row oe_spaced">
     <div class="oe_span6">

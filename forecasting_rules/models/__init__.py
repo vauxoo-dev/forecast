@@ -9,5 +9,5 @@
 #    planned by: Nhomar Hernandez <nhomar@vauxoo.com>
 ############################################################################
 from . import forecasting_rule
-from . import forecasting
+from . import forecast
 from . import ir_filters

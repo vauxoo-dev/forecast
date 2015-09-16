@@ -55,10 +55,11 @@ class TestForecastingRules(common.TransactionCase):
         # Save in test the basic objects
         self.rule_obj = self.env['forecasting.rule']
         self.irfilter_obj = self.env['ir.filters']
+        self.forecast_obj = self.env['forecast']
 
         # Get the data demo
-        self.forecast = self.env['forecasting.smoothing.techniques'].browse(
-            self.ref('forecasting_smoothing_techniques.fst_demo_01'))
+        self.forecast = self.forecast_obj.browse(
+            self.ref('forecasting_rules.forecast_demo_01'))
         self.rule = self.rule_obj.browse(self.ref(
             'forecasting_rules.forecast_rule_demo_01'))
         self.irfilter = self.irfilter_obj.browse(self.ref(
@@ -69,28 +70,8 @@ class TestForecastingRules(common.TransactionCase):
         # in this test.
         self.assertEqual(self.rule.filter_id, self.irfilter)
 
-        # Second, ensure that the rule is realted to the forecast test record.
-        self.assertEqual(self.rule.forecast_id, self.forecast)
-
-    def check_function_value(self, fname):
-        """Simulate that the filter context have a forecast key with function
-        to execute. Test when forecast function value is valid/not valid.
-
-        :fname: the name of forecast context key you want to check
-        """
-        context = safe_eval(self.irfilter.context)
-
-        # Use function key value
-        func_str = 'search([]).mapped("id")'
-        context.update({fname: func_str})
-        self.rule.filter_id.context = str(context)
-
-        # Use a not valid function key value
-        error_msg = 'is not a valid field or method'
-        with self.assertRaisesRegexp(ValidationError, error_msg):
-            func_str = fname + '_abc_method()'
-            context.update({fname: func_str})
-            self.rule.filter_id.context = str(context)
+        # Second, ensure that the rule is related to the forecast test record.
+        self.assertEqual(self.forecast.rule_id, self.rule)
 
     def create_rule(self, name='All Partners', model='res.partner',
                     wo_irfilter=False):
@@ -105,7 +86,6 @@ class TestForecastingRules(common.TransactionCase):
         values = {
             'name': ' Partner Credit Limit (Test %s)' % name,
             'model': model,
-            'forecast_id': self.forecast.id,
             'filter_id': self.irfilter.id,
         }
         if wo_irfilter:
@@ -141,14 +121,19 @@ class TestForecastingRules(common.TransactionCase):
     def test_02(self):
         """Constraint: Require a filter when a forecast is set.
         """
-
-        # create a new rule with forcast related but without a filter
+        # Create a new rule with forecast related but without a filter
         error_msg = (
-            'Missing Rule Filter: The Forecast Rule you related to the'
-            ' forecast need to have a filter defined to filter the forecast'
-            ' values.')
+            ' Missing Rule Filter: The current forecast rule have'
+            ' not filter defined so can not generate the forecast values.')
+
+        # Create a forecast with a rule without a filter.
+        rule = self.create_rule(name='2', wo_irfilter=True)
+        forecast = self.forecast_obj.create({
+            'name': 'Constraint Rule - Forecast (Test 02)'})
+        forecast.rule_id = rule.id
+
         with self.assertRaisesRegexp(ValidationError, error_msg):
-            self.create_rule(name='2', wo_irfilter=True)
+            forecast.fill_value_ids()
 
     def test_03(self):
         """Constraint: Rule filter context without the required keys
@@ -183,16 +168,6 @@ class TestForecastingRules(common.TransactionCase):
         with self.assertRaises(ValidationError):
             context.update(forecast_value='nonexist_field')
             self.rule.filter_id.context = str(context)
-
-    def test_05(self):
-        """Constraint: rule filter context forecast_order is a function
-        """
-        self.check_function_value('forecast_order')
-
-    def test_06(self):
-        """Constraint: rule filter context forecast_value is a function
-        """
-        self.check_function_value('forecast_value')
 
     def test_07(self):
         """Constraint: Required same ir_filter/rule model (both side check)

@@ -2,20 +2,20 @@
 <openerp>
     <data noupdate="0">
 
-        <record model="ir.module.category" id="module_stock_forecasting">
+        <record model="ir.module.category" id="module_forecast">
             <field name="name">Forecasting</field>
             <field name="sequence">999</field>
         </record>
 
-        <record id="stock_forecasting_group_user" model="res.groups">
-            <field name="name">Forecast User</field>
-            <field name="category_id" ref="module_stock_forecasting"/>
+        <record id="forecast_group_user" model="res.groups">
+            <field name="name">User</field>
+            <field name="category_id" ref="module_forecast"/>
         </record>
 
-        <record id="stock_forecasting_group_manager" model="res.groups">
-            <field name="name">Forecast Manager</field>
-            <field name="category_id" ref="module_stock_forecasting"/>
-            <field name="implied_ids" eval="[(6, 0, [ref('stock_forecasting_group_user')])]"/>
+        <record id="forecast_group_manager" model="res.groups">
+            <field name="name">Manager</field>
+            <field name="category_id" ref="module_forecast"/>
+            <field name="implied_ids" eval="[(6, 0, [ref('forecast_group_user')])]"/>
         </record>
 
     </data>

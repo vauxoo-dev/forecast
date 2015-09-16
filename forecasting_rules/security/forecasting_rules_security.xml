@@ -2,16 +2,10 @@
 <openerp>
     <data noupdate="0">
 
-        <record id="forecasting_rule_group_user" model="res.groups">
-            <field name="name">Rule User</field>
-            <field name="category_id" ref="forecasting_smoothing_techniques.module_stock_forecasting"/>
-            <field name="implied_ids" eval="[(6, 0, [ref('forecasting_smoothing_techniques.stock_forecasting_group_user')])]"/>
-        </record>
-
-        <record id="forecasting_rule_group_manager" model="res.groups">
-            <field name="name">Rule Manager</field>
-            <field name="category_id" ref="forecasting_smoothing_techniques.module_stock_forecasting"/>
-            <field name="implied_ids" eval="[(6, 0, [ref('forecasting_smoothing_techniques.stock_forecasting_group_manager')])]"/>
+        <record id="forecasting_rule_group" model="res.groups">
+            <field name="name">Forecast Rule Manager</field>
+            <field name="category_id" ref="forecasting_smoothing_techniques.module_forecast"/>
+            <field name="implied_ids" eval="[(6, 0, [ref('forecasting_smoothing_techniques.forecast_group_manager')])]"/>
         </record>
 
     </data>
