@@ -9,7 +9,7 @@
                     <sheet string="Forecasting Rule">
                         <h1>
                             <field name="id"/>
-                            <field name="name"/>
+                            <field name="name" placeholder="Forecast Rule Name..."/>
                         </h1>
                         <group>
                             <field name="model"/>
@@ -61,25 +61,30 @@
             parent="forecasting_smoothing_techniques.menu_forecasting" sequence="10"
             name="Forecasting Rules"
             action="action_view_forecasting_rule"
-            groups="forecasting_rule_group_user,forecasting_rule_group_manager"
+            groups="forecasting_smoothing_techniques.forecast_group_user,forecasting_smoothing_techniques.forecast_group_manager,forecasting_rule_group"
         />
 
-        <record id="forecasting_smoothing_techniques_rule_form" model="ir.ui.view">
-            <field name="name">forecasting.smoothing.techniques.rule.form</field>
-            <field name="model">forecasting.smoothing.techniques</field>
-            <field name="inherit_id" ref="forecasting_smoothing_techniques.stock_forecasting_view_form"/>
+        <record id="forecast_forecast_rule_form" model="ir.ui.view">
+            <field name="name">forecast.forecast.rule.form</field>
+            <field name="model">forecast</field>
+            <field name="inherit_id" ref="forecasting_smoothing_techniques.forecasting_view_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//div[@name='button_box']" position="inside">
-                    <button name="fill_value_ids" type="object" string="Fill Values" class="oe_inline oe_stat_button" help="This button will let you to add a data to the forecasting using the defined Forecasting Rule" icon="fa-filter"/>
-                </xpath>
-
                 <xpath expr="//field[@name='value_ids']" position="before">
                     <div class="row">
                         <div class="col-md-12">
-                            <label for="rule_id"/>
-                            <h2><field name="rule_id" required="1"/></h2>
+                            <field name="manual_data"/>
+                            <label for="manual_data"/>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label for="rule_id" attrs="{'invisible': [('manual_data', '=', True)]}"/>
+                            <h2><field name="rule_id" attrs="{'invisible': [('manual_data', '=', True)], 'required': [('manual_data', '=', False)]}" /></h2>
+                        </div>
+                    </div>
+                </xpath>
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button name="fill_value_ids" type="object" string="Fill Values" class="oe_inline oe_stat_button" help="This button will let you to add a data to the forecasting using the defined Forecasting Rule" icon="fa-filter" attrs="{'invisible': [('manual_data', '=', True)]}"/>
                 </xpath>
             </field>
         </record>

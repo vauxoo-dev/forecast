@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<openerp>
+    <data noupdate="1">
+        <record id="forecasting_smoothing_techniques.fst_demo_01" model="forecast">
+          <field name="product_tmpl_id" ref="product.product_product_4_product_template"/>
+        </record>
+        <record id="forecasting_smoothing_techniques.fst_demo_02" model="forecast">
+          <field name="product_tmpl_id" ref="product.product_product_4_product_template"/>
+        </record>
+        <record id="forecasting_smoothing_techniques.fst_demo_03" model="forecast">
+          <field name="product_tmpl_id" ref="product.product_product_4_product_template"/>
+        </record>
+        <record id="forecasting_smoothing_techniques.fst_demo_04" model="forecast">
+          <field name="product_tmpl_id" ref="product.product_product_4_product_template"/>
+        </record>
+        <record id="forecasting_smoothing_techniques.fst_demo_05" model="forecast">
+          <field name="product_tmpl_id" ref="product.product_product_4_product_template"/>
+        </record>
+    </data>
+</openerp>

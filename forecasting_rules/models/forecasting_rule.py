@@ -19,19 +19,13 @@ class ForecastingRule(models.Model):
     _description = 'Forecasting Rule'
 
     name = fields.Char(requrired=True,
-                       help='Name to identificate the Forecasting Rule')
+                       help='Name to identify the Forecasting Rule')
     model = fields.Char(help='Model were this forecasting apply')
     filter_id = fields.Many2one(
         'ir.filters',
         string='Filter',
         help='Filter that indicate what values are going to be extract'
              ' for the forecast')
-
-    # TODO review is the forecast_id field is really neccesary.
-    forecast_id = fields.Many2one(
-        'forecasting.smoothing.techniques',
-        string='Forecast',
-        help='Forecast where this Rule is used')
 
     display_name = fields.Char(
         string='Name', compute='_compute_display_name')
@@ -41,20 +35,6 @@ class ForecastingRule(models.Model):
     def _compute_display_name(self):
         names = [str(self.id), self.name]
         self.display_name = ' '.join(names)
-
-    # TODO: evaluate. this method could be change to a filter_id contraint and
-    # check if there is any forecast related to the current rule.
-    @api.constrains('forecast_id')
-    def _check_forecast_id(self):
-        """
-        If the rule have a forecast related need to have a filter also.
-        Raise a ValidationError when this condition do not fulfill.
-        """
-        if self.forecast_id and not self.filter_id:
-            raise ValidationError(_(
-                ' Missing Rule Filter: The Forecast Rule you related to'
-                ' the forecast need to have a filter defined to filter'
-                ' the forecast values.'))
 
     @api.constrains('model', 'filter_id')
     def _check_model_id(self):

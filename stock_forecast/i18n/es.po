@@ -1,0 +1,47 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* stock_forecast
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-09-21 19:56+0000\n"
+"PO-Revision-Date: 2015-09-21 19:56+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: stock_forecast
+#: view:forecast:stock_forecast.stock_forecast_view_form
+msgid "Done for product...."
+msgstr "Para el producto...."
+
+#. module: stock_forecast
+#: model:ir.model,name:stock_forecast.model_forecast
+msgid "Forecast"
+msgstr "Pronóstico"
+
+#. module: stock_forecast
+#: view:product.template:stock_forecast.view_id
+msgid "Forecasting"
+msgstr "Pronóstico"
+
+#. module: stock_forecast
+#: model:ir.actions.act_window,name:stock_forecast.action_view_stock_forecasting
+msgid "Forecasting by Smoothing Techniques"
+msgstr "Pronósticos por técnica de suavizado"
+
+#. module: stock_forecast
+#: field:forecast,product_tmpl_id:0
+msgid "Product"
+msgstr "Producto"
+
+#. module: stock_forecast
+#: help:forecast,product_tmpl_id:0
+msgid "Product related to the current forecasting"
+msgstr "Producto relacionado al pronóstico actual"
+

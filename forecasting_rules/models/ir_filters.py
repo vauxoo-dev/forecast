@@ -34,23 +34,6 @@ class IrFilters(models.Model):
         return False
 
     @api.model
-    def is_function(self, model_obj, value):
-        """
-        Check if the content of a string is a function
-
-        :model_obj: string with the name of the model
-        :value: string
-        :return: True or False
-        """
-        func_name = value.split('(')
-        if len(func_name) > 1:
-            func_name = func_name[0]
-            func = getattr(model_obj, func_name, None)
-            if callable(func):
-                return True
-        return False
-
-    @api.model
     def process_context_value(self, model_obj, value):
         """
         Get the key in the context and return the way to process.
@@ -60,28 +43,20 @@ class IrFilters(models.Model):
          - If value is not a field is suppost to be is a field into the model
            defined in the rule then will return a string with the field name
 
-        If not a field or a function then raise an error.
+        If not a field then raise an error.
 
         :value: a string value extract from the context.
-        :return: string with the field name or a function to be execute
+        :return: string with the field name to be execute
         """
         res = False
         value_type = False
         if self.is_field(model_obj, value):
             res = value
             value_type = 'field'
-        elif self.is_function(model_obj, value):
-            try:
-                # res = safe_eval(value)
-                res = eval('self.env["' + model_obj._name + '"].' + value)
-                value_type = 'function'
-            except:
-                raise ValidationError('\n'.join([
-                    _('Not valid function context value'), value]))
         else:
             raise ValidationError('\n'.join([
                 _('Not valid context value.'), value,
-                _(' is not a valid field or method in'), model_obj._name]))
+                _(' is not a valid field in'), model_obj._name]))
         return res, value_type
 
     @api.multi
@@ -104,10 +79,6 @@ class IrFilters(models.Model):
         # process value
         value = context.get('forecast_value')
         value, vtype = self.process_context_value(model_obj, value)
-
-        # TODO: Check that if the eval_xxx key
-        # order_func = context.get('eval_order', False)
-        # value_func = context.get('eval_value', False)
 
         return model_obj, domain, order, value, group_by, vtype
 
@@ -169,8 +140,6 @@ class IrFilters(models.Model):
                     (0, 0, dict(sequence=num, label=getattr(item, order),
                                 value=getattr(item, value)))
                     for (num, item) in enumerate(data, 1)]
-        elif value_type == 'function':
-            value_ids = value(data)
         else:
             raise ValidationError(_('Development error'))
         return value_ids
@@ -194,7 +163,6 @@ class IrFilters(models.Model):
             - Check context ['forecast_order', 'forecast_value'] keys are valid
 
         """
-        # TODO Another context key can be check ['eval_order', eval_value']
         error = _('The context value you introduce is not a valid context')
         related_rules = self.get_related_rules()
         if related_rules:
@@ -250,7 +218,7 @@ class IrFilters(models.Model):
                 raise ValidationError('\n'.join([error, msg, self.domain]))
             else:
                 list_item_type = set([type(item) for item in domain])
-                if not list_item_type == set(tuple):
+                if not list_item_type == set([type(tuple())]):
                     msg = _('Domain must be a list of tuples')
                     raise ValidationError('\n'.join([error, msg, self.domain]))
 

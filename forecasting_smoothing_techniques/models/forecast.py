@@ -15,9 +15,9 @@ from openerp.exceptions import ValidationError
 import pandas as pd
 
 
-class ForecastingSmoothingData(models.Model):
-    _name = 'forecasting.smoothing.data'
-    _description = 'Forecasting Smoothing Data'
+class ForecastData(models.Model):
+    _name = 'forecast.data'
+    _description = 'Forecast Data'
     _rec_name = 'sequence'
 
     @api.model
@@ -31,7 +31,7 @@ class ForecastingSmoothingData(models.Model):
     label = fields.Char()
     value = fields.Float()
     forecast_id = fields.Many2one(
-        'forecasting.smoothing.techniques',
+        'forecast',
         required=True,
         default=_default_forecast,
         help="Forecast which this data is related to")
@@ -75,49 +75,21 @@ class ForecastingSmoothingData(models.Model):
     ]
 
 
-class ForecastingSmoothingTechniques(models.Model):
+class Forecast(models.Model):
 
-    _name = 'forecasting.smoothing.techniques'
-    _description = 'Forecasting Smoothing Techniques'
-
-    @api.model
-    def _default_product(self):
-        '''
-        Usability feature -
-        TODO: move for product_forecasting module
-        :return: product.template id.
-        '''
-        product_id = self._context.get('product_tmpl_id', False)
-        return product_id
-
-    @api.model
-    def _default_name(self):
-        '''
-        Usability feature -
-        TODO: move for product_forecasting module
-        :return: the forcasting name with the product.template name as
-        prefix.
-        '''
-        product_id = self._context.get('product_tmpl_id', False)
-        return '%s: ' % self.env['product.template'].browse(product_id).name
+    _name = 'forecast'
+    _description = 'Forecast'
+    _inherit = ['mail.thread']
 
     name = fields.Char(
-        help='Name given by the user to quick reference the forecasting',
-        default=_default_name)
+        help='Name given by the user to quick reference the forecasting')
 
     value_ids = fields.One2many(
-        'forecasting.smoothing.data',
+        'forecast.data',
         'forecast_id',
         string='Values',
         copy=False,
         help='List of values to be used to compute this forecast')
-
-    product_tmpl_id = fields.Many2one(
-        'product.template',
-        string='Product',
-        help='Product related to the current forecasting',
-        default=_default_product,
-        track_visibility='always')
 
     # Moving Average
     period = fields.Integer(
@@ -269,7 +241,7 @@ class ForecastingSmoothingTechniques(models.Model):
         ['period', 'exp_alpha', 'holt_alpha', 'beta', 'holt_period']
 
         This is used in a button called Reset Defaults in the
-        forecasting.smoothing.techniques form view.
+        forecast form view.
 
         :return: True
         """
@@ -284,7 +256,7 @@ class ForecastingSmoothingTechniques(models.Model):
         Clear all the forecast data fields.
 
         This is used in a button called Clear in the
-        forecasting.smoothing.techniques form view.
+        forecast form view.
 
         :return: True
         """
@@ -322,7 +294,7 @@ class ForecastingSmoothingTechniques(models.Model):
         to add the the DataFrame object to save the forcasting calculation
         values.
 
-        :values: list of 'forecasting.smoothing.data' ids
+        :values: list of 'forecast.data' ids
         :forecast_cols: list of columns to add to the DataFrame (this columns
         are mean to be used to save the forecasting calculation) By example
         the simple moving averga (sma) add two columns sma and sma_error to
@@ -330,7 +302,7 @@ class ForecastingSmoothingTechniques(models.Model):
 
         :returns: DataFrame object with the datas value.
         """
-        fdata_obj = self.env['forecasting.smoothing.data']
+        fdata_obj = self.env['forecast.data']
         values = fdata_obj.browse(values).read(['value', 'sequence'])
         cols = ['id', 'value', 'sequence'] + forecast_cols
         data = pd.DataFrame(values, columns=cols)
@@ -502,7 +474,7 @@ class ForecastingSmoothingTechniques(models.Model):
     def _compute_exp(self):
         """
         This method calculate the SINGLE, DOUBLE, & TRIPLE EXPONENTIAL
-        SMOOTHING forecasting smoothing method (ES1, ES2, ES3) and
+        SMOOTHING forecasting method (ES1, ES2, ES3) and
         Mean Absolute error for each forecast result.
 
         Update the forecast fields [

@@ -19,23 +19,22 @@
     "category": "",
     "depends": [
         "board",  # Just because we need some graphic stuff from here
-        "product",  # may be we need refactor this in a separate module.
         "web_widget_x2many_graph",  # To show one2many values as graphs
+        "mail",
     ],
     "data": [
         "security/forecasting_smoothing_techniques_security.xml",
         "security/ir.model.access.csv",
         "views/forecasting_smoothing_techniques_view.xml",
-        "views/product_view.xml",
     ],
     "demo": [
-        "demo/forecasting_smoothing_techniques.xml",
+        "demo/forecast_demo.xml",
     ],
     "external_dependencies": {
         "python": ["pandas", "numexpr"],
         },
     "test": [],
     "qweb": [],
-    "js": [],
     "installable": True,
+    "application": True,
 }

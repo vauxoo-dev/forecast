@@ -17,18 +17,18 @@ import pandas as pd
 import csv
 
 
-class TestForecasting(common.TransactionCase):
+class TestForecast(common.TransactionCase):
 
     """
-    Test that the forecasting smothing model is working propertly.
+    Test that the forecasting smoothing model is working propertly.
     """
 
     maxDiff = None
 
     def setUp(self):
-        super(TestForecasting, self).setUp()
-        self.forecast_obj = self.env['forecasting.smoothing.techniques']
-        self.fdata_obj = self.env['forecasting.smoothing.data']
+        super(TestForecast, self).setUp()
+        self.forecast_obj = self.env['forecast']
+        self.fdata_obj = self.env['forecast.data']
 
     def compare(self, expected, real):
         """
@@ -114,7 +114,7 @@ class TestForecasting(common.TransactionCase):
         pandas.DataFrame object to make easier the comparation of the results.
 
         :test_file: the name of the file to extract the
-                    forecasting.smoothing.data expected results.
+                    forecast.data expected results.
         :returns: a pandas.DataFrame object with the expected results for
                   every value in the forecasting data.
         """
@@ -138,7 +138,6 @@ class TestForecasting(common.TransactionCase):
 
     def test_00(self):
         """ Test CRUD, Check models constrains and empty fields """
-        # TODO: integrete test with users groups (secutiry)
 
         # Test Create
         forecast = self.forecast_obj.create({})
@@ -426,3 +425,54 @@ class TestForecasting(common.TransactionCase):
             sma_forecast=101.66, sma_ma_error=14.07,
             cma_forecast=118.33, cma_ma_error=7.9,
         )
+
+    def test_06_1(self):
+        """Security: Manager can do anything
+        """
+        user_obj = self.env['res.users']
+        group_obj = self.env['res.groups']
+
+        users = user_obj.search([])
+        self.assertTrue(users)
+
+        # Get group information and check is empty
+        mngr_group = group_obj.browse(self.ref(
+            'forecasting_smoothing_techniques.forecast_group_manager'))
+        self.assertTrue(mngr_group)
+        self.assertFalse(mngr_group.users)
+
+        # add a demo user to the group
+        forecast_mngr = users[0]
+        mngr_group.users = [(6, 0, [forecast_mngr.id])]
+        self.assertTrue(mngr_group.users)
+
+        self.forecast_obj.sudo(forecast_mngr).create({})
+
+    def test_06_2(self):
+        """Security: Forecast User can not create or delete.
+        """
+        user_obj = self.env['res.users']
+        group_obj = self.env['res.groups']
+
+        users = user_obj.search([])
+        self.assertTrue(users)
+
+        # Get group information and check is empty
+        user_group = group_obj.browse(self.ref(
+            'forecasting_smoothing_techniques.forecast_group_user'))
+        self.assertTrue(user_group)
+        self.assertFalse(user_group.users)
+
+        # add a demo user to the group
+        forecast_user = users[0]
+        user_group.users = [(6, 0, [forecast_user.id])]
+        self.assertTrue(user_group.users)
+
+        self.forecast_obj.sudo(forecast_user).create({})
+
+        # TODO add any user test
+
+        # Test Create
+        # Test Read
+        # Test Write
+        # Test Duplicate

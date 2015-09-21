@@ -18,6 +18,10 @@ Installation
 
 To install this module, you need to:
 
+- Install python package used to calculate the forecasting: ``pandas`` and
+  ``numexpr``. You can install them manually ``sudo pip install package_name``
+  or you can use this repository ``requirement.txt`` field with the command
+  ``sudo pip install -r requirements.txt``.
 - Download this module from `Vauxoo/stock-forecasting <https://github.com/vauxoo/stock-forecasting>`_
 - Add the repository folder into your odoo addons-path.
 - Go to ``Settings > Module list`` search for the current name and click in
@@ -28,64 +32,54 @@ Configuration
 
 To configure this module, you need to:
 
-* There is not special configuration for this module.
+* Set the Forecasting permission for your user to be able to use this module
+  new features. Go to  ``Settings > Users > Users`` menu and select your user
+  from the list view. In the user form view activate the ``Forecasting``
+  permission as ``User`` or ``Manager``. Also need to activate the Technical
+  Features to see the Forecasting Menu.
+
+  .. image:: forecasting_permission.png
+     :alt: Forecasting Permission
 
 Usage
 =====
 
 To use this module, you need to:
 
-* You need to set the Forecasting permission for your user to be able to use
-  this module new features. Go to  ``Settings > Users > Users`` menu and
-  select your user from the list view. In the the user form view activate the
-  ``Forecasting`` permission as User or Manager.
-
-  .. image:: forecasting_permission.png
-     :alt: Forecasting Permission
-
 * Go to a ``Settings > Technical > Forecasting`` menu. There you will find
-  the ``Forecast`` submenu that will show you a list view with all the
+  the ``Forecasts`` sub menu that will show you a list view with all the
   Forecast Records. There you just simply can check or create a new
   forecasting.  Forecasting list view have the forecast ``ID`` and ``name``
   for quick identification, forecasting parameters, and some columns with a
   brief result summary.
 
   .. image:: forecasting_menu.png
-     :alt: Forecasting Menu and List view
+     :alt: Forecasting Menu and List View
 
-.. TODO: move all this to the product_forecasting module:..
-
-* Also, you could go to a ``Products`` form view and click on the
-  ``Forecasting`` button at the top right of the form.
-  
-
-  .. image:: product_button_forcast.png
-     :alt: Forecasting button at the Product Form View
-
-* When click over a Forecasting record o over the ``Create`` button will take
+* When click over a Forecasting record over the ``Create`` button will take
   you to the Forecasting Form View. This view show up at the top the basic
   forecast data and some buttons:
 
   - ``Reset Details``: Reset the default parameters of the forecasting.
-  - ``Clear``: Clear the forecasting incomming data values.
-  - ``List of Values``: Go to the list of the forecating incomming data so
+  - ``Clear``: Clear the forecasting incoming data values.
+  - ``List of Values``: Go to the list of the forecasting incoming data so
     you can edit them. Also you can see a table with all the forecasting
     results per data point (detail results).
+
+  In the first view of the forecasting form view you can view a graph with
+  the results of all the forecasting methods applied over the data you
+  submit.
 
   .. image:: forecast_buttons.png
      :alt: Forecast Buttons
 
-  In the first view of the forecasting form view you can view a graph with
-  the results of all the forecasting methods applied over the data you
-  sumbit.
-
 * In a more complete view of all the forecasting form view you can review the
-  total forecasting summary and the forecasting methods paramters to configure
-  to run the forecasting. If you have any doubt there is an explanation about
-  every forecasting methods so will be more easy to use.
+  total forecasting summary and the forecasting methods parameters to
+  configure to run the forecasting. If you have any doubt there is an
+  explanation about every forecasting methods so will be more easy to use.
 
-.. image:: forecast_form_view.png
-   :alt: Forecast Form View
+.. image:: forecast_complete_form_view.png
+   :alt: Forecast Complete Form View
 
 * When editing the forecast values (Click over the ``List of Values`` button)
   you can observe all the values in the table with all the detail forecasting
@@ -95,23 +89,33 @@ To use this module, you need to:
    :alt: Forecast Data List View
 
 * To edit the list of values just click over the value in the forecasting data
-  list view to go tothe form view and edit the values. You can edit the
+  list view to go to the form view and edit the values. You can edit the
   Sequence and the Value itself indicating in the ``Data Information``
-  section. As you can check all the ``Forecaasting Results`` for this
+  section. As you can check all the ``Forecasting Results`` for this
   particular point can be also review in the form view, this results fields
   are not editable only readonly.
 
 .. image:: forecast_data_form_view.png
    :alt: Forecasr Data Form View
 
-For further information, please visit:
-
-* https://www.odoo.com/forum/help-1
-
 Known issues / Roadmap
 ======================
 
-* There is not known issues.
+* Review problem can not create new forecast records even in the forecast
+  groups are correctly set.
+
+TODO
+====
+
+- Actual there is not way to throw an error when the forecast list of values
+  is not enough list of values to generate groups of n periods defined for the
+  sma, cma and wma forecasting methods.
+- The module name can be change to just forecast or forecasting.
+- The translation template of this module exists but the translations must be
+  added.
+- Review the translations spanish terms.
+- Hide the smoothing methods helps in the forecast form using the same concept
+  of the ifrs and user_story modules.
 
 Bug Tracker
 ===========

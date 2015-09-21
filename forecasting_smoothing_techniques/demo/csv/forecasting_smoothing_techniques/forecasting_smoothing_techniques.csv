@@ -1,7 +1,0 @@
-id,model,product_tmpl_id,name,period,holt_period,holt_alpha,beta
-str,str,ref,str,int,float,float,float
-fst_demo_01,forecasting.smoothing.techniques,product.product_product_7_product_template,Test 01,5,,,
-fst_demo_02,forecasting.smoothing.techniques,product.product_product_7_product_template,Test 02,5,,,
-fst_demo_03,forecasting.smoothing.techniques,product.product_product_7_product_template,Test 03,5,2,0.7,0.6
-fst_demo_04,forecasting.smoothing.techniques,product.product_product_7_product_template,Test 04,5,,,
-fst_demo_05,forecasting.smoothing.techniques,product.product_product_7_product_template,Test 05,3,,,
