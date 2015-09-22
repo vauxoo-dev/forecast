@@ -16,25 +16,17 @@ from openerp.exceptions import ValidationError
 class TestIrFilters(common.TransactionCase):
 
     """
-    Test that the ir.filters model work propertly w/wo a forecasting rule.
+    Test that the ir.filters model validation work properly
     """
 
     def setUp(self):
         super(TestIrFilters, self).setUp()
         self.irfilter_obj = self.env['ir.filters']
 
-        # # Get the data demo
-        self.rule = self.env['forecasting.rule'].browse(self.ref(
-            'forecasting_rules.forecast_rule_demo_01'))
-
-        # TODO check delete the data demo ir filter
-        # self.irfilter = self.filter_obj.browse(self.ref(
-        #     'forecasting_rules.filter_demo_01'))
-
     def create_filter(self, name='UNDEFINED', model_id='res.partner',
-                      context='{}', domain='[]', link_rule=True):
+                      context='{}', domain='[]'):
         """
-        Create a ir filter with the specificated arguments
+        Create a irfilter with the specified arguments
 
         :name: name of the ir.filter to create
         :model_id: model name to use in the ir.filter
@@ -51,12 +43,8 @@ class TestIrFilters(common.TransactionCase):
             'context': context,
             'domain': domain,
         })
-        if link_rule:
-            self.rule.filter_id = irfilter.id
         return irfilter
 
-    # TODO This test is a copy of the one in ir_filter_validate module. Find a way to repeat
-    # the test without repeat the code.
     def test_01(self):
         """Basic CRUD
         """
@@ -90,30 +78,30 @@ class TestIrFilters(common.TransactionCase):
         # self.assertTrue(irfilter2)
 
     def test_02(self):
-        """Create filter with a forecast rule.
+        """Create a filter with a invalid domain
         """
-        irfilter = self.create_filter(name='2', link_rule=False)
-        self.rule.filter_id = irfilter.id
-        self.assertEqual(self.rule.filter_id, irfilter)
-        self.assertTrue(irfilter.get_related_rules())
+        irfilter = self.create_filter(name='3')
+        error = 'The domain value you introduce is not a valid domain'
+        invalid_domain = [
+            'this is an error',
+            '[this is an error]',
+            '{}',
+        ]
+
+        for domain in invalid_domain:
+            with self.assertRaisesRegexp(ValidationError, error):
+                irfilter.domain = domain
 
     def test_03(self):
-        """Create a filter without the forecast_value and forecast_order keys in context
+        """Create a filter with a invalid context
         """
         irfilter = self.create_filter(name='4')
         error = 'The context value you introduce is not a valid context'
         invalid_context = [
-            "{'not_forecast_value': 'value'}",
+            'this is an error',
+            '[]',
+            '{value: bad}',
         ]
         for context in invalid_context:
             with self.assertRaisesRegexp(ValidationError, error):
                 irfilter.context = context
-
-    def test_04(self):
-        """Create a filter with a invalid model
-
-        This is manage from the orm.
-        """
-        irfilter = self.create_filter(name='5')
-        with self.assertRaises(ValueError):
-            irfilter.model_id = 'non.exist.model'

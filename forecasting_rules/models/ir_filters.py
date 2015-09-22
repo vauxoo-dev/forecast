@@ -155,27 +155,16 @@ class IrFilters(models.Model):
         """
         Check context introduce by user is valid, for that:
 
-            - Check context is a valid python expression
-            - Check context is a dictionary
             - Check context have ['forecast_order', 'forecast_value'] keys
             - Check context ['forecast_order', 'forecast_value'] keys are valid
 
         """
-        error = _('The context value you introduce is not a valid context')
+        super(IrFilters, self)._check_context()
         related_rules = self.get_related_rules()
+
         if related_rules:
-
-            # Check context is a valid python expression
-            try:
-                context = safe_eval(self.context)
-            except:
-                msg = _('Context is not a valid python expression')
-                raise ValidationError('\n'.join([error, msg, self.context]))
-
-            # Check context is a dictionary
-            if not isinstance(context, (dict,)):
-                msg = _('Context must be a dictionary')
-                raise ValidationError('\n'.join([error, msg, self.context]))
+            error = _('The context value you introduce is not a valid context')
+            context = safe_eval(self.context)
 
             # Check context have ['forecast_order', 'forecast_value'] keys
             missing_key_error = str()
@@ -183,7 +172,7 @@ class IrFilters(models.Model):
                 if nkey not in context.keys():
                     missing_key_error += _(
                         " - The {context_key} key must exist in the filter"
-                        " record to be use as forcasting rule.\n").format(
+                        " record to be use as forecasting rule.\n").format(
                             context_key=nkey)
             if missing_key_error:
                 raise ValidationError('\n'.join([error, missing_key_error,
@@ -191,31 +180,3 @@ class IrFilters(models.Model):
 
             # Check context ['forecast_order', 'forecast_value'] keys are valid
             self.process_filter_data()
-
-    @api.constrains('domain')
-    def _check_domain(self):
-        """ Check that the domain is valid:
-
-            - Check domain is a python expression
-            - Check domain is a list of tuples
-        """
-        error = _('The domain value you introduce is not a valid domain')
-        related_rules = self.get_related_rules()
-        if related_rules:
-
-            # Check domain is a valid python expression
-            try:
-                domain = safe_eval(self.domain)
-            except:
-                msg = _('Domain is not a valid python expression')
-                raise ValidationError('\n'.join([error, msg, self.domain]))
-
-            # Check domain is a list of tuples
-            if not isinstance(domain, (list,)):
-                msg = _('Domain must be a list')
-                raise ValidationError('\n'.join([error, msg, self.domain]))
-            else:
-                list_item_type = set([type(item) for item in domain])
-                if not list_item_type == set([type(tuple())]):
-                    msg = _('Domain must be a list of tuples')
-                    raise ValidationError('\n'.join([error, msg, self.domain]))
