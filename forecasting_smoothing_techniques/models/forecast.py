@@ -355,7 +355,6 @@ class Forecast(models.Model):
         else:
             return True
 
-    @api.one
     @api.depends('period')
     def _compute_cma(self):
         """
@@ -365,43 +364,43 @@ class Forecast(models.Model):
         Update the forecast fields ['cma_forecast', 'cma_ma_error']  and the
         forecast values ['cma', 'cma_error']
         """
-        # Get basic parameters to calculate
-        forecast = self.read()[0]
-        values = forecast.get('value_ids', [])
-        period = forecast.get('period')
+        for forecast in self:
+            # Get basic parameters to calculate
+            forecast_dict = forecast.read()[0]
+            values = forecast_dict.get('value_ids', [])
+            period = forecast_dict.get('period')
 
-        # Check minimum data
-        if not self.minimun_data(len(values), period, 'cma_warning'):
-            return
+            # Check minimum data
+            if not forecast.minimun_data(len(values), period, 'cma_warning'):
+                return
 
-        # Transform value data to Dataframe pandas object
-        data = self.get_values_dataframe(values, ['cma', 'cma_error'])
+            # Transform value data to Dataframe pandas object
+            data = forecast.get_values_dataframe(values, ['cma', 'cma_error'])
 
-        # Calculate Forecasting for the other points
-        for index in range(period, len(data) + 1):
-            value_set = data[:index].tail(period)
-            cma = value_set.value.sum() / float(period)
-            data.at[index, 'cma'] = cma
+            # Calculate Forecasting for the other points
+            for index in range(period, len(data) + 1):
+                value_set = data[:index].tail(period)
+                cma = value_set.value.sum() / float(period)
+                data.at[index, 'cma'] = cma
 
-        # Calculate mean errors
-        # TODO can be improve using mean() method
-        data = data.assign(
-            cma_error=lambda x: abs(x.cma - x.value),
-        )
+            # Calculate mean errors
+            # TODO can be improve using mean() method
+            data = data.assign(
+                cma_error=lambda x: abs(x.cma - x.value),
+            )
 
-        # Save global results
-        cma_forecast = cma
-        cma_ma_error = data.cma_error.sum() / data.cma.count()
+            # Save global results
+            cma_forecast = cma
+            cma_ma_error = data.cma_error.sum() / data.cma.count()
 
-        # Save individual values results
-        value_ids = self.get_value_ids_dict(data)
+            # Save individual values results
+            value_ids = forecast.get_value_ids_dict(data)
 
-        # Write values
-        self.cma_forecast = cma_forecast
-        self.cma_ma_error = cma_ma_error
-        self.write({'value_ids': value_ids})
+            # Write values
+            forecast.cma_forecast = cma_forecast
+            forecast.cma_ma_error = cma_ma_error
+            forecast.write({'value_ids': value_ids})
 
-    @api.one
     @api.depends('period')
     def _compute_sma(self):
         """
@@ -411,43 +410,44 @@ class Forecast(models.Model):
         Update the forecast fields ['sma_forecast', 'sma_ma_error']  and the
         forecast values ['sma', 'sma_error']
         """
-        # Get basic parameters to calculate
-        forecast = self.read()[0]
-        values = forecast.get('value_ids', [])
-        period = forecast.get('period')
+        for forecast in self:
+            # Get basic parameters to calculate
+            forecast_dic = forecast.read()[0]
+            values = forecast_dic.get('value_ids', [])
+            period = forecast_dic.get('period')
 
-        # Check minimum data
-        if not self.minimun_data(len(values), period + 1, 'sma_warning'):
-            return
+            # Check minimum data
+            if not forecast.minimun_data(len(values), period + 1,
+                                         'sma_warning'):
+                return
 
-        # Transform value data to Dataframe pandas object
-        data = self.get_values_dataframe(values, ['sma', 'sma_error'])
+            # Transform value data to Dataframe pandas object
+            data = forecast.get_values_dataframe(values, ['sma', 'sma_error'])
 
-        # Calculate Forecasting for the other points
-        for index in range(period+1, len(data) + 1):
-            value_set = data[:index-1].tail(period)
-            sma = value_set.value.sum() / float(period)
-            data.at[index, 'sma'] = sma
+            # Calculate Forecasting for the other points
+            for index in range(period+1, len(data) + 1):
+                value_set = data[:index-1].tail(period)
+                sma = value_set.value.sum() / float(period)
+                data.at[index, 'sma'] = sma
 
-        # Calculate mean errors
-        # TODO can be improve using mean() method
-        data = data.assign(
-            sma_error=lambda x: abs(x.sma - x.value),
-        )
+            # Calculate mean errors
+            # TODO can be improve using mean() method
+            data = data.assign(
+                sma_error=lambda x: abs(x.sma - x.value),
+            )
 
-        # Save global results
-        sma_forecast = sma
-        sma_ma_error = data.sma_error.sum() / data.sma.count()
+            # Save global results
+            sma_forecast = sma
+            sma_ma_error = data.sma_error.sum() / data.sma.count()
 
-        # Save individual values results
-        value_ids = self.get_value_ids_dict(data)
+            # Save individual values results
+            value_ids = forecast.get_value_ids_dict(data)
 
-        # Write values
-        self.sma_forecast = sma_forecast
-        self.sma_ma_error = sma_ma_error
-        self.write({'value_ids': value_ids})
+            # Write values
+            forecast.sma_forecast = sma_forecast
+            forecast.sma_ma_error = sma_ma_error
+            forecast.write({'value_ids': value_ids})
 
-    @api.one
     @api.depends('period')
     def _compute_wma(self):
         """
@@ -457,47 +457,47 @@ class Forecast(models.Model):
         Update the forecast fields ['wma_forecast', 'wma_ma_error']  and the
         forecast values ['wma', 'wma_error']
         """
-        # Get basic parameters to calculate
-        forecast = self.read()[0]
-        values = forecast.get('value_ids', [])
-        period = forecast.get('period')
+        for forecast in self:
+            # Get basic parameters to calculate
+            forecast_dict = forecast.read()[0]
+            values = forecast_dict.get('value_ids', [])
+            period = forecast_dict.get('period')
 
-        # Check minimum data
-        if not self.minimun_data(len(values), period, 'wma_warning'):
-            return
+            # Check minimum data
+            if not forecast.minimun_data(len(values), period, 'wma_warning'):
+                return
 
-        # Transform value data to Dataframe pandas object
-        data = self.get_values_dataframe(values, ['wma', 'wma_error'])
+            # Transform value data to Dataframe pandas object
+            data = forecast.get_values_dataframe(values, ['wma', 'wma_error'])
 
-        weight = (float(period) * (float(period) + 1.0)) / 2.0
+            weight = (float(period) * (float(period) + 1.0)) / 2.0
 
-        # Calculate Forecasting for the other points
-        for index in range(period, len(data) + 1):
-            value_set = data[:index].tail(period)
-            wma = sum([
-                ((day) / weight) * value
-                for (day, value) in enumerate(value_set.value.values, 1)])
-            data.at[index, 'wma'] = wma
+            # Calculate Forecasting for the other points
+            for index in range(period, len(data) + 1):
+                value_set = data[:index].tail(period)
+                wma = sum([
+                    ((day) / weight) * value
+                    for (day, value) in enumerate(value_set.value.values, 1)])
+                data.at[index, 'wma'] = wma
 
-        # Calculate mean errors
-        # TODO can be improve using mean() method
-        data = data.assign(
-            wma_error=lambda x: abs(x.wma - x.value),
-        )
+            # Calculate mean errors
+            # TODO can be improve using mean() method
+            data = data.assign(
+                wma_error=lambda x: abs(x.wma - x.value),
+            )
 
-        # Save global results
-        wma_forecast = wma
-        wma_ma_error = data.wma_error.sum() / data.wma.count()
+            # Save global results
+            wma_forecast = wma
+            wma_ma_error = data.wma_error.sum() / data.wma.count()
 
-        # Save individual values results
-        value_ids = self.get_value_ids_dict(data)
+            # Save individual values results
+            value_ids = forecast.get_value_ids_dict(data)
 
-        # Write values
-        self.wma_forecast = wma_forecast
-        self.wma_ma_error = wma_ma_error
-        self.write({'value_ids': value_ids})
+            # Write values
+            forecast.wma_forecast = wma_forecast
+            forecast.wma_ma_error = wma_ma_error
+            forecast.write({'value_ids': value_ids})
 
-    @api.one
     @api.depends('exp_alpha')
     def _compute_exp(self):
         """
@@ -515,75 +515,76 @@ class Forecast(models.Model):
             'es3', 'es3_error' ]
             ]
         """
+        for forecast in self:
+            # Get basic parameters to calculate
+            forecast_dict = forecast.read()[0]
+            values = forecast_dict.get('value_ids', [])
+            alpha = forecast_dict.get('exp_alpha')
 
-        # Get basic parameters to calculate
-        forecast = self.read()[0]
-        values = forecast.get('value_ids', [])
-        alpha = forecast.get('exp_alpha')
+            # Check minimum data
+            if not forecast.minimun_data(len(values), 2, 'exp_warning'):
+                return
 
-        # Check minimum data
-        if not self.minimun_data(len(values), 2, 'exp_warning'):
-            return
+            # Transform value data to Dataframe pandas object
+            data = forecast.get_values_dataframe(
+                values, ['es1', 'es1_error',
+                         'es2', 'es2_error',
+                         'es3', 'es3_error'])
 
-        # Transform value data to Dataframe pandas object
-        data = self.get_values_dataframe(values, ['es1', 'es1_error',
-                                                  'es2', 'es2_error',
-                                                  'es3', 'es3_error'])
+            # Calculate Forecasting per first point
+            val1 = data.loc[2].value
+            data[:1] = data.query('sequence == 1').assign(
+                es1=val1, es2=val1, es3=val1)
 
-        # Calculate Forecasting per first point
-        val1 = data.loc[2].value
-        data[:1] = data.query('sequence == 1').assign(
-            es1=val1, es2=val1, es3=val1)
+            # Calculate Forecasting for the other points
+            for index in range(2, len(data) + 1):
+                value = data.loc[index].value
+                last_item = data.loc[index-1]
+                es1 = alpha * value + (1.0 - alpha) * last_item.es1
+                es2 = alpha * es1 + (1.0 - alpha) * last_item.es2
+                es3 = alpha * es2 + (1.0 - alpha) * last_item.es3
+                data.at[index, 'es1'] = es1
+                data.at[index, 'es2'] = es2
+                data.at[index, 'es3'] = es3
 
-        # Calculate Forecasting for the other points
-        for index in range(2, len(data) + 1):
-            value = data.loc[index].value
-            last_item = data.loc[index-1]
-            es1 = alpha * value + (1.0 - alpha) * last_item.es1
-            es2 = alpha * es1 + (1.0 - alpha) * last_item.es2
-            es3 = alpha * es2 + (1.0 - alpha) * last_item.es3
-            data.at[index, 'es1'] = es1
-            data.at[index, 'es2'] = es2
-            data.at[index, 'es3'] = es3
+            # Calculate mean errors
+            # TODO can be improve using mean() method
+            data = data.assign(
+                es1_error=lambda x: abs(x.es1 - x.value),
+                es2_error=lambda x: abs(x.es2 - x.value),
+                es3_error=lambda x: abs(x.es3 - x.value),
+            )
 
-        # Calculate mean errors
-        # TODO can be improve using mean() method
-        data = data.assign(
-            es1_error=lambda x: abs(x.es1 - x.value),
-            es2_error=lambda x: abs(x.es2 - x.value),
-            es3_error=lambda x: abs(x.es3 - x.value),
-        )
+            # Save global results
+            last = data.tail(1).iloc[-1]
+            a2 = 2.0 * last.es1 - last.es2
+            b2 = (alpha/(1.0-alpha)) * (last.es1 - last.es2)
+            a3 = 3.0 * last.es1 - 3.0 * last.es2 + last.es3
+            b3 = ((alpha/(2.0 * pow(1.0-alpha, 2.0))) * (
+                (6.0 - 5.0 * alpha) * last.es1
+                - (10.0 - 8.0 * alpha) * last.es2
+                + (4.0 - 3.0 * alpha) * last.es3))
+            c3 = (pow((alpha/(1.0 - alpha)), 2.0) *
+                  (last.es1 - 2.0 * last.es2 + last.es3))
+            single_forecast = last.es1
+            double_forecast = a2 + b2
+            triple_forecast = a3 + b3 + 0.5 * c3
+            single_ma_error = data.es1_error.sum() / len(data)
+            double_ma_error = data.es2_error.sum() / len(data)
+            triple_ma_error = data.es3_error.sum() / len(data)
 
-        # Save global results
-        last = data.tail(1).iloc[-1]
-        a2 = 2.0 * last.es1 - last.es2
-        b2 = (alpha/(1.0-alpha)) * (last.es1 - last.es2)
-        a3 = 3.0 * last.es1 - 3.0 * last.es2 + last.es3
-        b3 = ((alpha/(2.0 * pow(1.0-alpha, 2.0))) * (
-            (6.0 - 5.0 * alpha) * last.es1 - (10.0 - 8.0 * alpha) * last.es2
-            + (4.0 - 3.0 * alpha) * last.es3))
-        c3 = (pow((alpha/(1.0 - alpha)), 2.0) *
-              (last.es1 - 2.0 * last.es2 + last.es3))
-        single_forecast = last.es1
-        double_forecast = a2 + b2
-        triple_forecast = a3 + b3 + 0.5 * c3
-        single_ma_error = data.es1_error.sum() / len(data)
-        double_ma_error = data.es2_error.sum() / len(data)
-        triple_ma_error = data.es3_error.sum() / len(data)
+            # Save individual values results
+            value_ids = forecast.get_value_ids_dict(data)
 
-        # Save individual values results
-        value_ids = self.get_value_ids_dict(data)
+            # Write values
+            forecast.single_forecast = single_forecast
+            forecast.double_forecast = double_forecast
+            forecast.triple_forecast = triple_forecast
+            forecast.single_ma_error = single_ma_error
+            forecast.double_ma_error = double_ma_error
+            forecast.triple_ma_error = triple_ma_error
+            forecast.write({'value_ids': value_ids})
 
-        # Write values
-        self.single_forecast = single_forecast
-        self.double_forecast = double_forecast
-        self.triple_forecast = triple_forecast
-        self.single_ma_error = single_ma_error
-        self.double_ma_error = double_ma_error
-        self.triple_ma_error = triple_ma_error
-        self.write({'value_ids': value_ids})
-
-    @api.one
     @api.depends('holt_alpha', 'beta', 'holt_period')
     def _compute_holt(self):
         """
@@ -593,56 +594,57 @@ class Forecast(models.Model):
         Update the forecast fields ['holt_forecast', 'holt_ma_error'] and the
         forecast values ['holt', 'holt_error', 'holt_level', 'holt_trend']
         """
-        # Get basic parameters to make the forecasting calculation
-        forecast = self.read()[0]
-        values = forecast.get('value_ids', [])
-        alpha = forecast.get('holt_alpha')
-        beta = forecast.get('beta')
-        period = forecast.get('holt_period')
+        for forecast in self:
+            # Get basic parameters to make the forecasting calculation
+            forecast_dict = forecast.read()[0]
+            values = forecast_dict.get('value_ids', [])
+            alpha = forecast_dict.get('holt_alpha')
+            beta = forecast_dict.get('beta')
+            period = forecast_dict.get('holt_period')
 
-        # Check minimum data
-        if not self.minimun_data(len(values), 3, 'holt_warning'):
-            return
+            # Check minimum data
+            if not forecast.minimun_data(len(values), 3, 'holt_warning'):
+                return
 
-        # Transform value data to pandas.Dataframe object
-        data = self.get_values_dataframe(values, [
-            'holt', 'holt_level', 'holt_trend', 'holt_error'])
+            # Transform value data to pandas.Dataframe object
+            data = forecast.get_values_dataframe(values, [
+                'holt', 'holt_level', 'holt_trend', 'holt_error'])
 
-        # NOTE: Forecasting first point do not exist for this forcasting
+            # NOTE: Forecasting first point do not exist for this forcasting
 
-        # Calculate Forecasting second point
-        holt_level = data.loc[2].value,
-        holt_trend = data.loc[2].value - data.loc[1].value,
+            # Calculate Forecasting second point
+            holt_level = data.loc[2].value,
+            holt_trend = data.loc[2].value - data.loc[1].value,
 
-        data[1:2] = data.query('sequence == 2').assign(
-            holt_level=holt_level, holt_trend=holt_trend)
+            data[1:2] = data.query('sequence == 2').assign(
+                holt_level=holt_level, holt_trend=holt_trend)
 
-        # Calculate Forecasting for the other 2+n points
-        for index in range(3, len(data) + 1):
-            value = data.loc[index].value
-            prev = data.loc[index-1]
-            holt_func = prev.holt_level + prev.holt_trend
-            holt_level = alpha * value + (1.0 - alpha) * holt_func
-            holt_trend = (
-                beta * (holt_level - prev.holt_level) + (1.0 - beta) *
-                prev.holt_trend)
-            data.at[index, 'holt'] = holt_func
-            data.at[index, 'holt_level'] = holt_level
-            data.at[index, 'holt_trend'] = holt_trend
+            # Calculate Forecasting for the other 2+n points
+            for index in range(3, len(data) + 1):
+                value = data.loc[index].value
+                prev = data.loc[index-1]
+                holt_func = prev.holt_level + prev.holt_trend
+                holt_level = alpha * value + (1.0 - alpha) * holt_func
+                holt_trend = (
+                    beta * (holt_level - prev.holt_level) + (1.0 - beta) *
+                    prev.holt_trend)
+                data.at[index, 'holt'] = holt_func
+                data.at[index, 'holt_level'] = holt_level
+                data.at[index, 'holt_trend'] = holt_trend
 
-        # Calculate mean error
-        # TODO can be improve using mean() method?
-        data = data.assign(holt_error=lambda x: abs(x.holt - x.value))
+            # Calculate mean error
+            # TODO can be improve using mean() method?
+            data = data.assign(holt_error=lambda x: abs(x.holt - x.value))
 
-        # Save global results
-        last = data.tail(1).iloc[-1]
-        holt_forecast = last.holt_level + period * last.holt_trend
-        holt_ma_error = data.holt_error.sum() / (len(data) - 3.0)
+            # Save global results
+            last = data.tail(1).iloc[-1]
+            holt_forecast = last.holt_level + period * last.holt_trend
+            holt_ma_error = data.holt_error.sum() / (len(data) - 3.0)
 
-        # Save individual values results
-        value_ids = self.get_value_ids_dict(data)
+            # Save individual values results
+            value_ids = forecast.get_value_ids_dict(data)
 
-        # Write values
-        self.holt_forecast = holt_forecast
-        self.holt_ma_error = holt_ma_error
-        self.write({'value_ids': value_ids})
+            # Write values
+            forecast.holt_forecast = holt_forecast
+            forecast.holt_ma_error = holt_ma_error
+            forecast.write({'value_ids': value_ids})

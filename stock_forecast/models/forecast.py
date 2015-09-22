@@ -27,7 +27,6 @@ class ForecastingSmoothingTechniques(models.Model):
             'id', '=', product_id)])
         return product
 
-    @api.one
     @api.depends('name', 'product_tmpl_id')
     def _compute_display_name(self):
         """
@@ -38,15 +37,18 @@ class ForecastingSmoothingTechniques(models.Model):
 
         :return: the forecasting name with the product.template name as prefix.
         """
-        name = self.name
-        product = self.product_tmpl_id and self.product_tmpl_id.name or False
-        if name and product:
-            display_name = '{product}: {name}'
-        elif name:
-            display_name = '{name}'
-        elif product:
-            display_name = '{product}: No Forecast Name'
-        self.display_name = display_name.format(product=product, name=name)
+        for forecast in self:
+            name = forecast.name
+            product = (forecast.product_tmpl_id
+                       and forecast.product_tmpl_id.name or False)
+            if name and product:
+                display_name = '{product}: {name}'
+            elif name:
+                display_name = '{name}'
+            elif product:
+                display_name = '{product}: No Forecast Name'
+            forecast.display_name = display_name.format(
+                product=product, name=name)
 
     display_name = fields.Char(
         string='Name', compute='_compute_display_name')

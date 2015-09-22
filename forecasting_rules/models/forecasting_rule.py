@@ -30,11 +30,11 @@ class ForecastingRule(models.Model):
     display_name = fields.Char(
         string='Name', compute='_compute_display_name')
 
-    @api.one
     @api.depends('name')
     def _compute_display_name(self):
-        names = [str(self.id), self.name]
-        self.display_name = ' '.join(names)
+        for rule in self:
+            names = [str(rule.id), rule.name]
+            rule.display_name = ' '.join(names)
 
     @api.constrains('model', 'filter_id')
     def _check_model_id(self):
