@@ -51,20 +51,20 @@
                     <field name="value"/>
                     <field name="forecast_id" invisible="1"/>
                     <field name="sma"/>
-                    <field name="sma_error"/>
                     <field name="cma"/>
-                    <field name="cma_error"/>
                     <field name="wma"/>
-                    <field name="wma_error"/>
                     <field name="es1"/>
-                    <field name="es1_error"/>
                     <field name="es2"/>
-                    <field name="es2_error"/>
                     <field name="es3"/>
-                    <field name="es3_error"/>
                     <field name="holt"/>
                     <field name="holt_level"/>
                     <field name="holt_trend"/>
+                    <field name="sma_error"/>
+                    <field name="cma_error"/>
+                    <field name="wma_error"/>
+                    <field name="es1_error"/>
+                    <field name="es2_error"/>
+                    <field name="es3_error"/>
                     <field name="holt_error"/>
                 </tree>
             </field>
@@ -95,7 +95,7 @@
         </record>
 
         <record id="action_view_forecasting_data" model="ir.actions.act_window">
-            <field name="name">Forecasting Data</field>
+            <field name="name">Forecast Data</field>
             <field name="res_model">forecast.data</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,graph</field>
@@ -374,18 +374,23 @@
             <field name="name">stock.forecasting.view.tree</field>
             <field name="model">forecast</field>
             <field name="arch" type="xml">
-                <tree string="Forecasting by Smoothing Techniques">
+                <tree string="Forecasts">
                     <field name="id"/>
                     <field name="name"/>
-                    <field name="period" string="MA Period"/>
                     <field name="sma_forecast" string="SMA"/>
                     <field name="cma_forecast" string="CMA"/>
                     <field name="wma_forecast" string="WMA"/>
-                    <field name="single_forecast" string="EXP1"/>
-                    <field name="double_forecast" string="EXP2"/>
-                    <field name="triple_forecast" string="EXP3"/>
-                    <field name="holt_period" string="Holt Future Period"/>
+                    <field name="single_forecast" string="ES1"/>
+                    <field name="double_forecast" string="ES2"/>
+                    <field name="triple_forecast" string="ES3"/>
                     <field name="holt_forecast" string="HOLT"/>
+                    <field name="sma_ma_error" string="SMA ERROR"/>
+                    <field name="cma_ma_error" string="CMA ERROR"/>
+                    <field name="wma_ma_error" string="WMA ERROR"/>
+                    <field name="single_ma_error" string="ES1 ERROR"/>
+                    <field name="double_ma_error" string="ES2 ERROR"/>
+                    <field name="triple_ma_error" string="ES3 ERROR"/>
+                    <field name="holt_ma_error" string="HOLT ERROR"/>
                 </tree>
             </field>
         </record>
