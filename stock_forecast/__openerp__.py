@@ -17,8 +17,8 @@
     "website": "http://www.vauxoo.com/",
     "category": "",
     "depends": [
-        "product",
-        "forecasting_smoothing_techniques",
+        "stock_account",
+        "forecasting_rules",
     ],
     "data": [
         "views/forecasting_smoothing_techniques_view.xml",
