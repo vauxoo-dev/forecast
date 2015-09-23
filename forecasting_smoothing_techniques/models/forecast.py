@@ -106,6 +106,7 @@ class Forecast(models.Model):
         compute='_compute_sma',
         help="Mean Absolute Error for SMA"
     )
+    sma_warning = fields.Char('SMA WARNING')
 
     # Cumulative Moving Average
     cma_forecast = fields.Float(
@@ -118,6 +119,7 @@ class Forecast(models.Model):
         compute='_compute_cma',
         help="Mean Absolute Error for CMA"
     )
+    cma_warning = fields.Char('CMA WARNING')
 
     # Weighted Moving Average
     wma_forecast = fields.Float(
@@ -130,6 +132,7 @@ class Forecast(models.Model):
         compute='_compute_wma',
         help="Mean Absolute Error for WMA"
     )
+    wma_warning = fields.Char('WMA WARNING')
 
     # Single, Double, & Triple Exponential Smoothing
     exp_alpha = fields.Float(
@@ -169,6 +172,7 @@ class Forecast(models.Model):
         compute='_compute_exp',
         help="Mean Absolute Error for TES"
     )
+    exp_warning = fields.Char('EXP WARNING')
 
     # Holt's Linear Smoothing
     holt_alpha = fields.Float(
@@ -193,6 +197,7 @@ class Forecast(models.Model):
         compute='_compute_holt',
         help="Mean Absolute Error for HOLT"
     )
+    holt_warning = fields.Char('HOLT WARNING')
 
     @api.constrains('period')
     def _check_period(self):
@@ -327,6 +332,29 @@ class Forecast(models.Model):
             return True
         return False
 
+    def minimun_data(self, nvalues, minimum, warning_field):
+        """Check is the is forecast data and if the data is  at least the
+        minimum to calculate the forecast. If not will write an error over the
+        correspond forecast method warning field.
+
+        :nvalues: length of the forecast data list
+        :minimum: value to compare the values
+        :warning_field: warning field to write the non enough data.
+
+        :return: True if minimum data, False if not enough
+        """
+        error = (_('Not not enough data to calculate forecast method') +
+                 ' >= ' + str(minimum))
+        error = error.format(fst=warning_field.split('_')[0].upper())
+
+        if not nvalues:
+            return False
+        elif nvalues < minimum:
+            self.write({warning_field: error})
+            return False
+        else:
+            return True
+
     @api.one
     @api.depends('period')
     def _compute_cma(self):
@@ -343,9 +371,7 @@ class Forecast(models.Model):
         period = forecast.get('period')
 
         # Check minimum data
-        nvalues = len(values)
-        if not nvalues or nvalues < period:
-            # Mark that the forecasting was not calculate.
+        if not self.minimun_data(len(values), period, 'cma_warning'):
             return
 
         # Transform value data to Dataframe pandas object
@@ -391,9 +417,7 @@ class Forecast(models.Model):
         period = forecast.get('period')
 
         # Check minimum data
-        nvalues = len(values)
-        if not nvalues or nvalues < period + 1:
-            # mark that the forecasting was not calculate.
+        if not self.minimun_data(len(values), period + 1, 'sma_warning'):
             return
 
         # Transform value data to Dataframe pandas object
@@ -439,9 +463,7 @@ class Forecast(models.Model):
         period = forecast.get('period')
 
         # Check minimum data
-        nvalues = len(values)
-        if not nvalues or nvalues < period:
-            # mark that the forecasting was not calculate.
+        if not self.minimun_data(len(values), period, 'wma_warning'):
             return
 
         # Transform value data to Dataframe pandas object
@@ -500,9 +522,7 @@ class Forecast(models.Model):
         alpha = forecast.get('exp_alpha')
 
         # Check minimum data
-        nvalues = len(values)
-        if not nvalues or nvalues < 2:
-            # mark that the forecasting was not calculate.
+        if not self.minimun_data(len(values), 2, 'exp_warning'):
             return
 
         # Transform value data to Dataframe pandas object
@@ -581,9 +601,7 @@ class Forecast(models.Model):
         period = forecast.get('holt_period')
 
         # Check minimum data
-        nvalues = len(values)
-        if not nvalues or nvalues < 3:
-            # Mark that the forecasting was not calculate.
+        if not self.minimun_data(len(values), 3, 'holt_warning'):
             return
 
         # Transform value data to pandas.Dataframe object
