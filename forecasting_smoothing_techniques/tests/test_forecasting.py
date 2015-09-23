@@ -450,7 +450,6 @@ class TestForecast(common.TransactionCase):
         self.assertEqual(len(forecast.value_ids), 1)
         forecast.read([])
 
-
     def test_06_1(self):
         """Security: Manager can do anything
         """
