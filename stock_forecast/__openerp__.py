@@ -23,6 +23,7 @@
     "data": [
         "views/forecasting_smoothing_techniques_view.xml",
         "views/product_view.xml",
+        "wizard/stock_demand_view.xml",
     ],
     "demo": [
         "demo/stock_forecast_demo.xml",

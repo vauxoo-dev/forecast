@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<openerp>
+    <data>
+
+        <record id="view_wizard_demand_history" model="ir.ui.view">
+            <field name="name">Stock Demand</field>
+            <field name="model">stock.demand</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <group>
+                        <field name="product_id"/>
+                        <field name="location_id"/>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                    </group>
+                    <footer>
+                        <button name="open_table" string="Retrieve the Inventory Value" type="object"  class="oe_highlight"  />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="action_wizard_stock_demand_history" model="ir.actions.act_window">
+            <field name="name">Stock Demand</field>
+            <field name="res_model">stock.demand</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_wizard_demand_history"/>
+            <field name="target">new</field>
+        </record>
+        <menuitem id="menu_action_wizard_demand_history" action="action_wizard_stock_demand_history" parent="stock.next_id_61" sequence="1"/>
+
+        <record id="view_stock_history_report_tree" model="ir.ui.view">
+            <field name="name">Stock History</field>
+            <field name="model">stock.history</field>
+            <field name="priority">26</field>
+            <field name="inherit_id" ref="stock_account.view_stock_history_report_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='quantity']" position="replace">
+                    <field name="quantity_required" sum="Qty Demanded"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>
