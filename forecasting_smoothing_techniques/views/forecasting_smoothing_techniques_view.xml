@@ -5,7 +5,7 @@
             <field name="name">stock.forecasting.data.form</field>
             <field name="model">forecast.data</field>
             <field name="arch" type="xml">
-                <form string="Forecasting by Smoothing Techniques">
+                <form string="Forecast Data">
                     <group string="Data information" colspan="4" col="4">
                         <group colspan="2">
                             <field name="sequence"/>
@@ -45,7 +45,7 @@
             <field name="name">stock.forecasting.data.tree</field>
             <field name="model">forecast.data</field>
             <field name="arch" type="xml">
-                <tree string="Forecasting by Smoothing Techniques">
+                <tree string="Forecast Data">
                     <field name="sequence"/>
                     <field name="label"/>
                     <field name="value"/>
@@ -73,7 +73,7 @@
             <field name="name">stock.forecasting.data.search</field>
             <field name="model">forecast.data</field>
             <field name="arch" type="xml">
-                <search string="Forecasting by Smoothing Techniques">
+                <search string="Forecast Data">
                     <field name="sequence"/>
                     <field name="label"/>
                     <field name="value"/>
@@ -84,7 +84,7 @@
             <field name="name">stock.forecasting.data.graph</field>
             <field name="model">forecast.data</field>
             <field name="arch" type="xml">
-                <graph string="Forecasting by Smoothing Techniques">
+                <graph string="Forecast Data">
                     <field name="sequence"/>
                     <field name="value" operator="+"/>
                     <field name="sma" operator="+"/>
@@ -412,7 +412,7 @@
             <field name="name">stock.forecasting.view.tree</field>
             <field name="model">forecast</field>
             <field name="arch" type="xml">
-                <tree string="Forecasts">
+                <tree string="Forecast">
                     <field name="id"/>
                     <field name="name"/>
                     <field name="sma_forecast" string="SMA"/>
@@ -437,7 +437,7 @@
             <field name="name">stock.forecasting.view.search</field>
             <field name="model">forecast</field>
             <field name="arch" type="xml">
-                <search string="Forecasting by Smoothing Techniques">
+                <search string="Forecast">
                     <field name="id"/>
                     <field name="name"/>
                 </search>
@@ -445,7 +445,7 @@
         </record>
 
         <record id="action_view_forecasting" model="ir.actions.act_window">
-            <field name="name">Forecasting by Smoothing Techniques</field>
+            <field name="name">Forecast</field>
             <field name="res_model">forecast</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
