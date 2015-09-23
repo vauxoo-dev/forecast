@@ -98,6 +98,13 @@ To use this module, you need to:
 .. image:: forecast_data_form_view.png
    :alt: Forecasr Data Form View
 
+* If the forecast values are not length enough for calculate the forecast then
+  will show at the top of the form a list with the warnings and what to do to
+  eliminate then.
+
+.. image:: forecast_data_warning.png
+   :alt: Forecast Data Warning
+
 Known issues / Roadmap
 ======================
 
