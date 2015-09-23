@@ -343,7 +343,9 @@ class Forecast(models.Model):
         period = forecast.get('period')
 
         # Check minimum data
-        if not values:
+        nvalues = len(values)
+        if not nvalues or nvalues < period:
+            # Mark that the forecasting was not calculate.
             return
 
         # Transform value data to Dataframe pandas object
@@ -389,7 +391,9 @@ class Forecast(models.Model):
         period = forecast.get('period')
 
         # Check minimum data
-        if not values:
+        nvalues = len(values)
+        if not nvalues or nvalues < period + 1:
+            # mark that the forecasting was not calculate.
             return
 
         # Transform value data to Dataframe pandas object
@@ -435,7 +439,9 @@ class Forecast(models.Model):
         period = forecast.get('period')
 
         # Check minimum data
-        if not values:
+        nvalues = len(values)
+        if not nvalues or nvalues < period:
+            # mark that the forecasting was not calculate.
             return
 
         # Transform value data to Dataframe pandas object
@@ -494,7 +500,9 @@ class Forecast(models.Model):
         alpha = forecast.get('exp_alpha')
 
         # Check minimum data
-        if not values:
+        nvalues = len(values)
+        if not nvalues or nvalues < 2:
+            # mark that the forecasting was not calculate.
             return
 
         # Transform value data to Dataframe pandas object
@@ -573,7 +581,9 @@ class Forecast(models.Model):
         period = forecast.get('holt_period')
 
         # Check minimum data
-        if not values:
+        nvalues = len(values)
+        if not nvalues or nvalues < 3:
+            # Mark that the forecasting was not calculate.
             return
 
         # Transform value data to pandas.Dataframe object
