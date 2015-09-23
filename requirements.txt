@@ -1,2 +1,2 @@
-pandas
-numexpr
+pandas==0.16.2
+numexpr==2.4.4
