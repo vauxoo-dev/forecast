@@ -658,5 +658,12 @@
       <field name="value">10.5</field>
       <field name="forecast_id" ref="fst_demo_06"/>
     </record>
+
+    <function model="forecast" name="read" eval="[ref('fst_demo_01')]"/>
+    <function model="forecast" name="read" eval="[ref('fst_demo_02')]"/>
+    <function model="forecast" name="read" eval="[ref('fst_demo_03')]"/>
+    <function model="forecast" name="read" eval="[ref('fst_demo_04')]"/>
+    <function model="forecast" name="read" eval="[ref('fst_demo_05')]"/>
+    <function model="forecast" name="read" eval="[ref('fst_demo_06')]"/>
   </data>
 </openerp>
