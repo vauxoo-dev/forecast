@@ -10,10 +10,10 @@
       <field name="period">5</field>
     </record>
     <record id="fst_demo_03" model="forecast">
-      <field name="holt_alpha">0.7</field>
       <field name="name">Test 03</field>
       <field name="period">5</field>
       <field name="holt_period">2</field>
+      <field name="holt_alpha">0.7</field>
       <field name="beta">0.6</field>
     </record>
     <record id="fst_demo_04" model="forecast">
@@ -23,6 +23,10 @@
     <record id="fst_demo_05" model="forecast">
       <field name="name">Test 05</field>
       <field name="period">3</field>
+    </record>
+    <record id="fst_demo_06" model="forecast">
+      <field name="name">(FST Test 06) Forecast non minimun data</field>
+      <field name="period">5</field>
     </record>
     <record id="fsd_demo_01_01" model="forecast.data">
       <field name="sequence">1</field>
@@ -649,5 +653,17 @@
       <field name="value">150</field>
       <field name="forecast_id" ref="fst_demo_05"/>
     </record>
+    <record id="fsd_demo_06_01" model="forecast.data">
+      <field name="sequence">1</field>
+      <field name="value">10.5</field>
+      <field name="forecast_id" ref="fst_demo_06"/>
+    </record>
+
+    <function model="forecast" name="read" eval="[ref('fst_demo_01')]"/>
+    <function model="forecast" name="read" eval="[ref('fst_demo_02')]"/>
+    <function model="forecast" name="read" eval="[ref('fst_demo_03')]"/>
+    <function model="forecast" name="read" eval="[ref('fst_demo_04')]"/>
+    <function model="forecast" name="read" eval="[ref('fst_demo_05')]"/>
+    <function model="forecast" name="read" eval="[ref('fst_demo_06')]"/>
   </data>
 </openerp>

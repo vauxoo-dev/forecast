@@ -5,7 +5,7 @@
             <field name="name">stock.forecasting.data.form</field>
             <field name="model">forecast.data</field>
             <field name="arch" type="xml">
-                <form string="Forecasting by Smoothing Techniques">
+                <form string="Forecast Data">
                     <group string="Data information" colspan="4" col="4">
                         <group colspan="2">
                             <field name="sequence"/>
@@ -45,26 +45,26 @@
             <field name="name">stock.forecasting.data.tree</field>
             <field name="model">forecast.data</field>
             <field name="arch" type="xml">
-                <tree string="Forecasting by Smoothing Techniques">
+                <tree string="Forecast Data">
                     <field name="sequence"/>
                     <field name="label"/>
                     <field name="value"/>
                     <field name="forecast_id" invisible="1"/>
                     <field name="sma"/>
-                    <field name="sma_error"/>
                     <field name="cma"/>
-                    <field name="cma_error"/>
                     <field name="wma"/>
-                    <field name="wma_error"/>
                     <field name="es1"/>
-                    <field name="es1_error"/>
                     <field name="es2"/>
-                    <field name="es2_error"/>
                     <field name="es3"/>
-                    <field name="es3_error"/>
                     <field name="holt"/>
                     <field name="holt_level"/>
                     <field name="holt_trend"/>
+                    <field name="sma_error"/>
+                    <field name="cma_error"/>
+                    <field name="wma_error"/>
+                    <field name="es1_error"/>
+                    <field name="es2_error"/>
+                    <field name="es3_error"/>
                     <field name="holt_error"/>
                 </tree>
             </field>
@@ -73,7 +73,7 @@
             <field name="name">stock.forecasting.data.search</field>
             <field name="model">forecast.data</field>
             <field name="arch" type="xml">
-                <search string="Forecasting by Smoothing Techniques">
+                <search string="Forecast Data">
                     <field name="sequence"/>
                     <field name="label"/>
                     <field name="value"/>
@@ -84,7 +84,7 @@
             <field name="name">stock.forecasting.data.graph</field>
             <field name="model">forecast.data</field>
             <field name="arch" type="xml">
-                <graph string="Forecasting by Smoothing Techniques">
+                <graph string="Forecast Data">
                     <field name="sequence"/>
                     <field name="value" operator="+"/>
                     <field name="sma" operator="+"/>
@@ -95,7 +95,7 @@
         </record>
 
         <record id="action_view_forecasting_data" model="ir.actions.act_window">
-            <field name="name">Forecasting Data</field>
+            <field name="name">Forecast Data</field>
             <field name="res_model">forecast.data</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,graph</field>
@@ -106,7 +106,7 @@
             <field name="name">stock.forecasting.view.form</field>
             <field name="model">forecast</field>
             <field name="arch" type="xml">
-                <form string="Forecasting by Smoothing Techniques">
+                <form string="Forecast">
                     <sheet>
                         <div class="row">
                             <div class="col-md-2">
@@ -119,8 +119,46 @@
                             </div>
                             <div class="col-md-5 oe_button_box" name="button_box" style="width: 41.6667%">
                                 <button name="reset_defaults" type="object" string="Reset Defaults" class="oe_inline oe_stat_button" icon="fa-refresh" help="Reset the forecasting methods default parameter values"/>
-                                <button name="clear" type="object" string="Clear" class="oe_inline oe_stat_button" icon="fa-times-circle" help="Clear the forecast values data to run the forcasting"/>
+                                <button name="clear" type="object" string="Clear" class="oe_inline oe_stat_button" icon="fa-times-circle" help="Clear the forecast values data to run the forecasting"/>
                                 <button name="%(action_view_forecasting_data)d" type="action" string="List of values" class="oe_inline oe_stat_button" icon="fa-database" help="List of Values" context="{'forecast_id': id}"/>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="alert alert-warning col-md-10 col-md-offset-1"
+                                attrs="{'invisible':[('sma_warning','=', False)]}">
+                                <b>
+                                    <label for="sma_warning"/>
+                                    <field name="sma_warning" readonly="1"/>
+                                </b>
+                            </div>
+                            <div class="alert alert-warning col-md-10 col-md-offset-1"
+                                attrs="{'invisible':[('cma_warning','=', False)]}">
+                                <b>
+                                    <label for="cma_warning"/>
+                                    <field name="cma_warning" readonly="1"/>
+                                </b>
+                            </div>
+                            <div class="alert alert-warning col-md-10 col-md-offset-1"
+                                attrs="{'invisible':[('wma_warning','=', False)]}">
+                                <b>
+                                    <label for="wma_warning"/>
+                                    <field name="wma_warning" readonly="1"/>
+                                </b>
+                            </div>
+                            <div class="alert alert-warning col-md-10 col-md-offset-1"
+                                attrs="{'invisible':[('exp_warning','=', False)]}">
+                                <b>
+                                    <label for="exp_warning"/>
+                                    <field name="exp_warning" readonly="1"/>
+                                </b>
+                            </div>
+                            <div class="alert alert-warning col-md-10 col-md-offset-1"
+                                attrs="{'invisible':[('holt_warning','=', False)]}">
+                                <b>
+                                    <label for="holt_warning"/>
+                                    <field name="holt_warning" readonly="1"/>
+                                </b>
                             </div>
                         </div>
                         <field name="value_ids" nolabel="1" widget="x2many_graph" color_value="#2CA02C" color_sma="#FFBB78" color_cma="#1F77B4" color_wma="#D62728">
@@ -374,18 +412,23 @@
             <field name="name">stock.forecasting.view.tree</field>
             <field name="model">forecast</field>
             <field name="arch" type="xml">
-                <tree string="Forecasting by Smoothing Techniques">
+                <tree string="Forecast">
                     <field name="id"/>
                     <field name="name"/>
-                    <field name="period" string="MA Period"/>
                     <field name="sma_forecast" string="SMA"/>
                     <field name="cma_forecast" string="CMA"/>
                     <field name="wma_forecast" string="WMA"/>
-                    <field name="single_forecast" string="EXP1"/>
-                    <field name="double_forecast" string="EXP2"/>
-                    <field name="triple_forecast" string="EXP3"/>
-                    <field name="holt_period" string="Holt Future Period"/>
+                    <field name="single_forecast" string="ES1"/>
+                    <field name="double_forecast" string="ES2"/>
+                    <field name="triple_forecast" string="ES3"/>
                     <field name="holt_forecast" string="HOLT"/>
+                    <field name="sma_ma_error" string="SMA ERROR"/>
+                    <field name="cma_ma_error" string="CMA ERROR"/>
+                    <field name="wma_ma_error" string="WMA ERROR"/>
+                    <field name="single_ma_error" string="ES1 ERROR"/>
+                    <field name="double_ma_error" string="ES2 ERROR"/>
+                    <field name="triple_ma_error" string="ES3 ERROR"/>
+                    <field name="holt_ma_error" string="HOLT ERROR"/>
                 </tree>
             </field>
         </record>
@@ -394,7 +437,7 @@
             <field name="name">stock.forecasting.view.search</field>
             <field name="model">forecast</field>
             <field name="arch" type="xml">
-                <search string="Forecasting by Smoothing Techniques">
+                <search string="Forecast">
                     <field name="id"/>
                     <field name="name"/>
                 </search>
@@ -402,7 +445,7 @@
         </record>
 
         <record id="action_view_forecasting" model="ir.actions.act_window">
-            <field name="name">Forecasting by Smoothing Techniques</field>
+            <field name="name">Forecast</field>
             <field name="res_model">forecast</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>

@@ -426,6 +426,30 @@ class TestForecast(common.TransactionCase):
             cma_forecast=118.33, cma_ma_error=7.9,
         )
 
+    def test_06(self):
+        """Test what happens with not enough forecast data.
+
+        List of minimum data to calculate every forecast:
+
+            sma: values < period + 1
+            cma: values < period
+            wma: values < period
+            exp: values < 2
+            holt: values < 3
+
+        In this test I just consult the Forecast records created in data demo
+        check the values length and make a read() to simulate access the
+        record from the forecast menu and to force calculate the forecast
+
+        Not errors must be raised.
+        """
+        forecast = self.forecast_obj.browse(self.ref(
+            'forecasting_smoothing_techniques.fst_demo_06'))
+        self.assertTrue(forecast)
+        self.assertTrue(forecast.value_ids)
+        self.assertEqual(len(forecast.value_ids), 1)
+        forecast.read([])
+
     def test_06_1(self):
         """Security: Manager can do anything
         """

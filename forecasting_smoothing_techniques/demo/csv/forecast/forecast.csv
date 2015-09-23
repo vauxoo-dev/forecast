@@ -5,3 +5,4 @@ fst_demo_02,forecast,Test 02,5,,,
 fst_demo_03,forecast,Test 03,5,2,0.7,0.6
 fst_demo_04,forecast,Test 04,5,,,
 fst_demo_05,forecast,Test 05,3,,,
+fst_demo_06,forecast,(FST Test 06) Forecast non minimun data,5,,,
