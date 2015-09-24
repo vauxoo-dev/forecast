@@ -199,6 +199,13 @@ class Forecast(models.Model):
     )
     holt_warning = fields.Char('HOLT WARNING')
 
+    mhelp = fields.Boolean(
+        'Show Mathematic Base Help',
+        help='Allows you to show the mathematic base help in the form view')
+
+    shelp = fields.Boolean(
+        'Show Help', help='Allows you to show the help in the form view')
+
     @api.constrains('period')
     def _check_period(self):
         """

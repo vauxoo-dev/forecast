@@ -107,6 +107,12 @@
             <field name="model">forecast</field>
             <field name="arch" type="xml">
                 <form string="Forecast">
+                    <header>
+                        <label for="shelp"/>
+                        <field name="shelp"/>
+                        <label for="mhelp"/>
+                        <field name="mhelp" class="oe_inline"/>
+                    </header>
                     <sheet>
                         <div class="row">
                             <div class="col-md-2">
@@ -182,7 +188,7 @@
                             </div>
                             <div class="panel-body">
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-12 no_print" attrs="{'invisible':[('mhelp','=',False)]}">
                                         <p class="mt_32">
                                             A time series is a sequence of observations which are ordered in time. Inherent in the collection of data taken over time is some form of random variation. There exist methods for reducing of canceling the effect due to random variation. Widely used techniques are "smoothing". These techniques, when properly applied, reveals more clearly the underlying trends.
                                         </p>
@@ -196,7 +202,7 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-12 no_print" attrs="{'invisible':[('shelp','=',False)]}">
                                         <div class="alert alert-success" role="alert">
                                             <strong>Step 1:</strong> Fill the above values.  Enter the time series Row-wise in sequence, starting from
                                             the left-upper corner. Blank boxes are not included in the calculations.
@@ -215,8 +221,7 @@
                                 </div>
                                 -->
                                 <div class="row">
-                                    <div class="col-md-12">
-
+                                    <div class="col-md-12 no_print" attrs="{'invisible':[('mhelp','=',False)]}">
                                         <p class="mt_32">
                                             <strong>How to compare several smoothing methods</strong>. Although there are numerical indicators for assessing the accuracy of the forecasting technique, the most widely approach is in using visual comparison of several forecasts to assess their accuracy and choose among the various forecasting methods. In this approach, one must plot (using, e.g., Excel) on the same graph the original values of a time series variable and the predicted values from several different forecasting methods, thus facilitating a visual comparison.
                                         </p>
@@ -238,14 +243,14 @@
                             </div>
                             <div class="panel-body">
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-12 no_print" attrs="{'invisible':[('mhelp','=',False)]}">
                                         <p class="mt_32">
                                             Moving averages rank among the most popular techniques for the pre processing of time series. They are used to filter random "white noise" from the data, to make the time series smoother or even to emphasize certain informational components contained in the time series.
                                         </p>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-12 no_print" attrs="{'invisible':[('shelp','=',False)]}">
                                         <div class="alert alert-success" role="alert">
                                             <strong>Step 2:</strong> Set the Period parameter to calculate the moving average forecasting. This period must be greater than one.
                                         </div>
@@ -290,7 +295,7 @@
                             <div class="panel-body">
 
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-12 no_print" attrs="{'invisible':[('mhelp','=',False)]}">
                                         <p class="mt_32">
                                             This is a very popular scheme to produce a smoothed Time Series. Whereas in Moving Averages the past observations are weighted equally, Exponential Smoothing assigns exponentially decreasing weights as the observation get older. In other words, recent observations are given relatively more weight in forecasting than the older observations. <strong>Double Exponential Smoothing</strong> is better at handling trends. <strong>Triple Exponential Smoothing</strong> is better at handling parabola trends.
                                         </p>
@@ -309,7 +314,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-12 no_print" attrs="{'invisible':[('shelp','=',False)]}">
                                         <div class="alert alert-success" role="alert">
                                             <strong>Step 3:</strong> Set the Alpha to use to calculate the exponential smoothing forecasts.
                                         </div>
@@ -352,14 +357,16 @@
                                 <h3 class="panel-title">Holt's Linear Smoothing</h3>
                             </div>
                             <div class="panel-body">
-                                <p class="mt_32">
-                                    Suppose that the time series is non-seasonal but does display trend. Holt’s method estimates both the current level and the current trend.
-                                </p>
-                                <p class="mt_32">
-                                    For most business data an Alpha parameter smaller than 0.40 is often effective. However, one may perform a grid search of the parameter space, with = 0.1 to = 0.9, with increments of 0.1. Then the best alpha has the smallest Mean Absolute Error (MA Error).
-                                </p>
+                                <div class="col-md-12 no_print" attrs="{'invisible':[('mhelp','=',False)]}">
+                                    <p class="mt_32">
+                                        Suppose that the time series is non-seasonal but does display trend. Holt’s method estimates both the current level and the current trend.
+                                    </p>
+                                    <p class="mt_32">
+                                        For most business data an Alpha parameter smaller than 0.40 is often effective. However, one may perform a grid search of the parameter space, with = 0.1 to = 0.9, with increments of 0.1. Then the best alpha has the smallest Mean Absolute Error (MA Error).
+                                    </p>
+                                </div>
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-12 no_print" attrs="{'invisible':[('shelp','=',False)]}">
                                         <div class="alert alert-success" role="alert">
                                             <strong>Step 4:</strong> Set Holt's parameters to calculate the forecasting.
                                         </div>
