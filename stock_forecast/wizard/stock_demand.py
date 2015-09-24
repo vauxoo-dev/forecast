@@ -47,7 +47,7 @@ class StockDemand(models.TransientModel):
                        ('product_id', '=', self.product_id.id),
                        ('location_id', '=', self.location_id.id)],
             'name': _('Stock Demands At Date'),
-            'view_type': 'tree',
+            'view_type': 'form',
             'views': [(tree_view.id, 'tree')],
             'view_mode': 'tree,graph',
             'res_model': 'stock.history',
