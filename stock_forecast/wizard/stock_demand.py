@@ -60,21 +60,22 @@ class StockHistory(models.Model):
 
     _inherit = 'stock.history'
 
-    @api.one
+    @api.multi
     def _get_current_value(self):
         '''
         Set the quantity available at the moment to delivery the product
         '''
-        self._cr.execute('''
-                         SELECT sum(quantity)
-                         FROM stock_history
-                         WHERE product_id={prod} AND
-                               date < '{date}'
-                         '''.format(prod=self.product_id.id,
-                                    date=self.date))
-        result = self._cr.fetchall()
-        qty = result and result[0][0] or 0.0
-        self.quantity_required = qty
+        for history in self:
+            history._cr.execute('''
+                            SELECT sum(quantity)
+                            FROM stock_history
+                            WHERE product_id={prod} AND
+                                date < '{date}'
+                            '''.format(prod=history.product_id.id,
+                                       date=history.date))
+            result = history._cr.fetchall()
+            qty = result and result[0][0] or 0.0
+            history.quantity_required = qty
 
     quantity_required = fields.Float('Quantity Demanded',
                                      compute='_get_current_value',
