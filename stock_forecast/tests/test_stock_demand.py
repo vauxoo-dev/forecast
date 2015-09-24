@@ -24,8 +24,7 @@ class TestForecastDemand(common.TransactionCase):
         self.move_obj = self.env['stock.move']
 
     def test_01(self):
-        """
-        Return the action from the wizard
+        """Return the action from the wizard
         """
         move_brw = self.move_obj.search([], limit=1)
         if move_brw:
@@ -51,8 +50,7 @@ class TestForecastDemand(common.TransactionCase):
                     self.assertEqual(values[2], move_brw.location_id.id)
 
     def test_02(self):
-        """
-        Validating that the compute field is computed
+        """Validating that the compute field is computed
         """
         history_brw = self.history_obj.search([], limit=1)
         if history_brw:
