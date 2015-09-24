@@ -34,19 +34,22 @@ class StockDemand(models.TransientModel):
 
     @api.multi
     def open_table(self):
+        '''
+        Open the stock history view using the info registered in the wizard
+        '''
         ctx = dict(self._context).copy()
         ctx['history_date'] = self.date_to
         tree_view = self.env.ref('stock_forecast.'
-                                 'view_stock_history_report_tree')
+                                 'view_stock_demand_history_report_tree')
         return {
-            'domain': "[('date', '>=', '" + self.date_from + "'), \
-            ('date', '<=', '" + self.date_to + "'), \
-            ('product_id', '<=', '" + str(self.product_id.id) + "'),\
-            ('location_id', '<=', '" + str(self.location_id.id) + "')]",
+            'domain': [('date', '>=', self.date_from),
+                       ('date', '<=', self.date_to),
+                       ('product_id', '=', self.product_id.id),
+                       ('location_id', '=', self.location_id.id)],
             'name': _('Stock Demands At Date'),
-            'view_type': 'form',
-            'view_id': (tree_view.id),
-            'view_mode': 'tree',
+            'view_type': 'tree',
+            'views': [(tree_view.id, 'tree')],
+            'view_mode': 'tree,graph',
             'res_model': 'stock.history',
             'type': 'ir.actions.act_window',
             'context': ctx,
@@ -57,7 +60,23 @@ class StockHistory(models.Model):
 
     _inherit = 'stock.history'
 
+    @api.one
+    def _get_current_value(self):
+        '''
+        Set the quantity available at the moment to delivery the product
+        '''
+        self._cr.execute('''
+                         SELECT sum(quantity)
+                         FROM stock_history
+                         WHERE product_id={prod} AND
+                               date < '{date}'
+                         '''.format(prod=self.product_id.id,
+                                    date=self.date))
+        result = self._cr.fetchall()
+        qty = result and result[0][0] or 0.0
+        self.quantity_required = qty
+
     quantity_required = fields.Float('Quantity Demanded',
-                                     related='move_id.product_uom_qty',
+                                     compute='_get_current_value',
                                      store=False,
                                      help='Quantity demanded in the move')
