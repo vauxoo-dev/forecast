@@ -29,7 +29,7 @@
             <field name="view_id" ref="view_wizard_demand_history"/>
             <field name="target">new</field>
         </record>
-        <menuitem id="menu_action_wizard_demand_history" action="action_wizard_stock_demand_history" groups='forecasting_rules.forecasting_rule_group' parent="stock.next_id_61" sequence="1"/>
+        <menuitem id="menu_action_wizard_demand_history" action="action_wizard_stock_demand_history" groups='forecasting_smoothing_techniques.forecast_group_manager' parent="stock.next_id_61" sequence="1"/>
 
         <record id="view_stock_demand_history_report_tree" model="ir.ui.view">
             <field name="name">Stock History</field>
