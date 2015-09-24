@@ -9,3 +9,4 @@
 #    planned by: Nhomar Hernandez <nhomar@vauxoo.com>
 ############################################################################
 from . import test_forecast
+from . import test_stock_demand
