@@ -338,7 +338,7 @@ class Forecast(models.Model):
         """
         vdiff = abs(actual - float(expected))
         allowed_error = 2
-        if int(round(vdiff)) > allowed_error:
+        if int(round(vdiff)) <= allowed_error:
             return True
         return False
 

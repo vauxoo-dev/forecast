@@ -49,7 +49,7 @@ class TestForecast(common.TransactionCase):
             vexpected = expected.get(key)
 
             if isinstance(vexpected, (float,)):
-                if self.forecast_obj.almost_equal(vreal, vexpected):
+                if not self.forecast_obj.almost_equal(vreal, vexpected):
                     elist.append(self.get_msg_error(
                         key, vreal, vexpected))
             elif isinstance(vexpected, (pd.DataFrame,)):
@@ -74,9 +74,9 @@ class TestForecast(common.TransactionCase):
                     for val in values:
                         actual = vreal.get(fname).get(val)
                         wanted = vexpected.get(fname).get(val)
-                        if self.forecast_obj.almost_equal(actual, wanted):
+                        if not self.forecast_obj.almost_equal(actual, wanted):
                             elist.append(self.get_msg_error(
-                                fname, actual, wanted, val=val))
+                                fname, actual, wanted, index=val))
 
         error_msg = '\n'.join(['\n', _('Fall forecast calculation ')] + elist)
         self.assertTrue(elist == [], error_msg)
@@ -500,3 +500,10 @@ class TestForecast(common.TransactionCase):
         # Test Read
         # Test Write
         # Test Duplicate
+
+    def test_07(self):
+        """Check almost_equal method.
+        """
+        self.assertTrue(self.forecast_obj.almost_equal(2.19, 2.17))
+        self.assertTrue(self.forecast_obj.almost_equal(2.19, 4.0))
+        self.assertFalse(self.forecast_obj.almost_equal(2.19, 4.7))
