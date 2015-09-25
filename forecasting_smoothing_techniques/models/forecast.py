@@ -295,7 +295,7 @@ class Forecast(models.Model):
         return value_ids
 
     @api.multi
-    def get_values_dataframe(self, values, forecast_cols):
+    def get_values_dataframe(self, forecast_cols):
         """
         Transform forecasting data into a pandas.DataFrame object to be use
         to calculate the forecastings.
@@ -306,7 +306,6 @@ class Forecast(models.Model):
         to add the the DataFrame object to save the forcasting calculation
         values.
 
-        :values: list of 'forecast.data' ids
         :forecast_cols: list of columns to add to the DataFrame (this columns
         are mean to be used to save the forecasting calculation) By example
         the simple moving averga (sma) add two columns sma and sma_error to
@@ -314,8 +313,12 @@ class Forecast(models.Model):
 
         :returns: DataFrame object with the datas value.
         """
-        fdata_obj = self.env['forecast.data']
-        values = fdata_obj.browse(values).read(['value', 'sequence'])
+        values = []
+        for value in self.env['forecast'].browse(self._ids).value_ids:
+            values.append(
+                {'id': value.id,
+                 'value': value.value,
+                 'sequence': value.sequence})
         cols = ['id', 'value', 'sequence'] + forecast_cols
         data = pd.DataFrame(values, columns=cols)
         data.set_index('sequence', inplace=True)
@@ -371,18 +374,19 @@ class Forecast(models.Model):
         Update the forecast fields ['cma_forecast', 'cma_ma_error']  and the
         forecast values ['cma', 'cma_error']
         """
-        for forecast in self:
+        for forecast in self.env['forecast'].browse(self._ids):
+
             # Get basic parameters to calculate
-            forecast_dict = forecast.read()[0]
-            values = forecast_dict.get('value_ids', [])
-            period = forecast_dict.get('period')
+            period = forecast.period
+            # TODO evaluate the way that the cache is working here.
+            values = forecast.value_ids
 
             # Check minimum data
             if not forecast.minimun_data(len(values), period, 'cma_warning'):
                 return
 
             # Transform value data to Dataframe pandas object
-            data = forecast.get_values_dataframe(values, ['cma', 'cma_error'])
+            data = forecast.get_values_dataframe(['cma', 'cma_error'])
 
             # Calculate Forecasting for the other points
             for index in range(period, len(data) + 1):
@@ -417,11 +421,10 @@ class Forecast(models.Model):
         Update the forecast fields ['sma_forecast', 'sma_ma_error']  and the
         forecast values ['sma', 'sma_error']
         """
-        for forecast in self:
+        for forecast in self.env['forecast'].browse(self._ids):
             # Get basic parameters to calculate
-            forecast_dic = forecast.read()[0]
-            values = forecast_dic.get('value_ids', [])
-            period = forecast_dic.get('period')
+            values = forecast.value_ids
+            period = forecast.period
 
             # Check minimum data
             if not forecast.minimun_data(len(values), period + 1,
@@ -429,7 +432,7 @@ class Forecast(models.Model):
                 return
 
             # Transform value data to Dataframe pandas object
-            data = forecast.get_values_dataframe(values, ['sma', 'sma_error'])
+            data = forecast.get_values_dataframe(['sma', 'sma_error'])
 
             # Calculate Forecasting for the other points
             for index in range(period+1, len(data) + 1):
@@ -464,18 +467,17 @@ class Forecast(models.Model):
         Update the forecast fields ['wma_forecast', 'wma_ma_error']  and the
         forecast values ['wma', 'wma_error']
         """
-        for forecast in self:
+        for forecast in self.env['forecast'].browse(self._ids):
             # Get basic parameters to calculate
-            forecast_dict = forecast.read()[0]
-            values = forecast_dict.get('value_ids', [])
-            period = forecast_dict.get('period')
+            values = forecast.value_ids
+            period = forecast.period
 
             # Check minimum data
             if not forecast.minimun_data(len(values), period, 'wma_warning'):
                 return
 
             # Transform value data to Dataframe pandas object
-            data = forecast.get_values_dataframe(values, ['wma', 'wma_error'])
+            data = forecast.get_values_dataframe(['wma', 'wma_error'])
 
             weight = (float(period) * (float(period) + 1.0)) / 2.0
 
@@ -522,11 +524,10 @@ class Forecast(models.Model):
             'es3', 'es3_error' ]
             ]
         """
-        for forecast in self:
+        for forecast in self.env['forecast'].browse(self._ids):
             # Get basic parameters to calculate
-            forecast_dict = forecast.read()[0]
-            values = forecast_dict.get('value_ids', [])
-            alpha = forecast_dict.get('exp_alpha')
+            values = forecast.value_ids
+            alpha = forecast.exp_alpha
 
             # Check minimum data
             if not forecast.minimun_data(len(values), 2, 'exp_warning'):
@@ -534,9 +535,9 @@ class Forecast(models.Model):
 
             # Transform value data to Dataframe pandas object
             data = forecast.get_values_dataframe(
-                values, ['es1', 'es1_error',
-                         'es2', 'es2_error',
-                         'es3', 'es3_error'])
+                ['es1', 'es1_error',
+                 'es2', 'es2_error',
+                 'es3', 'es3_error'])
 
             # Calculate Forecasting per first point
             val1 = data.loc[2].value
@@ -601,20 +602,19 @@ class Forecast(models.Model):
         Update the forecast fields ['holt_forecast', 'holt_ma_error'] and the
         forecast values ['holt', 'holt_error', 'holt_level', 'holt_trend']
         """
-        for forecast in self:
+        for forecast in self.env['forecast'].browse(self._ids):
             # Get basic parameters to make the forecasting calculation
-            forecast_dict = forecast.read()[0]
-            values = forecast_dict.get('value_ids', [])
-            alpha = forecast_dict.get('holt_alpha')
-            beta = forecast_dict.get('beta')
-            period = forecast_dict.get('holt_period')
+            values = forecast.value_ids
+            alpha = forecast.holt_alpha
+            beta = forecast.beta
+            period = forecast.holt_period
 
             # Check minimum data
             if not forecast.minimun_data(len(values), 3, 'holt_warning'):
                 return
 
             # Transform value data to pandas.Dataframe object
-            data = forecast.get_values_dataframe(values, [
+            data = forecast.get_values_dataframe([
                 'holt', 'holt_level', 'holt_trend', 'holt_error'])
 
             # NOTE: Forecasting first point do not exist for this forcasting
