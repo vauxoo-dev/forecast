@@ -49,7 +49,7 @@ class TestForecast(common.TransactionCase):
             vexpected = expected.get(key)
 
             if isinstance(vexpected, (float,)):
-                if self.forecast_obj.almost_equal(vreal, vexpected):
+                if not self.forecast_obj.almost_equal(vreal, vexpected):
                     elist.append(self.get_msg_error(
                         key, vreal, vexpected))
             elif isinstance(vexpected, (pd.DataFrame,)):
@@ -74,9 +74,9 @@ class TestForecast(common.TransactionCase):
                     for val in values:
                         actual = vreal.get(fname).get(val)
                         wanted = vexpected.get(fname).get(val)
-                        if self.forecast_obj.almost_equal(actual, wanted):
+                        if not self.forecast_obj.almost_equal(actual, wanted):
                             elist.append(self.get_msg_error(
-                                fname, actual, wanted, val=val))
+                                fname, actual, wanted, index=val))
 
         error_msg = '\n'.join(['\n', _('Fall forecast calculation ')] + elist)
         self.assertTrue(elist == [], error_msg)
@@ -470,7 +470,14 @@ class TestForecast(common.TransactionCase):
         mngr_group.users = [(6, 0, [forecast_mngr.id])]
         self.assertTrue(mngr_group.users)
 
-        self.forecast_obj.sudo(forecast_mngr).create({})
+        # Test Create, Write, Read, Copy and Delete
+        forecast = self.forecast_obj.sudo(forecast_mngr).create({})
+        forecast.sudo(forecast_mngr).write({
+            'name': 'New name was set in unit test 06 1'})
+        self.assertTrue(forecast.sudo(forecast_mngr).name)
+        forecast2 = forecast.sudo(forecast_mngr).copy()
+        self.assertTrue(forecast2)
+        forecast.sudo(forecast_mngr).unlink()
 
     def test_06_2(self):
         """Security: Forecast User can not create or delete.
@@ -492,11 +499,27 @@ class TestForecast(common.TransactionCase):
         user_group.users = [(6, 0, [forecast_user.id])]
         self.assertTrue(user_group.users)
 
-        self.forecast_obj.sudo(forecast_user).create({})
+        # Test Create, Write, Read, Copy and Delete
+        # TODO forecast user can not create a forecast.
+        forecast = self.forecast_obj.sudo(forecast_user).create({})
+        forecast = self.forecast_obj.search([])[0]
+        forecast.sudo(forecast_user).write({
+            'name': 'New name was set in unit test 06 2'})
+        self.assertTrue(forecast.sudo(forecast_user).name)
+        forecast2 = forecast.sudo(forecast_user).copy()
+        self.assertTrue(forecast2)
+        # TODO this is not properly working. show a integrity error and must
+        # show a accessError
 
         # TODO add any user test
-
         # Test Create
         # Test Read
         # Test Write
         # Test Duplicate
+
+    def test_07(self):
+        """Check almost_equal method.
+        """
+        self.assertTrue(self.forecast_obj.almost_equal(2.19, 2.17))
+        self.assertTrue(self.forecast_obj.almost_equal(2.19, 4.0))
+        self.assertFalse(self.forecast_obj.almost_equal(2.19, 4.7))
