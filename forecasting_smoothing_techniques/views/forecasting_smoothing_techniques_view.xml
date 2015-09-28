@@ -204,11 +204,8 @@
                                 <div class="row">
                                     <div class="col-md-12 no_print" attrs="{'invisible':[('shelp','=',False)]}">
                                         <div class="alert alert-success" role="alert">
-                                            <strong>Step 1:</strong> Fill the above values.  Enter the time series Row-wise in sequence, starting from
-                                            the left-upper corner. Blank boxes are not included in the calculations.
-                                            In entering your data to move from cell to cell in the data-matrix use the <strong>Tab</strong> key not arrow or enter keys.
-                                            0.0 Values are consider <strong>NULL</strong> .
-                                            After you add the forecast values and save this form the forecasting will be compute automatically.
+                                            <strong>Step 1:</strong>
+                                            Fill forecast values. Click over the List of Values button at the right-upper corner of this form and add the data to calcula the forecast. This data must be consecutive values, you can associate a label to identificate what the value means. You can add as many values as you want. When updating the values data the forecast will be re-compute automactly.
                                         </div>
                                     </div>
                                 </div>

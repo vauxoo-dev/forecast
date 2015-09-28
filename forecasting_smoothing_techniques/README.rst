@@ -73,13 +73,22 @@ To use this module, you need to:
   .. image:: forecast_buttons.png
      :alt: Forecast Buttons
 
-* In a more complete view of all the forecasting form view you can review the
-  total forecasting summary and the forecasting methods parameters to
-  configure to run the forecasting. If you have any doubt there is an
-  explanation about every forecasting methods so will be more easy to use.
+* There is a functionality to help the user to use the forecast model.
+  You can hide/show two kinds of help:
 
-.. image:: forecast_complete_form_view.png
-   :alt: Forecast Complete Form View
+  - ``Help``: Show step by step the things to configure to generate the
+    forecast.
+
+    .. image:: forecast_help.png
+       :alt: Forecast Step by Steph Help
+
+  - ``Mathematical Base Help``: Showing information about how the forecast
+    methods works, how to set the parameters and how to make the forecast
+    results compare. If you have any doubt there is an explanation about every
+    forecasting methods so will be more easy to use.
+
+    .. image:: forecast_complete_form_view.png
+       :alt: forecast complete form view
 
 * When editing the forecast values (Click over the ``List of Values`` button)
   you can observe all the values in the table with all the detail forecasting
@@ -114,15 +123,9 @@ Known issues / Roadmap
 TODO
 ====
 
-- Actual there is not way to throw an error when the forecast list of values
-  is not enough list of values to generate groups of n periods defined for the
-  sma, cma and wma forecasting methods.
 - The module name can be change to just forecast or forecasting.
-- The translation template of this module exists but the translations must be
-  added.
-- Review the translations spanish terms.
-- Hide the smoothing methods helps in the forecast form using the same concept
-  of the ifrs and user_story modules.
+- Add constraint that make that the list of values are consecutive values
+  start from 1. If not then the forecast calculus will fail.
 
 Bug Tracker
 ===========
