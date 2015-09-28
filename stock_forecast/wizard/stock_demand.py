@@ -14,7 +14,7 @@ from openerp import models, fields, api, _
 
 class StockDemand(models.TransientModel):
 
-    _name = 'stock.demand'
+    _name = 'wizard.stock.demand'
 
     product_id = fields.Many2one('product.product', 'Product',
                                  help='Product used to filter '
@@ -44,6 +44,7 @@ class StockDemand(models.TransientModel):
         return {
             'domain': [('date', '>=', self.date_from),
                        ('date', '<=', self.date_to),
+                       ('quantity', '<', 0.0),
                        ('product_id', '=', self.product_id.id),
                        ('location_id', '=', self.location_id.id)],
             'name': _('Stock Demands At Date'),
@@ -75,9 +76,9 @@ class StockHistory(models.Model):
                                        date=history.date))
             result = history._cr.fetchall()
             qty = result and result[0][0] or 0.0
-            history.quantity_required = qty
+            history.quantity_onstock = qty
 
-    quantity_required = fields.Float('Quantity Demanded',
-                                     compute='_get_current_value',
-                                     store=False,
-                                     help='Quantity demanded in the move')
+    quantity_onstock = fields.Float('Quantity Demanded',
+                                    compute='_get_current_value',
+                                    store=False,
+                                    help='Quantity demanded in the move')

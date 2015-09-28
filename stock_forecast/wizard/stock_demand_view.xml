@@ -4,7 +4,7 @@
 
         <record id="view_wizard_demand_history" model="ir.ui.view">
             <field name="name">Stock Demand</field>
-            <field name="model">stock.demand</field>
+            <field name="model">wizard.stock.demand</field>
             <field name="arch" type="xml">
                 <form string="">
                     <group>
@@ -23,7 +23,7 @@
         </record>
         <record id="action_wizard_stock_demand_history" model="ir.actions.act_window">
             <field name="name">Stock Demand</field>
-            <field name="res_model">stock.demand</field>
+            <field name="res_model">wizard.stock.demand</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
             <field name="view_id" ref="view_wizard_demand_history"/>
@@ -44,7 +44,7 @@
                 <field name="date"/>
                 <field name="source" invisible="1"/>
                 <field name="quantity" string="Quantity Demanded" sum="# of Products "/>
-                <field name="quantity_required" string="Quantity Available" sum="# of Products Available"/>
+                <field name="quantity_onstock" string="Quantity Available" sum="# of Products Available"/>
                 <field name="inventory_value" invisible="1" sum="Total Value"/>
             </tree>
             </field>

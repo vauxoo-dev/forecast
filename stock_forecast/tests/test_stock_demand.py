@@ -20,7 +20,7 @@ class TestForecastDemand(common.TransactionCase):
     def setUp(self):
         super(TestForecastDemand, self).setUp()
         self.history_obj = self.env['stock.history']
-        self.demand_obj = self.env['stock.demand']
+        self.demand_obj = self.env['wizard.stock.demand']
         self.move_obj = self.env['stock.move']
 
     def test_01(self):
@@ -55,4 +55,4 @@ class TestForecastDemand(common.TransactionCase):
         history_brw = self.history_obj.search([], limit=1)
         if history_brw:
             # Validating the new compute field was computed
-            self.assertTrue(history_brw.quantity_required >= 0)
+            self.assertTrue(history_brw.quantity_onstock >= 0)
