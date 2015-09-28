@@ -123,3 +123,12 @@ class TestIrFilters(common.TransactionCase):
         for context in invalid_context:
             with self.assertRaisesRegexp(ValidationError, error):
                 irfilter.context = context
+
+    def test_05(self):
+        """Create a filter with a invalid model
+
+        This is manage from the orm.
+        """
+        irfilter = self.create_filter(name='5')
+        with self.assertRaises(ValueError):
+            irfilter.model_id = 'non.exist.model'

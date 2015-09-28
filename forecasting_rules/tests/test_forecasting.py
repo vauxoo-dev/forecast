@@ -10,6 +10,7 @@
 ############################################################################
 
 from openerp.tests import common
+from openerp.exceptions import Warning as UserError
 
 
 class TestForecasting(common.TransactionCase):
@@ -90,3 +91,28 @@ class TestForecasting(common.TransactionCase):
         forecast = self.forecast_obj.browse(
             self.ref('forecasting_rules.forecast_demo_05'))
         forecast.fill_value_ids()
+
+    def test_06(self):
+        """Can not fill values for a forecast mark as manual data.
+        """
+        forecast = self.forecast_obj.browse(
+            self.ref('forecasting_smoothing_techniques.fst_demo_01'))
+        self.assertTrue(forecast.manual_data)
+        self.assertFalse(forecast.rule_id)
+
+        error = (' Fill the forecast values manually or uncheck'
+                 ' Use Manual Data.')
+        with self.assertRaisesRegexp(UserError, error):
+            forecast.fill_value_ids()
+
+    def test_07(self):
+        """Can not fill values for a forecast with empty forecast rule.
+        """
+        forecast = self.forecast_obj.browse(
+            self.ref('forecasting_rules.forecast_demo_01'))
+        self.assertFalse(forecast.manual_data)
+        self.assertTrue(forecast.rule_id)
+        forecast.rule_id = False
+        error = 'There is not forecast rule to fill the values.'
+        with self.assertRaisesRegexp(UserError, error):
+            forecast.fill_value_ids()

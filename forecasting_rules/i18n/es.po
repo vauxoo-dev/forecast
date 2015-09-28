@@ -6,20 +6,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-21 14:48+0000\n"
-"PO-Revision-Date: 2015-09-21 14:48+0000\n"
+"POT-Creation-Date: 2015-09-28 15:08+0000\n"
+"PO-Revision-Date: 2015-09-28 15:08+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-
-#. module: forecasting_rules
-#: code:addons/forecasting_rules/models/forecasting_rule.py:50
-#, python-format
-msgid " - The rule model and filter model must be the same model rule {rule_model} != filter {filter_model}"
-msgstr " - El modelo de la regla de pronóstico y el filtero de busqueda deben ser iguales {rule_model} != filter {filter_model}"
 
 #. module: forecasting_rules
 #: code:addons/forecasting_rules/models/ir_filters.py:186
@@ -216,7 +210,6 @@ msgstr "Ultima actualización en"
 
 #. module: forecasting_rules
 #: view:forecasting.rule:forecasting_rules.forecasting_rule_view_search
-#: field:forecasting.rule,model:0
 msgid "Model"
 msgstr "Modelo"
 
@@ -225,11 +218,6 @@ msgstr "Modelo"
 #, python-format
 msgid "Model do not exists in the database"
 msgstr "EL modelo no existen en la base de datos"
-
-#. module: forecasting_rules
-#: help:forecasting.rule,model:0
-msgid "Model were this forecasting apply"
-msgstr "El Modelo sobre el cual el pronóstico aplica"
 
 #. module: forecasting_rules
 #: field:forecasting.rule,name:0
@@ -274,3 +262,4 @@ msgstr "Este botón te permitira agregar data al pronóstico usando la regla de 
 #: field:forecast,manual_data:0
 msgid "Use Manual Data"
 msgstr "Usar Data Manual"
+
