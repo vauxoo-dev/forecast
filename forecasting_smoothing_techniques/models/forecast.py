@@ -383,7 +383,7 @@ class Forecast(models.Model):
 
             # Check minimum data
             if not forecast.minimun_data(len(values), period, 'cma_warning'):
-                return
+                continue
 
             # Transform value data to Dataframe pandas object
             data = forecast.get_values_dataframe(['cma', 'cma_error'])
@@ -429,7 +429,7 @@ class Forecast(models.Model):
             # Check minimum data
             if not forecast.minimun_data(len(values), period + 1,
                                          'sma_warning'):
-                return
+                continue
 
             # Transform value data to Dataframe pandas object
             data = forecast.get_values_dataframe(['sma', 'sma_error'])
@@ -474,7 +474,7 @@ class Forecast(models.Model):
 
             # Check minimum data
             if not forecast.minimun_data(len(values), period, 'wma_warning'):
-                return
+                continue
 
             # Transform value data to Dataframe pandas object
             data = forecast.get_values_dataframe(['wma', 'wma_error'])
@@ -531,7 +531,7 @@ class Forecast(models.Model):
 
             # Check minimum data
             if not forecast.minimun_data(len(values), 2, 'exp_warning'):
-                return
+                continue
 
             # Transform value data to Dataframe pandas object
             data = forecast.get_values_dataframe(
@@ -611,7 +611,7 @@ class Forecast(models.Model):
 
             # Check minimum data
             if not forecast.minimun_data(len(values), 3, 'holt_warning'):
-                return
+                continue
 
             # Transform value data to pandas.Dataframe object
             data = forecast.get_values_dataframe([
