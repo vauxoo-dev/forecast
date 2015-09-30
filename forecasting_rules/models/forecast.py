@@ -37,17 +37,19 @@ class Forecast(models.Model):
         NOTE: This method is use in the forecast form view as a button named
         "Fill Values"
         """
-        if self.manual_data:
-            raise UserError(_(
-                ' Fill the forecast values manually or uncheck'
-                ' Use Manual Data.'))
-        else:
-            if not self.rule_id:
+        for forecast in self:
+            if forecast.manual_data:
                 raise UserError(_(
-                    ' There is not forecast rule to fill the values.'))
-            self._check_required_irfilter()
-            self.value_ids.unlink()
-            self.write({'value_ids': self.rule_id.filter_id.special_search()})
+                    ' Fill the forecast values manually or uncheck'
+                    ' Use Manual Data.'))
+            else:
+                if not forecast.rule_id:
+                    raise UserError(_(
+                        ' There is not forecast rule to fill the values.'))
+                forecast._check_required_irfilter()
+                forecast.value_ids.unlink()
+                forecast.write({
+                    'value_ids': forecast.rule_id.filter_id.special_search()})
 
     @api.multi
     def _check_required_irfilter(self):
