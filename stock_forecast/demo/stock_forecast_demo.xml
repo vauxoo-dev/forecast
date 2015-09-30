@@ -2,6 +2,16 @@
 <openerp>
     <data noupdate="1">
 
+        <!-- UPDATE FORECAST MANUAL DATA DEMO TO BELONG TO DIFFERENT VARIANTS -->
+
+            <record id="forecasting_smoothing_techniques.fst_demo_04" model="forecast">
+                <field name="product_id" ref="product.product_product_4"/>
+            </record>
+
+            <record id="forecasting_smoothing_techniques.fst_demo_05" model="forecast">
+                <field name="product_id" ref="product.product_product_4b"/>
+            </record>
+
         <!-- MAKE INVENTORY AVAILABLE: CONFIRM THE FIRST INITIAL RECEIPTS -->
 
             <function name="action_confirm" model="stock.picking" eval="[[ref('picking_demo_44'), ref('picking_demo_01'), ref('picking_demo_22'), ref('picking_demo_16'), ref('picking_demo_07'), ref('picking_demo_08'), ref('picking_demo_29'), ref('picking_demo_04'), ref('picking_demo_61')]]"/>
@@ -38,7 +48,7 @@
 
             <record id="forecast_demo_01" model="forecast">
                 <field name="name">(ST Test 01) iMac Demand Year 2015</field>
-                <field name="product_tmpl_id" ref="product.product_product_8_product_template"/>
+                <field name="product_id" ref="product.product_product_8"/>
                 <field name="rule_id" ref="forecast_rule_01"/>
             </record>
 
@@ -62,7 +72,7 @@
 
             <record id="forecast_demo_02" model="forecast">
                 <field name="name">(ST Test 02) iPad Retina Display Demand Year 2015</field>
-                <field name="product_tmpl_id" ref="product.product_product_4_product_template"/>
+                <field name="product_id" ref="product.product_product_4"/>
                 <field name="rule_id" ref="forecast_rule_02"/>
             </record>
 
@@ -86,7 +96,7 @@
 
             <record id="forecast_demo_03" model="forecast">
                 <field name="name">(ST Test 03) Apple In-Ear Headphones Demand Year 2015</field>
-                <field name="product_tmpl_id" ref="product.product_product_7_product_template"/>
+                <field name="product_id" ref="product.product_product_7"/>
                 <field name="rule_id" ref="forecast_rule_03"/>
             </record>
 
@@ -110,7 +120,7 @@
 
             <record id="forecast_demo_04" model="forecast">
                 <field name="name">(ST Test 04) Apple Wireless Keyboard Demand Year 2015</field>
-                <field name="product_tmpl_id" ref="product.product_product_9_product_template"/>
+                <field name="product_id" ref="product.product_product_9"/>
                 <field name="rule_id" ref="forecast_rule_04"/>
             </record>
 
@@ -134,7 +144,7 @@
 
             <record id="forecast_demo_05" model="forecast">
                 <field name="name">(ST Test 05) iPod Demand Year 2015</field>
-                <field name="product_tmpl_id" ref="product.product_product_11_product_template"/>
+                <field name="product_id" ref="product.product_product_11"/>
                 <field name="rule_id" ref="forecast_rule_05"/>
             </record>
 

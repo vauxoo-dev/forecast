@@ -20,14 +20,13 @@ class ForecastingSmoothingTechniques(models.Model):
     def _default_product(self):
         """Usability feature -
 
-        :return: product.template id.
+        :return: product.product id.
         """
-        product_id = self._context.get('product_tmpl_id', False)
-        product = self.env['product.template'].search([(
-            'id', '=', product_id)])
+        product_id = self._context.get('product_id', False)
+        product = self.env['product.product'].search([('id', '=', product_id)])
         return product
 
-    @api.depends('name', 'product_tmpl_id')
+    @api.depends('name', 'product_id')
     def _compute_display_name(self):
         """
         Usability feature -
@@ -35,12 +34,12 @@ class ForecastingSmoothingTechniques(models.Model):
         Check if the name of the product are set in the forecast and used to
         overwrite the display name.
 
-        :return: the forecasting name with the product.template name as prefix.
+        :return: the forecasting name with the product.product name as prefix.
         """
         for forecast in self:
             name = forecast.name
-            product = (forecast.product_tmpl_id
-                       and forecast.product_tmpl_id.name or False)
+            product = (forecast.product_id
+                       and forecast.product_id.name or False)
             if name and product:
                 display_name = '{product}: {name}'
             elif name:
@@ -54,7 +53,11 @@ class ForecastingSmoothingTechniques(models.Model):
         string='Name', compute='_compute_display_name')
 
     product_tmpl_id = fields.Many2one(
-        'product.template',
+        related='product_id.product_tmpl_id',
+        store=True)
+
+    product_id = fields.Many2one(
+        'product.product',
         string='Product',
         help='Product related to the current forecasting',
         default=_default_product,
