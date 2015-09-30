@@ -182,7 +182,7 @@
                                 <field name="holt_trend"/>
                             </graph>
                         </field>
-                        <div class="panel panel-default">
+                        <div class="panel panel-default" attrs="{'invisible':[('shelp','=',False), ('mhelp','=',False) ]}">
                             <div class="panel-heading">
                                 <h3 class="panel-title">Forecasting Data</h3>
                             </div>
@@ -426,13 +426,6 @@
                     <field name="double_forecast" string="ES2"/>
                     <field name="triple_forecast" string="ES3"/>
                     <field name="holt_forecast" string="HOLT"/>
-                    <field name="sma_ma_error" string="SMA ERROR"/>
-                    <field name="cma_ma_error" string="CMA ERROR"/>
-                    <field name="wma_ma_error" string="WMA ERROR"/>
-                    <field name="single_ma_error" string="ES1 ERROR"/>
-                    <field name="double_ma_error" string="ES2 ERROR"/>
-                    <field name="triple_ma_error" string="ES3 ERROR"/>
-                    <field name="holt_ma_error" string="HOLT ERROR"/>
                 </tree>
             </field>
         </record>
