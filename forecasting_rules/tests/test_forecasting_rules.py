@@ -119,23 +119,6 @@ class TestForecastingRules(common.TransactionCase):
         self.assertTrue(rule2)
 
     def test_02(self):
-        """Constraint: Require a filter when a forecast is set.
-        """
-        # Create a new rule with forecast related but without a filter
-        error_msg = (
-            ' Missing Rule Filter: The current forecast rule have'
-            ' not filter defined so can not generate the forecast values.')
-
-        # Create a forecast with a rule without a filter.
-        rule = self.create_rule(name='2', wo_irfilter=True)
-        forecast = self.forecast_obj.create({
-            'name': 'Constraint Rule - Forecast (Test 02)'})
-        forecast.rule_id = rule.id
-
-        with self.assertRaisesRegexp(ValidationError, error_msg):
-            forecast.fill_value_ids()
-
-    def test_03(self):
         """Constraint: Rule filter context without the required keys
 
         Remove context required key over an existing forecasting rule filter.
@@ -154,7 +137,7 @@ class TestForecastingRules(common.TransactionCase):
             context.pop('forecast_value')
             self.rule.filter_id.context = str(context)
 
-    def test_04(self):
+    def test_03(self):
         """Constraint: rule filter context forecast_value is not a valid field.
         """
         context = safe_eval(self.irfilter.context)
@@ -169,20 +152,18 @@ class TestForecastingRules(common.TransactionCase):
             context.update(forecast_value='nonexist_field')
             self.rule.filter_id.context = str(context)
 
-    def test_07(self):
-        """Constraint: Required same ir_filter/rule model (both side check)
+    def test_04(self):
+        """Check: Bidirectional change rule model / filter model
         """
         self.assertEqual(self.irfilter.model_id, self.rule.model)
 
-        # Try to change the filter model
-        error = 'filter/rule model do not match'
-        with self.assertRaisesRegexp(ValidationError, error):
-            self.irfilter.model_id = 'res.users'
+        # When change the irfilter model then the rule model also change.
+        self.irfilter.model_id = 'res.users'
+        self.assertEqual(self.rule.model, self.irfilter.model_id)
 
-        # Try to change the rule model
-        error = 'The rule model and filter model must be the same model'
-        with self.assertRaisesRegexp(ValidationError, error):
-            self.rule.model = 'res.groups'
+        # When change the rule model then the irfilter model also change.
+        self.rule.model = 'res.groups'
+        self.assertEqual(self.irfilter.model_id, self.rule.model)
 
     def _test_XX(self):
         """Security: check groups permissions

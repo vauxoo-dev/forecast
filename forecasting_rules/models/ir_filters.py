@@ -140,8 +140,6 @@ class IrFilters(models.Model):
                     (0, 0, dict(sequence=num, label=getattr(item, order),
                                 value=getattr(item, value)))
                     for (num, item) in enumerate(data, 1)]
-        else:
-            raise ValidationError(_('Development error'))
         return value_ids
 
     @api.multi
@@ -221,37 +219,3 @@ class IrFilters(models.Model):
                 if not list_item_type == set([type(tuple())]):
                     msg = _('Domain must be a list of tuples')
                     raise ValidationError('\n'.join([error, msg, self.domain]))
-
-    @api.constrains('model_id')
-    def _check_model_id(self):
-        """
-        Check that the model_id introduce by the user is the same of the
-        forecasting rule related
-
-            - Check if model exists
-            - Check if the filter/rule model match
-        """
-        related_rules = self.get_related_rules()
-        error = _('Not valid model')
-        if related_rules:
-
-            # Check if model exists
-            model = self.env['ir.model'].search(
-                [('model', '=', self.model_id)])
-            if not model:
-                msg = _('Model do not exists in the database')
-                raise ValidationError('\n'.join([error, msg, self.model_id]))
-
-            # Check if the filter/rule model match
-            diff_model_rules = related_rules.filtered(
-                lambda rule: rule.model != self.model_id)
-            if diff_model_rules:
-                diff_msg = _(
-                    ' - This filter have related forecast.rule "{rule}"'
-                    ' and the filter/rule model do not match.'
-                    ' (rule) {rule_model} != (filter) {filter_model}')
-                msg = '/n'.join([diff_msg.format(rule=rule.display_name,
-                                                 rule_model=rule.model,
-                                                 filter_model=self.model_id)
-                                 for rule in diff_model_rules])
-                raise ValidationError('\n'.join([error, self.model_id, msg]))

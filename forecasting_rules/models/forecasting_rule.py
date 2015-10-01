@@ -9,8 +9,7 @@
 #    planned by: Nhomar Hernandez <nhomar@vauxoo.com>
 ############################################################################
 
-from openerp import fields, models, api, _
-from openerp.exceptions import ValidationError
+from openerp import fields, models, api
 
 
 class ForecastingRule(models.Model):
@@ -18,12 +17,18 @@ class ForecastingRule(models.Model):
     _name = 'forecasting.rule'
     _description = 'Forecasting Rule'
 
-    name = fields.Char(requrired=True,
+    name = fields.Char(required=True,
                        help='Name to identify the Forecasting Rule')
-    model = fields.Char(help='Model were this forecasting apply')
+    model = fields.Selection(
+        related='filter_id.model_id',
+        required=True,
+        help='Model were this forecast apply. Be careful, If you update this'
+             ' field the ir.filter model field will be updated and vice versa')
     filter_id = fields.Many2one(
         'ir.filters',
+        domain="[('model_id','=', model)]",
         string='Filter',
+        required=True,
         help='Filter that indicate what values are going to be extract'
              ' for the forecast')
 
@@ -35,23 +40,3 @@ class ForecastingRule(models.Model):
         for rule in self:
             names = [str(rule.id), rule.name]
             rule.display_name = ' '.join(names)
-
-    @api.constrains('model', 'filter_id')
-    def _check_model_id(self):
-        """
-        Check that the model introduce by the user is the same of the
-        irfilter model
-        """
-        if self.filter_id:
-            model = self.model
-            irfilter_model = self.filter_id.model_id
-            error = str()
-            if model != irfilter_model:
-                error += _(
-                    " - The rule model and filter model must be the same model"
-                    " rule {rule_model} != filter {filter_model}").format(
-                        rule_model=model,
-                        filter_model=irfilter_model,
-                    )
-            if error:
-                raise ValidationError(error)
