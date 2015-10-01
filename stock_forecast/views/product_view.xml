@@ -8,7 +8,7 @@
             <field name="inherit_id" ref="product.product_template_form_view"/>
             <field name="arch" type="xml">
                 <xpath expr="//div[@name='buttons']" position="inside">
-                    <button class="oe_inline oe_stat_button" string="Forecasting" name="%(action_view_product_template_forecast)d" type="action" icon="fa-bar-chart-o" context="{'product_tmpl_id': id}" attrs="{'invisible': [('is_product_variant', '=', True)]}"/>
+                    <button class="oe_inline oe_stat_button" string="Forecasting" name="%(action_view_product_template_forecast)d" type="action" icon="fa-bar-chart-o" context="{'product_tmpl_id': id}" attrs="{'invisible': [('is_product_variant', '=', True)]}" groups="forecasting_smoothing_techniques.forecast_group_user,forecasting_smoothing_techniques.forecast_group_manager"/>
                 </xpath>
             </field>
         </record>
@@ -20,7 +20,7 @@
             <field name="arch" type="xml">
                 <xpath expr="//div[@name='buttons']" position="inside">
                     <button class="oe_inline oe_stat_button" string="Forecasting" name="%(action_view_product_product_forecast)d" type="action" icon="fa-bar-chart-o"
-                        context="{'product_id': id}" attrs="{'invisible': [('is_product_variant', '=', False)]}"/>
+                        context="{'product_id': id}" attrs="{'invisible': [('is_product_variant', '=', False)]}" groups="forecasting_smoothing_techniques.forecast_group_user,forecasting_smoothing_techniques.forecast_group_manager"/>
                 </xpath>
             </field>
         </record>
