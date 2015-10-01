@@ -11,7 +11,7 @@
 ############################################################################
 
 from openerp import _, tools
-from openerp.exceptions import ValidationError
+from openerp.exceptions import ValidationError, AccessError
 from openerp.tests import common
 import pandas as pd
 import csv
@@ -450,72 +450,138 @@ class TestForecast(common.TransactionCase):
         self.assertEqual(len(forecast.value_ids), 1)
         forecast.read([])
 
-    def test_06_1(self):
+    def test_08_1(self):
         """Security: Manager can do anything
         """
+
+        # Create demo user to test forecast manager security
         user_obj = self.env['res.users']
+        user = user_obj.create({
+            'name': 'Forecast Manager',
+            'login': 'forecast_manager',
+            'email': 'forecast_manager@yourcompany.example.com',
+            'password': '1234'})
+        self.assertTrue(user)
+
+        # Get group information
         group_obj = self.env['res.groups']
-
-        users = user_obj.search([])
-        self.assertTrue(users)
-
-        # Get group information and check is empty
         mngr_group = group_obj.browse(self.ref(
             'forecasting_smoothing_techniques.forecast_group_manager'))
         self.assertTrue(mngr_group)
-        self.assertFalse(mngr_group.users)
 
         # add a demo user to the group
-        forecast_mngr = users[0]
-        mngr_group.users = [(6, 0, [forecast_mngr.id])]
-        self.assertTrue(mngr_group.users)
+        mngr_group.users = [(6, 0, [user.id])]
+        self.assertIn(user, mngr_group.users)
 
-        # Test Create, Write, Read, Copy and Delete
-        forecast = self.forecast_obj.sudo(forecast_mngr).create({})
-        forecast.sudo(forecast_mngr).write({
+        # Test Create, Write, Read, Copy and Delete (ALL SUCCESS)
+        forecast = self.forecast_obj.sudo(user).create({})
+        forecast.sudo(user).write({
             'name': 'New name was set in unit test 06 1'})
-        self.assertTrue(forecast.sudo(forecast_mngr).name)
-        forecast2 = forecast.sudo(forecast_mngr).copy()
+        self.assertTrue(forecast.sudo(user).name)
+        forecast2 = forecast.sudo(user).copy()
         self.assertTrue(forecast2)
-        forecast.sudo(forecast_mngr).unlink()
+        forecast.sudo(user).unlink()
 
-    def test_06_2(self):
+    def test_08_2(self):
         """Security: Forecast User can not create or delete.
         """
+
+        # Create demo user to test forecast manager security
         user_obj = self.env['res.users']
+        user = user_obj.create({
+            'name': 'Forecast User',
+            'login': 'forecast_user',
+            'email': 'forecast_user@yourcompany.example.com',
+            'password': '1234'})
+        self.assertTrue(user)
+
+        # Get group information
         group_obj = self.env['res.groups']
-
-        users = user_obj.search([])
-        self.assertTrue(users)
-
-        # Get group information and check is empty
         user_group = group_obj.browse(self.ref(
             'forecasting_smoothing_techniques.forecast_group_user'))
         self.assertTrue(user_group)
-        self.assertFalse(user_group.users)
 
         # add a demo user to the group
-        forecast_user = users[0]
-        user_group.users = [(6, 0, [forecast_user.id])]
-        self.assertTrue(user_group.users)
+        user_group.users = [(6, 0, [user.id])]
+        self.assertIn(user, user_group.users)
 
-        # Test Create, Write, Read, Copy and Delete
-        # TODO forecast user can not create a forecast.
-        forecast = self.forecast_obj.sudo(forecast_user).create({})
+        # Test Create FAIL
+        with self.assertRaisesRegexp(
+                AccessError, 'not allowed to create.*forecast'):
+            self.forecast_obj.sudo(user).create({})
+
+        # Test Write SUCCESS
         forecast = self.forecast_obj.search([])[0]
-        forecast.sudo(forecast_user).write({
+        forecast.sudo(user).write({
             'name': 'New name was set in unit test 06 2'})
-        self.assertTrue(forecast.sudo(forecast_user).name)
-        forecast2 = forecast.sudo(forecast_user).copy()
-        self.assertTrue(forecast2)
-        # TODO this is not properly working. show a integrity error and must
-        # show a accessError
+
+        # Test Read SUCCESS
+        self.assertTrue(forecast.sudo(user).name)
+
+        # Test Copy FAIL
+        with self.assertRaisesRegexp(
+                AccessError, 'not allowed to create.*forecast'):
+            forecast.sudo(user).copy()
+
+        # Test Delete FAIL
+        with self.assertRaisesRegexp(
+                AccessError, 'not allowed to delete.*forecast'):
+            forecast.sudo(user).unlink()
+
+    def test_08_3(self):
+        """Security: Non Forecast group user can not do anything
+        """
+
+        # Create demo user to test non forecast security
+        user_obj = self.env['res.users']
+        user = user_obj.create({
+            'name': 'Regular User',
+            'login': 'regular_user',
+            'email': 'regular_user@yourcompany.example.com',
+            'password': '1234'})
+        self.assertTrue(user)
+
+        # Get group information
+        group_obj = self.env['res.groups']
+        user_group = group_obj.browse(self.ref(
+            'forecasting_smoothing_techniques.forecast_group_user'))
+        self.assertTrue(user_group)
+        mngr_group = group_obj.browse(self.ref(
+            'forecasting_smoothing_techniques.forecast_group_manager'))
+        self.assertTrue(mngr_group)
+
+        # add a demo user to the group
+        self.assertNotIn(user, user_group.users)
+        self.assertNotIn(user, mngr_group.users)
+
+        # Test Create FAIL
+        with self.assertRaisesRegexp(
+                AccessError, 'not allowed to create.*forecast'):
+            self.forecast_obj.sudo(user).create({})
+
+        # Test Write FAIL
+        forecast = self.forecast_obj.search([])[0]
+        with self.assertRaisesRegexp(
+                AccessError, 'not allowed to modify.*forecast'):
+            forecast.sudo(user).write({
+                'name': 'New name was set in unit test 06 2'})
+
+        # Test Read FAIL
+        with self.assertRaisesRegexp(
+                AccessError, 'not allowed to access.*forecast'):
+            self.assertTrue(forecast.sudo(user).name)
+
+        # Test Copy FAIL
+        with self.assertRaisesRegexp(
+                AccessError, 'not allowed to access.*forecast'):
+            forecast.sudo(user).copy()
+
+        # Test Delete FAIL
+        with self.assertRaisesRegexp(
+                AccessError, 'not allowed to delete.*forecast'):
+            forecast.sudo(user).unlink()
 
         # TODO add any user test
-        # Test Create
-        # Test Read
-        # Test Write
-        # Test Duplicate
 
     def test_07(self):
         """Check almost_equal method.

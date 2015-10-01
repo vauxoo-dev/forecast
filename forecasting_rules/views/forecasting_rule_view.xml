@@ -1,6 +1,34 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <openerp>
     <data>
+
+        <record id="forecast_view_tree" model="ir.ui.view">
+            <field name="name">fr.forecast.tree</field>
+            <field name="model">forecast</field>
+            <field name="inherit_id" ref="forecasting_smoothing_techniques.forecasting_view_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="rule_id" invisible="1"/>
+                    <field name="manual_data" string="Manual"/>
+                </xpath>
+            </field>
+         </record>
+
+        <record id="forecast_search_view" model="ir.ui.view">
+            <field name="name">forecast.search.view</field>
+            <field name="model">forecast</field>
+            <field name="inherit_id" ref="forecasting_smoothing_techniques.forecasting_view_search"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <filter name="manual_data" string="Manual Data" domain="[('manual_data', '=', True)]"/>
+                    <filter name="rule_data" string="Rule Data" domain="[('rule_id', '!=', False)]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Forecast Rule" name="rule_id" domain="[('rule_id', '!=', False)]" context="{'group_by':'rule_id'}"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
         <record id="forecasting_rule_view_form" model="ir.ui.view">
             <field name="name">forecasting.rule.form</field>
             <field name="model">forecasting.rule</field>

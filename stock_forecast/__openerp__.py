@@ -26,6 +26,7 @@
         "wizard/stock_demand_view.xml",
     ],
     "demo": [
+        "demo/stock.picking.csv",
         "demo/stock_forecast_demo.xml",
     ],
     "test": [],

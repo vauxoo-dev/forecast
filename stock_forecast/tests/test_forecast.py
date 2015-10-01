@@ -22,10 +22,10 @@ class TestForecast(common.TransactionCase):
     def setUp(self):
         super(TestForecast, self).setUp()
         self.forecast_obj = self.env['forecast']
-        self.product_obj = self.env['product.template']
+        self.product_obj = self.env['product.product']
 
         self.product = self.product_obj.browse(
-            self.ref('product.product_product_7_product_template'))
+            self.ref('product.product_product_7'))
         self.product_name = self.product.name
 
     def create_forecast(self, name='UNDEFINED', values=None):
@@ -56,10 +56,10 @@ class TestForecast(common.TransactionCase):
             'name': 'Unit Test 02',
         }
         forecast = self.forecast_obj.with_context({
-            'product_tmpl_id': self.product.id,
+            'product_id': self.product.id,
         }).create(values)
         self.assertTrue(forecast)
-        self.assertEqual(forecast.product_tmpl_id, self.product)
+        self.assertEqual(forecast.product_id, self.product)
 
     def test_03(self):
         """Forecast Display name with product.
@@ -68,7 +68,7 @@ class TestForecast(common.TransactionCase):
         """
         values = {
             'name': 'Unit Test 03',
-            'product_tmpl_id': self.product.id,
+            'product_id': self.product.id,
         }
         forecast = self.forecast_obj.create(values)
         expected_display_name = ''.join([
@@ -93,7 +93,7 @@ class TestForecast(common.TransactionCase):
         Result correspond to "product: "
         """
         values = {
-            'product_tmpl_id': self.product.id,
+            'product_id': self.product.id,
         }
         forecast = self.forecast_obj.create(values)
         expected_display_name = ''.join([self.product.name,

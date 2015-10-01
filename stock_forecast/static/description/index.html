@@ -14,9 +14,46 @@
      Stock Forecast
     </h2>
     <p class="oe_mt32">
-     This module add the components to integrate the forecasting with the product
-records.
+     This module add a way to generate forecasting from the product demand.
     </p>
+    <p class="oe_mt32">
+     <strong>
+      Features
+     </strong>
+     :
+    </p>
+    <ul class="simple">
+     <li>
+      Integrate forecasting with products. Add button
+      <code class="docutils literal">
+       Forecasting
+      </code>
+      in the
+product form view and add product field to the forecast record.
+     </li>
+     <li>
+      Add wizard at
+      <code class="docutils literal">
+       Reporting &gt; Warehouse &gt; Stock Demand
+      </code>
+      to calculate demand
+for a product in a specific location. Also can have a date margin to extract
+demand only in a certain group (required Forecast Manager permission).
+     </li>
+     <li>
+      Add demo data so you can check how the product demand forecast works. You
+can go to
+      <code class="docutils literal">
+       Settings &gt; Technical &gt; Forecasting &gt; Forecast
+      </code>
+      and select the
+forecast with the prefix
+      <code class="docutils literal">
+       (ST Test 01)
+      </code>
+      .
+     </li>
+    </ul>
    </div>
    <div class="section oe_span12" id="installation">
     <h1>
@@ -27,24 +64,30 @@ records.
     </p>
     <ul class="simple">
      <li>
-      Download this module from
-      <a class="reference external" href="https://github.com/vauxoo/stock-forecasting">
-       Vauxoo/stock-forecasting
-      </a>
-     </li>
-     <li>
-      Add the repository folder into your odoo addons-path.
-     </li>
-     <li>
-      Go to
-      <code class="docutils literal">
-       Settings &gt; Module list
-      </code>
-      search for the current name and click in
-      <code class="docutils literal">
-       Install
-      </code>
-      button.
+      Not special pre-installation is required, just install as a regular odoo
+module:
+      <ul>
+       <li>
+        Download this module from
+        <a class="reference external" href="https://github.com/vauxoo/forecast">
+         Vauxoo/forecast
+        </a>
+       </li>
+       <li>
+        Add the repository folder into your odoo addons-path.
+       </li>
+       <li>
+        Go to
+        <code class="docutils literal">
+         Settings &gt; Module list
+        </code>
+        search for the current name and click in
+        <code class="docutils literal">
+         Install
+        </code>
+        button.
+       </li>
+      </ul>
      </li>
     </ul>
    </div>
@@ -83,35 +126,19 @@ records.
 forecasting for you selected product product.
       </p>
       <img alt="Forecasting button at the Product Form View" class="oe_picture oe_screenshot" src="product_button_forcast.png"/>
+     </li>
+     <li>
+      <p class="oe_mt32">
+       Once in the forecast form view you can check that is associated to what
+product in the section
+       <code class="docutils literal">
+        Done for product
+       </code>
+       .
+      </p>
       <img alt="Forecast Buttons" class="oe_picture oe_screenshot" src="forecast_buttons.png"/>
-      <p class="oe_mt32">
-       In the first view of the forecasting form view you can view a graph with
-the results of all the forecasting methods applied over the data you
-sumbit.
-      </p>
-     </li>
-     <li>
-      <p class="oe_mt32">
-       In a more complete view of all the forecasting form view you can review the
-total forecasting summary and the forecasting methods paramters to configure
-to run the forecasting. If you have any doubt there is an explanation about
-every forecasting methods so will be more easy to use.
-      </p>
      </li>
     </ul>
-    <img alt="Forecast Form View" class="oe_picture oe_screenshot" src="forecast_form_view.png"/>
-    <ul class="simple">
-     <li>
-      When editing the forecast values (Click over the
-      <code class="docutils literal">
-       List of Values
-      </code>
-      button)
-you can observe all the values in the table with all the detail forecasting
-results per data point with the mathematical absolute error (MAE).
-     </li>
-    </ul>
-    <img alt="Forecast Data List View" class="oe_picture oe_screenshot" src="forecast_data_tree_view.png"/>
    </div>
    <div class="section oe_span12" id="known-issues-roadmap">
     <h1>
@@ -124,13 +151,14 @@ results per data point with the mathematical absolute error (MAE).
     </h1>
     <p class="oe_mt32">
      Bugs are tracked on
-     <a class="reference external" href="https://github.com/Vauxoo/stock-forecasting/issues">
+     <a class="reference external" href="https://github.com/Vauxoo/forecast/issues">
       GitHub Issues
      </a>
      .
 In case of trouble, please check there if your issue has already been reported.
-If you spotted it first, help us smashing it by providing a detailed and welcomed feedback
-     <a class="reference external" href="https://github.com/Vauxoo/stock-forecasting/issues/new?body=module:%20{stock_forecast}%0Aversion:%20{8.0.1.0.0}%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">
+If you spotted it first, help us smashing it by providing a detailed and
+welcomed feedback
+     <a class="reference external" href="https://github.com/Vauxoo/forecast/issues/new?body=module:%20stock_forecast%0Aversion:%208.0.1.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">
       here
      </a>
     </p>
@@ -141,41 +169,52 @@ If you spotted it first, help us smashing it by providing a detailed and welcome
     </h1>
     <ul class="simple">
      <li>
-      This module future can change its dependency from
-forecasting_smoothing_techniques module to forecasting_rules.
-     </li>
-     <li>
       Maybe the display_name field and compute method can be defined in the
 forecasting_smoothing_techniques module and overwrite in every forecast
 module.
+     </li>
+     <li>
+      Stock picking data demo:
+      <ul>
+       <li>
+        Make that data demo is generated dynamically in the last 3 months from the
+date that the database is created.
+       </li>
+       <li>
+        Add more entries to have at least 9 values for every product/location.
+       </li>
+       <li>
+        Evaluate if is necessary to move the stock picking data demo to xml data.
+       </li>
+      </ul>
      </li>
     </ul>
    </div>
    <div class="section oe_span12" id="credits">
     <h1>
-     credits
+     Credits
     </h1>
-    <div class="section oe_span12" id="contributors">
-     <h2>
+    <p class="oe_mt32">
+     <strong>
       Contributors
-     </h2>
-     <ul class="simple">
-      <li>
-       Nhomar Hernandez &lt;
-       <a class="reference external" href="mailto:nhomar@vauxoo.com">
-        nhomar@vauxoo.com
-       </a>
-       &gt; (Planner/Auditor)
-      </li>
-      <li>
-       Katherine Zaoral &lt;
-       <a class="reference external" href="mailto:kathy@vauxoo.com">
-        kathy@vauxoo.com
-       </a>
-       &gt; (Developer)
-      </li>
-     </ul>
-    </div>
+     </strong>
+    </p>
+    <ul class="simple">
+     <li>
+      Nhomar Hernandez &lt;
+      <a class="reference external" href="mailto:nhomar@vauxoo.com">
+       nhomar@vauxoo.com
+      </a>
+      &gt; (Planner/Auditor)
+     </li>
+     <li>
+      Katherine Zaoral &lt;
+      <a class="reference external" href="mailto:kathy@vauxoo.com">
+       kathy@vauxoo.com
+      </a>
+      &gt; (Developer)
+     </li>
+    </ul>
    </div>
   </section>
   <section class="oe_container">
