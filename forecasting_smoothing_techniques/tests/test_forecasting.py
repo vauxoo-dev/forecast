@@ -13,6 +13,7 @@
 from openerp import _, tools
 from openerp.exceptions import ValidationError, AccessError
 from openerp.tests import common
+from openerp.tools import mute_logger
 import pandas as pd
 import csv
 
@@ -482,6 +483,7 @@ class TestForecast(common.TransactionCase):
         self.assertTrue(forecast2)
         forecast.sudo(user).unlink()
 
+    @mute_logger('openerp.addons.base.ir.ir_model', 'openerp.osv.orm')
     def test_08_2(self):
         """Security: Forecast User can not create or delete.
         """
@@ -528,6 +530,7 @@ class TestForecast(common.TransactionCase):
                 AccessError, 'not allowed to delete.*forecast'):
             forecast.sudo(user).unlink()
 
+    @mute_logger('openerp.addons.base.ir.ir_model', 'openerp.osv.orm')
     def test_08_3(self):
         """Security: Non Forecast group user can not do anything
         """
@@ -580,8 +583,6 @@ class TestForecast(common.TransactionCase):
         with self.assertRaisesRegexp(
                 AccessError, 'not allowed to delete.*forecast'):
             forecast.sudo(user).unlink()
-
-        # TODO add any user test
 
     def test_07(self):
         """Check almost_equal method.
