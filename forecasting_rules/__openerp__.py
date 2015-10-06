@@ -12,7 +12,7 @@
 {
     "name": "Forecasting Rules",
     "summary": "Manage forecasting data and results",
-    "version": "8.0.1.0",
+    "version": "8.0.1.0.0",
     "license": "LGPL-3",
     "author": "Vauxoo",
     "website": "http://www.vauxoo.com/",
@@ -21,14 +21,18 @@
         "forecasting_smoothing_techniques",
         ],
     "data": [
-        "security/forecasting_rules_security.xml",
         "security/ir.model.access.csv",
         "views/forecasting_rule_view.xml",
         ],
     "demo": [
         "demo/res_partner.xml",
-        "demo/forecasting_rules_demo.xml",
+        "demo/ir_filters.xml",
+        "demo/forecasting_rule.xml",
+        "demo/forecast.xml",
         ],
+    "external_dependencies": {
+        "python": ["pandas", "numexpr"],
+        },
     "test": [],
     "qweb": [],
     "js": [],

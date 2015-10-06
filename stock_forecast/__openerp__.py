@@ -11,7 +11,7 @@
 
 {
     "name": "Stock Forecast",
-    "version": "8.0.1.0",
+    "version": "8.0.1.0.0",
     "license": "LGPL-3",
     "author": "Vauxoo",
     "website": "http://www.vauxoo.com/",
@@ -19,6 +19,7 @@
     "depends": [
         "stock_account",
         "forecasting_rules",
+        "stock_allow_past_date",
     ],
     "data": [
         "views/forecasting_smoothing_techniques_view.xml",
@@ -26,8 +27,13 @@
         "wizard/stock_demand_view.xml",
     ],
     "demo": [
-        "demo/stock.picking.csv",
-        "demo/stock_forecast_demo.xml",
+        "demo/product_product.xml",
+        "demo/stock_picking.xml",
+        "demo/stock_move.xml",
+        "demo/stock_picking.yml",
+        "demo/ir_filters.xml",
+        "demo/forecasting_rule.xml",
+        "demo/forecast.xml",
     ],
     "test": [],
     "qweb": [],

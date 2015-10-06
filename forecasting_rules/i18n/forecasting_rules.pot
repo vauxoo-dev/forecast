@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-28 15:08+0000\n"
-"PO-Revision-Date: 2015-09-28 15:08+0000\n"
+"POT-Creation-Date: 2015-10-14 19:28+0000\n"
+"PO-Revision-Date: 2015-10-14 19:28+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,75 +16,85 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: forecasting_rules
-#: code:addons/forecasting_rules/models/ir_filters.py:186
+#: code:addons/forecasting_rules/models/ir_filters.py:311
 #, python-format
 msgid " - The {context_key} key must exist in the filter record to be use as forcasting rule.\n"
 ""
 msgstr ""
 
 #. module: forecasting_rules
-#: code:addons/forecasting_rules/models/ir_filters.py:249
-#, python-format
-msgid " - This filter have related forecast.rule \"{rule}\" and the filter/rule model do not match. (rule) {rule_model} != (filter) {filter_model}"
-msgstr ""
-
-#. module: forecasting_rules
-#: code:addons/forecasting_rules/models/forecast.py:41
+#: code:addons/forecasting_rules/models/forecast.py:42
 #, python-format
 msgid " Fill the forecast values manually or uncheck Use Manual Data."
 msgstr ""
 
 #. module: forecasting_rules
-#: code:addons/forecasting_rules/models/forecast.py:59
+#: code:addons/forecasting_rules/models/forecast.py:61
 #, python-format
 msgid " Missing Rule Filter: The current forecast rule have not filter defined so can not generate the forecast values."
 msgstr ""
 
 #. module: forecasting_rules
-#: code:addons/forecasting_rules/models/forecast.py:46
+#: code:addons/forecasting_rules/models/forecast.py:47
 #, python-format
 msgid " There is not forecast rule to fill the values."
 msgstr ""
 
 #. module: forecasting_rules
-#: code:addons/forecasting_rules/models/ir_filters.py:59
+#: code:addons/forecasting_rules/models/ir_filters.py:75
+#, python-format
+msgid " You can use this options as forecast step"
+msgstr ""
+
+#. module: forecasting_rules
+#: code:addons/forecasting_rules/models/ir_filters.py:61
 #, python-format
 msgid " is not a valid field in"
 msgstr ""
 
 #. module: forecasting_rules
 #: model:ir.filters,name:forecasting_rules.filter_demo_01
-msgid "(Test 01) Customer Credit Limit Forecast order by date"
+msgid "(FRD01) 2015 Partners Credit Limit Forecast order by id (integer)"
 msgstr ""
 
 #. module: forecasting_rules
 #: model:ir.filters,name:forecasting_rules.filter_demo_02
-msgid "(Test 02) Partners Credit Limit Forecast order by id (integer)"
+msgid "(FRD02) 2015 Partners Credit Limit Forecast order by write_date (datetime)"
 msgstr ""
 
 #. module: forecasting_rules
 #: model:ir.filters,name:forecasting_rules.filter_demo_03
-msgid "(Test 03) Partners Credit Limit Forecast order by date"
+msgid "(FRD03) 2015 Partners Credit Limit Forecast order by date"
 msgstr ""
 
 #. module: forecasting_rules
 #: model:ir.filters,name:forecasting_rules.filter_demo_04
-msgid "(Test 04) Partners Credit Limit Forecast order by write_date (datetime)"
+msgid "(FRD04) 2015 Partners Credit Limit Forecast order by date (group by day)"
 msgstr ""
 
 #. module: forecasting_rules
 #: model:ir.filters,name:forecasting_rules.filter_demo_05
-msgid "(Test 05) Partners Credit Limit Forecast group by month"
+msgid "(FRD05) 2015 Partners Credit Limit Forecast order by date (group by day - all days)"
 msgstr ""
 
 #. module: forecasting_rules
-#: code:addons/forecasting_rules/models/ir_filters.py:174
+#: model:ir.filters,name:forecasting_rules.filter_demo_06
+msgid "(FRD06) 2015 Partners Credit Limit Forecast order by date (group by month)"
+msgstr ""
+
+#. module: forecasting_rules
+#: model:ir.filters,name:forecasting_rules.filter_demo_07
+msgid "(FRD07) Last 6 years Partners Credit Limit Forecast order by date (group by year)"
+msgstr ""
+
+#. module: forecasting_rules
+#: code:addons/forecasting_rules/models/ir_filters.py:299
 #, python-format
 msgid "Context is not a valid python expression"
 msgstr ""
 
 #. module: forecasting_rules
-#: code:addons/forecasting_rules/models/ir_filters.py:179
+#: code:addons/forecasting_rules/models/ir_filters.py:304
 #, python-format
 msgid "Context must be a dictionary"
 msgstr ""
@@ -100,25 +110,19 @@ msgid "Created on"
 msgstr ""
 
 #. module: forecasting_rules
-#: code:addons/forecasting_rules/models/ir_filters.py:144
-#, python-format
-msgid "Development error"
-msgstr ""
-
-#. module: forecasting_rules
-#: code:addons/forecasting_rules/models/ir_filters.py:212
+#: code:addons/forecasting_rules/models/ir_filters.py:345
 #, python-format
 msgid "Domain is not a valid python expression"
 msgstr ""
 
 #. module: forecasting_rules
-#: code:addons/forecasting_rules/models/ir_filters.py:217
+#: code:addons/forecasting_rules/models/ir_filters.py:350
 #, python-format
 msgid "Domain must be a list"
 msgstr ""
 
 #. module: forecasting_rules
-#: code:addons/forecasting_rules/models/ir_filters.py:222
+#: code:addons/forecasting_rules/models/ir_filters.py:355
 #, python-format
 msgid "Domain must be a list of tuples"
 msgstr ""
@@ -149,13 +153,9 @@ msgid "Forecast"
 msgstr ""
 
 #. module: forecasting_rules
+#: view:forecast:forecasting_rules.forecast_search_view
 #: field:forecast,rule_id:0
 msgid "Forecast Rule"
-msgstr ""
-
-#. module: forecasting_rules
-#: model:res.groups,name:forecasting_rules.forecasting_rule_group
-msgid "Forecast Rule Manager"
 msgstr ""
 
 #. module: forecasting_rules
@@ -180,6 +180,11 @@ msgstr ""
 #: view:forecasting.rule:forecasting_rules.forecasting_rule_view_tree
 #: model:ir.ui.menu,name:forecasting_rules.menu_forecasting_rule
 msgid "Forecasting Rules"
+msgstr ""
+
+#. module: forecasting_rules
+#: view:forecast:forecasting_rules.forecast_search_view
+msgid "Group By"
 msgstr ""
 
 #. module: forecasting_rules
@@ -208,14 +213,18 @@ msgid "Last Updated on"
 msgstr ""
 
 #. module: forecasting_rules
-#: view:forecasting.rule:forecasting_rules.forecasting_rule_view_search
-msgid "Model"
+#: view:forecast:forecasting_rules.forecast_view_tree
+msgid "Manual"
 msgstr ""
 
 #. module: forecasting_rules
-#: code:addons/forecasting_rules/models/ir_filters.py:242
-#, python-format
-msgid "Model do not exists in the database"
+#: view:forecast:forecasting_rules.forecast_search_view
+msgid "Manual Data"
+msgstr ""
+
+#. module: forecasting_rules
+#: view:forecasting.rule:forecasting_rules.forecasting_rule_view_search
+msgid "Model"
 msgstr ""
 
 #. module: forecasting_rules
@@ -229,25 +238,30 @@ msgid "Name to identify the Forecasting Rule"
 msgstr ""
 
 #. module: forecasting_rules
-#: code:addons/forecasting_rules/models/ir_filters.py:58
+#: code:addons/forecasting_rules/models/ir_filters.py:74
+#, python-format
+msgid "Not valid context forecast_step value."
+msgstr ""
+
+#. module: forecasting_rules
+#: code:addons/forecasting_rules/models/ir_filters.py:60
 #, python-format
 msgid "Not valid context value."
 msgstr ""
 
 #. module: forecasting_rules
-#: code:addons/forecasting_rules/models/ir_filters.py:235
-#, python-format
-msgid "Not valid model"
+#: view:forecast:forecasting_rules.forecast_search_view
+msgid "Rule Data"
 msgstr ""
 
 #. module: forecasting_rules
-#: code:addons/forecasting_rules/models/ir_filters.py:166
+#: code:addons/forecasting_rules/models/ir_filters.py:291
 #, python-format
 msgid "The context value you introduce is not a valid context"
 msgstr ""
 
 #. module: forecasting_rules
-#: code:addons/forecasting_rules/models/ir_filters.py:204
+#: code:addons/forecasting_rules/models/ir_filters.py:337
 #, python-format
 msgid "The domain value you introduce is not a valid domain"
 msgstr ""

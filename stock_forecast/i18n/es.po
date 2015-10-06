@@ -6,14 +6,99 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-21 19:56+0000\n"
-"PO-Revision-Date: 2015-09-21 19:56+0000\n"
+"POT-Creation-Date: 2015-10-14 19:44+0000\n"
+"PO-Revision-Date: 2015-10-14 19:44+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: stock_forecast
+#: view:stock.history:stock_forecast.view_stock_demand_history_report_tree
+msgid "# of Products"
+msgstr "Nº de productos"
+
+#. module: stock_forecast
+#: view:stock.history:stock_forecast.view_stock_demand_history_report_tree
+msgid "# of Products Available"
+msgstr "# de productos disponibles"
+
+#. module: stock_forecast
+#: model:ir.filters,name:stock_forecast.irfilter_01
+msgid "(SFD01) 2015 Demand for iMac Product in WH/Stock"
+msgstr "(SFD01) 2015 Demand for iMac Product in WH/Stock"
+
+#. module: stock_forecast
+#: model:ir.filters,name:stock_forecast.irfilter_02
+msgid "(SFD02) 2015 Demand for iPad Retina Display in WH/Stock (Group by Month)"
+msgstr "(SFD02) 2015 Demand for iPad Retina Display in WH/Stock (Group by Month)"
+
+#. module: stock_forecast
+#: model:ir.filters,name:stock_forecast.irfilter_03
+msgid "(SFD03) 2015 Demand for New Product PC Assemble SC234 in WH/Stock"
+msgstr "(SFD03) 2015 Demand for New Product PC Assemble SC234 in WH/Stock"
+
+#. module: stock_forecast
+#: model:ir.filters,name:stock_forecast.irfilter_04
+msgid "(SFD04) Last 2 months Demand for PC on Demand in WH/Stock (Group by Week)"
+msgstr "(SFD04) Last 2 months Demand for PC on Demand in WH/Stock (Group by Week)"
+
+#. module: stock_forecast
+#: model:ir.filters,name:stock_forecast.irfilter_05
+msgid "(SFD05) Last month Demand for iPod in WH/Stock (Group by day)"
+msgstr "(SFD05) Last month Demand for iPod in WH/Stock (Group by day)"
+
+#. module: stock_forecast
+#: model:ir.filters,name:stock_forecast.irfilter_06
+msgid "(SFD06) 2015 Apple's Product Category Demand in WH/Stock (Group by Month)"
+msgstr "(SFD06) 2015 Apple's Product Category Demand in WH/Stock (Group by Month)"
+
+#. module: stock_forecast
+#: model:ir.filters,name:stock_forecast.irfilter_07
+msgid "(SFD07) Last 14 days Demand for iPod Product in WH/Stock (Group by day)"
+msgstr "(SFD07) Last 14 days Demand for iPod Product in WH/Stock (Group by day)"
+
+#. module: stock_forecast
+#: view:wizard.stock.demand:stock_forecast.view_wizard_demand_history
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: stock_forecast
+#: field:wizard.stock.demand,create_uid:0
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: stock_forecast
+#: field:wizard.stock.demand,create_date:0
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: stock_forecast
+#: help:wizard.stock.demand,date_to:0
+msgid "Date End used to get the range of the demands"
+msgstr "Fecha Final del rango utilizada para obtener la demanda"
+
+#. module: stock_forecast
+#: field:wizard.stock.demand,date_from:0
+msgid "Date From"
+msgstr "Date From"
+
+#. module: stock_forecast
+#: help:wizard.stock.demand,date_from:0
+msgid "Date Start used to get the range of the demands"
+msgstr "Date Start used to get the range of the demands"
+
+#. module: stock_forecast
+#: field:wizard.stock.demand,date_to:0
+msgid "Date to"
+msgstr "Date to"
+
+#. module: stock_forecast
+#: help:wizard.stock.demand,location_id:0
+msgid "Destination location of the moves to show"
+msgstr "Destination location of the moves to show"
 
 #. module: stock_forecast
 #: view:forecast:stock_forecast.stock_forecast_view_form
@@ -26,22 +111,99 @@ msgid "Forecast"
 msgstr "Pronóstico"
 
 #. module: stock_forecast
-#: view:product.template:stock_forecast.view_id
+#: view:product.product:stock_forecast.product_product_forecast_form
+#: view:product.template:stock_forecast.product_template_forecast_form
 msgid "Forecasting"
 msgstr "Pronóstico"
 
 #. module: stock_forecast
-#: model:ir.actions.act_window,name:stock_forecast.action_view_stock_forecasting
-msgid "Forecasting by Smoothing Techniques"
-msgstr "Pronósticos por técnica de suavizado"
+#: model:ir.actions.act_window,name:stock_forecast.action_view_product_product_forecast
+#: model:ir.actions.act_window,name:stock_forecast.action_view_product_template_forecast
+msgid "Forecasts"
+msgstr "Pronósticos"
 
 #. module: stock_forecast
-#: field:forecast,product_tmpl_id:0
+#: field:wizard.stock.demand,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: stock_forecast
+#: field:wizard.stock.demand,write_uid:0
+msgid "Last Updated by"
+msgstr "Ultima Actualización por"
+
+#. module: stock_forecast
+#: field:wizard.stock.demand,write_date:0
+msgid "Last Updated on"
+msgstr "Ultima Actualización en"
+
+#. module: stock_forecast
+#: field:wizard.stock.demand,location_id:0
+msgid "Location"
+msgstr "Ubicación"
+
+#. module: stock_forecast
+#: view:forecast:stock_forecast.forecast_search_view
+#: field:forecast,product_id:0
+#: field:wizard.stock.demand,product_id:0
 msgid "Product"
 msgstr "Producto"
 
 #. module: stock_forecast
-#: help:forecast,product_tmpl_id:0
+#: view:forecast:stock_forecast.forecast_search_view
+#: field:forecast,product_tmpl_id:0
+msgid "Product Template"
+msgstr "Plantilla de Producto"
+
+#. module: stock_forecast
+#: help:forecast,product_id:0
 msgid "Product related to the current forecasting"
 msgstr "Producto relacionado al pronóstico actual"
+
+#. module: stock_forecast
+#: help:wizard.stock.demand,product_id:0
+msgid "Product used to filter the information to show, We will show you only moves related to this product"
+msgstr "Producto usado para filtrar la información a mostrar. Te mostraremos solo los movimientos relacionados a este producto"
+
+#. module: stock_forecast
+#: view:wizard.stock.demand:stock_forecast.view_wizard_demand_history
+msgid "Retrieve the Inventory Value"
+msgstr "Devuelve el valor del inventario"
+
+#. module: stock_forecast
+#: model:ir.actions.act_window,name:stock_forecast.action_wizard_stock_demand_history
+#: model:ir.ui.menu,name:stock_forecast.menu_action_wizard_demand_history
+msgid "Stock Demand"
+msgstr "Demanda"
+
+#. module: stock_forecast
+#: view:stock.history:stock_forecast.view_stock_demand_history_report_tree
+msgid "Stock Demand At Date"
+msgstr "Demanda a la fecha"
+
+#. module: stock_forecast
+#: code:addons/stock_forecast/wizard/stock_demand.py:54
+#, python-format
+msgid "Stock Demands At Date"
+msgstr "Demanda a la fecha"
+
+#. module: stock_forecast
+#: view:stock.history:stock_forecast.view_stock_demand_history_report_tree
+msgid "Total Value"
+msgstr "Valor total"
+
+#. module: stock_forecast
+#: view:forecast:stock_forecast.stock_forecast_view_form
+msgid "from"
+msgstr "desde"
+
+#. module: stock_forecast
+#: view:wizard.stock.demand:stock_forecast.view_wizard_demand_history
+msgid "or"
+msgstr "o"
+
+#. module: stock_forecast
+#: view:forecast:stock_forecast.stock_forecast_view_form
+msgid "template"
+msgstr "plantilla"
 

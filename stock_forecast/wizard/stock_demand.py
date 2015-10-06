@@ -39,6 +39,10 @@ class StockDemand(models.TransientModel):
         '''
         ctx = dict(self._context).copy()
         ctx['history_date'] = self.date_to
+        ctx['search_default_product_id'] = self.product_id.id
+        ctx['search_default_location_id'] = self.location_id.id
+        ctx['forecast_value'] = 'quantity'
+        ctx['forecast_order'] = 'date'
         tree_view = self.env.ref('stock_forecast.'
                                  'view_stock_demand_history_report_tree')
         return {
@@ -82,3 +86,16 @@ class StockHistory(models.Model):
                                     compute='_get_current_value',
                                     store=False,
                                     help='Quantity demanded in the move')
+
+    quantity_force_positive = fields.Float(
+        'Quantity Demanded',
+        compute='_get_positive_quantity',
+        help='Same as Quantity but positive always')
+
+    @api.multi
+    def _get_positive_quantity(self):
+        """
+        Set the quantity available at the moment to delivery the product
+        """
+        for history in self:
+            history.quantity_force_positive = abs(history.quantity)

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-21 16:17+0000\n"
-"PO-Revision-Date: 2015-09-21 16:17+0000\n"
+"POT-Creation-Date: 2015-10-14 19:37+0000\n"
+"PO-Revision-Date: 2015-10-14 19:37+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,21 +17,23 @@ msgstr ""
 
 #. module: forecasting_smoothing_techniques
 #: view:forecast:forecasting_smoothing_techniques.forecasting_view_form
-msgid ".\n"
-"                                            After you add the forecast values and save this form the forecasting will be compute automatically."
-msgstr ".\n"
-"                                            Despues de que agregue los valores del pronóstico y guarde este formulario el pronóstico será recalculado automaticamente." 
-
-#. module: forecasting_smoothing_techniques
-#: view:forecast:forecasting_smoothing_techniques.forecasting_view_form
 msgid ". Although there are numerical indicators for assessing the accuracy of the forecasting technique, the most widely approach is in using visual comparison of several forecasts to assess their accuracy and choose among the various forecasting methods. In this approach, one must plot (using, e.g., Excel) on the same graph the original values of a time series variable and the predicted values from several different forecasting methods, thus facilitating a visual comparison."
 msgstr ". A pesar de que existen indicadores numericos para evaluar la exactitud la tecnica de pronóstico, el enfoque mayormente utilizado es la comparación visual de varios pronósticos para evaluar su exactitud y elegir entre los distintos métodos de pronóstico.  En este enfoque, hay que dibujar (utilizando, por ejemplo, Excel) en el mismo gráfico los valores originales de una variable de series de tiempo y los valores previstos de varios métodos de pronóstico diferentes, facilitando así una comparación visual.  "
 
 #. module: forecasting_smoothing_techniques
 #: view:forecast:forecasting_smoothing_techniques.forecasting_view_form
 msgid "A time series is a sequence of observations which are ordered in time. Inherent in the collection of data taken over time is some form of random variation. There exist methods for reducing of canceling the effect due to random variation. Widely used techniques are \"smoothing\". These techniques, when properly applied, reveals more clearly the underlying trends."
-msgstr "Una serie de tiempo es una secuencia de observaciones las cuales estan
-ordenadas en el tiempo. Inherente a la recolección de los datos obtenidos a través del tiempo es una cierta forma de la variación aleatoria. Existen métodos para reducir de cancelar el efecto debido a la variación aleatoria. Técnicas utilizadas ampliamente son \"smoothing\". Estas técnicas, cuando se aplica correctamente, revelan con mayor claridad las tendencias subyacentes ".
+msgstr "Una serie de tiempo es una secuencia de observaciones las cuales estardenadas en el tiempo. Inherente a la recolección de los datos obtenidos a través del tiempo es una cierta forma de la variación aleatoria. Existen métodos para reducir de cancelar el efecto debido a la variación aleatoria. Técnicas utilizadas ampliamente son \"smoothing\". Estas técnicas, cuando se aplica correctamente, revelan con mayor claridad las tendencias subyacentes \""
+
+#. module: forecasting_smoothing_techniques
+#: help:forecast,shelp:0
+msgid "Allows you to show the help in the form view"
+msgstr "Te permite mostrar la ayuda en la vista formulario"
+
+#. module: forecasting_smoothing_techniques
+#: help:forecast,mhelp:0
+msgid "Allows you to show the mathematic base help in the form view"
+msgstr "Te permite mostrar la ayuda de la base matematica en la vista formulario"
 
 #. module: forecasting_smoothing_techniques
 #: field:forecast,exp_alpha:0
@@ -40,8 +42,8 @@ msgid "Alpha"
 msgstr "Alfa"
 
 #. module: forecasting_smoothing_techniques
-#: code:addons/forecasting_smoothing_techniques/models/forecast.py:215
-#: code:addons/forecasting_smoothing_techniques/models/forecast.py:225
+#: code:addons/forecasting_smoothing_techniques/models/forecast.py:227
+#: code:addons/forecasting_smoothing_techniques/models/forecast.py:237
 #, python-format
 msgid "Alpha should be between 0 and 1."
 msgstr "Alfa debe estar entre 0 y 1."
@@ -57,7 +59,7 @@ msgid "Beta"
 msgstr "Beta"
 
 #. module: forecasting_smoothing_techniques
-#: code:addons/forecasting_smoothing_techniques/models/forecast.py:235
+#: code:addons/forecasting_smoothing_techniques/models/forecast.py:247
 #, python-format
 msgid "Beta should be between 0 and 1."
 msgstr "Beta debe estar entre 0 y 1."
@@ -74,14 +76,19 @@ msgid "CMA MA Error"
 msgstr "CMA MA Error"
 
 #. module: forecasting_smoothing_techniques
+#: field:forecast,cma_warning:0
+msgid "CMA WARNING"
+msgstr "CMA Advertencia"
+
+#. module: forecasting_smoothing_techniques
 #: view:forecast:forecasting_smoothing_techniques.forecasting_view_form
 msgid "Clear"
 msgstr "Borrar"
 
 #. module: forecasting_smoothing_techniques
 #: view:forecast:forecasting_smoothing_techniques.forecasting_view_form
-msgid "Clear the forecast values data to run the forcasting"
-msgstr "Borra los datos utilizados para calcular el pronóstico"
+msgid "Clear the forecast values data to run the forecasting"
+msgstr "Limpiar los data del pronostico para correr el pronostico"
 
 #. module: forecasting_smoothing_techniques
 #: field:forecast,create_uid:0
@@ -126,6 +133,7 @@ msgid "Double Exponential Smoothing (ES2)"
 msgstr "Suavización Exponencial Doble (ES2)"
 
 #. module: forecasting_smoothing_techniques
+#: view:forecast:forecasting_smoothing_techniques.forecasting_view_tree
 #: field:forecast.data,es1:0
 msgid "ES1"
 msgstr "ES1"
@@ -136,6 +144,7 @@ msgid "ES1 MA Error"
 msgstr "ES1 MA Error"
 
 #. module: forecasting_smoothing_techniques
+#: view:forecast:forecasting_smoothing_techniques.forecasting_view_tree
 #: field:forecast.data,es2:0
 msgid "ES2"
 msgstr "ES2"
@@ -146,6 +155,7 @@ msgid "ES2 MA Error"
 msgstr "ES2 MA Error"
 
 #. module: forecasting_smoothing_techniques
+#: view:forecast:forecasting_smoothing_techniques.forecasting_view_tree
 #: field:forecast.data,es3:0
 msgid "ES3"
 msgstr "ES3"
@@ -156,19 +166,9 @@ msgid "ES3 MA Error"
 msgstr "ES3 MA Error"
 
 #. module: forecasting_smoothing_techniques
-#: view:forecast:forecasting_smoothing_techniques.forecasting_view_tree
-msgid "EXP1"
-msgstr "EXP1"
-
-#. module: forecasting_smoothing_techniques
-#: view:forecast:forecasting_smoothing_techniques.forecasting_view_tree
-msgid "EXP2"
-msgstr "EXP2"
-
-#. module: forecasting_smoothing_techniques
-#: view:forecast:forecasting_smoothing_techniques.forecasting_view_tree
-msgid "EXP3"
-msgstr "EXP3"
+#: field:forecast,exp_warning:0
+msgid "EXP WARNING"
+msgstr "EXP Advertencia"
 
 #. module: forecasting_smoothing_techniques
 #: help:forecast,exp_alpha:0
@@ -181,17 +181,15 @@ msgid "Exponential Smoothing"
 msgstr "Sualizado Exponencial"
 
 #. module: forecasting_smoothing_techniques
-#: code:addons/forecasting_smoothing_techniques/tests/test_forecasting.py:81
+#: code:addons/forecasting_smoothing_techniques/tests/test_forecasting.py:82
 #, python-format
 msgid "Fall forecast calculation "
 msgstr "Fallo el calculo del pronóstico"
 
 #. module: forecasting_smoothing_techniques
 #: view:forecast:forecasting_smoothing_techniques.forecasting_view_form
-msgid "Fill the above values.  Enter the time series Row-wise in sequence, starting from\n"
-"                                            the left-upper corner. Blank boxes are not included in the calculations.\n"
-"                                            In entering your data to move from cell to cell in the data-matrix use the"
-msgstr "Llene los valores que estan arriba. Introduzca la serie de tiempo en secuencia por fila, empezando por la esquina superior izquierda.  Los espacios en blanco no son considerados en el calculo.\n Cuando ingrese los datos puede moverse de celda a celda en la matriz de datos usando el"
+msgid "Fill forecast values. Click over the List of Values button at the right-upper corner of this form and add the data to calcula the forecast. This data must be consecutive values, you can associate a label to identificate what the value means. You can add as many values as you want. When updating the values data the forecast will be re-compute automactly."
+msgstr "Rellena los valores del forecast. Haga click sobre el boton Lista de Valoes en el tope superior derecho del formulario y agrege la daa para calcular el pronostico. Esta data debe ser valores consecutivos, tu puedes ascociar una etiqueta para identificar que significa el valor que ingresaste. Puedes agregar cuantos valores desees. Cuando acualices la lista de valores el pronostico se recalculara automaticamente."
 
 #. module: forecasting_smoothing_techniques
 #: field:forecast,message_follower_ids:0
@@ -210,11 +208,19 @@ msgstr "Para la mayoria de data de negocios un alfa menor que 0.40 es aceptable 
 
 #. module: forecasting_smoothing_techniques
 #: view:forecast:forecasting_smoothing_techniques.forecasting_view_form
+#: view:forecast:forecasting_smoothing_techniques.forecasting_view_search
+#: view:forecast:forecasting_smoothing_techniques.forecasting_view_tree
+#: model:ir.actions.act_window,name:forecasting_smoothing_techniques.action_view_forecasting
 #: model:ir.model,name:forecasting_smoothing_techniques.model_forecast
 msgid "Forecast"
 msgstr "Pronóstico"
 
 #. module: forecasting_smoothing_techniques
+#: view:forecast.data:forecasting_smoothing_techniques.forecasting_data_view_form
+#: view:forecast.data:forecasting_smoothing_techniques.forecasting_data_view_graph
+#: view:forecast.data:forecasting_smoothing_techniques.forecasting_data_view_search
+#: view:forecast.data:forecasting_smoothing_techniques.forecasting_data_view_tree
+#: model:ir.actions.act_window,name:forecasting_smoothing_techniques.action_view_forecasting_data
 #: model:ir.model,name:forecasting_smoothing_techniques.model_forecast_data
 msgid "Forecast Data"
 msgstr "Datos del Pronóstico"
@@ -237,7 +243,6 @@ msgstr "Pronósticos"
 
 #. module: forecasting_smoothing_techniques
 #: view:forecast:forecasting_smoothing_techniques.forecasting_view_form
-#: model:ir.actions.act_window,name:forecasting_smoothing_techniques.action_view_forecasting_data
 msgid "Forecasting Data"
 msgstr "Datos del Pronóstico"
 
@@ -250,18 +255,6 @@ msgstr "El pronóstico de los K periodos en el futuro para calcular el Suavizado
 #: view:forecast.data:forecasting_smoothing_techniques.forecasting_data_view_form
 msgid "Forecasting Results"
 msgstr "Resultados del Pronóstico"
-
-#. module: forecasting_smoothing_techniques
-#: view:forecast:forecasting_smoothing_techniques.forecasting_view_form
-#: view:forecast:forecasting_smoothing_techniques.forecasting_view_search
-#: view:forecast:forecasting_smoothing_techniques.forecasting_view_tree
-#: view:forecast.data:forecasting_smoothing_techniques.forecasting_data_view_form
-#: view:forecast.data:forecasting_smoothing_techniques.forecasting_data_view_graph
-#: view:forecast.data:forecasting_smoothing_techniques.forecasting_data_view_search
-#: view:forecast.data:forecasting_smoothing_techniques.forecasting_data_view_tree
-#: model:ir.actions.act_window,name:forecasting_smoothing_techniques.action_view_forecasting
-msgid "Forecasting by Smoothing Techniques"
-msgstr "Pronósticos por técnica de suavizado"
 
 #. module: forecasting_smoothing_techniques
 #: model:ir.ui.menu,name:forecasting_smoothing_techniques.menu_forecasting_technique
@@ -290,16 +283,14 @@ msgid "HOLT TREND"
 msgstr "HOLT TREND"
 
 #. module: forecasting_smoothing_techniques
-#: help:forecast,message_summary:0
-msgid "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
-msgstr "Almacena el resumen de conversaciones (numero de mensajes, ...). Este
-resumen esta directamente en formato html en orden para ser insertado en una
-vista kanban."
+#: field:forecast,holt_warning:0
+msgid "HOLT WARNING"
+msgstr "HOLT Advertencia"
 
 #. module: forecasting_smoothing_techniques
-#: view:forecast:forecasting_smoothing_techniques.forecasting_view_tree
-msgid "Holt Future Period"
-msgstr "Perdio Futuro de Holt"
+#: help:forecast,message_summary:0
+msgid "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
+msgstr "Almacena el resumen de conversaciones (numero de mensajes, ...). Estesumen esta directamente en formato html en orden para ser insertado en unista kanban."
 
 #. module: forecasting_smoothing_techniques
 #: help:forecast,holt_alpha:0
@@ -405,11 +396,6 @@ msgid "MA Error"
 msgstr "MA Error"
 
 #. module: forecasting_smoothing_techniques
-#: view:forecast:forecasting_smoothing_techniques.forecasting_view_tree
-msgid "MA Period"
-msgstr "Periodo métodos de Promedio"
-
-#. module: forecasting_smoothing_techniques
 #: model:res.groups,name:forecasting_smoothing_techniques.forecast_group_manager
 msgid "Manager"
 msgstr "Responsable"
@@ -475,11 +461,6 @@ msgid "Moving averages rank among the most popular techniques for the pre proces
 msgstr "Metodos de promedio son de las técnicas más utilizadas para el pre procesamiento de series de tiempo. Son utilizados para filtrar random \"ruido blanco\" en los datos, para suavizar las series de tiempo or incluso enfatizar ciertos componentes informativos contenidos en la serie de tiempo"
 
 #. module: forecasting_smoothing_techniques
-#: view:forecast:forecasting_smoothing_techniques.forecasting_view_form
-msgid "NULL"
-msgstr "NULL"
-
-#. module: forecasting_smoothing_techniques
 #: field:forecast,name:0
 msgid "Name"
 msgstr "Nombre"
@@ -495,6 +476,12 @@ msgid "Name..."
 msgstr "Nombre..."
 
 #. module: forecasting_smoothing_techniques
+#: code:addons/forecasting_smoothing_techniques/models/forecast.py:357
+#, python-format
+msgid "Not not enough data to calculate forecast method"
+msgstr "No hay suficiente data para calcular el metodo de pronostico"
+
+#. module: forecasting_smoothing_techniques
 #: view:forecast:forecasting_smoothing_techniques.forecasting_view_form
 msgid "Notice that the simple moving average is special case of the exponential smoothing by setting the period of the moving average to the integer part of (2-Alpha)/Alpha."
 msgstr "Note que el metodo del promedio simple es un cso especial del metodo de suavizado exponencial colocando el periodo del metodo de promedio como el enteero parte de (2-Alfa)/Alfa."
@@ -506,7 +493,7 @@ msgid "Period"
 msgstr "Periodo"
 
 #. module: forecasting_smoothing_techniques
-#: code:addons/forecasting_smoothing_techniques/models/forecast.py:205
+#: code:addons/forecasting_smoothing_techniques/models/forecast.py:217
 #, python-format
 msgid "Period must be an integer greater than 1."
 msgstr "Periodo debe ser un entero mayor a 1"
@@ -538,6 +525,11 @@ msgid "SMA MA Error"
 msgstr "SMA MA Error"
 
 #. module: forecasting_smoothing_techniques
+#: field:forecast,sma_warning:0
+msgid "SMA WARNING"
+msgstr "SMA Advertencia"
+
+#. module: forecasting_smoothing_techniques
 #: field:forecast.data,sequence:0
 msgid "Sequence"
 msgstr "Secuencia"
@@ -561,6 +553,16 @@ msgstr "Establezca el parametro periodo para calcular los pronósticos de tipo p
 #: sql_constraint:forecast.data:0
 msgid "Several sequences with the same value do not make sense yet!"
 msgstr "Varias sencuencias con el mismo valor no tiene sentido aun!"
+
+#. module: forecasting_smoothing_techniques
+#: field:forecast,shelp:0
+msgid "Show Help"
+msgstr "Mostrar Ayuda"
+
+#. module: forecasting_smoothing_techniques
+#: field:forecast,mhelp:0
+msgid "Show Mathematic Base Help"
+msgstr "Mostrar Ayuda Base  Matematica"
 
 #. module: forecasting_smoothing_techniques
 #: view:forecast:forecasting_smoothing_techniques.forecasting_view_form
@@ -610,13 +612,7 @@ msgstr "Resumen"
 #. module: forecasting_smoothing_techniques
 #: view:forecast:forecasting_smoothing_techniques.forecasting_view_form
 msgid "Suppose that the time series is non-seasonal but does display trend. Holt’s method estimates both the current level and the current trend."
-msgstr "Supongamos que la serie de tiempos no es seasonal pero muestra una
-tendencia. El metodo Hotl estima ambas por el nivel y la tendencia actual."
-
-#. module: forecasting_smoothing_techniques
-#: view:forecast:forecasting_smoothing_techniques.forecasting_view_form
-msgid "Tab"
-msgstr "Pestaña"
+msgstr "Supongamos que la serie de tiempos no es seasonal pero muestra unendencia. El metodo Hotl estima ambas por el nivel y la tendencia actual."
 
 #. module: forecasting_smoothing_techniques
 #: view:forecast:forecasting_smoothing_techniques.forecasting_view_form
@@ -624,7 +620,7 @@ msgid "The single exponential smoothing emphasizes the short-range perspective; 
 msgstr "El método de suavizado exponencial enfatiza en una perspectiva de pequeño rngo, coloc el nivel de la ultima observación y esta basado en la condicion que no hay tendencia. En el metodo de regresión lineal, que se adecua al menos a lineas cuadrados de la data historia (o data historia transformada), representa un rango largo, que esta condicionando por la tendencia basica. El metodo Lineal de suavizado exponencial de Holt captura la información acerda de la tendencia reciente. Los parametros en el modelo de Holt los parametros de nivel deberian ser decrementados cuando la variacion de data es alta, y los parametros de tendencia deberian de incrementar si la tendencia recienta es soportada por algunos factores."
 
 #. module: forecasting_smoothing_techniques
-#: code:addons/forecasting_smoothing_techniques/tests/test_forecasting.py:382
+#: code:addons/forecasting_smoothing_techniques/tests/test_forecasting.py:383
 #, python-format
 msgid "There is not output for the enter count of periods"
 msgstr "No hay salida para la cantidad de periodos introducida"
@@ -637,11 +633,7 @@ msgstr "Este es un esquema muy popular para producir series de tiempo suavizadas
 #. module: forecasting_smoothing_techniques
 #: view:forecast:forecasting_smoothing_techniques.forecasting_view_form
 msgid "Thus, for example, an exponentially weighted moving average with a smoothing constant equal to 0.1 would correspond roughly to a 19 day moving average. And a 40-day simple moving average would correspond roughly to an exponentially weighted moving average with a smoothing constant equal to 0.04878."
-msgstr "Por tanto, por ejemplo, un promerdio movil ponderado exponencial con
-una constante de suavizado igual a 0.1 podria corresponder aproximadamente a
-19 dias de promedio movel. Y un promerio movil simple de 40 dias podria
-corresponder aproximadamente a un promedio movil ponderado exponencial con una
-constante de suavizado igual a 0.04878."
+msgstr "Por tanto, por ejemplo, un promerdio movil ponderado exponencial cona constante de suavizado igual a 0.1 podria corresponder aproximadamente 9 dias de promedio movel. Y un promerio movil simple de 40 dias podriorresponder aproximadamente a un promedio movil ponderado exponencial con unonstante de suavizado igual a 0.04878."
 
 #. module: forecasting_smoothing_techniques
 #: view:forecast:forecasting_smoothing_techniques.forecasting_view_form
@@ -690,6 +682,11 @@ msgid "WMA MA Error"
 msgstr "WMA MA Error"
 
 #. module: forecasting_smoothing_techniques
+#: field:forecast,wma_warning:0
+msgid "WMA WARNING"
+msgstr "WMA Advertencia"
+
+#. module: forecasting_smoothing_techniques
 #: view:forecast:forecasting_smoothing_techniques.forecasting_view_form
 msgid "Weighted Moving Average"
 msgstr "Promedio Movil Ponderado"
@@ -718,13 +715,6 @@ msgstr "es mejor manejando tendencias de parabola."
 #: view:forecast:forecasting_smoothing_techniques.forecasting_view_form
 msgid "is better at handling trends."
 msgstr "es mejor manejando tendencias."
-
-#. module: forecasting_smoothing_techniques
-#: view:forecast:forecasting_smoothing_techniques.forecasting_view_form
-msgid "key not arrow or enter keys.\n"
-"                                            0.0 Values are consider"
-msgstr "introduzca la llave.\n"
-"                                            Valores igual a 0.0 son considerados"
 
 #. module: forecasting_smoothing_techniques
 #: view:forecast:forecasting_smoothing_techniques.forecasting_view_form

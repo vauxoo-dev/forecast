@@ -1,5 +1,5 @@
-.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
-    :alt: License: AGPL-3
+.. image:: https://img.shields.io/badge/licence-LGPL--3-blue.svg
+    :alt: License: LGPL-3
 
 Forecasting by Smoothing Techniques
 ===================================
@@ -40,6 +40,10 @@ To configure this module, you need to:
 
   .. image:: forecasting_permission.png
      :alt: Forecasting Permission
+
+.. note:: If you are using a data base with demo data the user ``Admin``
+   will be by default a ``Forecast Manager`` and the ``Demo User`` will be a
+   ``Forecast User``.
 
 Usage
 =====

@@ -12,6 +12,7 @@
 from openerp.tools.safe_eval import safe_eval
 from openerp.exceptions import ValidationError
 from openerp.tests import common
+import datetime
 
 
 class TestForecastingRules(common.TransactionCase):
@@ -138,7 +139,7 @@ class TestForecastingRules(common.TransactionCase):
             self.rule.filter_id.context = str(context)
 
     def test_03(self):
-        """Constraint: rule filter context forecast_value is not a valid field.
+        """Constraint: rule filter context with forecast value/order not valid.
         """
         context = safe_eval(self.irfilter.context)
 
@@ -165,13 +166,30 @@ class TestForecastingRules(common.TransactionCase):
         self.rule.model = 'res.groups'
         self.assertEqual(self.irfilter.model_id, self.rule.model)
 
-    def _test_XX(self):
-        """Security: check groups permissions
+    def test_05(self):
+        """ forecast step: invalid step type """
+        context = safe_eval(self.rule.filter_id.context)
+        msg = 'Not valid context forecast_step value'
+        with self.assertRaisesRegexp(ValidationError, msg):
+            context.update({'forecast_step': 'invalid_step'})
+            self.rule.filter_id.context = str(context)
+
+    def test_06(self):
+        """ forecast step: non date/datetime order when step defined """
+        context = safe_eval(self.rule.filter_id.context)
+        msg = 'forecast order must be date/datime'
+        with self.assertRaisesRegexp(ValidationError, msg):
+            context.update({
+                'forecast_step': 'week', 'forecast_order': 'id'})
+            self.rule.filter_id.context = str(context)
+
+    def test_07(self):
+        """ forecast step: generate the right number of values.
+          - values length is current_month values.
         """
-        self.user_obj = self.env['res.users']
-        # TODO: make this test (not priority)
-        # self.user_obj.create
-        # forecast_user
-        # forecast_manager
-        # rule_user
-        # rule_manager
+        forecast = self.forecast_obj.browse(
+            self.ref('forecasting_rules.forecast_demo_06'))
+        self.assertTrue(forecast)
+        # TODO check the best way to extract the date using odoo
+        self.assertEqual(len(forecast.value_ids),
+                         datetime.datetime.today().month)

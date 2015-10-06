@@ -16,7 +16,7 @@ from openerp.exceptions import ValidationError
 class TestIrFilters(common.TransactionCase):
 
     """
-    Test that the ir.filters model work propertly w/wo a forecasting rule.
+    Test that the ir.filters model work properly w/wo a forecasting rule.
     """
 
     def setUp(self):

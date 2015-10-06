@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<openerp>
+    <data noupdate="1">
+
+        <!-- ADD FORECAST DEMAND DEMO DATA -->
+
+            <record id="irfilter_01" model="ir.filters">
+                <field name="name" eval="'(SFD01) '+time.strftime('%Y')+' Demand for iMac Product in WH/Stock'"/>
+                <field name="model_id">stock.history</field>
+                <field name="context">{'forecast_value': 'quantity_force_positive', 'forecast_order': 'date'}</field>
+                 <field name="domain" eval="[
+                    ('quantity', '&lt;', 0.0),
+                    ('date', '&gt;=', time.strftime('%Y')+'-01-01'),
+                    ('date', '&lt;=', DateTime.today().strftime('%Y-%m-%d')),
+                    ('location_id', '=', ref('stock.stock_location_stock')),
+                    ('product_id', '=', ref('product.product_product_8')),
+                 ]"/>
+                <field name="user_id" eval="False"/>
+            </record>
+
+            <record id="irfilter_02" model="ir.filters">
+                <field name="name" eval="'(SFD02) '+time.strftime('%Y')+' Demand for iPad Retina Display in WH/Stock (Group by Month)'"/>
+                <field name="model_id">stock.history</field>
+                <field name="context">{'forecast_value': 'quantity_force_positive', 'forecast_order': 'date', 'forecast_step': 'month', 'group_by': ['date:month']}</field>
+                 <field name="domain" eval="[
+                    ('quantity', '&lt;', 0.0),
+                    ('date', '&gt;=', time.strftime('%Y')+'-01-01'),
+                    ('date', '&lt;=', DateTime.today().strftime('%Y-%m-%d')),
+                    ('location_id', '=', ref('stock.stock_location_stock')),
+                    ('product_id', '=', ref('product.product_product_4')),
+                 ]"/>
+                <field name="user_id" eval="False"/>
+            </record>
+
+            <record id="irfilter_03" model="ir.filters">
+                <field name="name" eval="'(SFD03) '+time.strftime('%Y')+' Demand for New Product PC Assemble SC234 in WH/Stock'"/>
+                <field name="model_id">stock.history</field>
+                <field name="context">{'forecast_value': 'quantity_force_positive', 'forecast_order': 'date'}</field>
+                 <field name="domain" eval="[
+                    ('quantity', '&lt;', 0.0),
+                    ('date', '&gt;=', time.strftime('%Y')+'-01-01'),
+                    ('date', '&lt;=', DateTime.today().strftime('%Y-%m-%d')),
+                    ('location_id', '=', ref('stock.stock_location_stock')),
+                    ('product_id', '=', ref('product.product_product_3')),
+                 ]"/>
+                <field name="user_id" eval="False"/>
+            </record>
+
+            <record id="irfilter_04" model="ir.filters">
+                <field name="name" eval="'(SFD04) Last 2 months Demand for PC on Demand in WH/Stock (Group by Week)'"/>
+                <field name="model_id">stock.history</field>
+                <field name="context">{'forecast_value': 'quantity_force_positive', 'forecast_order': 'date', 'forecast_step': 'week', 'group_by': ['date:week']}</field>
+                 <field name="domain" eval="[
+                    ('quantity', '&lt;', 0.0),
+                    ('date', '&gt;=', (DateTime.today() - relativedelta(months=2)).strftime('%Y-%m-01')),
+                    ('date', '&lt;=', (DateTime.today().replace(day=1) - relativedelta(days=1)).strftime('%Y-%m-%d')),
+                    ('location_id', '=', ref('stock.stock_location_stock')),
+                    ('product_id', '=', ref('product.product_product_5')),
+                 ]"/>
+                <field name="user_id" eval="False"/>
+            </record>
+
+            <record id="irfilter_05" model="ir.filters">
+                <field name="name" eval="'(SFD05) Last month Demand for iPod in WH/Stock (Group by day)'"/>
+                <field name="model_id">stock.history</field>
+                <field name="context">{'forecast_value': 'quantity_force_positive', 'forecast_order': 'date', 'forecast_step': 'day', 'group_by': ['date:day']}</field>
+                 <field name="domain" eval="[
+                    ('quantity', '&lt;', 0.0),
+                    ('date', '&gt;=', (DateTime.today() - relativedelta(months=1)).strftime('%Y-%m-01')),
+                    ('date', '&lt;=', (DateTime.today().replace(day=1) - relativedelta(days=1)).strftime('%Y-%m-%d')),
+                    ('location_id', '=', ref('stock.stock_location_stock')),
+                    ('product_id', '=', ref('product.product_product_11b')),
+                 ]"/>
+                <field name="user_id" eval="False"/>
+            </record>
+
+            <record id="irfilter_06" model="ir.filters">
+                <field name="name" eval="'(SFD06) '+time.strftime('%Y')+' Apple\'s Product Category Demand in WH/Stock (Group by Month)'"/>
+                <field name="model_id">stock.history</field>
+                <field name="context">{'forecast_value': 'quantity_force_positive', 'forecast_order': 'date', 'forecast_step': 'month', 'group_by': ['date:month']}</field>
+                <field name="domain" eval="[
+                    ('quantity', '&lt;', 0.0),
+                    ('date', '&gt;=', time.strftime('%Y')+'-01-01'),
+                    ('date', '&lt;=', DateTime.today().strftime('%Y-%m-%d')),
+                    ('product_categ_id', 'ilike', 'apple'),
+                    ('location_id', '=', ref('stock.stock_location_stock'))
+                ]"/>
+                <field name="user_id" eval="False"/>
+            </record>
+
+            <record id="irfilter_07" model="ir.filters">
+                <field name="name" eval="'(SFD07) Last 14 days Demand for iPod Product in WH/Stock (Group by day)'"/>
+                <field name="model_id">stock.history</field>
+                <field name="context">{'forecast_value': 'quantity_force_positive', 'forecast_order': 'date', 'forecast_step': 'day', 'group_by': ['date:day']}</field>
+                <field name="domain" eval="[
+                    ('quantity', '&lt;', 0.0),
+                    ('date', '&gt;', (DateTime.today() - relativedelta(days=13)).strftime('%Y-%m-%d')),
+                    ('date', '&lt;', DateTime.today().strftime('%Y-%m-%d')),
+                    ('location_id', '=', ref('stock.stock_location_stock')),
+                    ('product_id', '=', ref('product.product_product_11b')),
+                ]"/>
+                <field name="user_id" eval="False"/>
+            </record>
+    </data>
+</openerp>

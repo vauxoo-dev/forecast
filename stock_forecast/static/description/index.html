@@ -6,8 +6,8 @@
  </head>
  <body>
   <section class="oe_container" id="description">
-   <object data="https://img.shields.io/badge/licence-AGPL--3-blue.svg" type="image/svg+xml">
-    License: AGPL-3
+   <object data="https://img.shields.io/badge/licence-LGPL--3-blue.svg" type="image/svg+xml">
+    License: LGPL-3
    </object>
    <div class="section oe_span12" id="stock-forecast">
     <h2 class="oe_slogan">
@@ -32,6 +32,10 @@
 product form view and add product field to the forecast record.
      </li>
      <li>
+      Add product and product template fields to the Forecast model to be used as
+a informative fields to filter the forecast.
+     </li>
+     <li>
       Add wizard at
       <code class="docutils literal">
        Reporting &gt; Warehouse &gt; Stock Demand
@@ -52,6 +56,9 @@ forecast with the prefix
        (ST Test 01)
       </code>
       .
+     </li>
+     <li>
+      NOTE: A internal move is considered a demand for a location.
      </li>
     </ul>
    </div>
@@ -139,6 +146,145 @@ product in the section
       <img alt="Forecast Buttons" class="oe_picture oe_screenshot" src="forecast_buttons.png"/>
      </li>
     </ul>
+    <p class="oe_mt32">
+     <strong>
+      Demand Forecast
+     </strong>
+    </p>
+    <p class="oe_mt32">
+     A demand forecast is set by the way that the forecast rule is configured.  For
+a demand forecast rule you need to define the next elements:
+    </p>
+    <ul class="simple">
+     <li>
+      A product, group of products or product category.
+     </li>
+     <li>
+      A range of dates where the data will be extract.
+     </li>
+     <li>
+      A location you want to review.
+     </li>
+     <li>
+      Optionally use a group_by key in filter context to group the data by a
+date/datetime. You can use the syntax
+      <code class="docutils literal">
+       'group_by': [datefield:period]
+      </code>
+      .
+     </li>
+     <li>
+      Use a forecast_step to indicate that you want to fill the empty demand dates
+with 0.0 values.
+     </li>
+    </ul>
+    <p class="oe_mt32">
+     The period refer by group_by and the forecast_step can be one of the next
+options:
+     <code class="docutils literal">
+      ['day', 'week', 'month', 'year']
+     </code>
+    </p>
+    <p class="oe_mt32">
+     The Demand Forecast are generated using forecast rules related to the
+     <code class="docutils literal">
+      stock.history
+     </code>
+     type. This module holds the information about the product
+demand. To calculate the product demand you can go to:
+    </p>
+    <ul class="simple">
+     <li>
+      <code class="docutils literal">
+       Reporting &gt; Warehouse &gt; Stock Demand
+      </code>
+      wizard and generate the demand for
+a specific product / location.  If you use the
+      <strong>
+       Stock Demand
+      </strong>
+      wizard you
+will found at the search bar the pre-defined filters of you search so you
+can this sum of filters into one and re-used in your forecast rule.
+     </li>
+     <li>
+      <code class="docutils literal">
+       Reporting &gt; Warehouse &gt; Stock Valuation
+      </code>
+      wizard and generate the demand
+for all the products / locations in your system.
+      <strong>
+       WARNING: This could take
+a lot of time if you have a database with a lot of products and movements.
+We highly recommend to generate the demand you need using the ``Stock
+Demand`` wizard
+      </strong>
+      .
+     </li>
+    </ul>
+    <p class="oe_mt32">
+     Also, If you install this module using data demo you can find examples of some
+demand forecast rules that you can copy and reuse for your purpose.
+    </p>
+    <ul class="simple">
+     <li>
+      You can extract a demand for a product. All the operations for a range of
+date. Check
+      <code class="docutils literal">
+       (SFD01) 2015 Demand for iMac Product in WH/Stoc
+      </code>
+      .
+     </li>
+     <li>
+      You can extract a demand for a product group by month
+      <code class="docutils literal">
+       (SFD02) 2015 Demand
+for iPad Retina Display in WH/Stock (Group by Month)
+      </code>
+      .
+     </li>
+     <li>
+      A demand for a new product using the data of the replaced product in
+      <code class="docutils literal">
+       (SFD03) 2015 Demand for New Product PC Assemble SC234 in WH/Stock
+      </code>
+      .
+     </li>
+     <li>
+      The demand of the last 2 months group by week. The last 2 months not taking
+into account the current one.
+      <code class="docutils literal">
+       (SFD04) Last 2 months Demand for PC on
+Demand in WH/Stock (Group by Week)
+      </code>
+      .
+     </li>
+     <li>
+      The demand of the last month for a product group by day. The last month not
+taking into account the current one.
+      <code class="docutils literal">
+       (SFD05) Last month Demand for iPod in
+WH/Stock (Group by day)
+      </code>
+      .
+     </li>
+     <li>
+      The demand for a product category
+      <code class="docutils literal">
+       (SFD06) 2015 Apple's Product Category
+Demand in WH/Stock (Group by Month)
+      </code>
+      .
+     </li>
+     <li>
+      Last N days demand group by day. Look example
+      <code class="docutils literal">
+       (SFD07) Last 14 days Demand
+for iPod Product in WH/Stock (Group by day)
+      </code>
+      .
+     </li>
+    </ul>
    </div>
    <div class="section oe_span12" id="known-issues-roadmap">
     <h1>
@@ -174,19 +320,12 @@ forecasting_smoothing_techniques module and overwrite in every forecast
 module.
      </li>
      <li>
-      Stock picking data demo:
-      <ul>
-       <li>
-        Make that data demo is generated dynamically in the last 3 months from the
-date that the database is created.
-       </li>
-       <li>
-        Add more entries to have at least 9 values for every product/location.
-       </li>
-       <li>
-        Evaluate if is necessary to move the stock picking data demo to xml data.
-       </li>
-      </ul>
+      Update picking/move data to be generated only for the current year of the
+installation of the module. Right now is generated for the 2015 year.
+     </li>
+     <li>
+      When generating the ir.filter by the stock.demand wizard the range of dates
+are not taking into account.
      </li>
     </ul>
    </div>

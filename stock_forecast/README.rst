@@ -1,5 +1,5 @@
-.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
-    :alt: License: AGPL-3
+.. image:: https://img.shields.io/badge/licence-LGPL--3-blue.svg
+    :alt: License: LGPL-3
 
 Stock Forecast
 ==============
@@ -10,12 +10,15 @@ This module add a way to generate forecasting from the product demand.
 
 - Integrate forecasting with products. Add button ``Forecasting`` in the
   product form view and add product field to the forecast record.
+- Add product and product template fields to the Forecast model to be used as
+  a informative fields to filter the forecast.
 - Add wizard at ``Reporting > Warehouse > Stock Demand`` to calculate demand
   for a product in a specific location. Also can have a date margin to extract
   demand only in a certain group (required Forecast Manager permission).
 - Add demo data so you can check how the product demand forecast works. You
   can go to ``Settings > Technical > Forecasting > Forecast`` and select the
   forecast with the prefix ``(ST Test 01)``.
+- NOTE: A internal move is considered a demand for a location.
 
 Installation
 ============
@@ -56,6 +59,57 @@ To use this module, you need to:
   .. image:: forecast_buttons.png
      :alt: Forecast Buttons
 
+**Demand Forecast**
+
+A demand forecast is set by the way that the forecast rule is configured.  For
+a demand forecast rule you need to define the next elements:
+
+- A product, group of products or product category.
+- A range of dates where the data will be extract.
+- A location you want to review.
+- Optionally use a group_by key in filter context to group the data by a
+  date/datetime. You can use the syntax ``'group_by': [datefield:period]``.
+- Use a forecast_step to indicate that you want to fill the empty demand dates
+  with 0.0 values.
+
+The period refer by group_by and the forecast_step can be one of the next
+options: ``['day', 'week', 'month', 'year']``
+
+The Demand Forecast are generated using forecast rules related to the
+``stock.history`` type. This module holds the information about the product
+demand. To calculate the product demand you can go to:
+
+- ``Reporting > Warehouse > Stock Demand`` wizard and generate the demand for
+  a specific product / location.  If you use the **Stock Demand** wizard you
+  will found at the search bar the pre-defined filters of you search so you
+  can this sum of filters into one and re-used in your forecast rule.
+- ``Reporting > Warehouse > Stock Valuation`` wizard and generate the demand
+  for all the products / locations in your system. **WARNING: This could take
+  a lot of time if you have a database with a lot of products and movements.
+  We highly recommend to generate the demand you need using the ``Stock
+  Demand`` wizard**.
+
+Also, If you install this module using data demo you can find examples of some
+demand forecast rules that you can copy and reuse for your purpose.
+
+- You can extract a demand for a product. All the operations for a range of
+  date. Check ``(SFD01) 2015 Demand for iMac Product in WH/Stoc``.
+- You can extract a demand for a product group by month ``(SFD02) 2015 Demand
+  for iPad Retina Display in WH/Stock (Group by Month)``.
+- A demand for a new product using the data of the replaced product in
+  ``(SFD03) 2015 Demand for New Product PC Assemble SC234 in WH/Stock``.
+- The demand of the last 2 months group by week. The last 2 months not taking
+  into account the current one. ``(SFD04) Last 2 months Demand for PC on
+  Demand in WH/Stock (Group by Week)``.
+- The demand of the last month for a product group by day. The last month not
+  taking into account the current one. ``(SFD05) Last month Demand for iPod in
+  WH/Stock (Group by day)``.
+- The demand for a product category ``(SFD06) 2015 Apple's Product Category
+  Demand in WH/Stock (Group by Month)``.
+- Last N days demand group by day. Look example ``(SFD07) Last 14 days Demand
+  for iPod Product in WH/Stock (Group by day)``.
+
+
 Known issues / Roadmap
 ======================
 
@@ -77,12 +131,10 @@ TODO
 - Maybe the display_name field and compute method can be defined in the
   forecasting_smoothing_techniques module and overwrite in every forecast
   module.
-- Stock picking data demo:
-
-  - Make that data demo is generated dynamically in the last 3 months from the
-    date that the database is created.
-  - Add more entries to have at least 9 values for every product/location.
-  - Evaluate if is necessary to move the stock picking data demo to xml data.
+- Update picking/move data to be generated only for the current year of the
+  installation of the module. Right now is generated for the 2015 year.
+- When generating the ir.filter by the stock.demand wizard the range of dates
+  are not taking into account.
 
 Credits
 =======
