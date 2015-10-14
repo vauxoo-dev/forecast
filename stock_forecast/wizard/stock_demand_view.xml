@@ -43,8 +43,8 @@
                 <field name="company_id" invisible="1" groups="base.group_multi_company"/>
                 <field name="date"/>
                 <field name="source" invisible="1"/>
-                <field name="quantity" string="Quantity Demanded" sum="# of Products "/>
-                <field name="quantity_onstock" string="Quantity Available" sum="# of Products Available"/>
+                <field name="quantity" sum="# of Products "/>
+                <field name="quantity_onstock" sum="# of Products Available"/>
                 <field name="inventory_value" invisible="1" sum="Total Value"/>
             </tree>
             </field>

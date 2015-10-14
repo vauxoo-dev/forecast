@@ -317,6 +317,7 @@ class Forecast(models.Model):
         for value in self.env['forecast'].browse(self._ids).value_ids:
             values.append(
                 {'id': value.id,
+                 'label': value.label,
                  'value': value.value,
                  'sequence': value.sequence})
         cols = ['id', 'value', 'sequence'] + forecast_cols

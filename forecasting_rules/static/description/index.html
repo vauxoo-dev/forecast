@@ -6,8 +6,8 @@
  </head>
  <body>
   <section class="oe_container" id="description">
-   <object data="https://img.shields.io/badge/licence-AGPL--3-blue.svg" type="image/svg+xml">
-    License: AGPL-3
+   <object data="https://img.shields.io/badge/licence-LGPL--3-blue.svg" type="image/svg+xml">
+    License: LGPL-3
    </object>
    <div class="section oe_span12" id="forecasting-rules">
     <h2 class="oe_slogan">
@@ -20,6 +20,20 @@
      </code>
      that it is a bridge to fulfill the forecast data with odoo
 data.
+    </p>
+    <p class="oe_mt32">
+     The
+     <code class="docutils literal">
+      Forecast Rule
+     </code>
+     will give you a way to manage, group and review same
+data from different perspective: Is the search engine to extract odoo data and
+reused as forecast data. You can review the demo data of this module
+(the ones with prefix
+     <code class="docutils literal">
+      FRDXX
+     </code>
+     ).
     </p>
     <p class="oe_mt32">
      Is expected in a future that this module will be the one that integrate the
@@ -36,13 +50,39 @@ forecast.
     </p>
     <ul class="simple">
      <li>
-      There is not extra requirement needed, you only need to install the odoo
-module like a regular module:
+      Install python package used to calculate the forecasting:
+      <code class="docutils literal">
+       pandas
+      </code>
+      and
+      <code class="docutils literal">
+       numexpr
+      </code>
+      . You can install them manually
+      <code class="docutils literal">
+       sudo pip install package_name
+      </code>
+      or you can use this repository
+      <code class="docutils literal">
+       requirement.txt
+      </code>
+      field with the command
+      <code class="docutils literal">
+       sudo pip install
+       <span class="pre">
+        -r
+       </span>
+       requirements.txt
+      </code>
+      .
+     </li>
+     <li>
+      Install the odoo module as a regular module:
       <ul>
        <li>
         Download this module from
-        <a class="reference external" href="https://github.com/vauxoo/stock-forecasting">
-         Vauxoo/stock-forecasting
+        <a class="reference external" href="https://github.com/vauxoo/forecast">
+         Vauxoo/forecas
         </a>
         repository.
        </li>
@@ -79,13 +119,16 @@ Forecasting Rules
     </p>
     <img alt="Forecast Rule Menu" class="oe_picture oe_screenshot" src="forecast_rule_menu.png"/>
     <p class="oe_mt32">
-     To access to the Forecast Rules you need to at least have Forecasting basic
-permissions. To edit the Forecasting Rules you need to active a new group
-permission named
+     To access to the
      <code class="docutils literal">
-      Forecast Rule Manager
+      Forecast Rules
      </code>
-     in the Forecasting category.
+     you need to at least have Forecasting
+basic permissions. To edit the Forecasting Rules you need to active a
+     <code class="docutils literal">
+      Forecast Manager
+     </code>
+     permissions in the Forecasting category.
     </p>
     <img alt="Forecast Rule Group" class="oe_picture oe_screenshot" src="forecast_rule_group.png"/>
    </div>
@@ -145,7 +188,12 @@ forecast data.
      </li>
     </ul>
     <p class="oe_mt32">
-     The Forecast Rule work this way: You need to define the odoo model where the
+     <strong>
+      How does the forecast rules works
+     </strong>
+    </p>
+    <p class="oe_mt32">
+     You need to define the odoo model where the
 data will be extract and link an
      <code class="docutils literal">
       ir filter
@@ -161,14 +209,40 @@ domain used to extract the data.
 'forecast_value']
      </code>
      : these keys will be used to know what float field and what
-order the data will be extract. Also you can used
+order the data will be extract.
+    </p>
+    <p class="oe_mt32">
+     A third key can be passed named
+     <code class="docutils literal">
+      forecast_step
+     </code>
+     that is used only when the
+     <code class="docutils literal">
+      forecast_order
+     </code>
+     is a date or datetime field. This parameter will fill the
+empty spaces of a forecast for those days, weeks, months, or years were there
+is not data demo to the forecast but the group of data belongs to a date range
+domain.
+    </p>
+    <p class="oe_mt32">
+     Also you can used
      <code class="docutils literal">
       'group_by'
      </code>
-     key in your
-context to group the return data, but only one group_by element.
+     key in your context to group the return data,
+but only one group_by element.
     </p>
     <img alt="Forecast Filter Requirements" class="oe_picture oe_screenshot" src="forecast_ir_filter.png"/>
+    <p class="oe_mt32">
+     <strong>
+      Note:
+     </strong>
+     <em>
+      You can review the demo data to understand better the forecast
+rules.
+     </em>
+    </p>
    </div>
    <div class="section oe_span12" id="known-issues-roadmap">
     <h1>
@@ -186,26 +260,13 @@ context to group the return data, but only one group_by element.
     </h1>
     <ul class="simple">
      <li>
-      Add security unit test.
-     </li>
-     <li>
       Add a way to manage multiple group_by elements in the Forecast Filter.
      </li>
      <li>
       Separate the context of validate the ir.filter into a new generic module.
      </li>
      <li>
-      Change the model field in the forecasting.rule module from string to related
-field pointing to ir.filter model.
-     </li>
-     <li>
-      Try to integrate a way to make the search group_by using pandas.
-     </li>
-     <li>
       Change the forecasting.rule model to forecast.rule.
-     </li>
-     <li>
-      Review the spanish translations terms.
      </li>
     </ul>
    </div>
@@ -215,13 +276,13 @@ field pointing to ir.filter model.
     </h1>
     <p class="oe_mt32">
      Bugs are tracked on
-     <a class="reference external" href="https://github.com/Vauxoo/stock-forecasting/issues">
+     <a class="reference external" href="https://github.com/Vauxoo/forecast/issues">
       GitHub Issues
      </a>
      .
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed feedback
-     <a class="reference external" href="https://github.com/Vauxoo/stock-forecasting/issues/new?body=module:%20{forecasting_rules}%0Aversion:%20{8.0.1.0.0}%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">
+     <a class="reference external" href="https://github.com/Vauxoo/forecast/issues/new?body=module:%20{forecasting_rules}%0Aversion:%20{8.0.1.0.0}%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">
       here
      </a>
     </p>
@@ -230,27 +291,27 @@ If you spotted it first, help us smashing it by providing a detailed and welcome
     <h1>
      Credits
     </h1>
-    <div class="section oe_span12" id="contributors">
-     <h2>
+    <p class="oe_mt32">
+     <strong>
       Contributors
-     </h2>
-     <ul class="simple">
-      <li>
-       Nhomar Hernandez &lt;
-       <a class="reference external" href="mailto:nhomar@vauxoo.com">
-        nhomar@vauxoo.com
-       </a>
-       &gt; (Planner/Auditor)
-      </li>
-      <li>
-       Katherine Zaoral &lt;
-       <a class="reference external" href="mailto:kathy@vauxoo.com">
-        kathy@vauxoo.com
-       </a>
-       &gt; (Planner/Developer)
-      </li>
-     </ul>
-    </div>
+     </strong>
+    </p>
+    <ul class="simple">
+     <li>
+      Nhomar Hernandez &lt;
+      <a class="reference external" href="mailto:nhomar@vauxoo.com">
+       nhomar@vauxoo.com
+      </a>
+      &gt; (Planner/Auditor)
+     </li>
+     <li>
+      Katherine Zaoral &lt;
+      <a class="reference external" href="mailto:kathy@vauxoo.com">
+       kathy@vauxoo.com
+      </a>
+      &gt; (Planner/Developer)
+     </li>
+    </ul>
    </div>
   </section>
   <section class="oe_container">

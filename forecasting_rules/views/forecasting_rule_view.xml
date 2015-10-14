@@ -89,7 +89,7 @@
             parent="forecasting_smoothing_techniques.menu_forecasting" sequence="10"
             name="Forecasting Rules"
             action="action_view_forecasting_rule"
-            groups="forecasting_smoothing_techniques.forecast_group_user,forecasting_smoothing_techniques.forecast_group_manager,forecasting_rule_group"
+            groups="forecasting_smoothing_techniques.forecast_group_user,forecasting_smoothing_techniques.forecast_group_manager"
         />
 
         <record id="forecast_forecast_rule_form" model="ir.ui.view">

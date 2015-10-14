@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<openerp>
+    <data noupdate="1">
+
+        <!-- UPDATE FORECAST MANUAL DATA DEMO TO BELONG TO DIFFERENT VARIANTS -->
+
+            <record id="forecasting_smoothing_techniques.fst_demo_04" model="forecast">
+                <field name="product_id" ref="product.product_product_4"/>
+            </record>
+
+            <record id="forecasting_smoothing_techniques.fst_demo_05" model="forecast">
+                <field name="product_id" ref="product.product_product_4b"/>
+            </record>
+    </data>
+</openerp>

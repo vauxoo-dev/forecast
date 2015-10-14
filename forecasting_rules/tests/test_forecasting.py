@@ -63,36 +63,6 @@ class TestForecasting(common.TransactionCase):
         self.assertTrue(forecast.value_ids)
 
     def test_02(self):
-        """forecast_order is an integer field (partner.id)
-        """
-        forecast = self.forecast_obj.browse(
-            self.ref('forecasting_rules.forecast_demo_02'))
-        forecast.fill_value_ids()
-
-    def test_03(self):
-        """forecast_order is a date field (partner.date)
-        """
-        forecast = self.forecast_obj.browse(
-            self.ref('forecasting_rules.forecast_demo_03'))
-        forecast.fill_value_ids()
-
-    def test_04(self):
-        """forecast_order is a datetime field (
-            partner.last_reconciliation_date)
-            write_date
-        """
-        forecast = self.forecast_obj.browse(
-            self.ref('forecasting_rules.forecast_demo_04'))
-        forecast.fill_value_ids()
-
-    def test_05(self):
-        """ rule filter context containt a group_by for forecast_order
-        """
-        forecast = self.forecast_obj.browse(
-            self.ref('forecasting_rules.forecast_demo_05'))
-        forecast.fill_value_ids()
-
-    def test_06(self):
         """Can not fill values for a forecast mark as manual data.
         """
         forecast = self.forecast_obj.browse(
@@ -105,7 +75,7 @@ class TestForecasting(common.TransactionCase):
         with self.assertRaisesRegexp(UserError, error):
             forecast.fill_value_ids()
 
-    def test_07(self):
+    def test_03(self):
         """Can not fill values for a forecast with empty forecast rule.
         """
         forecast = self.forecast_obj.browse(
