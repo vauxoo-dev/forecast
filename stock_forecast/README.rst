@@ -61,36 +61,46 @@ To use this module, you need to:
 
 **Demand Forecast**
 
-A demand forecast is set by the way that the forecast rule is configured.  For
-a demand forecast rule you need to define the next elements:
+A demand forecast is set by the way that the forecast rule is configured. This
+kind of rule need to the linked to a filter that have at least next elements
+at domain:
 
 - A product, group of products or product category.
 - A range of dates where the data will be extract.
 - A location you want to review.
-- Optionally use a group_by key in filter context to group the data by a
-  date/datetime. You can use the syntax ``'group_by': [datefield:period]``.
-- Use a forecast_step to indicate that you want to fill the empty demand dates
-  with 0.0 values.
 
-The period refer by group_by and the forecast_step can be one of the next
-options: ``['day', 'week', 'month', 'year']``
 
-The Demand Forecast are generated using forecast rules related to the
-``stock.history`` type. This module holds the information about the product
-demand. To calculate the product demand you can go to:
+Also the filter need to have the context required forecast keys
+``['forecast_order', 'forecast_value']``. Optionally can use the
+``forecast_step`` key in the filter context to indicate that you want to fill
+the empty demand dates with 0.0 values and a ``group_by`` key to group the
+data by a date/datetime. You can use the syntax ``'group_by':
+[datefield:period]``.  The ``period`` and the ``forecast_step`` can
+be one of the next options: ``['day', 'week', 'month', 'year']``
 
-- ``Reporting > Warehouse > Stock Demand`` wizard and generate the demand for
-  a specific product / location.  If you use the **Stock Demand** wizard you
-  will found at the search bar the pre-defined filters of you search so you
-  can this sum of filters into one and re-used in your forecast rule.
-- ``Reporting > Warehouse > Stock Valuation`` wizard and generate the demand
-  for all the products / locations in your system. **WARNING: This could take
-  a lot of time if you have a database with a lot of products and movements.
-  We highly recommend to generate the demand you need using the ``Stock
-  Demand`` wizard**.
+**NOTE: For more information about how does the forecasting rules works you
+can find out at Forecasting Rules module description**
 
-Also, If you install this module using data demo you can find examples of some
-demand forecast rules that you can copy and reuse for your purpose.
+The Demand Forecast Rule is related to the ``stock.history`` model. This last
+one holds the information about the product demand. To calculate the product
+demand you can go to ``Reporting > Warehouse > Stock Demand`` wizard and
+generate a query of the demand for a specific product / location. In the
+``Stock Demand`` wizard there is an option (a check field) that let you
+auto-generate a filter ready to be use in a forecast rule. The generate filter
+will have this name by default ``Stock Demand for {product} in {location}
+(From {date_from} to {date_to}``
+
+*NOTE*: You can run the - ``Reporting > Warehouse > Stock Valuation`` wizard
+and generate the demand for all the products / locations in your system.
+**WARNING: This could take a lot of time if you have a database with a lot of
+products and movements. We highly recommend to generate the demand you need
+using the Stock Demand wizard**.
+
+**Forecast Rules Examples**
+
+If you install this module using data demo you can find examples of some
+demand forecast rules at ``Settings > Technical Features > Forecasting >
+Forecasting Rules`` menu that you can copy and reuse for your purpose.
 
 - You can extract a demand for a product. All the operations for a range of
   date. Check ``(SFD01) 2015 Demand for iMac Product in WH/Stoc``.
@@ -133,8 +143,6 @@ TODO
   module.
 - Update picking/move data to be generated only for the current year of the
   installation of the module. Right now is generated for the 2015 year.
-- When generating the ir.filter by the stock.demand wizard the range of dates
-  are not taking into account.
 
 Credits
 =======

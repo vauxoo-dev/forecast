@@ -12,6 +12,7 @@
                         <field name="location_id" required='1'/>
                         <field name="date_from" required='1'/>
                         <field name="date_to" required='1'/>
+                        <field name="demand_filter"/>
                     </group>
                     <footer>
                         <button name="open_table" string="Retrieve the Inventory Value" type="object"  class="oe_highlight"  />
@@ -47,6 +48,20 @@
                 <field name="quantity_onstock" sum="# of Products Available"/>
                 <field name="inventory_value" invisible="1" sum="Total Value"/>
             </tree>
+            </field>
+        </record>
+
+        <record id="view_stock_demand_history_search" model="ir.ui.view">
+            <field name="name">Stock History Search</field>
+            <field name="model">stock.history</field>
+            <field name="inherit_id" ref="stock_account.view_stock_history_report_search"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='location_id']" position="after">
+                    <field name="quantity" string="Demand Lines" context="{}" filter_domain="[('quantity', '&lt;', 0.0)]"/>
+                    <field name="date"/>
+                    <field name="date" string="Date From" context="{}" filter_domain="[('date', '&gt;=', self)]"/>
+                    <field name="date" string="Date To" context="{}" filter_domain="[('date', '&lt;=', self)]"/>
+                </xpath>
             </field>
         </record>
 
