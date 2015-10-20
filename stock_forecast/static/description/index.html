@@ -152,8 +152,9 @@ product in the section
      </strong>
     </p>
     <p class="oe_mt32">
-     A demand forecast is set by the way that the forecast rule is configured.  For
-a demand forecast rule you need to define the next elements:
+     A demand forecast is set by the way that the forecast rule is configured. This
+kind of rule need to the linked to a filter that have at least next elements
+at domain:
     </p>
     <ul class="simple">
      <li>
@@ -165,66 +166,101 @@ a demand forecast rule you need to define the next elements:
      <li>
       A location you want to review.
      </li>
-     <li>
-      Optionally use a group_by key in filter context to group the data by a
-date/datetime. You can use the syntax
-      <code class="docutils literal">
-       'group_by': [datefield:period]
-      </code>
-      .
-     </li>
-     <li>
-      Use a forecast_step to indicate that you want to fill the empty demand dates
-with 0.0 values.
-     </li>
     </ul>
     <p class="oe_mt32">
-     The period refer by group_by and the forecast_step can be one of the next
-options:
+     Also the filter need to have the context required forecast keys
+     <code class="docutils literal">
+      ['forecast_order', 'forecast_value']
+     </code>
+     . Optionally can use the
+     <code class="docutils literal">
+      forecast_step
+     </code>
+     key in the filter context to indicate that you want to fill
+the empty demand dates with 0.0 values and a
+     <code class="docutils literal">
+      group_by
+     </code>
+     key to group the
+data by a date/datetime. You can use the syntax
+     <code class="docutils literal">
+      'group_by':
+[datefield:period]
+     </code>
+     .  The
+     <code class="docutils literal">
+      period
+     </code>
+     and the
+     <code class="docutils literal">
+      forecast_step
+     </code>
+     can
+be one of the next options:
      <code class="docutils literal">
       ['day', 'week', 'month', 'year']
      </code>
     </p>
     <p class="oe_mt32">
-     The Demand Forecast are generated using forecast rules related to the
+     <strong>
+      NOTE: For more information about how does the forecasting rules works you
+can find out at Forecasting Rules module description
+     </strong>
+    </p>
+    <p class="oe_mt32">
+     The Demand Forecast Rule is related to the
      <code class="docutils literal">
       stock.history
      </code>
-     type. This module holds the information about the product
-demand. To calculate the product demand you can go to:
+     model. This last
+one holds the information about the product demand. To calculate the product
+demand you can go to
+     <code class="docutils literal">
+      Reporting &gt; Warehouse &gt; Stock Demand
+     </code>
+     wizard and
+generate a query of the demand for a specific product / location. In the
+     <code class="docutils literal">
+      Stock Demand
+     </code>
+     wizard there is an option (a check field) that let you
+auto-generate a filter ready to be use in a forecast rule. The generate filter
+will have this name by default
+     <code class="docutils literal">
+      Stock Demand for {product} in {location}
+(From {date_from} to {date_to}
+     </code>
     </p>
-    <ul class="simple">
-     <li>
-      <code class="docutils literal">
-       Reporting &gt; Warehouse &gt; Stock Demand
-      </code>
-      wizard and generate the demand for
-a specific product / location.  If you use the
-      <strong>
-       Stock Demand
-      </strong>
-      wizard you
-will found at the search bar the pre-defined filters of you search so you
-can this sum of filters into one and re-used in your forecast rule.
-     </li>
-     <li>
-      <code class="docutils literal">
-       Reporting &gt; Warehouse &gt; Stock Valuation
-      </code>
-      wizard and generate the demand
-for all the products / locations in your system.
-      <strong>
-       WARNING: This could take
-a lot of time if you have a database with a lot of products and movements.
-We highly recommend to generate the demand you need using the ``Stock
-Demand`` wizard
-      </strong>
-      .
-     </li>
-    </ul>
     <p class="oe_mt32">
-     Also, If you install this module using data demo you can find examples of some
-demand forecast rules that you can copy and reuse for your purpose.
+     <em>
+      NOTE
+     </em>
+     : You can run the -
+     <code class="docutils literal">
+      Reporting &gt; Warehouse &gt; Stock Valuation
+     </code>
+     wizard
+and generate the demand for all the products / locations in your system.
+     <strong>
+      WARNING: This could take a lot of time if you have a database with a lot of
+products and movements. We highly recommend to generate the demand you need
+using the Stock Demand wizard
+     </strong>
+     .
+    </p>
+    <p class="oe_mt32">
+     <strong>
+      Forecast Rules Examples
+     </strong>
+    </p>
+    <p class="oe_mt32">
+     If you install this module using data demo you can find examples of some
+demand forecast rules at
+     <code class="docutils literal">
+      Settings &gt; Technical Features &gt; Forecasting &gt;
+Forecasting Rules
+     </code>
+     menu that you can copy and reuse for your purpose.
     </p>
     <ul class="simple">
      <li>
@@ -322,10 +358,6 @@ module.
      <li>
       Update picking/move data to be generated only for the current year of the
 installation of the module. Right now is generated for the 2015 year.
-     </li>
-     <li>
-      When generating the ir.filter by the stock.demand wizard the range of dates
-are not taking into account.
      </li>
     </ul>
    </div>

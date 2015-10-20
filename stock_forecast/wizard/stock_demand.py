@@ -21,16 +21,20 @@ class StockDemand(models.TransientModel):
                                  'the information to show, '
                                  'We will show you only moves '
                                  'related to this product')
-    date_from = fields.Datetime('Date From',
-                                help='Date Start used to get '
-                                'the range of the demands')
-    date_to = fields.Datetime('Date to',
-                              help='Date End used to get '
-                              'the range of the demands')
+    date_from = fields.Date('Date From',
+                            help='Date Start used to get '
+                            'the range of the demands')
+    date_to = fields.Date('Date to',
+                          help='Date End used to get '
+                          'the range of the demands')
     location_id = fields.Many2one('stock.location',
                                   'Location',
                                   help='Destination location '
                                   'of the moves to show')
+    demand_filter = fields.Boolean(
+        'Generate Rule Filter',
+        help='If True generate a Search Filter to re-use in the forecast rule'
+             '. If False only check the demand')
 
     @api.multi
     def open_table(self):
@@ -38,27 +42,75 @@ class StockDemand(models.TransientModel):
         Open the stock history view using the info registered in the wizard
         '''
         ctx = dict(self._context).copy()
-        ctx['history_date'] = self.date_to
-        ctx['search_default_product_id'] = self.product_id.id
-        ctx['search_default_location_id'] = self.location_id.id
-        ctx['forecast_value'] = 'quantity'
-        ctx['forecast_order'] = 'date'
+        ctx.update({
+            'history_date': self.date_to,
+        })
+        name, domain, model = self.get_demand_data()
+
+        if self.demand_filter:
+            self.create_demand_filter(name, domain, model)
+
         tree_view = self.env.ref('stock_forecast.'
                                  'view_stock_demand_history_report_tree')
         return {
-            'domain': [('date', '>=', self.date_from),
-                       ('date', '<=', self.date_to),
-                       ('quantity', '<', 0.0),
-                       ('product_id', '=', self.product_id.id),
-                       ('location_id', '=', self.location_id.id)],
-            'name': _('Stock Demands At Date'),
+            'domain': domain,
+            'name': name,
             'view_type': 'form',
             'views': [(tree_view.id, 'tree')],
             'view_mode': 'tree,graph',
-            'res_model': 'stock.history',
+            'res_model': model,
             'type': 'ir.actions.act_window',
             'context': ctx,
         }
+
+    @api.multi
+    def get_demand_data(self):
+        """
+        Pre-process the date to be use to filter the stock.history records.
+
+        :return: tuple (name view, domain, model name)
+        """
+        model = 'stock.history'
+        name = ' '.join([
+            _('Stock Demand for'), self.product_id.name, _('Product'),
+            _('in'), self.location_id.display_name,
+            '(' + _('From'), self.date_from, _('to'), self.date_to + ')'])
+        domain = [
+            ('date', '>=', self.date_from),
+            ('date', '<=', self.date_to),
+            ('quantity', '<', 0.0),
+            ('product_id', '=', self.product_id.id),
+            ('location_id', '=', self.location_id.id)]
+
+        return name, domain, model
+
+    @api.multi
+    def create_demand_filter(self, name, domain, model):
+        """ Create forecast rule filter
+
+        :name: name of the filter
+        :domain: stock demand domain
+        :model: model name
+
+        :return: if_filters record created
+        """
+        context = {
+            'forecast_value': 'quantity_force_positive',
+            'forecast_order': 'date'}
+        filter_obj = self.env['ir.filters']
+        irfilter = filter_obj.search([
+            ('name', '=', name),
+            ('domain', '=', str(domain)),
+            ('context', '=', str(context)),
+            ('model_id', '=', model),
+        ])
+        if not irfilter:
+            irfilter = filter_obj.create({
+                'name': name,
+                'domain': domain,
+                'context': context,
+                'model_id': model})
+        return irfilter
 
 
 class StockHistory(models.Model):
