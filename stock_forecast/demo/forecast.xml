@@ -5,7 +5,7 @@
         <record id="forecast_demo_01" model="forecast">
             <field name="rule_id" ref="forecast_rule_01"/>
             <field name="name" eval="obj(ref('forecast_rule_01')).name" model="forecasting.rule"/>
-            <field name="product_id" ref="product.product_product_8"/>
+            <field name="product_id" ref="stock_forecast.product_product_1"/>
         </record>
 
         <record id="forecast_demo_02" model="forecast">
@@ -17,7 +17,7 @@
         <record id="forecast_demo_03" model="forecast">
             <field name="rule_id" ref="forecast_rule_03"/>
             <field name="name" eval="obj(ref('forecast_rule_03')).name" model="forecasting.rule"/>
-            <field name="product_id" ref="product.product_product_3"/>
+            <field name="product_id" ref="stock_forecast.product_product_2"/>
         </record>
 
         <record id="forecast_demo_04" model="forecast">
