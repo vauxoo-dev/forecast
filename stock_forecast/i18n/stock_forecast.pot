@@ -27,7 +27,7 @@ msgstr ""
 
 #. module: stock_forecast
 #: model:ir.filters,name:stock_forecast.irfilter_01
-msgid "(SFD01) 2015 Demand for iMac Product in WH/Stock"
+msgid "(SFD01) 2015 Demand for iMac with Retina 5K display Product in WH/Stock"
 msgstr ""
 
 #. module: stock_forecast
@@ -37,7 +37,7 @@ msgstr ""
 
 #. module: stock_forecast
 #: model:ir.filters,name:stock_forecast.irfilter_03
-msgid "(SFD03) 2015 Demand for New Product PC Assemble SC234 in WH/Stock"
+msgid "(SFD03) 2015 Demand for New Product S76 Kudu Pro in WH/Stock"
 msgstr ""
 
 #. module: stock_forecast

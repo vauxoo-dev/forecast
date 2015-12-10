@@ -26,7 +26,7 @@ class TestForecastRule(common.TransactionCase):
         self.forecast_obj = self.env['forecast']
 
     def test_01(self):
-        """Check SFD01 2015 Demand for iMac Product in WH/Stock
+        """Check SFD01 2015 Demand for iMac with Retina 5K display Product in WH/Stock
           - values length is 87 values.
              - 80 sales
              - 7 internal movements
@@ -47,7 +47,7 @@ class TestForecastRule(common.TransactionCase):
                          datetime.today().month)
 
     def test_03(self):
-        """Check SFD03 2015 Demand for New Product PC Assemble SC234 in WH/Stock
+        """Check SFD03 2015 Demand for New Product S76 Kudu Pro in WH/Stock
           - values length is 85 values.
              - 80 sales
              - 5 internal movements

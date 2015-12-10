@@ -103,11 +103,11 @@ demand forecast rules at ``Settings > Technical Features > Forecasting >
 Forecasting Rules`` menu that you can copy and reuse for your purpose.
 
 - You can extract a demand for a product. All the operations for a range of
-  date. Check ``(SFD01) 2015 Demand for iMac Product in WH/Stoc``.
+  date. Check ``(SFD01) 2015 Demand for iMac with Retina 5K display Product in WH/Stoc``.
 - You can extract a demand for a product group by month ``(SFD02) 2015 Demand
   for iPad Retina Display in WH/Stock (Group by Month)``.
 - A demand for a new product using the data of the replaced product in
-  ``(SFD03) 2015 Demand for New Product PC Assemble SC234 in WH/Stock``.
+  ``(SFD03) 2015 Demand for New Product S76 Kudu Pro in WH/Stock``.
 - The demand of the last 2 months group by week. The last 2 months not taking
   into account the current one. ``(SFD04) Last 2 months Demand for PC on
   Demand in WH/Stock (Group by Week)``.

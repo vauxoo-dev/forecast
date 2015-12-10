@@ -2,6 +2,34 @@
 <openerp>
     <data noupdate="1">
 
+        <!-- NEW PRODUCTS -->
+
+            <record id="product_product_1" model="product.product">
+                <field name="name">iMac with Retina 5K display</field>
+                <field name="categ_id" ref="product.imac"/>
+                <field name="standard_price">1499.0</field>
+                <field name="list_price">1899.0</field>
+                <field name="type">consu</field>
+                <field name="uom_id" ref="product.product_uom_unit"/>
+                <field name="uom_po_id" ref="product.product_uom_unit"/>
+                <field name="default_code">A1091</field>
+            </record>
+
+            <record id="product_product_2" model="product.product">
+                <field name="name">Kudu Pro</field>
+                <field name="categ_id" ref="product.product_category_4"/>
+                <field name="list_price">850.0</field>
+                <field name="standard_price">900.0</field>
+                <field name="type">consu</field>
+                <field name="uom_id" ref="product.product_uom_unit"/>
+                <field name="uom_po_id" ref="product.product_uom_unit"/>
+                <field name="description_sale">17" LED Backlit Monitor
+    Processor 4th gen Intel Core i7
+    16GB RAM
+    HDD SH-1</field>
+                <field name="default_code">S76KUDU</field>
+            </record>
+
         <!-- UPDATE FORECAST MANUAL DATA DEMO TO BELONG TO DIFFERENT VARIANTS -->
 
             <record id="forecasting_smoothing_techniques.fst_demo_04" model="forecast">
@@ -11,5 +39,6 @@
             <record id="forecasting_smoothing_techniques.fst_demo_05" model="forecast">
                 <field name="product_id" ref="product.product_product_4b"/>
             </record>
+
     </data>
 </openerp>
