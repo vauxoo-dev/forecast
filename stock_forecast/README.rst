@@ -105,19 +105,19 @@ Forecasting Rules`` menu that you can copy and reuse for your purpose.
 - You can extract a demand for a product. All the operations for a range of
   date. Check ``(SFD01) 2015 Demand for iMac with Retina 5K display Product in WH/Stoc``.
 - You can extract a demand for a product group by month ``(SFD02) 2015 Demand
-  for iPad Retina Display in WH/Stock (Group by Month)``.
+  for iPad Mini 4 in WH/Stock (Group by Month)``.
 - A demand for a new product using the data of the replaced product in
   ``(SFD03) 2015 Demand for New Product S76 Kudu Pro in WH/Stock``.
 - The demand of the last 2 months group by week. The last 2 months not taking
   into account the current one. ``(SFD04) Last 2 months Demand for PC on
   Demand in WH/Stock (Group by Week)``.
 - The demand of the last month for a product group by day. The last month not
-  taking into account the current one. ``(SFD05) Last month Demand for iPod in
+  taking into account the current one. ``(SFD05) Last month Demand for iPod Touch in
   WH/Stock (Group by day)``.
 - The demand for a product category ``(SFD06) 2015 Apple's Product Category
   Demand in WH/Stock (Group by Month)``.
 - Last N days demand group by day. Look example ``(SFD07) Last 14 days Demand
-  for iPod Product in WH/Stock (Group by day)``.
+  for iPod Touch Product in WH/Stock (Group by day)``.
 
 
 Known issues / Roadmap

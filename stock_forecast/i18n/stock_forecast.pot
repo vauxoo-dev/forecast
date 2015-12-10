@@ -32,7 +32,7 @@ msgstr ""
 
 #. module: stock_forecast
 #: model:ir.filters,name:stock_forecast.irfilter_02
-msgid "(SFD02) 2015 Demand for iPad Retina Display in WH/Stock (Group by Month)"
+msgid "(SFD02) 2015 Demand for iPad Mini 4 in WH/Stock (Group by Month)"
 msgstr ""
 
 #. module: stock_forecast
@@ -47,7 +47,7 @@ msgstr ""
 
 #. module: stock_forecast
 #: model:ir.filters,name:stock_forecast.irfilter_05
-msgid "(SFD05) Last month Demand for iPod in WH/Stock (Group by day)"
+msgid "(SFD05) Last month Demand for iPod Touch in WH/Stock (Group by day)"
 msgstr ""
 
 #. module: stock_forecast
@@ -57,7 +57,7 @@ msgstr ""
 
 #. module: stock_forecast
 #: model:ir.filters,name:stock_forecast.irfilter_07
-msgid "(SFD07) Last 14 days Demand for iPod Product in WH/Stock (Group by day)"
+msgid "(SFD07) Last 14 days Demand for iPod Touch Product in WH/Stock (Group by day)"
 msgstr ""
 
 #. module: stock_forecast
