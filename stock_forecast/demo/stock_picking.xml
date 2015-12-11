@@ -8,7 +8,7 @@
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_002" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock  PC Assemble + Custom (PC on Demand) Inital Inventory</field>
+      <field name="origin">(Forecast Demo) WH/Stock  Gazelle Pro Inital Inventory</field>
       <field name="picking_type_id" ref="stock.picking_type_in"/>
       <field name="date">2015-01-01 08:56:28</field>
       <field name="partner_id" ref="base.res_partner_3"/>
@@ -20,13 +20,13 @@
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_004" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Inital Inventory</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Inital Inventory</field>
       <field name="picking_type_id" ref="stock.picking_type_in"/>
       <field name="date">2015-01-01 05:01:49</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_005" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Inital Inventory</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Inital Inventory</field>
       <field name="picking_type_id" ref="stock.picking_type_in"/>
       <field name="date">2015-01-01 13:43:01</field>
       <field name="partner_id" ref="base.res_partner_4"/>
@@ -512,481 +512,481 @@
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_086" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 1</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 1</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-01-15 04:21:42</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_087" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 2</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 2</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-07-26 18:31:03</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_088" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 3</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 3</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-05-29 10:49:42</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_089" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 4</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 4</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-09-14 23:22:50</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_090" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 5</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 5</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-04-10 00:29:16</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_091" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 6</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 6</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-07-01 03:48:39</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_092" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 7</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 7</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-01-13 13:23:33</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_093" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 8</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 8</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-09-02 16:30:56</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_094" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 9</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 9</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-01-06 10:15:50</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_095" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 10</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 10</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-02-28 13:34:45</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_096" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 11</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 11</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-01-10 13:21:42</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_097" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 12</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 12</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-09-07 00:02:04</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_098" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 13</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 13</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-07-14 06:21:15</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_099" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 14</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 14</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-08-26 02:55:50</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_100" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 15</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 15</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-03-16 13:43:52</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_101" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 16</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 16</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-02-17 00:04:32</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_102" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 17</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 17</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-04-24 23:14:19</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_103" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 18</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 18</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-03-10 03:16:44</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_104" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 19</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 19</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-05-11 14:31:58</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_105" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 20</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 20</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-03-29 22:51:20</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_106" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 21</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 21</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-09-18 16:44:37</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_107" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 22</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 22</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-03-09 18:27:40</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_108" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 23</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 23</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-06-06 05:24:17</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_109" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 24</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 24</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-02-23 10:39:35</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_110" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 25</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 25</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-09-07 05:00:48</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_111" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 26</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 26</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-07-31 12:00:10</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_112" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 27</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 27</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-05-08 10:45:07</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_113" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 28</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 28</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-01-28 03:27:12</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_114" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 29</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 29</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-01-17 22:21:30</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_115" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 30</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 30</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-04-02 12:04:01</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_116" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 31</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 31</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-07-11 15:23:51</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_117" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 32</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 32</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-09-10 01:24:51</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_118" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 33</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 33</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-09-25 00:29:47</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_119" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 34</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 34</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-05-01 08:26:02</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_120" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 35</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 35</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-04-11 04:18:58</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_121" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 36</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 36</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-03-11 03:25:18</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_122" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 37</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 37</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-03-18 19:59:31</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_123" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 38</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 38</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-03-27 17:45:18</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_124" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 39</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 39</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-02-28 10:07:38</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_125" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 40</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 40</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-05-08 01:35:45</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_126" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 41</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 41</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-07-31 14:11:39</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_127" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 42</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 42</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-01-28 16:09:32</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_128" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 43</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 43</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-09-10 11:19:09</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_129" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 44</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 44</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-06-27 19:37:42</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_130" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 45</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 45</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-09-21 14:31:51</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_131" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 46</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 46</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-01-25 02:02:12</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_132" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 47</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 47</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-09-08 09:39:20</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_133" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 48</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 48</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-01-28 18:25:45</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_134" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 49</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 49</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-03-01 00:16:57</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_135" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 50</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 50</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-05-23 05:23:19</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_136" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 51</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 51</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-08-27 02:52:00</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_137" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 52</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 52</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-05-06 09:07:45</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_138" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 53</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 53</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-03-19 02:12:45</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_139" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 54</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 54</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-01-03 14:44:42</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_140" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 55</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 55</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-06-04 08:22:56</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_141" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 56</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 56</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-05-18 08:30:12</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_142" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 57</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 57</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-01-26 20:03:01</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_143" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 58</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 58</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-02-07 02:03:20</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_144" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 59</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 59</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-09-28 18:09:17</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_145" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 60</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 60</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-06-07 12:04:17</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_146" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 61</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 61</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-03-21 09:16:19</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_147" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 62</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 62</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-06-27 18:43:09</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_148" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 63</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 63</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-01-18 07:17:21</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_149" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 64</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 64</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-01-30 21:06:37</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_150" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 65</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 65</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-01-20 05:28:48</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_151" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 66</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 66</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-06-03 09:04:41</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_152" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 67</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 67</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-05-02 12:50:08</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_153" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 68</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 68</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-09-22 01:07:38</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_154" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 69</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 69</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-08-09 08:04:13</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_155" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 70</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 70</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-09-13 22:52:06</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_156" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 71</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 71</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-07-30 06:42:04</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_157" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 72</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 72</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-01-17 13:43:33</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_158" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 73</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 73</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-07-25 20:13:47</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_159" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 74</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 74</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-01-27 09:00:54</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_160" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 75</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 75</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-06-29 06:04:51</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_161" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 76</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 76</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-01-15 07:23:28</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_162" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 77</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 77</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-05-15 22:06:38</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_163" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 78</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 78</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-05-07 20:07:10</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_164" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 79</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 79</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-01-22 17:51:29</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_165" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Sale 80</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Sale 80</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-02-02 06:17:40</field>
       <field name="partner_id" ref="base.res_partner_6"/>
@@ -1472,961 +1472,961 @@
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_246" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 1</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 1</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-03-02 00:50:27</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_247" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 2</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 2</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-03-18 01:42:30</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_248" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 3</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 3</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-04-26 01:16:44</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_249" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 4</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 4</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-08-20 07:54:27</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_250" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 5</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 5</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-04-24 17:55:38</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_251" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 6</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 6</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-02-10 18:47:24</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_252" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 7</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 7</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-08-26 05:23:37</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_253" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 8</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 8</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-01-04 05:06:06</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_254" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 9</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 9</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-05-23 08:53:12</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_255" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 10</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 10</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-06-12 04:09:03</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_256" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 11</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 11</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-02-06 09:11:49</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_257" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 12</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 12</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-02-17 11:17:54</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_258" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 13</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 13</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-03-14 02:24:41</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_259" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 14</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 14</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-01-29 17:14:33</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_260" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 15</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 15</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-04-10 22:17:51</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_261" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 16</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 16</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-03-20 00:19:25</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_262" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 17</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 17</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-02-21 05:18:11</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_263" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 18</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 18</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-05-26 12:43:01</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_264" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 19</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 19</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-06-30 09:58:49</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_265" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 20</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 20</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-07-20 05:04:22</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_266" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 21</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 21</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-01-18 22:47:10</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_267" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 22</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 22</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-06-11 03:39:12</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_268" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 23</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 23</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-03-02 19:58:35</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_269" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 24</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 24</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-05-31 12:51:07</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_270" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 25</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 25</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-02-02 22:03:45</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_271" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 26</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 26</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-01-08 19:17:38</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_272" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 27</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 27</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-03-22 00:11:14</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_273" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 28</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 28</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-09-19 03:29:47</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_274" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 29</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 29</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-09-08 23:48:23</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_275" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 30</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 30</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-05-30 08:21:26</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_276" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 31</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 31</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-04-09 09:04:35</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_277" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 32</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 32</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-02-14 18:21:55</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_278" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 33</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 33</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-07-14 03:37:02</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_279" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 34</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 34</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-09-23 21:02:59</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_280" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 35</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 35</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-07-15 18:24:53</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_281" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 36</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 36</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-02-21 06:53:53</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_282" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 37</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 37</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-09-02 12:22:07</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_283" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 38</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 38</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-03-02 15:02:17</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_284" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 39</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 39</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-02-23 04:45:43</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_285" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 40</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 40</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-02-24 09:41:22</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_286" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 41</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 41</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-08-07 09:32:38</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_287" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 42</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 42</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-09-23 00:35:46</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_288" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 43</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 43</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-09-19 21:15:29</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_289" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 44</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 44</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-04-01 15:53:40</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_290" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 45</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 45</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-04-26 06:21:02</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_291" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 46</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 46</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-04-23 03:23:32</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_292" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 47</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 47</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-06-18 07:35:23</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_293" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 48</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 48</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-03-30 15:58:31</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_294" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 49</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 49</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-04-19 08:13:41</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_295" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 50</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 50</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-06-17 20:04:55</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_296" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 51</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 51</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-05-26 07:33:07</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_297" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 52</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 52</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-07-27 04:26:39</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_298" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 53</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 53</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-01-27 11:58:47</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_299" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 54</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 54</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-09-10 09:42:09</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_300" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 55</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 55</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-05-18 00:28:23</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_301" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 56</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 56</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-02-15 04:27:10</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_302" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 57</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 57</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-09-02 16:47:38</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_303" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 58</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 58</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-01-19 20:27:30</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_304" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 59</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 59</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-02-23 06:58:24</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_305" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 60</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 60</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-04-23 02:23:25</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_306" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 61</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 61</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-07-11 06:14:10</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_307" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 62</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 62</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-04-26 22:19:30</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_308" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 63</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 63</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-01-02 20:11:59</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_309" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 64</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 64</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-05-02 14:30:10</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_310" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 65</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 65</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-01-01 03:31:34</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_311" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 66</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 66</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-06-16 12:29:35</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_312" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 67</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 67</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-08-05 22:21:05</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_313" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 68</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 68</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-04-27 10:10:34</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_314" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 69</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 69</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-08-17 08:58:38</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_315" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 70</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 70</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-08-21 12:34:36</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_316" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 71</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 71</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-06-19 22:52:48</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_317" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 72</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 72</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-08-06 03:25:51</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_318" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 73</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 73</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-05-10 17:12:57</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_319" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 74</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 74</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-04-27 06:12:56</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_320" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 75</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 75</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-03-14 02:36:22</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_321" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 76</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 76</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-01-14 05:43:31</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_322" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 77</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 77</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-07-10 18:56:46</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_323" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 78</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 78</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-03-25 13:53:45</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_324" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 79</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 79</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-03-13 04:05:04</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_325" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Sale 80</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Sale 80</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-06-23 12:03:20</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_326" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 1</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 1</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-05-04 12:50:29</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_327" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 2</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 2</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-02-14 14:19:09</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_328" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 3</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 3</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-07-05 22:42:42</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_329" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 4</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 4</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-02-02 21:44:44</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_330" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 5</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 5</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-04-21 14:52:59</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_331" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 6</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 6</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-04-26 22:54:24</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_332" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 7</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 7</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-04-03 23:55:17</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_333" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 8</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 8</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-07-25 13:28:45</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_334" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 9</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 9</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-08-15 01:26:58</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_335" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 10</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 10</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-07-26 04:31:35</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_336" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 11</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 11</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-05-17 18:57:00</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_337" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 12</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 12</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-09-07 15:33:42</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_338" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 13</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 13</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-08-07 07:30:52</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_339" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 14</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 14</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-06-24 01:03:04</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_340" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 15</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 15</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-06-13 16:15:04</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_341" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 16</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 16</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-06-18 11:46:52</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_342" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 17</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 17</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-04-01 20:27:23</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_343" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 18</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 18</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-01-17 13:10:58</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_344" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 19</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 19</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-02-28 05:41:53</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_345" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 20</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 20</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-07-20 02:56:03</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_346" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 21</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 21</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-04-06 14:48:38</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_347" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 22</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 22</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-07-05 05:22:01</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_348" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 23</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 23</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-05-07 13:47:40</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_349" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 24</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 24</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-01-09 02:48:10</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_350" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 25</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 25</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-01-11 04:36:46</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_351" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 26</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 26</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-08-27 06:27:01</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_352" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 27</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 27</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-06-25 11:47:01</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_353" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 28</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 28</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-06-06 03:19:03</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_354" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 29</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 29</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-07-22 16:37:44</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_355" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 30</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 30</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-02-04 09:42:52</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_356" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 31</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 31</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-02-24 00:42:53</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_357" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 32</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 32</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-07-06 06:22:33</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_358" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 33</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 33</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-03-25 00:58:24</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_359" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 34</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 34</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-09-24 17:16:17</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_360" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 35</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 35</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-04-29 20:18:13</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_361" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 36</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 36</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-09-27 11:29:36</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_362" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 37</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 37</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-01-13 21:37:48</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_363" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 38</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 38</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-01-16 03:29:35</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_364" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 39</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 39</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-09-22 18:29:09</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_365" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 40</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 40</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-04-30 19:44:37</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_366" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 41</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 41</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-07-02 18:03:05</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_367" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 42</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 42</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-08-08 16:03:13</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_368" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 43</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 43</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-01-13 04:57:50</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_369" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 44</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 44</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-08-24 00:32:30</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_370" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 45</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 45</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-02-03 06:55:29</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_371" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 46</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 46</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-07-26 12:33:48</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_372" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 47</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 47</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-01-25 20:57:12</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_373" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 48</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 48</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-02-16 13:52:53</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_374" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 49</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 49</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-07-24 02:53:29</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_375" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 50</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 50</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-09-29 13:50:34</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_376" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 51</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 51</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-01-25 02:27:55</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_377" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 52</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 52</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-04-20 22:15:30</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_378" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 53</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 53</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-09-04 16:17:26</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_379" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 54</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 54</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-09-29 07:30:06</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_380" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 55</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 55</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-08-26 13:13:48</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_381" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 56</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 56</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-06-30 23:22:25</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_382" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 57</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 57</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-06-18 23:47:00</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_383" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 58</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 58</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-09-03 06:32:19</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_384" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 59</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 59</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-01-06 18:10:10</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_385" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 60</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 60</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-02-07 13:52:21</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_386" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 61</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 61</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-03-29 02:34:35</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_387" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 62</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 62</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-05-16 20:57:26</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_388" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 63</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 63</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-08-13 10:19:54</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_389" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 64</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 64</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-04-25 17:48:25</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_390" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 65</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 65</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-09-09 06:23:24</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_391" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 66</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 66</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-04-02 02:24:43</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_392" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 67</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 67</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-07-23 18:23:39</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_393" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 68</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 68</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-02-13 10:18:43</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_394" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 69</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 69</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-08-18 12:23:58</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_395" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 70</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 70</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-02-15 14:50:05</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_396" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 71</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 71</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-02-07 11:22:19</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_397" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 72</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 72</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-07-10 01:07:42</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_398" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 73</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 73</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-01-01 14:14:36</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_399" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 74</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 74</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-06-23 19:10:22</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_400" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 75</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 75</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-03-15 03:43:33</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_401" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 76</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 76</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-09-12 00:36:34</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_402" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 77</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 77</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-09-27 10:57:33</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_403" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 78</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 78</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-03-14 20:12:48</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_404" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 79</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 79</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-07-04 08:38:03</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_405" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Sale 80</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Sale 80</field>
       <field name="picking_type_id" ref="stock.picking_type_out"/>
       <field name="date">2015-08-18 14:56:15</field>
       <field name="partner_id" ref="base.res_partner_6"/>
@@ -2528,97 +2528,97 @@
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_422" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Purchase 1</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Purchase 1</field>
       <field name="picking_type_id" ref="stock.picking_type_in"/>
       <field name="date">2015-01-13 21:45:04</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_423" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Purchase 2</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Purchase 2</field>
       <field name="picking_type_id" ref="stock.picking_type_in"/>
       <field name="date">2015-03-09 16:46:37</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_424" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Purchase 3</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Purchase 3</field>
       <field name="picking_type_id" ref="stock.picking_type_in"/>
       <field name="date">2015-06-15 13:36:00</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_425" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Purchase 4</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Purchase 4</field>
       <field name="picking_type_id" ref="stock.picking_type_in"/>
       <field name="date">2015-02-13 10:59:41</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_426" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Purchase 5</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Purchase 5</field>
       <field name="picking_type_id" ref="stock.picking_type_in"/>
       <field name="date">2015-07-16 22:44:29</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_427" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Purchase 6</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Purchase 6</field>
       <field name="picking_type_id" ref="stock.picking_type_in"/>
       <field name="date">2015-06-14 04:21:25</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_428" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Purchase 7</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Purchase 7</field>
       <field name="picking_type_id" ref="stock.picking_type_in"/>
       <field name="date">2015-05-26 14:17:05</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_429" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Purchase 8</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Purchase 8</field>
       <field name="picking_type_id" ref="stock.picking_type_in"/>
       <field name="date">2015-07-17 18:23:29</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_430" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Purchase 9</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Purchase 9</field>
       <field name="picking_type_id" ref="stock.picking_type_in"/>
       <field name="date">2015-03-19 03:24:53</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_431" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Purchase 10</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Purchase 10</field>
       <field name="picking_type_id" ref="stock.picking_type_in"/>
       <field name="date">2015-04-15 21:38:16</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_432" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Purchase 11</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Purchase 11</field>
       <field name="picking_type_id" ref="stock.picking_type_in"/>
       <field name="date">2015-06-09 21:02:21</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_433" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Purchase 12</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Purchase 12</field>
       <field name="picking_type_id" ref="stock.picking_type_in"/>
       <field name="date">2015-06-24 13:42:37</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_434" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Purchase 13</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Purchase 13</field>
       <field name="picking_type_id" ref="stock.picking_type_in"/>
       <field name="date">2015-04-11 09:24:58</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_435" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Purchase 14</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Purchase 14</field>
       <field name="picking_type_id" ref="stock.picking_type_in"/>
       <field name="date">2015-02-21 06:05:27</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_436" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Purchase 15</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Purchase 15</field>
       <field name="picking_type_id" ref="stock.picking_type_in"/>
       <field name="date">2015-07-30 06:11:30</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_437" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Purchase 16</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Purchase 16</field>
       <field name="picking_type_id" ref="stock.picking_type_in"/>
       <field name="date">2015-02-13 02:41:16</field>
       <field name="partner_id" ref="base.res_partner_1"/>
@@ -2720,193 +2720,193 @@
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_454" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Purchase 1</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Purchase 1</field>
       <field name="picking_type_id" ref="stock.picking_type_in"/>
       <field name="date">2015-05-10 22:38:23</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_455" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Purchase 2</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Purchase 2</field>
       <field name="picking_type_id" ref="stock.picking_type_in"/>
       <field name="date">2015-02-25 17:02:43</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_456" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Purchase 3</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Purchase 3</field>
       <field name="picking_type_id" ref="stock.picking_type_in"/>
       <field name="date">2015-04-20 15:18:42</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_457" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Purchase 4</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Purchase 4</field>
       <field name="picking_type_id" ref="stock.picking_type_in"/>
       <field name="date">2015-08-31 04:44:56</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_458" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Purchase 5</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Purchase 5</field>
       <field name="picking_type_id" ref="stock.picking_type_in"/>
       <field name="date">2015-08-13 05:02:33</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_459" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Purchase 6</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Purchase 6</field>
       <field name="picking_type_id" ref="stock.picking_type_in"/>
       <field name="date">2015-04-16 09:41:29</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_460" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Purchase 7</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Purchase 7</field>
       <field name="picking_type_id" ref="stock.picking_type_in"/>
       <field name="date">2015-02-15 17:20:42</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_461" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Purchase 8</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Purchase 8</field>
       <field name="picking_type_id" ref="stock.picking_type_in"/>
       <field name="date">2015-07-29 00:08:02</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_462" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Purchase 9</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Purchase 9</field>
       <field name="picking_type_id" ref="stock.picking_type_in"/>
       <field name="date">2015-01-08 10:19:50</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_463" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Purchase 10</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Purchase 10</field>
       <field name="picking_type_id" ref="stock.picking_type_in"/>
       <field name="date">2015-07-18 21:58:07</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_464" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Purchase 11</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Purchase 11</field>
       <field name="picking_type_id" ref="stock.picking_type_in"/>
       <field name="date">2015-04-13 01:35:28</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_465" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Purchase 12</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Purchase 12</field>
       <field name="picking_type_id" ref="stock.picking_type_in"/>
       <field name="date">2015-08-21 15:04:28</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_466" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Purchase 13</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Purchase 13</field>
       <field name="picking_type_id" ref="stock.picking_type_in"/>
       <field name="date">2015-07-24 22:57:32</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_467" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Purchase 14</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Purchase 14</field>
       <field name="picking_type_id" ref="stock.picking_type_in"/>
       <field name="date">2015-03-10 05:37:27</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_468" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Purchase 15</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Purchase 15</field>
       <field name="picking_type_id" ref="stock.picking_type_in"/>
       <field name="date">2015-08-24 01:38:33</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_469" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Purchase 16</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Purchase 16</field>
       <field name="picking_type_id" ref="stock.picking_type_in"/>
       <field name="date">2015-06-30 20:12:34</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_470" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Purchase 1</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Purchase 1</field>
       <field name="picking_type_id" ref="stock.picking_type_in"/>
       <field name="date">2015-05-12 02:44:45</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_471" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Purchase 2</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Purchase 2</field>
       <field name="picking_type_id" ref="stock.picking_type_in"/>
       <field name="date">2015-07-29 21:35:18</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_472" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Purchase 3</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Purchase 3</field>
       <field name="picking_type_id" ref="stock.picking_type_in"/>
       <field name="date">2015-09-12 03:16:13</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_473" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Purchase 4</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Purchase 4</field>
       <field name="picking_type_id" ref="stock.picking_type_in"/>
       <field name="date">2015-03-14 14:43:16</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_474" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Purchase 5</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Purchase 5</field>
       <field name="picking_type_id" ref="stock.picking_type_in"/>
       <field name="date">2015-08-17 01:59:30</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_475" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Purchase 6</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Purchase 6</field>
       <field name="picking_type_id" ref="stock.picking_type_in"/>
       <field name="date">2015-04-17 00:10:33</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_476" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Purchase 7</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Purchase 7</field>
       <field name="picking_type_id" ref="stock.picking_type_in"/>
       <field name="date">2015-01-17 14:56:53</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_477" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Purchase 8</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Purchase 8</field>
       <field name="picking_type_id" ref="stock.picking_type_in"/>
       <field name="date">2015-05-11 11:44:31</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_478" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Purchase 9</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Purchase 9</field>
       <field name="picking_type_id" ref="stock.picking_type_in"/>
       <field name="date">2015-03-13 09:07:19</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_479" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Purchase 10</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Purchase 10</field>
       <field name="picking_type_id" ref="stock.picking_type_in"/>
       <field name="date">2015-06-30 07:58:11</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_480" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Purchase 11</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Purchase 11</field>
       <field name="picking_type_id" ref="stock.picking_type_in"/>
       <field name="date">2015-01-18 23:41:25</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_481" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Purchase 12</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Purchase 12</field>
       <field name="picking_type_id" ref="stock.picking_type_in"/>
       <field name="date">2015-04-26 01:33:49</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_482" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Purchase 13</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Purchase 13</field>
       <field name="picking_type_id" ref="stock.picking_type_in"/>
       <field name="date">2015-03-10 01:26:07</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_483" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Purchase 14</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Purchase 14</field>
       <field name="picking_type_id" ref="stock.picking_type_in"/>
       <field name="date">2015-07-23 03:58:24</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_484" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Purchase 15</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Purchase 15</field>
       <field name="picking_type_id" ref="stock.picking_type_in"/>
       <field name="date">2015-02-24 23:15:00</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_485" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Purchase 16</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Purchase 16</field>
       <field name="picking_type_id" ref="stock.picking_type_in"/>
       <field name="date">2015-05-03 14:07:04</field>
       <field name="partner_id" ref="base.res_partner_1"/>
@@ -3008,97 +3008,97 @@
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_502" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Internal Move 1</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Internal Move 1</field>
       <field name="picking_type_id" ref="stock.picking_type_internal"/>
       <field name="date">2015-07-10 23:36:44</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_503" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Internal Move 2</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Internal Move 2</field>
       <field name="picking_type_id" ref="stock.picking_type_internal"/>
       <field name="date">2015-03-20 06:06:35</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_504" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Internal Move 3</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Internal Move 3</field>
       <field name="picking_type_id" ref="stock.picking_type_internal"/>
       <field name="date">2015-01-25 10:31:27</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_505" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Internal Move 4</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Internal Move 4</field>
       <field name="picking_type_id" ref="stock.picking_type_internal"/>
       <field name="date">2015-04-18 03:10:49</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_506" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Internal Move 5</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Internal Move 5</field>
       <field name="picking_type_id" ref="stock.picking_type_internal"/>
       <field name="date">2015-04-26 03:23:40</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_507" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Internal Move 6</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Internal Move 6</field>
       <field name="picking_type_id" ref="stock.picking_type_internal"/>
       <field name="date">2015-03-31 21:50:53</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_508" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Internal Move 7</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Internal Move 7</field>
       <field name="picking_type_id" ref="stock.picking_type_internal"/>
       <field name="date">2015-02-08 02:12:02</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_509" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Internal Move 8</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Internal Move 8</field>
       <field name="picking_type_id" ref="stock.picking_type_internal"/>
       <field name="date">2015-01-26 07:30:22</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_510" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Internal Move 9</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Internal Move 9</field>
       <field name="picking_type_id" ref="stock.picking_type_internal"/>
       <field name="date">2015-01-19 18:50:30</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_511" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Internal Move 10</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Internal Move 10</field>
       <field name="picking_type_id" ref="stock.picking_type_internal"/>
       <field name="date">2015-02-05 19:54:36</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_512" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Internal Move 11</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Internal Move 11</field>
       <field name="picking_type_id" ref="stock.picking_type_internal"/>
       <field name="date">2015-07-25 07:10:44</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_513" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Internal Move 12</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Internal Move 12</field>
       <field name="picking_type_id" ref="stock.picking_type_internal"/>
       <field name="date">2015-07-14 09:30:57</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_514" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Internal Move 13</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Internal Move 13</field>
       <field name="picking_type_id" ref="stock.picking_type_internal"/>
       <field name="date">2015-08-07 11:44:51</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_515" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Internal Move 14</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Internal Move 14</field>
       <field name="picking_type_id" ref="stock.picking_type_internal"/>
       <field name="date">2015-07-23 11:36:50</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_516" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Internal Move 15</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Internal Move 15</field>
       <field name="picking_type_id" ref="stock.picking_type_internal"/>
       <field name="date">2015-06-10 01:42:29</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_517" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock PC Assemble + Custom (PC on Demand) Internal Move 16</field>
+      <field name="origin">(Forecast Demo) WH/Stock Gazelle Pro Internal Move 16</field>
       <field name="picking_type_id" ref="stock.picking_type_internal"/>
       <field name="date">2015-03-05 04:12:43</field>
       <field name="partner_id" ref="base.res_partner_3"/>
@@ -3200,193 +3200,193 @@
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_534" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Internal Move 1</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Internal Move 1</field>
       <field name="picking_type_id" ref="stock.picking_type_internal"/>
       <field name="date">2015-08-07 02:35:09</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_535" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Internal Move 2</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Internal Move 2</field>
       <field name="picking_type_id" ref="stock.picking_type_internal"/>
       <field name="date">2015-07-18 08:49:41</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_536" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Internal Move 3</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Internal Move 3</field>
       <field name="picking_type_id" ref="stock.picking_type_internal"/>
       <field name="date">2015-06-24 16:14:55</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_537" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Internal Move 4</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Internal Move 4</field>
       <field name="picking_type_id" ref="stock.picking_type_internal"/>
       <field name="date">2015-03-24 04:38:17</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_538" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Internal Move 5</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Internal Move 5</field>
       <field name="picking_type_id" ref="stock.picking_type_internal"/>
       <field name="date">2015-03-20 13:56:51</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_539" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Internal Move 6</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Internal Move 6</field>
       <field name="picking_type_id" ref="stock.picking_type_internal"/>
       <field name="date">2015-09-10 05:39:07</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_540" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Internal Move 7</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Internal Move 7</field>
       <field name="picking_type_id" ref="stock.picking_type_internal"/>
       <field name="date">2015-08-09 23:11:57</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_541" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Internal Move 8</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Internal Move 8</field>
       <field name="picking_type_id" ref="stock.picking_type_internal"/>
       <field name="date">2015-04-07 23:45:29</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_542" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Internal Move 9</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Internal Move 9</field>
       <field name="picking_type_id" ref="stock.picking_type_internal"/>
       <field name="date">2015-06-17 16:30:02</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_543" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Internal Move 10</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Internal Move 10</field>
       <field name="picking_type_id" ref="stock.picking_type_internal"/>
       <field name="date">2015-06-30 15:12:11</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_544" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Internal Move 11</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Internal Move 11</field>
       <field name="picking_type_id" ref="stock.picking_type_internal"/>
       <field name="date">2015-04-06 01:25:49</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_545" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Internal Move 12</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Internal Move 12</field>
       <field name="picking_type_id" ref="stock.picking_type_internal"/>
       <field name="date">2015-08-26 16:08:33</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_546" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Internal Move 13</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Internal Move 13</field>
       <field name="picking_type_id" ref="stock.picking_type_internal"/>
       <field name="date">2015-01-28 02:56:36</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_547" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Internal Move 14</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Internal Move 14</field>
       <field name="picking_type_id" ref="stock.picking_type_internal"/>
       <field name="date">2015-07-03 19:21:52</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_548" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Internal Move 15</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Internal Move 15</field>
       <field name="picking_type_id" ref="stock.picking_type_internal"/>
       <field name="date">2015-04-05 07:56:12</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_549" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPad Retina Display Internal Move 16</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPad Mini 4 Internal Move 16</field>
       <field name="picking_type_id" ref="stock.picking_type_internal"/>
       <field name="date">2015-03-29 16:32:40</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_550" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Internal Move 1</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Internal Move 1</field>
       <field name="picking_type_id" ref="stock.picking_type_internal"/>
       <field name="date">2015-06-05 21:47:08</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_551" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Internal Move 2</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Internal Move 2</field>
       <field name="picking_type_id" ref="stock.picking_type_internal"/>
       <field name="date">2015-03-03 23:46:41</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_552" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Internal Move 3</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Internal Move 3</field>
       <field name="picking_type_id" ref="stock.picking_type_internal"/>
       <field name="date">2015-04-24 13:30:49</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_553" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Internal Move 4</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Internal Move 4</field>
       <field name="picking_type_id" ref="stock.picking_type_internal"/>
       <field name="date">2015-09-07 08:25:19</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_554" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Internal Move 5</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Internal Move 5</field>
       <field name="picking_type_id" ref="stock.picking_type_internal"/>
       <field name="date">2015-02-28 11:43:46</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_555" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Internal Move 6</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Internal Move 6</field>
       <field name="picking_type_id" ref="stock.picking_type_internal"/>
       <field name="date">2015-05-18 03:19:51</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_556" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Internal Move 7</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Internal Move 7</field>
       <field name="picking_type_id" ref="stock.picking_type_internal"/>
       <field name="date">2015-04-14 07:07:55</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_557" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Internal Move 8</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Internal Move 8</field>
       <field name="picking_type_id" ref="stock.picking_type_internal"/>
       <field name="date">2015-05-07 13:55:20</field>
       <field name="partner_id" ref="base.res_partner_3"/>
     </record>
     <record id="picking_demo_558" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Internal Move 9</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Internal Move 9</field>
       <field name="picking_type_id" ref="stock.picking_type_internal"/>
       <field name="date">2015-02-14 17:10:54</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_559" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Internal Move 10</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Internal Move 10</field>
       <field name="picking_type_id" ref="stock.picking_type_internal"/>
       <field name="date">2015-07-04 17:23:16</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_560" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Internal Move 11</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Internal Move 11</field>
       <field name="picking_type_id" ref="stock.picking_type_internal"/>
       <field name="date">2015-08-25 10:03:35</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_561" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Internal Move 12</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Internal Move 12</field>
       <field name="picking_type_id" ref="stock.picking_type_internal"/>
       <field name="date">2015-04-25 09:30:02</field>
       <field name="partner_id" ref="base.res_partner_1"/>
     </record>
     <record id="picking_demo_562" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Internal Move 13</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Internal Move 13</field>
       <field name="picking_type_id" ref="stock.picking_type_internal"/>
       <field name="date">2015-04-04 15:44:43</field>
       <field name="partner_id" ref="base.res_partner_5"/>
     </record>
     <record id="picking_demo_563" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Internal Move 14</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Internal Move 14</field>
       <field name="picking_type_id" ref="stock.picking_type_internal"/>
       <field name="date">2015-02-25 21:07:34</field>
       <field name="partner_id" ref="base.res_partner_4"/>
     </record>
     <record id="picking_demo_564" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Internal Move 15</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Internal Move 15</field>
       <field name="picking_type_id" ref="stock.picking_type_internal"/>
       <field name="date">2015-04-15 14:10:53</field>
       <field name="partner_id" ref="base.res_partner_6"/>
     </record>
     <record id="picking_demo_565" model="stock.picking">
-      <field name="origin">(Forecast Demo) WH/Stock iPod Internal Move 16</field>
+      <field name="origin">(Forecast Demo) WH/Stock iPod Touch Internal Move 16</field>
       <field name="picking_type_id" ref="stock.picking_type_internal"/>
       <field name="date">2015-05-14 01:58:23</field>
       <field name="partner_id" ref="base.res_partner_3"/>

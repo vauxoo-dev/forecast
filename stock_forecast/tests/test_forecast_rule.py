@@ -37,7 +37,7 @@ class TestForecastRule(common.TransactionCase):
         self.assertEqual(len(forecast.value_ids), 87)
 
     def test_02(self):
-        """Check SFD02 2015 Demand for iPad Retina Display in WH/Stock (Month)
+        """Check SFD02 2015 Demand for iPad Mini 4 in WH/Stock (Month)
           - values length is 80 values.
         """
         forecast = self.forecast_obj.browse(
@@ -72,7 +72,7 @@ class TestForecastRule(common.TransactionCase):
         self.assertEqual(len(forecast.value_ids), weeks)
 
     def test_05(self):
-        """Check SFD05 Last month Demand for iPod in WH/Stock (day)
+        """Check SFD05 Last month Demand for iPod Touch in WH/Stock (day)
           - values length is 30 values.
         """
         forecast = self.forecast_obj.browse(
@@ -92,7 +92,7 @@ class TestForecastRule(common.TransactionCase):
                          datetime.today().month)
 
     def test_07(self):
-        """Check SFD07 Last 14 days Demand for iPod Product in WH/Stock (day)
+        """Check SFD07 Last 14 days Demand for iPod Touch Product in WH/Stock (day)
           - values length is 14 values.
         """
         forecast = self.forecast_obj.browse(
