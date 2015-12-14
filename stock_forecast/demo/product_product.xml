@@ -7,8 +7,8 @@
             <record id="product_product_1" model="product.product">
                 <field name="name">iMac with Retina 5K display</field>
                 <field name="categ_id" ref="product.imac"/>
-                <field name="standard_price">1499.0</field>
-                <field name="list_price">1899.0</field>
+                <field name="standard_price">3499.0</field>
+                <field name="list_price">3899.0</field>
                 <field name="type">consu</field>
                 <field name="uom_id" ref="product.product_uom_unit"/>
                 <field name="uom_po_id" ref="product.product_uom_unit"/>
