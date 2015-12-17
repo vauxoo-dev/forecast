@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-19 23:47+0000\n"
-"PO-Revision-Date: 2015-10-19 23:47+0000\n"
+"POT-Creation-Date: 2015-12-21 21:31+0000\n"
+"PO-Revision-Date: 2015-12-21 21:31+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -27,37 +27,61 @@ msgstr ""
 
 #. module: stock_forecast
 #: model:ir.filters,name:stock_forecast.irfilter_01
-msgid "(SFD01) 2015 Demand for iMac with Retina 5K display Product in WH/Stock"
+msgid "(SFD01) 2015 Demand for iMac with Retina 5K display Product in WH/Stock until 2015-09-29"
 msgstr ""
 
 #. module: stock_forecast
 #: model:ir.filters,name:stock_forecast.irfilter_02
-msgid "(SFD02) 2015 Demand for iPad Mini 4 in WH/Stock (Group by Month)"
+msgid "(SFD02) 2015 Demand for iPad Mini 4 in WH/Stock until 2015-09-29 (Group by Month)"
 msgstr ""
 
 #. module: stock_forecast
 #: model:ir.filters,name:stock_forecast.irfilter_03
-msgid "(SFD03) 2015 Demand for New Product S76 Kudu Pro in WH/Stock"
+msgid "(SFD03) 2015 Demand for New Product S76 Kudu Pro in WH/Stock until 2015-09-29"
 msgstr ""
 
 #. module: stock_forecast
 #: model:ir.filters,name:stock_forecast.irfilter_04
-msgid "(SFD04) Last 2 months Demand for PC on Demand in WH/Stock (Group by Week)"
+msgid "(SFD04) Last 2 months Demand for Gazelle Pro in WH/Stock at date 2015-09-29 (Group by Week)"
 msgstr ""
 
 #. module: stock_forecast
 #: model:ir.filters,name:stock_forecast.irfilter_05
-msgid "(SFD05) Last month Demand for iPod Touch in WH/Stock (Group by day)"
+msgid "(SFD05) Last month Demand for iPod Touch in WH/Stock at date 2015-09-29 (Group by day)"
 msgstr ""
 
 #. module: stock_forecast
 #: model:ir.filters,name:stock_forecast.irfilter_06
-msgid "(SFD06) 2015 Apple's Product Category Demand in WH/Stock (Group by Month)"
+msgid "(SFD06) 2015 Computers Category Demand in WH/Stock until 2015-09-29 (Group by Month)"
 msgstr ""
 
 #. module: stock_forecast
 #: model:ir.filters,name:stock_forecast.irfilter_07
-msgid "(SFD07) Last 14 days Demand for iPod Touch Product in WH/Stock (Group by day)"
+msgid "(SFD07) Last 14 days Demand for iPod Touch Product in WH/Stock at date 2015-09-29 (Group by day)"
+msgstr ""
+
+#. module: stock_forecast
+#: model:product.template,description:stock_forecast.product_product_4_product_template
+msgid "15.6\" Glossy 1080p LED Backlit Display\n"
+"    Processor 2.5GHz i7-4710MQ\n"
+"    8 GB RAM\n"
+"    500 GB 7200 RPM DRIVE\n"
+"                "
+msgstr ""
+
+#. module: stock_forecast
+#: model:product.template,description_sale:stock_forecast.product_product_2_product_template
+msgid "17\" LED Backlit Monitor\n"
+"    Processor 4th gen Intel Core i7\n"
+"    16GB RAM\n"
+"    HDD SH-1"
+msgstr ""
+
+#. module: stock_forecast
+#: model:product.template,description_sale:stock_forecast.product_product_3_product_template
+msgid "7.9‑inch (diagonal) LED-backlit, 128Gb\n"
+"    A8 second-generation chip M8 coprocessor\n"
+"    FaceTime HD Camera, 1.2 MP Photos"
 msgstr ""
 
 #. module: stock_forecast
@@ -140,6 +164,11 @@ msgid "From"
 msgstr ""
 
 #. module: stock_forecast
+#: model:product.template,name:stock_forecast.product_product_4_product_template
+msgid "Gazelle Pro"
+msgstr ""
+
+#. module: stock_forecast
 #: field:wizard.stock.demand,demand_filter:0
 msgid "Generate Rule Filter"
 msgstr ""
@@ -152,6 +181,11 @@ msgstr ""
 #. module: stock_forecast
 #: help:wizard.stock.demand,demand_filter:0
 msgid "If True generate a Search Filter to re-use in the forecast rule. If False only check the demand"
+msgstr ""
+
+#. module: stock_forecast
+#: model:product.template,name:stock_forecast.product_product_2_product_template
+msgid "Kudu Pro"
 msgstr ""
 
 #. module: stock_forecast
@@ -224,6 +258,21 @@ msgstr ""
 #. module: stock_forecast
 #: view:forecast:stock_forecast.stock_forecast_view_form
 msgid "from"
+msgstr ""
+
+#. module: stock_forecast
+#: model:product.template,name:stock_forecast.product_product_1_product_template
+msgid "iMac with Retina 5K display"
+msgstr ""
+
+#. module: stock_forecast
+#: model:product.template,name:stock_forecast.product_product_3_product_template
+msgid "iPad Mini 4"
+msgstr ""
+
+#. module: stock_forecast
+#: model:product.template,name:stock_forecast.product_product_5_product_template
+msgid "iPod Touch"
 msgstr ""
 
 #. module: stock_forecast

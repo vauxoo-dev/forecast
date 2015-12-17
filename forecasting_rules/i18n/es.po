@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-14 19:32+0000\n"
-"PO-Revision-Date: 2015-10-14 19:32+0000\n"
+"POT-Creation-Date: 2015-12-21 21:33+0000\n"
+"PO-Revision-Date: 2015-12-21 21:33+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -55,33 +55,33 @@ msgstr " no es un campo valido en "
 
 #. module: forecasting_rules
 #: model:ir.filters,name:forecasting_rules.filter_demo_01
-msgid "(FRD01) 2015 Partners Credit Limit Forecast order by id (integer)"
-msgstr "(FRD01) 2015 Partners Credit Limit Forecast order by id (integer)"
+msgid "(FRD01) 2015 Partners Credit Limit Forecast order by id (integer) until 2015-09-29"
+msgstr "(FRD01) 2015 Partners Credit Limit Forecast order by id (integer) until 2015-09-29"
 
 #. module: forecasting_rules
 #: model:ir.filters,name:forecasting_rules.filter_demo_02
-msgid "(FRD02) 2015 Partners Credit Limit Forecast order by write_date (datetime)"
-msgstr "(FRD02) 2015 Partners Credit Limit Forecast order by write_date (datetime)"
+msgid "(FRD02) 2015 Partners Credit Limit Forecast order by message_last_post (datetime) until 2015-09-29"
+msgstr "(FRD02) 2015 Partners Credit Limit Forecast order by message_last_post (datetime) until 2015-09-29"
 
 #. module: forecasting_rules
 #: model:ir.filters,name:forecasting_rules.filter_demo_03
-msgid "(FRD03) 2015 Partners Credit Limit Forecast order by date"
-msgstr "(FRD03) 2015 Partners Credit Limit Forecast order by date"
+msgid "(FRD03) 2015 Partners Credit Limit Forecast order by date until 2015-09-29"
+msgstr "(FRD03) 2015 Partners Credit Limit Forecast order by date until 2015-09-29"
 
 #. module: forecasting_rules
 #: model:ir.filters,name:forecasting_rules.filter_demo_04
-msgid "(FRD04) 2015 Partners Credit Limit Forecast order by date (group by day)"
-msgstr "(FRD04) 2015 Partners Credit Limit Forecast order by date (group by day)"
+msgid "(FRD04) 2015 Partners Credit Limit Forecast order by date (group by day) until 2015-09-29"
+msgstr "(FRD04) 2015 Partners Credit Limit Forecast order by date (group by day) until 2015-09-29"
 
 #. module: forecasting_rules
 #: model:ir.filters,name:forecasting_rules.filter_demo_05
-msgid "(FRD05) 2015 Partners Credit Limit Forecast order by date (group by day - all days)"
-msgstr "(FRD05) 2015 Partners Credit Limit Forecast order by date (group by day - all days)"
+msgid "(FRD05) 2015 Partners Credit Limit Forecast order by date (group by day - all days) until 2015-09-29"
+msgstr "(FRD05) 2015 Partners Credit Limit Forecast order by date (group by day - all days) until 2015-09-29"
 
 #. module: forecasting_rules
 #: model:ir.filters,name:forecasting_rules.filter_demo_06
-msgid "(FRD06) 2015 Partners Credit Limit Forecast order by date (group by month)"
-msgstr "(FRD06) 2015 Partners Credit Limit Forecast order by date (group by month)"
+msgid "(FRD06) 2015 Partners Credit Limit Forecast order by date (group by month) until 2015-09-29"
+msgstr "(FRD06) 2015 Partners Credit Limit Forecast order by date (group by month) until 2015-09-29"
 
 #. module: forecasting_rules
 #: model:ir.filters,name:forecasting_rules.filter_demo_07

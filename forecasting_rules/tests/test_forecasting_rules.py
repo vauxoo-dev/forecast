@@ -12,7 +12,6 @@
 from openerp.tools.safe_eval import safe_eval
 from openerp.exceptions import ValidationError
 from openerp.tests import common
-import datetime
 
 
 class TestForecastingRules(common.TransactionCase):
@@ -191,5 +190,4 @@ class TestForecastingRules(common.TransactionCase):
             self.ref('forecasting_rules.forecast_demo_06'))
         self.assertTrue(forecast)
         # TODO check the best way to extract the date using odoo
-        self.assertEqual(len(forecast.value_ids),
-                         datetime.datetime.today().month)
+        self.assertEqual(len(forecast.value_ids), 9)

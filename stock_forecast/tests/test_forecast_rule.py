@@ -43,8 +43,7 @@ class TestForecastRule(common.TransactionCase):
         forecast = self.forecast_obj.browse(
             self.ref('stock_forecast.forecast_demo_02'))
         self.assertTrue(forecast)
-        self.assertEqual(len(forecast.value_ids),
-                         datetime.today().month)
+        self.assertEqual(len(forecast.value_ids), 9)
 
     def test_03(self):
         """Check SFD03 2015 Demand for New Product S76 Kudu Pro in WH/Stock
@@ -58,7 +57,7 @@ class TestForecastRule(common.TransactionCase):
         self.assertEqual(len(forecast.value_ids), 85)
 
     def test_04(self):
-        """Check SFD04 Last 2 months Demand for PC on Demand in WH/Stock (week)
+        """Check SFD04 Last 2 months Demand for Gazelle Pro in WH/Stock (week)
           - values length is 8 values.
         """
         forecast = self.forecast_obj.browse(
@@ -73,23 +72,21 @@ class TestForecastRule(common.TransactionCase):
 
     def test_05(self):
         """Check SFD05 Last month Demand for iPod Touch in WH/Stock (day)
-          - values length is 30 values.
+          - values length is 31 values.
         """
         forecast = self.forecast_obj.browse(
             self.ref('stock_forecast.forecast_demo_05'))
         self.assertTrue(forecast)
-        days = (datetime.today().replace(day=1) - relativedelta(days=1)).day
-        self.assertEqual(len(forecast.value_ids), days)
+        self.assertEqual(len(forecast.value_ids), 31)
 
     def test_06(self):
-        """Check SFD06 2015 Apple's Product Category Demand in WH/Stock (month)
-          - values length is 12 values.
+        """Check SFD06 2015 Computers Category Demand in WH/Stock (month)
+          - values length is 9 values.
         """
         forecast = self.forecast_obj.browse(
             self.ref('stock_forecast.forecast_demo_06'))
         self.assertTrue(forecast)
-        self.assertEqual(len(forecast.value_ids),
-                         datetime.today().month)
+        self.assertEqual(len(forecast.value_ids), 9)
 
     def test_07(self):
         """Check SFD07 Last 14 days Demand for iPod Touch Product in WH/Stock (day)
