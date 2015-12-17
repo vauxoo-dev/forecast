@@ -18,8 +18,8 @@ virtualenv:
   system_site_packages: true
 
 env:
-  - VERSION="8.0" ODOO_REPO="vauxoo/odoo" TESTS=1 LINT_CHECK=0 ODOO_LINT=0
   - VERSION="8.0" TESTS=0 LINT_CHECK=1 ODOO_LINT=1
+  - VERSION="8.0" ODOO_REPO="vauxoo/odoo" TESTS=1 LINT_CHECK=0 ODOO_LINT=0
 
 install:
   - pip install -r ${TRAVIS_BUILD_DIR}/requirements.txt
