@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-19 23:47+0000\n"
-"PO-Revision-Date: 2015-10-19 23:47+0000\n"
+"POT-Creation-Date: 2015-12-21 21:32+0000\n"
+"PO-Revision-Date: 2015-12-21 21:32+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -27,38 +27,71 @@ msgstr "# de productos disponibles"
 
 #. module: stock_forecast
 #: model:ir.filters,name:stock_forecast.irfilter_01
-msgid "(SFD01) 2015 Demand for iMac with Retina 5K display Product in WH/Stock"
-msgstr "(SFD01) 2015 Demand for iMac with Retina 5K display Product in WH/Stock"
+msgid "(SFD01) 2015 Demand for iMac with Retina 5K display Product in WH/Stock until 2015-09-29"
+msgstr "(SFD01) 2015 Demand for iMac with Retina 5K display Product in WH/Stock until 2015-09-29"
 
 #. module: stock_forecast
 #: model:ir.filters,name:stock_forecast.irfilter_02
-msgid "(SFD02) 2015 Demand for iPad Mini 4 in WH/Stock (Group by Month)"
-msgstr "(SFD02) 2015 Demand for iPad Mini 4 in WH/Stock (Group by Month)"
+msgid "(SFD02) 2015 Demand for iPad Mini 4 in WH/Stock until 2015-09-29 (Group by Month)"
+msgstr "(SFD02) 2015 Demand for iPad Mini 4 in WH/Stock until 2015-09-29 (Group by Month)"
 
 #. module: stock_forecast
 #: model:ir.filters,name:stock_forecast.irfilter_03
-msgid "(SFD03) 2015 Demand for New Product S76 Kudu Pro in WH/Stock"
-msgstr "(SFD03) 2015 Demand for New Product S76 Kudu Pro in WH/Stock"
+msgid "(SFD03) 2015 Demand for New Product S76 Kudu Pro in WH/Stock until 2015-09-29"
+msgstr "(SFD03) 2015 Demand for New Product S76 Kudu Pro in WH/Stock until 2015-09-29"
 
 #. module: stock_forecast
 #: model:ir.filters,name:stock_forecast.irfilter_04
-msgid "(SFD04) Last 2 months Demand for PC on Demand in WH/Stock (Group by Week)"
-msgstr "(SFD04) Last 2 months Demand for PC on Demand in WH/Stock (Group by Week)"
+msgid "(SFD04) Last 2 months Demand for Gazelle Pro in WH/Stock at date 2015-09-29 (Group by Week)"
+msgstr "(SFD04) Last 2 months Demand for Gazelle Pro in WH/Stock at date 2015-09-29 (Group by Week)"
 
 #. module: stock_forecast
 #: model:ir.filters,name:stock_forecast.irfilter_05
-msgid "(SFD05) Last month Demand for iPod Touch in WH/Stock (Group by day)"
-msgstr "(SFD05) Last month Demand for iPod Touch in WH/Stock (Group by day)"
+msgid "(SFD05) Last month Demand for iPod Touch in WH/Stock at date 2015-09-29 (Group by day)"
+msgstr "(SFD05) Last month Demand for iPod Touch in WH/Stock at date 2015-09-29 (Group by day)"
 
 #. module: stock_forecast
 #: model:ir.filters,name:stock_forecast.irfilter_06
-msgid "(SFD06) 2015 Apple's Product Category Demand in WH/Stock (Group by Month)"
-msgstr "(SFD06) 2015 Apple's Product Category Demand in WH/Stock (Group by Month)"
+msgid "(SFD06) 2015 Computers Category Demand in WH/Stock until 2015-09-29 (Group by Month)"
+msgstr "(SFD06) 2015 Computers Category Demand in WH/Stock until 2015-09-29 (Group by Month)"
 
 #. module: stock_forecast
 #: model:ir.filters,name:stock_forecast.irfilter_07
-msgid "(SFD07) Last 14 days Demand for iPod Touch Product in WH/Stock (Group by day)"
-msgstr "(SFD07) Last 14 days Demand for iPod Touch Product in WH/Stock (Group by day)"
+msgid "(SFD07) Last 14 days Demand for iPod Touch Product in WH/Stock at date 2015-09-29 (Group by day)"
+msgstr "(SFD07) Last 14 days Demand for iPod Touch Product in WH/Stock at date 2015-09-29 (Group by day)"
+
+#. module: stock_forecast
+#: model:product.template,description:stock_forecast.product_product_4_product_template
+msgid "15.6\" Glossy 1080p LED Backlit Display\n"
+"    Processor 2.5GHz i7-4710MQ\n"
+"    8 GB RAM\n"
+"    500 GB 7200 RPM DRIVE\n"
+"                "
+msgstr "15.6\" Glossy 1080p LED Backlit Display\n"
+"    Processor 2.5GHz i7-4710MQ\n"
+"    8 GB RAM\n"
+"    500 GB 7200 RPM DRIVE\n"
+"                "
+
+#. module: stock_forecast
+#: model:product.template,description_sale:stock_forecast.product_product_2_product_template
+msgid "17\" LED Backlit Monitor\n"
+"    Processor 4th gen Intel Core i7\n"
+"    16GB RAM\n"
+"    HDD SH-1"
+msgstr "17\" LED Backlit Monitor\n"
+"    Processor 4th gen Intel Core i7\n"
+"    16GB RAM\n"
+"    HDD SH-1"
+
+#. module: stock_forecast
+#: model:product.template,description_sale:stock_forecast.product_product_3_product_template
+msgid "7.9‑inch (diagonal) LED-backlit, 128Gb\n"
+"    A8 second-generation chip M8 coprocessor\n"
+"    FaceTime HD Camera, 1.2 MP Photos"
+msgstr "7.9‑inch (diagonal) LED-backlit, 128Gb\n"
+"    A8 second-generation chip M8 coprocessor\n"
+"    FaceTime HD Camera, 1.2 MP Photos"
 
 #. module: stock_forecast
 #: view:wizard.stock.demand:stock_forecast.view_wizard_demand_history
@@ -140,6 +173,11 @@ msgid "From"
 msgstr "Desde"
 
 #. module: stock_forecast
+#: model:product.template,name:stock_forecast.product_product_4_product_template
+msgid "Gazelle Pro"
+msgstr "Gazelle Pro"
+
+#. module: stock_forecast
 #: field:wizard.stock.demand,demand_filter:0
 msgid "Generate Rule Filter"
 msgstr "Generar Filtro de la Regla"
@@ -153,6 +191,11 @@ msgstr "ID"
 #: help:wizard.stock.demand,demand_filter:0
 msgid "If True generate a Search Filter to re-use in the forecast rule. If False only check the demand"
 msgstr "Si es verdadero genera un filtro de busqueda a re-usar en la regla de pronóstico. Si es falso solo mostrará el resultado de la búsqueda"
+
+#. module: stock_forecast
+#: model:product.template,name:stock_forecast.product_product_2_product_template
+msgid "Kudu Pro"
+msgstr "Kudu Pro"
 
 #. module: stock_forecast
 #: field:wizard.stock.demand,write_uid:0
@@ -225,6 +268,21 @@ msgstr "Valor total"
 #: view:forecast:stock_forecast.stock_forecast_view_form
 msgid "from"
 msgstr "desde"
+
+#. module: stock_forecast
+#: model:product.template,name:stock_forecast.product_product_1_product_template
+msgid "iMac with Retina 5K display"
+msgstr "iMac with Retina 5K display"
+
+#. module: stock_forecast
+#: model:product.template,name:stock_forecast.product_product_3_product_template
+msgid "iPad Mini 4"
+msgstr "iPad Mini 4"
+
+#. module: stock_forecast
+#: model:product.template,name:stock_forecast.product_product_5_product_template
+msgid "iPod Touch"
+msgstr "iPod Touch"
 
 #. module: stock_forecast
 #: code:addons/stock_forecast/wizard/stock_demand.py:76

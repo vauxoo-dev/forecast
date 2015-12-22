@@ -4,6 +4,8 @@
 Stock Forecast
 ==============
 
+.. contents::
+
 This module add a way to generate forecasting from the product demand.
 
 **Features**:
@@ -103,22 +105,25 @@ demand forecast rules at ``Settings > Technical Features > Forecasting >
 Forecasting Rules`` menu that you can copy and reuse for your purpose.
 
 - You can extract a demand for a product. All the operations for a range of
-  date. Check ``(SFD01) 2015 Demand for iMac with Retina 5K display Product in WH/Stoc``.
+  date. Check ``(SFD01) 2015 Demand for iMac with Retina 5K display Product in
+  WH/Stock until 2015-09-29``.
 - You can extract a demand for a product group by month ``(SFD02) 2015 Demand
-  for iPad Mini 4 in WH/Stock (Group by Month)``.
+  for iPad Mini 4 in WH/Stock until 2015-09-29 (Group by Month)``.
 - A demand for a new product using the data of the replaced product in
-  ``(SFD03) 2015 Demand for New Product S76 Kudu Pro in WH/Stock``.
+  ``(SFD03) 2015 Demand for New Product S76 Kudu Pro in WH/Stock until
+  2015-09-29``.
 - The demand of the last 2 months group by week. The last 2 months not taking
-  into account the current one. ``(SFD04) Last 2 months Demand for PC on
-  Demand in WH/Stock (Group by Week)``.
+  into account the current one ``(SFD04) Last 2 months Demand for Gazelle Pro
+  in WH/Stock at date 2015-09-29 (Group by Week)``.
 - The demand of the last month for a product group by day. The last month not
-  taking into account the current one. ``(SFD05) Last month Demand for iPod Touch in
-  WH/Stock (Group by day)``.
-- The demand for a product category ``(SFD06) 2015 Apple's Product Category
-  Demand in WH/Stock (Group by Month)``.
+  taking into account the current one ``(SFD05) Last month Demand for iPod
+  Touch in WH/Stock at date 2015-09-29 (Group by day)``.
+- The demand for a product category ``(SFD06) 2015 Computers Category Demand
+  in WH/Stock until 2015-09-29 (Group by Month)``.
 - Last N days demand group by day. Look example ``(SFD07) Last 14 days Demand
-  for iPod Touch Product in WH/Stock (Group by day)``.
+  for iPod Touch Product in WH/Stock at date 2015-09-29 (Group by day)``
 
+.. image:: forecast_examples.png
 
 Known issues / Roadmap
 ======================
@@ -133,7 +138,7 @@ If you spotted it first, help us smashing it by providing a detailed and
 welcomed feedback
 `here <https://github.com/Vauxoo/forecast/issues/new?body=module:%20
 stock_forecast%0Aversion:%20
-8.0.1.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_
+8.0.1.1.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_
 
 TODO
 ====
@@ -141,8 +146,9 @@ TODO
 - Maybe the display_name field and compute method can be defined in the
   forecasting_smoothing_techniques module and overwrite in every forecast
   module.
-- Update picking/move data to be generated only for the current year of the
-  installation of the module. Right now is generated for the 2015 year.
+- Update this module description and screenshots.
+- When adding a forecasting rule for a product category let to also search
+  inside its children categories.
 
 Credits
 =======

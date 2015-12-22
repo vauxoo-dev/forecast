@@ -11,8 +11,62 @@
    </object>
    <div class="section oe_span12" id="stock-forecast">
     <h2 class="oe_slogan">
-     Stock Forecast
+     <a class="toc-backref" href="#id1">
+      Stock Forecast
+     </a>
     </h2>
+    <div class="contents topic" id="contents">
+     <p class="oe_mt32">
+      Contents
+     </p>
+     <ul class="simple">
+      <li>
+       <a class="reference internal" href="#stock-forecast" id="id1">
+        Stock Forecast
+       </a>
+      </li>
+      <li>
+       <a class="reference internal" href="#installation" id="id2">
+        Installation
+       </a>
+      </li>
+      <li>
+       <a class="reference internal" href="#configuration" id="id3">
+        Configuration
+       </a>
+      </li>
+      <li>
+       <a class="reference internal" href="#usage" id="id4">
+        Usage
+       </a>
+      </li>
+      <li>
+       <a class="reference internal" href="#known-issues-roadmap" id="id5">
+        Known issues / Roadmap
+       </a>
+      </li>
+      <li>
+       <a class="reference internal" href="#bug-tracker" id="id6">
+        Bug Tracker
+       </a>
+      </li>
+      <li>
+       <a class="reference internal" href="#todo" id="id7">
+        TODO
+       </a>
+      </li>
+      <li>
+       <a class="reference internal" href="#credits" id="id8">
+        Credits
+       </a>
+      </li>
+      <li>
+       <a class="reference internal" href="#maintainer" id="id9">
+        Maintainer
+       </a>
+      </li>
+     </ul>
+    </div>
     <p class="oe_mt32">
      This module add a way to generate forecasting from the product demand.
     </p>
@@ -64,7 +118,9 @@ forecast with the prefix
    </div>
    <div class="section oe_span12" id="installation">
     <h1>
-     Installation
+     <a class="toc-backref" href="#id2">
+      Installation
+     </a>
     </h1>
     <p class="oe_mt32">
      To install this module, you need to:
@@ -100,7 +156,9 @@ module:
    </div>
    <div class="section oe_span12" id="configuration">
     <h1>
-     Configuration
+     <a class="toc-backref" href="#id3">
+      Configuration
+     </a>
     </h1>
     <p class="oe_mt32">
      To configure this module, you need to:
@@ -113,7 +171,9 @@ module:
    </div>
    <div class="section oe_span12" id="usage">
     <h1>
-     Usage
+     <a class="toc-backref" href="#id4">
+      Usage
+     </a>
     </h1>
     <p class="oe_mt32">
      To use this module, you need to:
@@ -267,7 +327,11 @@ Forecasting Rules
       You can extract a demand for a product. All the operations for a range of
 date. Check
       <code class="docutils literal">
-       (SFD01) 2015 Demand for iMac with Retina 5K display Product in WH/Stoc
+       (SFD01) 2015 Demand for iMac with Retina 5K display Product in
+WH/Stock until
+       <span class="pre">
+        2015-09-29
+       </span>
       </code>
       .
      </li>
@@ -275,40 +339,59 @@ date. Check
       You can extract a demand for a product group by month
       <code class="docutils literal">
        (SFD02) 2015 Demand
-for iPad Mini 4 in WH/Stock (Group by Month)
+for iPad Mini 4 in WH/Stock until
+       <span class="pre">
+        2015-09-29
+       </span>
+       (Group by Month)
       </code>
       .
      </li>
      <li>
       A demand for a new product using the data of the replaced product in
       <code class="docutils literal">
-       (SFD03) 2015 Demand for New Product S76 Kudu Pro in WH/Stock
+       (SFD03) 2015 Demand for New Product S76 Kudu Pro in WH/Stock until
+       <span class="pre">
+        2015-09-29
+       </span>
       </code>
       .
      </li>
      <li>
       The demand of the last 2 months group by week. The last 2 months not taking
-into account the current one.
+into account the current one
       <code class="docutils literal">
-       (SFD04) Last 2 months Demand for PC on
-Demand in WH/Stock (Group by Week)
+       (SFD04) Last 2 months Demand for Gazelle Pro
+in WH/Stock at date
+       <span class="pre">
+        2015-09-29
+       </span>
+       (Group by Week)
       </code>
       .
      </li>
      <li>
       The demand of the last month for a product group by day. The last month not
-taking into account the current one.
+taking into account the current one
       <code class="docutils literal">
-       (SFD05) Last month Demand for iPod Touch in
-WH/Stock (Group by day)
+       (SFD05) Last month Demand for iPod
+Touch in WH/Stock at date
+       <span class="pre">
+        2015-09-29
+       </span>
+       (Group by day)
       </code>
       .
      </li>
      <li>
       The demand for a product category
       <code class="docutils literal">
-       (SFD06) 2015 Apple's Product Category
-Demand in WH/Stock (Group by Month)
+       (SFD06) 2015 Computers Category Demand
+in WH/Stock until
+       <span class="pre">
+        2015-09-29
+       </span>
+       (Group by Month)
       </code>
       .
      </li>
@@ -316,20 +399,28 @@ Demand in WH/Stock (Group by Month)
       Last N days demand group by day. Look example
       <code class="docutils literal">
        (SFD07) Last 14 days Demand
-for iPod Touch Product in WH/Stock (Group by day)
+for iPod Touch Product in WH/Stock at date
+       <span class="pre">
+        2015-09-29
+       </span>
+       (Group by day)
       </code>
-      .
      </li>
     </ul>
+    <img alt="forecast_examples.png" class="oe_picture oe_screenshot" src="forecast_examples.png"/>
    </div>
    <div class="section oe_span12" id="known-issues-roadmap">
     <h1>
-     Known issues / Roadmap
+     <a class="toc-backref" href="#id5">
+      Known issues / Roadmap
+     </a>
     </h1>
    </div>
    <div class="section oe_span12" id="bug-tracker">
     <h1>
-     Bug Tracker
+     <a class="toc-backref" href="#id6">
+      Bug Tracker
+     </a>
     </h1>
     <p class="oe_mt32">
      Bugs are tracked on
@@ -340,14 +431,16 @@ for iPod Touch Product in WH/Stock (Group by day)
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and
 welcomed feedback
-     <a class="reference external" href="https://github.com/Vauxoo/forecast/issues/new?body=module:%20stock_forecast%0Aversion:%208.0.1.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">
+     <a class="reference external" href="https://github.com/Vauxoo/forecast/issues/new?body=module:%20stock_forecast%0Aversion:%208.0.1.1.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">
       here
      </a>
     </p>
    </div>
    <div class="section oe_span12" id="todo">
     <h1>
-     TODO
+     <a class="toc-backref" href="#id7">
+      TODO
+     </a>
     </h1>
     <ul class="simple">
      <li>
@@ -356,14 +449,19 @@ forecasting_smoothing_techniques module and overwrite in every forecast
 module.
      </li>
      <li>
-      Update picking/move data to be generated only for the current year of the
-installation of the module. Right now is generated for the 2015 year.
+      Update this module description and screenshots.
+     </li>
+     <li>
+      When adding a forecasting rule for a product category let to also search
+inside its children categories.
      </li>
     </ul>
    </div>
    <div class="section oe_span12" id="credits">
     <h1>
-     Credits
+     <a class="toc-backref" href="#id8">
+      Credits
+     </a>
     </h1>
     <p class="oe_mt32">
      <strong>
