@@ -1,2 +1,2 @@
 web https://github.com/Vauxoo/web.git
-addons-vauxooo https://github.com/Vauxoo/addons-vauxoo.git
+addons-vauxoo https://github.com/Vauxoo/addons-vauxoo.git
