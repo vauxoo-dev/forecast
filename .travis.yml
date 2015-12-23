@@ -22,7 +22,6 @@ env:
   - VERSION="8.0" ODOO_REPO="vauxoo/odoo" TESTS=1 LINT_CHECK=0 ODOO_LINT=0
 
 install:
-  - pip install -r ${TRAVIS_BUILD_DIR}/requirements.txt
   - git clone --single-branch --depth=1 https://github.com/vauxoo/maintainer-quality-tools.git -b master ${HOME}/maintainer-quality-tools
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
   - travis_install_nightly
