@@ -25,8 +25,6 @@ install:
   - pip install -r ${TRAVIS_BUILD_DIR}/requirements.txt
   - git clone --single-branch --depth=1 https://github.com/vauxoo/maintainer-quality-tools.git -b master ${HOME}/maintainer-quality-tools
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
-  - git clone --single-branch --depth=1 https://github.com/Vauxoo/web.git -b ${VERSION} ${HOME}/web
-  - git clone --single-branch --depth=1 https://github.com/Vauxoo/addons-vauxoo.git -b ${VERSION} ${HOME}/addons-vauxoo
   - travis_install_nightly
 
 script:
