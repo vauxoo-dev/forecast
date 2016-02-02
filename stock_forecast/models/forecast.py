@@ -38,8 +38,8 @@ class ForecastingSmoothingTechniques(models.Model):
         """
         for forecast in self:
             name = forecast.name
-            product = (forecast.product_id
-                       and forecast.product_id.name or False)
+            product = (forecast.product_id and
+                       forecast.product_id.name or False)
             if name and product:
                 display_name = '{product}: {name}'
             elif name:
