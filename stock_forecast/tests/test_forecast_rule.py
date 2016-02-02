@@ -11,7 +11,6 @@
 
 from openerp.tests import common
 from datetime import datetime
-from dateutil.relativedelta import relativedelta
 
 
 class TestForecastRule(common.TransactionCase):
@@ -63,10 +62,11 @@ class TestForecastRule(common.TransactionCase):
         forecast = self.forecast_obj.browse(
             self.ref('stock_forecast.forecast_demo_04'))
 
-        day1 = datetime.today().replace(day=1) - relativedelta(months=2)
-        day2 = datetime.today().replace(day=1) - relativedelta(days=1)
-        weeks = (
-            day2.isocalendar()[1] - day1.isocalendar()[1] + 1)
+        day1 = datetime.strptime('2015-07-01', '%Y-%m-%d')
+        day2 = datetime.strptime('2015-08-31', '%Y-%m-%d')
+        weeks = (day2.isocalendar()[1] - day1.isocalendar()[1] + 1)
+
+        self.assertEqual(weeks, 10)
         self.assertTrue(forecast)
         self.assertEqual(len(forecast.value_ids), weeks)
 
