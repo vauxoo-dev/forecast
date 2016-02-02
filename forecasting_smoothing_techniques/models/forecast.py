@@ -570,9 +570,9 @@ class Forecast(models.Model):
             b2 = (alpha/(1.0-alpha)) * (last.es1 - last.es2)
             a3 = 3.0 * last.es1 - 3.0 * last.es2 + last.es3
             b3 = ((alpha/(2.0 * pow(1.0-alpha, 2.0))) * (
-                (6.0 - 5.0 * alpha) * last.es1
-                - (10.0 - 8.0 * alpha) * last.es2
-                + (4.0 - 3.0 * alpha) * last.es3))
+                (6.0 - 5.0 * alpha) * last.es1 -
+                (10.0 - 8.0 * alpha) * last.es2 +
+                (4.0 - 3.0 * alpha) * last.es3))
             c3 = (pow((alpha/(1.0 - alpha)), 2.0) *
                   (last.es1 - 2.0 * last.es2 + last.es3))
             single_forecast = last.es1
