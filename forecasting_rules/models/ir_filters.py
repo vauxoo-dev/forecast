@@ -91,7 +91,7 @@ class IrFilters(models.Model):
 
         # process order
         order = context.get('forecast_order')
-        order, otype = self.process_context_value(model_obj, order)
+        order = self.process_context_value(model_obj, order)[0]
 
         # process value
         value = context.get('forecast_value')
@@ -170,7 +170,7 @@ class IrFilters(models.Model):
             # process group_by info, return real group_by field
             group_info = group_by[0].split(':')
             if len(group_info) == 2:
-                groupfield, groupby = group_info
+                groupby = group_info[1]
             data = data.groupby(data[groupby]).sum()
 
         # Fill missing labels taking into account the date
