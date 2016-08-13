@@ -38,8 +38,8 @@ class StockDemand(models.TransientModel):
 
     @api.multi
     def open_table(self):
-        ''' Open the stock history view using the info registered in the wizard
-        '''
+        """ Open the stock history view using the info registered in the wizard
+        """
         ctx = dict(self._context).copy()
         ctx.update({
             'history_date': self.date_to,
@@ -117,8 +117,8 @@ class StockHistory(models.Model):
 
     @api.multi
     def _compute_quantity_onstock(self):
-        ''' Set the quantity available at the moment to delivery the product
-        '''
+        """ Set the quantity available at the moment to delivery the product
+        """
         for history in self:
             history._cr.execute('''
                             SELECT sum(quantity)
