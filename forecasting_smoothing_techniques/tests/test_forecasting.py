@@ -461,7 +461,7 @@ class TestForecast(common.TransactionCase):
             'name': 'Forecast Manager',
             'login': 'forecast_manager',
             'email': 'forecast_manager@yourcompany.example.com',
-            'password': '1234'})
+            'password': '123456'})
         self.assertTrue(user)
 
         # Get group information
@@ -494,7 +494,7 @@ class TestForecast(common.TransactionCase):
             'name': 'Forecast User',
             'login': 'forecast_user',
             'email': 'forecast_user@yourcompany.example.com',
-            'password': '1234'})
+            'password': '123456'})
         self.assertTrue(user)
 
         # Get group information
@@ -541,7 +541,7 @@ class TestForecast(common.TransactionCase):
             'name': 'Regular User',
             'login': 'regular_user',
             'email': 'regular_user@yourcompany.example.com',
-            'password': '1234'})
+            'password': '123456'})
         self.assertTrue(user)
 
         # Get group information
