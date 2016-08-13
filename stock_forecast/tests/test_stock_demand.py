@@ -16,9 +16,6 @@ from dateutil.relativedelta import relativedelta
 
 class TestForecastDemand(common.TransactionCase):
 
-    """
-    """
-
     def setUp(self):
         super(TestForecastDemand, self).setUp()
         self.history_obj = self.env['stock.history']
