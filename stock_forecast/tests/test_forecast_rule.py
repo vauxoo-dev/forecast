@@ -9,8 +9,8 @@
 #    planned by: Nhomar Hernandez <nhomar@vauxoo.com>
 ############################################################################
 
-from openerp.tests import common
 from datetime import datetime
+from openerp.tests import common
 
 
 class TestForecastRule(common.TransactionCase):

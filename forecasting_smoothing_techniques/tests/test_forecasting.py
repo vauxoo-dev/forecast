@@ -10,12 +10,13 @@
 #                Gabriela Quilarque <gabriela@vauxoo.com>
 ############################################################################
 
+import csv
+import pandas as pd
+
 from openerp import _, tools
 from openerp.exceptions import ValidationError, AccessError
 from openerp.tests import common
 from openerp.tools import mute_logger
-import pandas as pd
-import csv
 
 
 class TestForecast(common.TransactionCase):
