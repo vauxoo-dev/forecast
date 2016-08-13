@@ -116,7 +116,7 @@ class StockHistory(models.Model):
     _inherit = 'stock.history'
 
     @api.multi
-    def _get_current_value(self):
+    def _compute_quantity_onstock(self):
         ''' Set the quantity available at the moment to delivery the product
         '''
         for history in self:
@@ -131,18 +131,19 @@ class StockHistory(models.Model):
             qty = result and result[0][0] or 0.0
             history.quantity_onstock = qty
 
-    quantity_onstock = fields.Float('Quantity Demanded',
-                                    compute='_get_current_value',
-                                    store=False,
-                                    help='Quantity demanded in the move')
+    quantity_onstock = fields.Float(
+        'Quantity Demanded',
+        compute='_compute_quantity_onstock',
+        store=False,
+        help='Quantity demanded in the move')
 
     quantity_force_positive = fields.Float(
         'Quantity Demanded',
-        compute='_get_positive_quantity',
+        compute='_compute_quantity_force_positive',
         help='Same as Quantity but positive always')
 
     @api.multi
-    def _get_positive_quantity(self):
+    def _compute_quantity_force_positive(self):
         """ Set the quantity available at the moment to delivery the product
         """
         for history in self:
