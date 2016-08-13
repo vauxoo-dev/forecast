@@ -38,8 +38,7 @@ class StockDemand(models.TransientModel):
 
     @api.multi
     def open_table(self):
-        '''
-        Open the stock history view using the info registered in the wizard
+        ''' Open the stock history view using the info registered in the wizard
         '''
         ctx = dict(self._context).copy()
         ctx.update({
@@ -65,8 +64,7 @@ class StockDemand(models.TransientModel):
 
     @api.multi
     def get_demand_data(self):
-        """
-        Pre-process the date to be use to filter the stock.history records.
+        """ Pre-process the date to be use to filter the stock.history records.
 
         :return: tuple (name view, domain, model name)
         """
@@ -119,8 +117,7 @@ class StockHistory(models.Model):
 
     @api.multi
     def _get_current_value(self):
-        '''
-        Set the quantity available at the moment to delivery the product
+        ''' Set the quantity available at the moment to delivery the product
         '''
         for history in self:
             history._cr.execute('''
@@ -146,8 +143,7 @@ class StockHistory(models.Model):
 
     @api.multi
     def _get_positive_quantity(self):
-        """
-        Set the quantity available at the moment to delivery the product
+        """ Set the quantity available at the moment to delivery the product
         """
         for history in self:
             history.quantity_force_positive = abs(history.quantity)

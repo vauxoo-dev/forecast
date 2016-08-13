@@ -15,8 +15,7 @@ from openerp.tests import common
 
 class TestForecastRule(common.TransactionCase):
 
-    """
-    Test that the forecast rules defined in demo really are adding the
+    """ Test that the forecast rules defined in demo really are adding the
     correspond values ids
     """
 
