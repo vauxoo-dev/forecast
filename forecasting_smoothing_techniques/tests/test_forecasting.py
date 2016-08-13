@@ -10,18 +10,18 @@
 #                Gabriela Quilarque <gabriela@vauxoo.com>
 ############################################################################
 
+import csv
+import pandas as pd
+
 from openerp import _, tools
 from openerp.exceptions import ValidationError, AccessError
 from openerp.tests import common
 from openerp.tools import mute_logger
-import pandas as pd
-import csv
 
 
 class TestForecast(common.TransactionCase):
 
-    """
-    Test that the forecasting smoothing model is working propertly.
+    """ Test that the forecasting smoothing model is working propertly.
     """
 
     maxDiff = None
@@ -32,8 +32,7 @@ class TestForecast(common.TransactionCase):
         self.fdata_obj = self.env['forecast.data']
 
     def compare(self, expected, real):
-        """
-        Compare the correct result with the real result. Print logger with
+        """ Compare the correct result with the real result. Print logger with
         error tag. Raise an assert if there different indicating with field
         is the one different, the actual value, the expected value and the
         differencial between. In the case of the data values results per
@@ -83,8 +82,7 @@ class TestForecast(common.TransactionCase):
         self.assertTrue(elist == [], error_msg)
 
     def get_msg_error(self, fname, actual, expected, index=False):
-        """
-        Compare two float values add return an error message.
+        """ Compare two float values add return an error message.
 
         :fname: field name to compare
         :actual: real value of the forecasting
@@ -110,8 +108,7 @@ class TestForecast(common.TransactionCase):
         return error_msg
 
     def get_expected_value_ids_results(self, test_file):
-        """
-        Open a test case expected output file and transform it to a
+        """ Open a test case expected output file and transform it to a
         pandas.DataFrame object to make easier the comparation of the results.
 
         :test_file: the name of the file to extract the
@@ -273,8 +270,7 @@ class TestForecast(common.TransactionCase):
         self.assertEqual(new_val_data.forecast_id, forecast)
 
     def test_01(self):
-        """
-        Run 80 values, count for 1 to 30 and repeat.
+        """ Run 80 values, count for 1 to 30 and repeat.
         """
         forecast = self.forecast_obj.browse(self.ref(
             'forecasting_smoothing_techniques.fst_demo_01'))
@@ -282,8 +278,7 @@ class TestForecast(common.TransactionCase):
         self.compare(out, forecast.read(out.keys())[0])
 
     def get_test_01_out(self):
-        """
-        Return a dictionary with the expected result of the test.
+        """ Return a dictionary with the expected result of the test.
 
         :returns: dictionary with the expected values for the test 01
         """
@@ -308,8 +303,7 @@ class TestForecast(common.TransactionCase):
         self.compare(out, forecast.read(out.keys())[0])
 
     def get_test_02_out(self):
-        """
-        Return a dictionary with the expected result of the test.
+        """ Return a dictionary with the expected result of the test.
 
         :returns: dictionary with the expected values for the test 02
         """
@@ -351,8 +345,7 @@ class TestForecast(common.TransactionCase):
         self._test_03(4)
 
     def get_test_03_out(self, period=1):
-        """
-        Return a list with the result values.
+        """ Return a list with the result values.
 
         :returns: dictionary with the expected values for the test 03
         """
@@ -391,8 +384,7 @@ class TestForecast(common.TransactionCase):
         self.compare(out, forecast.read(out.keys())[0])
 
     def get_test_04_out(self):
-        """
-        Return a dictionary with the expected result of the test.
+        """ Return a dictionary with the expected result of the test.
 
         :returns: dictionary with the expected values for the test 04
         """
@@ -414,8 +406,7 @@ class TestForecast(common.TransactionCase):
         self.compare(out, forecast.read(out.keys())[0])
 
     def get_test_05_out(self):
-        """
-        Return a dictionary with the expected result of the test.
+        """ Return a dictionary with the expected result of the test.
 
         :returns: dictionary with the expected values for the test 05
         """
@@ -428,7 +419,7 @@ class TestForecast(common.TransactionCase):
         )
 
     def test_06(self):
-        """Test what happens with not enough forecast data.
+        """ Test what happens with not enough forecast data.
 
         List of minimum data to calculate every forecast:
 
@@ -452,7 +443,7 @@ class TestForecast(common.TransactionCase):
         forecast.read([])
 
     def test_08_1(self):
-        """Security: Manager can do anything
+        """ Security: Manager can do anything
         """
 
         # Create demo user to test forecast manager security
@@ -461,7 +452,7 @@ class TestForecast(common.TransactionCase):
             'name': 'Forecast Manager',
             'login': 'forecast_manager',
             'email': 'forecast_manager@yourcompany.example.com',
-            'password': '1234'})
+            'password': '123456'})
         self.assertTrue(user)
 
         # Get group information
@@ -485,7 +476,7 @@ class TestForecast(common.TransactionCase):
 
     @mute_logger('openerp.addons.base.ir.ir_model', 'openerp.osv.orm')
     def test_08_2(self):
-        """Security: Forecast User can not create or delete.
+        """ Security: Forecast User can not create or delete.
         """
 
         # Create demo user to test forecast manager security
@@ -494,7 +485,7 @@ class TestForecast(common.TransactionCase):
             'name': 'Forecast User',
             'login': 'forecast_user',
             'email': 'forecast_user@yourcompany.example.com',
-            'password': '1234'})
+            'password': '123456'})
         self.assertTrue(user)
 
         # Get group information
@@ -532,7 +523,7 @@ class TestForecast(common.TransactionCase):
 
     @mute_logger('openerp.addons.base.ir.ir_model', 'openerp.osv.orm')
     def test_08_3(self):
-        """Security: Non Forecast group user can not do anything
+        """ Security: Non Forecast group user can not do anything
         """
 
         # Create demo user to test non forecast security
@@ -541,7 +532,7 @@ class TestForecast(common.TransactionCase):
             'name': 'Regular User',
             'login': 'regular_user',
             'email': 'regular_user@yourcompany.example.com',
-            'password': '1234'})
+            'password': '123456'})
         self.assertTrue(user)
 
         # Get group information
@@ -585,7 +576,7 @@ class TestForecast(common.TransactionCase):
             forecast.sudo(user).unlink()
 
     def test_07(self):
-        """Check almost_equal method.
+        """ Check almost_equal method.
         """
         self.assertTrue(self.forecast_obj.almost_equal(2.19, 2.17))
         self.assertTrue(self.forecast_obj.almost_equal(2.19, 4.0))

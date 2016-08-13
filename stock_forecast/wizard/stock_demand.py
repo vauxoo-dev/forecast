@@ -38,9 +38,8 @@ class StockDemand(models.TransientModel):
 
     @api.multi
     def open_table(self):
-        '''
-        Open the stock history view using the info registered in the wizard
-        '''
+        """ Open the stock history view using the info registered in the wizard
+        """
         ctx = dict(self._context).copy()
         ctx.update({
             'history_date': self.date_to,
@@ -65,8 +64,7 @@ class StockDemand(models.TransientModel):
 
     @api.multi
     def get_demand_data(self):
-        """
-        Pre-process the date to be use to filter the stock.history records.
+        """ Pre-process the date to be use to filter the stock.history records.
 
         :return: tuple (name view, domain, model name)
         """
@@ -118,10 +116,9 @@ class StockHistory(models.Model):
     _inherit = 'stock.history'
 
     @api.multi
-    def _get_current_value(self):
-        '''
-        Set the quantity available at the moment to delivery the product
-        '''
+    def _compute_quantity_onstock(self):
+        """ Set the quantity available at the moment to delivery the product
+        """
         for history in self:
             history._cr.execute('''
                             SELECT sum(quantity)
@@ -134,20 +131,20 @@ class StockHistory(models.Model):
             qty = result and result[0][0] or 0.0
             history.quantity_onstock = qty
 
-    quantity_onstock = fields.Float('Quantity Demanded',
-                                    compute='_get_current_value',
-                                    store=False,
-                                    help='Quantity demanded in the move')
+    quantity_onstock = fields.Float(
+        'Quantity Demanded',
+        compute='_compute_quantity_onstock',
+        store=False,
+        help='Quantity demanded in the move')
 
     quantity_force_positive = fields.Float(
         'Quantity Demanded',
-        compute='_get_positive_quantity',
+        compute='_compute_quantity_force_positive',
         help='Same as Quantity but positive always')
 
     @api.multi
-    def _get_positive_quantity(self):
-        """
-        Set the quantity available at the moment to delivery the product
+    def _compute_quantity_force_positive(self):
+        """ Set the quantity available at the moment to delivery the product
         """
         for history in self:
             history.quantity_force_positive = abs(history.quantity)

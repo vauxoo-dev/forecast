@@ -28,8 +28,7 @@ class ForecastingSmoothingTechniques(models.Model):
 
     @api.depends('name', 'product_id')
     def _compute_display_name(self):
-        """
-        Usability feature -
+        """ Usability feature -
 
         Check if the name of the product are set in the forecast and used to
         overwrite the display name.

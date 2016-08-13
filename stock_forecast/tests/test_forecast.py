@@ -14,8 +14,7 @@ from openerp.tests import common
 
 class TestForecast(common.TransactionCase):
 
-    """
-    Test that the forecast model set correctly the product and the display
+    """ Test that the forecast model set correctly the product and the display
     name.
     """
 
