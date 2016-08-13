@@ -208,9 +208,9 @@ class Forecast(models.Model):
 
     @api.constrains('period')
     def _check_period(self):
-        """
-        Check that the period to make the move average forcasting is at least
-        greather than one. If not, there is not way to calculate the average.
+        """ Check that the period to make the move average forcasting is at
+        least greather than one. If not, there is not way to calculate the
+        average.
         """
         if self.period <= 1:
             raise ValidationError(
@@ -218,8 +218,7 @@ class Forecast(models.Model):
 
     @api.constrains('exp_alpha')
     def _check_exp_alpha(self):
-        """
-        Check that the alpha used to calculate exponential smoothing
+        """ Check that the alpha used to calculate exponential smoothing
         forecasting is a value between 0 and 1 thus is specificated in the
         exponential smoothing method rules.
         """
@@ -228,8 +227,7 @@ class Forecast(models.Model):
 
     @api.constrains('holt_alpha')
     def _check_holt_alpha(self):
-        """
-        Check that the alpha used to calculate holt linear smoothing
+        """ Check that the alpha used to calculate holt linear smoothing
         forecasting is a value between 0 and 1 thus is specificated in the
         holt linear smoothing method rules.
         """
@@ -238,8 +236,7 @@ class Forecast(models.Model):
 
     @api.constrains('beta')
     def _check_beta(self):
-        """
-        Check that the beta used to calculate holt linear smoothing
+        """ Check that the beta used to calculate holt linear smoothing
         forecasting is a value between 0 and 1 thus is specificated in the
         holt linear smoothing method rules.
         """
@@ -248,8 +245,7 @@ class Forecast(models.Model):
 
     @api.multi
     def reset_defaults(self):
-        """
-        Reset defaults for the variables used in the current calc.
+        """ Reset defaults for the variables used in the current calc.
         ['period', 'exp_alpha', 'holt_alpha', 'beta', 'holt_period']
 
         This is used in a button called Reset Defaults in the
@@ -264,8 +260,7 @@ class Forecast(models.Model):
 
     @api.multi
     def clear(self):
-        """
-        Clear all the forecast data fields.
+        """ Clear all the forecast data fields.
 
         This is used in a button called Clear in the
         forecast form view.
@@ -277,8 +272,7 @@ class Forecast(models.Model):
 
     @api.model
     def get_value_ids_dict(self, data):
-        """
-        Transform the pandas.DataFrame object to a list of values to be
+        """ Transform the pandas.DataFrame object to a list of values to be
         written as a o2m field in odoo named value_ids.
 
         :data: DataFrame object with the forecasting results per point
@@ -296,8 +290,7 @@ class Forecast(models.Model):
 
     @api.multi
     def get_values_dataframe(self, forecast_cols):
-        """
-        Transform forecasting data into a pandas.DataFrame object to be use
+        """ Transform forecasting data into a pandas.DataFrame object to be use
         to calculate the forecastings.
 
         By default the ['id', 'value', 'sequence'] forecast data fields are
@@ -327,8 +320,7 @@ class Forecast(models.Model):
 
     @api.model
     def almost_equal(self, actual, expected):
-        """
-        Compare two values: actual and expected one and check if there are
+        """ Compare two values: actual and expected one and check if there are
         close enoght to consider as equals.
 
         :actual: real value of the forecasting (float number)
@@ -344,7 +336,7 @@ class Forecast(models.Model):
         return False
 
     def minimun_data(self, nvalues, minimum, warning_field):
-        """Check is the is forecast data and if the data is  at least the
+        """ Check is the is forecast data and if the data is  at least the
         minimum to calculate the forecast. If not will write an error over the
         correspond forecast method warning field.
 
@@ -368,8 +360,7 @@ class Forecast(models.Model):
 
     @api.depends('period')
     def _compute_cma(self):
-        """
-        This method calculate the CUMULATIVE MOVING AVERAGE forecasting
+        """ This method calculate the CUMULATIVE MOVING AVERAGE forecasting
         smoothing method (CMA) and Mean Absolute error.
 
         Update the forecast fields ['cma_forecast', 'cma_ma_error']  and the
@@ -415,8 +406,7 @@ class Forecast(models.Model):
 
     @api.depends('period')
     def _compute_sma(self):
-        """
-        This method calculate the SIMPLE MOVING AVERAGE forecasting
+        """ This method calculate the SIMPLE MOVING AVERAGE forecasting
         smoothing method (SMA) and Mean Absolute error.
 
         Update the forecast fields ['sma_forecast', 'sma_ma_error']  and the
@@ -461,8 +451,7 @@ class Forecast(models.Model):
 
     @api.depends('period')
     def _compute_wma(self):
-        """
-        This method calculate the WEIGHTED MOVING AVERAGE forecasting
+        """ This method calculate the WEIGHTED MOVING AVERAGE forecasting
         smoothing method (WMA) and Mean Absolute error.
 
         Update the forecast fields ['wma_forecast', 'wma_ma_error']  and the
@@ -510,8 +499,7 @@ class Forecast(models.Model):
 
     @api.depends('exp_alpha')
     def _compute_exp(self):
-        """
-        This method calculate the SINGLE, DOUBLE, & TRIPLE EXPONENTIAL
+        """ This method calculate the SINGLE, DOUBLE, & TRIPLE EXPONENTIAL
         SMOOTHING forecasting method (ES1, ES2, ES3) and
         Mean Absolute error for each forecast result.
 
@@ -596,8 +584,7 @@ class Forecast(models.Model):
 
     @api.depends('holt_alpha', 'beta', 'holt_period')
     def _compute_holt(self):
-        """
-        This method calculate the HOLT'S LINEAR SMOOTHING forecasting
+        """ This method calculate the HOLT'S LINEAR SMOOTHING forecasting
         smoothing method (HOLT) and Mean Absolute error.
 
         Update the forecast fields ['holt_forecast', 'holt_ma_error'] and the
