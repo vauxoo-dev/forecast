@@ -275,7 +275,7 @@ class IrFilters(models.Model):
         :return: the recordset list of related rules
         """
         rule_obj = self.env['forecasting.rule']
-        return rule_obj.search([('filter_id', 'in', self.ids)])
+        return rule_obj.sudo().search([('filter_id', 'in', self.ids)])
 
     @api.constrains('context')
     def _check_context(self):
