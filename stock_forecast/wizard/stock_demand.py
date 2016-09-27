@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding: utf-8
 ############################################################################
 #    Module Writen For Odoo, Open Source Management Solution
 #
@@ -9,7 +9,7 @@
 #    planned by: Nhomar Hernandez <nhomar@vauxoo.com>
 ############################################################################
 
-from openerp import models, fields, api, _
+from openerp import _, api, fields, models
 
 
 class StockDemand(models.TransientModel):
@@ -120,13 +120,10 @@ class StockHistory(models.Model):
         """ Set the quantity available at the moment to delivery the product
         """
         for history in self:
-            history._cr.execute('''
-                            SELECT sum(quantity)
-                            FROM stock_history
-                            WHERE product_id={prod} AND
-                                date < '{date}'
-                            '''.format(prod=history.product_id.id,
-                                       date=history.date))
+            history._cr.execute(
+                'SELECT sum(quantity) FROM stock_history '
+                'WHERE product_id=%(prod)s AND date < %(date)s',
+                dict(prod=history.product_id.id, date=history.date))
             result = history._cr.fetchall()
             qty = result and result[0][0] or 0.0
             history.quantity_onstock = qty

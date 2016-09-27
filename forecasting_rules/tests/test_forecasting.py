@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding: utf-8
 ############################################################################
 #    Module Writen For Odoo, Open Source Management Solution
 #
@@ -9,14 +9,13 @@
 #    planned by: Nhomar Hernandez <nhomar@vauxoo.com>
 ############################################################################
 
-from openerp.tests import common
 from openerp.exceptions import Warning as UserError
+from openerp.tests import common
 
 
 class TestForecasting(common.TransactionCase):
 
-    """
-    Test that the forecasting model values are been fill with the forecasting
+    """Test that the forecasting model values are been fill with the forecasting
     rule propertly.
     """
 
@@ -35,8 +34,7 @@ class TestForecasting(common.TransactionCase):
             'forecasting_rules.filter_demo_01'))
 
     def create_forecast(self, name='NOT ESPECIFIED'):
-        """
-        Create a forecast record with the specified arguments
+        """Create a forecast record with the specified arguments
         By default assing also the forecast rule.
 
         :name: name of the ir.filter to create

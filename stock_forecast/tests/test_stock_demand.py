@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding: utf-8
 ############################################################################
 #    Module Writen For Odoo, Open Source Management Solution
 #
@@ -9,9 +9,10 @@
 #    planned by: Nhomar Hernandez <nhomar@vauxoo.com>
 ############################################################################
 
-from openerp.tests import common
-from openerp import fields
 from dateutil.relativedelta import relativedelta
+
+from openerp import fields
+from openerp.tests import common
 
 
 class TestForecastDemand(common.TransactionCase):

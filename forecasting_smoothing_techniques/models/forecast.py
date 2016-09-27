@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding: utf-8
 ############################################################################
 #    Module Writen For Odoo, Open Source Management Solution
 #
@@ -10,9 +10,19 @@
 #                Gabriela Quilarque <gabriela@vauxoo.com>
 ############################################################################
 
-from openerp import models, fields, api, _
+from __future__ import division
+
+import logging
+
+from openerp import _, api, fields, models
 from openerp.exceptions import ValidationError
-import pandas as pd
+
+_logger = logging.getLogger(__name__)
+
+try:
+    import pandas as pd
+except ImportError:
+    _logger.debug('Cannot `import pandas`.')
 
 
 class ForecastData(models.Model):
@@ -426,8 +436,8 @@ class Forecast(models.Model):
             data = forecast.get_values_dataframe(['sma', 'sma_error'])
 
             # Calculate Forecasting for the other points
-            for index in range(period+1, len(data) + 1):
-                value_set = data[:index-1].tail(period)
+            for index in range(period + 1, len(data) + 1):
+                value_set = data[:index - 1].tail(period)
                 sma = value_set.value.sum() / float(period)
                 data.at[index, 'sma'] = sma
 
@@ -536,7 +546,7 @@ class Forecast(models.Model):
             # Calculate Forecasting for the other points
             for index in range(2, len(data) + 1):
                 value = data.loc[index].value
-                last_item = data.loc[index-1]
+                last_item = data.loc[index - 1]
                 es1 = alpha * value + (1.0 - alpha) * last_item.es1
                 es2 = alpha * es1 + (1.0 - alpha) * last_item.es2
                 es3 = alpha * es2 + (1.0 - alpha) * last_item.es3
@@ -555,13 +565,13 @@ class Forecast(models.Model):
             # Save global results
             last = data.tail(1).iloc[-1]
             a2 = 2.0 * last.es1 - last.es2
-            b2 = (alpha/(1.0-alpha)) * (last.es1 - last.es2)
+            b2 = (alpha / (1.0 - alpha)) * (last.es1 - last.es2)
             a3 = 3.0 * last.es1 - 3.0 * last.es2 + last.es3
-            b3 = ((alpha/(2.0 * pow(1.0-alpha, 2.0))) * (
+            b3 = ((alpha / (2.0 * pow(1.0 - alpha, 2.0))) * (
                 (6.0 - 5.0 * alpha) * last.es1 -
                 (10.0 - 8.0 * alpha) * last.es2 +
                 (4.0 - 3.0 * alpha) * last.es3))
-            c3 = (pow((alpha/(1.0 - alpha)), 2.0) *
+            c3 = (pow((alpha / (1.0 - alpha)), 2.0) *
                   (last.es1 - 2.0 * last.es2 + last.es3))
             single_forecast = last.es1
             double_forecast = a2 + b2
@@ -617,7 +627,7 @@ class Forecast(models.Model):
             # Calculate Forecasting for the other 2+n points
             for index in range(3, len(data) + 1):
                 value = data.loc[index].value
-                prev = data.loc[index-1]
+                prev = data.loc[index - 1]
                 holt_func = prev.holt_level + prev.holt_trend
                 holt_level = alpha * value + (1.0 - alpha) * holt_func
                 holt_trend = (

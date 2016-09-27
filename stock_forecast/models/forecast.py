@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding: utf-8
 ############################################################################
 #    Module Writen For Odoo, Open Source Management Solution
 #
@@ -9,7 +9,7 @@
 #    planned by: Nhomar Hernandez <nhomar@vauxoo.com>
 ############################################################################
 
-from openerp import models, fields, api
+from openerp import api, fields, models
 
 
 class ForecastingSmoothingTechniques(models.Model):
@@ -40,12 +40,12 @@ class ForecastingSmoothingTechniques(models.Model):
             product = (forecast.product_id and
                        forecast.product_id.name or False)
             if name and product:
-                display_name = '{product}: {name}'
+                display_name = '%(product)s: %(name)s'
             elif name:
-                display_name = '{name}'
+                display_name = '%(name)s'
             elif product:
-                display_name = '{product}: No Forecast Name'
-            forecast.display_name = display_name.format(
+                display_name = '%(product)s: No Forecast Name'
+            forecast.display_name = display_name % dict(
                 product=product, name=name)
 
     display_name = fields.Char(

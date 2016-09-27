@@ -30,7 +30,7 @@ install:
   - travis_install_nightly
 
 script:
-  - if [ "${TRAVIS}" == "true"  ]; then travis_wait 60 travis_run_tests; else travis_run_tests; fi
+  - travis_run_tests
 
 after_success:
   - travis_after_tests_success

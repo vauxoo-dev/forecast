@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding: utf-8
 ############################################################################
 #    Module Writen For Odoo, Open Source Management Solution
 #
@@ -9,14 +9,13 @@
 #    planned by: Nhomar Hernandez <nhomar@vauxoo.com>
 ############################################################################
 
-from openerp.tests import common
 from openerp.exceptions import ValidationError
+from openerp.tests import common
 
 
 class TestIrFilters(common.TransactionCase):
 
-    """
-    Test that the ir.filters model work properly w/wo a forecasting rule.
+    """Test that the ir.filters model work properly w/wo a forecasting rule.
     """
 
     def setUp(self):
@@ -33,8 +32,7 @@ class TestIrFilters(common.TransactionCase):
 
     def create_filter(self, name='NOT ESPECIFIED', model_id='res.partner',
                       context='{}', domain='[]', link_rule=True):
-        """
-        Create a ir filter with the specificated arguments
+        """Create a ir filter with the specificated arguments
 
         :name: name of the ir.filter to create
         :model_id: model name to use in the ir.filter

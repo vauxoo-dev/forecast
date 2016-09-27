@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding: utf-8
 ############################################################################
 #    Module Writen For Odoo, Open Source Management Solution
 #
@@ -11,12 +11,19 @@
 ############################################################################
 
 import csv
-import pandas as pd
+import logging
 
 from openerp import _, tools
-from openerp.exceptions import ValidationError, AccessError
+from openerp.exceptions import AccessError, ValidationError
 from openerp.tests import common
 from openerp.tools import mute_logger
+
+_logger = logging.getLogger(__name__)
+
+try:
+    import pandas as pd
+except ImportError:
+    _logger.debug('Cannot `import panda`.')
 
 
 class TestForecast(common.TransactionCase):
@@ -97,6 +104,7 @@ class TestForecast(common.TransactionCase):
         if index:
             error_msg += '   at value with sequence {index}'
         expected = float(expected)
+        # pylint: disable=prefer-other-formatting
         error_msg = error_msg.format(
             fname=fname,
             actual=actual,
@@ -222,7 +230,7 @@ class TestForecast(common.TransactionCase):
             beta=0.03,
             holt_period=1,
         )
-        for (fname, default_value) in defaults.iteritems():
+        for fname, default_value in defaults.items():
             self.assertEqual(forecast_dict.get(fname), default_value)
 
         # Change Defaults
@@ -235,13 +243,13 @@ class TestForecast(common.TransactionCase):
         )
         forecast.write(new_defaults)
         forecast_dict = forecast.read()[0]
-        for (fname, default_value) in new_defaults.iteritems():
+        for fname, default_value in new_defaults.items():
             self.assertEqual(forecast_dict.get(fname), default_value)
 
         # Reset Defaults
         forecast.reset_defaults()
         forecast_dict = forecast.read()[0]
-        for (fname, default_value) in defaults.iteritems():
+        for fname, default_value in defaults.items():
             self.assertEqual(forecast_dict.get(fname), default_value)
 
     def test_00_3(self):

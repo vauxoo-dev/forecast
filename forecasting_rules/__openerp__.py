@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding: utf-8
 ############################################################################
 #    Module Writen For Odoo, Open Source Management Solution
 #
@@ -19,20 +19,20 @@
     "category": "",
     "depends": [
         "forecasting_smoothing_techniques",
-        ],
+    ],
     "data": [
         "security/ir.model.access.csv",
         "views/forecasting_rule_view.xml",
-        ],
+    ],
     "demo": [
         "demo/res_partner.xml",
         "demo/ir_filters.xml",
         "demo/forecasting_rule.xml",
         "demo/forecast.xml",
-        ],
+    ],
     "external_dependencies": {
         "python": ["pandas", "numexpr"],
-        },
+    },
     "test": [],
     "qweb": [],
     "js": [],

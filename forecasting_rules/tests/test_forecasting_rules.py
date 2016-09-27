@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding: utf-8
 ############################################################################
 #    Module Writen For Odoo, Open Source Management Solution
 #
@@ -9,15 +9,14 @@
 #    planned by: Nhomar Hernandez <nhomar@vauxoo.com>
 ############################################################################
 
-from openerp.tools.safe_eval import safe_eval
 from openerp.exceptions import ValidationError
 from openerp.tests import common
+from openerp.tools.safe_eval import safe_eval
 
 
 class TestForecastingRules(common.TransactionCase):
 
-    """
-    Test that the forecasting rules model is working propertly.
+    """Test that the forecasting rules model is working propertly.
 
     For the current test the res.partner model will be use as the forecasting
     rule model. Bellow information about some res.partner fields that will be
@@ -75,8 +74,7 @@ class TestForecastingRules(common.TransactionCase):
 
     def create_rule(self, name='All Partners', model='res.partner',
                     wo_irfilter=False):
-        """
-        Create a ir filter with the specificated arguments
+        """Create a ir filter with the specificated arguments
 
         :name: name of the ir.filter to create
         :model: model name to use in the ir.filter
