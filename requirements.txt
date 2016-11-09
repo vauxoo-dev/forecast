@@ -1,2 +1,2 @@
-pandas==0.16.2
-numexpr==2.4.4
+pandas==0.18.0
+numexpr==2.6.1
