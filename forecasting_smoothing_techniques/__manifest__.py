@@ -12,14 +12,14 @@
 
 {
     "name": "Forecasting by Smoothing Techniques",
-    "version": "8.0.1.0.0",
+    "version": "10.0.1.0.0",
     "license": "LGPL-3",
     "author": "Vauxoo",
     "website": "http://www.vauxoo.com/",
     "category": "",
     "depends": [
         "board",  # Just because we need some graphic stuff from here
-        "web_widget_x2many_graph",  # To show one2many values as graphs
+        # "web_widget_x2many_graph",  # To show one2many values as graphs TODO: Migrate this module to V10
         "mail",
     ],
     "data": [

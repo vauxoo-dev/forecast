@@ -167,6 +167,7 @@
                                 </b>
                             </div>
                         </div>
+                        <!-- TODO: To use the widget must be migrated the module to v10 -->
                         <field name="value_ids" nolabel="1" widget="x2many_graph" color_value="#2CA02C" color_sma="#FFBB78" color_cma="#1F77B4" color_wma="#D62728">
                             <graph >
                                 <field name="sequence"/>
