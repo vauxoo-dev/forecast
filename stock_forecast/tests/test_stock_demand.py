@@ -17,7 +17,7 @@ from openerp.tests import common
 
 class TestForecastDemand(common.TransactionCase):
 
-  def setUp(self):
+    def setUp(self):
         super(TestForecastDemand, self).setUp()
         self.history_obj = self.env['stock.history']
         self.demand_obj = self.env['wizard.stock.demand']
