@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding: utf-8
 ############################################################################
 #    Module Writen For Odoo, Open Source Management Solution
 #
@@ -10,9 +10,19 @@
 #                Gabriela Quilarque <gabriela@vauxoo.com>
 ############################################################################
 
-from openerp import models, fields, api, _
+from __future__ import division
+
+import logging
+
+from openerp import _, api, fields, models
 from openerp.exceptions import ValidationError
-import pandas as pd
+
+_logger = logging.getLogger(__name__)
+
+try:
+    import pandas as pd
+except ImportError:
+    _logger.debug('Cannot `import pandas`.')
 
 
 class ForecastData(models.Model):
@@ -208,9 +218,9 @@ class Forecast(models.Model):
 
     @api.constrains('period')
     def _check_period(self):
-        """
-        Check that the period to make the move average forcasting is at least
-        greather than one. If not, there is not way to calculate the average.
+        """ Check that the period to make the move average forcasting is at
+        least greather than one. If not, there is not way to calculate the
+        average.
         """
         if self.period <= 1:
             raise ValidationError(
@@ -218,8 +228,7 @@ class Forecast(models.Model):
 
     @api.constrains('exp_alpha')
     def _check_exp_alpha(self):
-        """
-        Check that the alpha used to calculate exponential smoothing
+        """ Check that the alpha used to calculate exponential smoothing
         forecasting is a value between 0 and 1 thus is specificated in the
         exponential smoothing method rules.
         """
@@ -228,8 +237,7 @@ class Forecast(models.Model):
 
     @api.constrains('holt_alpha')
     def _check_holt_alpha(self):
-        """
-        Check that the alpha used to calculate holt linear smoothing
+        """ Check that the alpha used to calculate holt linear smoothing
         forecasting is a value between 0 and 1 thus is specificated in the
         holt linear smoothing method rules.
         """
@@ -238,8 +246,7 @@ class Forecast(models.Model):
 
     @api.constrains('beta')
     def _check_beta(self):
-        """
-        Check that the beta used to calculate holt linear smoothing
+        """ Check that the beta used to calculate holt linear smoothing
         forecasting is a value between 0 and 1 thus is specificated in the
         holt linear smoothing method rules.
         """
@@ -248,8 +255,7 @@ class Forecast(models.Model):
 
     @api.multi
     def reset_defaults(self):
-        """
-        Reset defaults for the variables used in the current calc.
+        """ Reset defaults for the variables used in the current calc.
         ['period', 'exp_alpha', 'holt_alpha', 'beta', 'holt_period']
 
         This is used in a button called Reset Defaults in the
@@ -264,8 +270,7 @@ class Forecast(models.Model):
 
     @api.multi
     def clear(self):
-        """
-        Clear all the forecast data fields.
+        """ Clear all the forecast data fields.
 
         This is used in a button called Clear in the
         forecast form view.
@@ -277,8 +282,7 @@ class Forecast(models.Model):
 
     @api.model
     def get_value_ids_dict(self, data):
-        """
-        Transform the pandas.DataFrame object to a list of values to be
+        """ Transform the pandas.DataFrame object to a list of values to be
         written as a o2m field in odoo named value_ids.
 
         :data: DataFrame object with the forecasting results per point
@@ -296,8 +300,7 @@ class Forecast(models.Model):
 
     @api.multi
     def get_values_dataframe(self, forecast_cols):
-        """
-        Transform forecasting data into a pandas.DataFrame object to be use
+        """ Transform forecasting data into a pandas.DataFrame object to be use
         to calculate the forecastings.
 
         By default the ['id', 'value', 'sequence'] forecast data fields are
@@ -327,8 +330,7 @@ class Forecast(models.Model):
 
     @api.model
     def almost_equal(self, actual, expected):
-        """
-        Compare two values: actual and expected one and check if there are
+        """ Compare two values: actual and expected one and check if there are
         close enoght to consider as equals.
 
         :actual: real value of the forecasting (float number)
@@ -344,7 +346,7 @@ class Forecast(models.Model):
         return False
 
     def minimun_data(self, nvalues, minimum, warning_field):
-        """Check is the is forecast data and if the data is  at least the
+        """ Check is the is forecast data and if the data is  at least the
         minimum to calculate the forecast. If not will write an error over the
         correspond forecast method warning field.
 
@@ -368,8 +370,7 @@ class Forecast(models.Model):
 
     @api.depends('period')
     def _compute_cma(self):
-        """
-        This method calculate the CUMULATIVE MOVING AVERAGE forecasting
+        """ This method calculate the CUMULATIVE MOVING AVERAGE forecasting
         smoothing method (CMA) and Mean Absolute error.
 
         Update the forecast fields ['cma_forecast', 'cma_ma_error']  and the
@@ -415,8 +416,7 @@ class Forecast(models.Model):
 
     @api.depends('period')
     def _compute_sma(self):
-        """
-        This method calculate the SIMPLE MOVING AVERAGE forecasting
+        """ This method calculate the SIMPLE MOVING AVERAGE forecasting
         smoothing method (SMA) and Mean Absolute error.
 
         Update the forecast fields ['sma_forecast', 'sma_ma_error']  and the
@@ -436,8 +436,8 @@ class Forecast(models.Model):
             data = forecast.get_values_dataframe(['sma', 'sma_error'])
 
             # Calculate Forecasting for the other points
-            for index in range(period+1, len(data) + 1):
-                value_set = data[:index-1].tail(period)
+            for index in range(period + 1, len(data) + 1):
+                value_set = data[:index - 1].tail(period)
                 sma = value_set.value.sum() / float(period)
                 data.at[index, 'sma'] = sma
 
@@ -461,8 +461,7 @@ class Forecast(models.Model):
 
     @api.depends('period')
     def _compute_wma(self):
-        """
-        This method calculate the WEIGHTED MOVING AVERAGE forecasting
+        """ This method calculate the WEIGHTED MOVING AVERAGE forecasting
         smoothing method (WMA) and Mean Absolute error.
 
         Update the forecast fields ['wma_forecast', 'wma_ma_error']  and the
@@ -510,8 +509,7 @@ class Forecast(models.Model):
 
     @api.depends('exp_alpha')
     def _compute_exp(self):
-        """
-        This method calculate the SINGLE, DOUBLE, & TRIPLE EXPONENTIAL
+        """ This method calculate the SINGLE, DOUBLE, & TRIPLE EXPONENTIAL
         SMOOTHING forecasting method (ES1, ES2, ES3) and
         Mean Absolute error for each forecast result.
 
@@ -548,7 +546,7 @@ class Forecast(models.Model):
             # Calculate Forecasting for the other points
             for index in range(2, len(data) + 1):
                 value = data.loc[index].value
-                last_item = data.loc[index-1]
+                last_item = data.loc[index - 1]
                 es1 = alpha * value + (1.0 - alpha) * last_item.es1
                 es2 = alpha * es1 + (1.0 - alpha) * last_item.es2
                 es3 = alpha * es2 + (1.0 - alpha) * last_item.es3
@@ -567,13 +565,13 @@ class Forecast(models.Model):
             # Save global results
             last = data.tail(1).iloc[-1]
             a2 = 2.0 * last.es1 - last.es2
-            b2 = (alpha/(1.0-alpha)) * (last.es1 - last.es2)
+            b2 = (alpha / (1.0 - alpha)) * (last.es1 - last.es2)
             a3 = 3.0 * last.es1 - 3.0 * last.es2 + last.es3
-            b3 = ((alpha/(2.0 * pow(1.0-alpha, 2.0))) * (
+            b3 = ((alpha / (2.0 * pow(1.0 - alpha, 2.0))) * (
                 (6.0 - 5.0 * alpha) * last.es1 -
                 (10.0 - 8.0 * alpha) * last.es2 +
                 (4.0 - 3.0 * alpha) * last.es3))
-            c3 = (pow((alpha/(1.0 - alpha)), 2.0) *
+            c3 = (pow((alpha / (1.0 - alpha)), 2.0) *
                   (last.es1 - 2.0 * last.es2 + last.es3))
             single_forecast = last.es1
             double_forecast = a2 + b2
@@ -596,8 +594,7 @@ class Forecast(models.Model):
 
     @api.depends('holt_alpha', 'beta', 'holt_period')
     def _compute_holt(self):
-        """
-        This method calculate the HOLT'S LINEAR SMOOTHING forecasting
+        """ This method calculate the HOLT'S LINEAR SMOOTHING forecasting
         smoothing method (HOLT) and Mean Absolute error.
 
         Update the forecast fields ['holt_forecast', 'holt_ma_error'] and the
@@ -630,7 +627,7 @@ class Forecast(models.Model):
             # Calculate Forecasting for the other 2+n points
             for index in range(3, len(data) + 1):
                 value = data.loc[index].value
-                prev = data.loc[index-1]
+                prev = data.loc[index - 1]
                 holt_func = prev.holt_level + prev.holt_trend
                 holt_level = alpha * value + (1.0 - alpha) * holt_func
                 holt_trend = (

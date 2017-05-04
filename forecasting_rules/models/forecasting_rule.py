@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding: utf-8
 ############################################################################
 #    Module Writen For Odoo, Open Source Management Solution
 #
@@ -9,7 +9,7 @@
 #    planned by: Nhomar Hernandez <nhomar@vauxoo.com>
 ############################################################################
 
-from openerp import fields, models, api
+from openerp import api, fields, models
 
 
 class ForecastingRule(models.Model):

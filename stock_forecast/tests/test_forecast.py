@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding: utf-8
 ############################################################################
 #    Module Writen For Odoo, Open Source Management Solution
 #
@@ -14,8 +14,7 @@ from openerp.tests import common
 
 class TestForecast(common.TransactionCase):
 
-    """
-    Test that the forecast model set correctly the product and the display
+    """ Test that the forecast model set correctly the product and the display
     name.
     """
 

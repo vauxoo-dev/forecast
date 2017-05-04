@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding: utf-8
 ############################################################################
 #    Module Writen For Odoo, Open Source Management Solution
 #
@@ -32,7 +32,7 @@
     ],
     "external_dependencies": {
         "python": ["pandas", "numexpr"],
-        },
+    },
     "test": [],
     "qweb": [],
     "installable": True,

@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding: utf-8
 ############################################################################
 #    Module Writen For Odoo, Open Source Management Solution
 #
@@ -9,7 +9,7 @@
 #    planned by: Nhomar Hernandez <nhomar@vauxoo.com>
 ############################################################################
 
-from openerp import fields, models, api, _
+from openerp import _, api, fields, models
 from openerp.exceptions import ValidationError, Warning as UserError
 
 
@@ -30,8 +30,7 @@ class Forecast(models.Model):
 
     @api.multi
     def fill_value_ids(self):
-        """
-        Overwrite the forecasting.value_ids field.  The new values will be
+        """Overwrite the forecasting.value_ids field.  The new values will be
         created with the current forecast rule.
 
         NOTE: This method is use in the forecast form view as a button named
@@ -53,8 +52,7 @@ class Forecast(models.Model):
 
     @api.multi
     def _check_required_irfilter(self):
-        """
-        If the rule is related to a forecast and have not filter then
+        """If the rule is related to a forecast and have not filter then
         Raise a ValidationError.
         """
         if self.rule_id and not self.rule_id.filter_id:

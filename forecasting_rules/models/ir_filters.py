@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding: utf-8
 ############################################################################
 #    Module Writen For Odoo, Open Source Management Solution
 #
@@ -9,11 +9,19 @@
 #    planned by: Nhomar Hernandez <nhomar@vauxoo.com>
 ############################################################################
 
-from openerp import models, api, _
+import logging
+from datetime import datetime
+
+from openerp import _, api, models
 from openerp.exceptions import ValidationError
 from openerp.tools.safe_eval import safe_eval
-from datetime import datetime
-import pandas as pd
+
+_logger = logging.getLogger(__name__)
+
+try:
+    import pandas as pd
+except ImportError:
+    _logger.debug('Cannot `import pandas`.')
 
 
 class IrFilters(models.Model):
@@ -22,8 +30,7 @@ class IrFilters(models.Model):
 
     @api.model
     def is_field(self, model_obj, value):
-        """
-        Check if a given name correspond as field in the given model.
+        """Check if a given name correspond as field in the given model.
 
         :model_obj: string with the name of the model
         :value: the name of the field that want to check.
@@ -37,12 +44,11 @@ class IrFilters(models.Model):
 
     @api.model
     def process_context_value(self, model_obj, value):
-        """
-        Get the key in the context and return the way to process.
+        """Get the key in the context and return the way to process.
 
          - If value is a field into the model defined in the rule then will
            return a string with the field name
-         - If value is not a field is suppost to be is a field into the model
+         - If value is not a field is support to be is a field into the model
            defined in the rule then will return a string with the field name
 
         If not a field then raise an error.
@@ -77,8 +83,7 @@ class IrFilters(models.Model):
 
     @api.multi
     def process_filter_data(self):
-        """
-        Read and pre-process the rule data (rule_id field) that will be use
+        """Read and pre-process the rule data (rule_id field) that will be use
         to fulfill the value_ids field.
 
         :return:
@@ -91,7 +96,7 @@ class IrFilters(models.Model):
 
         # process order
         order = context.get('forecast_order')
-        order = self.process_context_value(model_obj, order)[0]
+        order, _ = self.process_context_value(model_obj, order)
 
         # process value
         value = context.get('forecast_value')
@@ -101,8 +106,7 @@ class IrFilters(models.Model):
 
     @api.model
     def check_forecast_order_type(self, orderfield, model_obj):
-        """
-        Check the forecast order field is of admit date/datetime field.
+        """Check the forecast order field is of admit date/datetime field.
 
         :orderfield: name of the order field to check
         :model_obj: model were the field correspond.
@@ -110,14 +114,13 @@ class IrFilters(models.Model):
         fields = model_obj.fields_get(orderfield)
         fieldtype = fields.get(orderfield).get('type')
         if fieldtype not in ['date', 'datetime']:
-            raise ValidationError(
+            raise ValidationError(_(
                 'You are using forecast step so the forecast order must be'
-                ' date/datime type field')
+                ' date/datime type field'))
 
     @api.multi
     def group_and_fill(self, recordset, order, group_by, value, domain):
-        """
-        Run a read off the data with the given domain and order.
+        """Run a read off the data with the given domain and order.
         If the order type is datetime then post-procress the value and extract
         only the day information.
 
@@ -170,7 +173,7 @@ class IrFilters(models.Model):
             # process group_by info, return real group_by field
             group_info = group_by[0].split(':')
             if len(group_info) == 2:
-                groupby = group_info[1]
+                _, groupby = group_info
             data = data.groupby(data[groupby]).sum()
 
         # Fill missing labels taking into account the date
@@ -180,7 +183,7 @@ class IrFilters(models.Model):
             date_format))
 
         # Add sequence column by date.
-        data['sequence'] = range(1, len(data)+1)
+        data['sequence'] = list(range(1, len(data) + 1))
 
         # Update all the forecast values. Add new and overwrite old one
         # sequences.
@@ -224,14 +227,13 @@ class IrFilters(models.Model):
             month='%B %Y',
             year='%Y')
         if forecast_step not in date_format:
-            raise ValidationError('Forecast Step type not defined ' +
+            raise ValidationError(_('Forecast Step type not defined ') +
                                   forecast_step)
         return date_format[forecast_step]
 
     @api.model
     def get_value_ids(self, data, value, all_new=False):
-        """
-        Transform the pandas.DataFrame object to a list of values to be
+        """Transform the pandas.DataFrame object to a list of values to be
         written as a o2m field in odoo named value_ids.
 
         :data: DataFrame object with the forecasting results per point
@@ -253,8 +255,7 @@ class IrFilters(models.Model):
 
     @api.multi
     def special_search(self):
-        """
-        Read and pre-process the filter data and then peform the search
+        """Read and pre-process the filter data and then peform the search
 
         :return: a list with the dictionary need to fill the forecast data
                  values. keys = ['sequence', 'label', 'value']
@@ -271,16 +272,14 @@ class IrFilters(models.Model):
 
     @api.multi
     def get_related_rules(self):
-        """
-        :return: the recordset list of related rules
+        """:return: the recordset list of related rules
         """
         rule_obj = self.env['forecasting.rule']
-        return rule_obj.search([('filter_id', 'in', self.ids)])
+        return rule_obj.sudo().search([('filter_id', 'in', self.ids)])
 
     @api.constrains('context')
     def _check_context(self):
-        """
-        Check context introduce by user is valid, for that:
+        """Check context introduce by user is valid, for that:
 
             - Check context is a valid python expression
             - Check context is a dictionary

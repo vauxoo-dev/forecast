@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding: utf-8
 ############################################################################
 #    Module Writen For Odoo, Open Source Management Solution
 #
@@ -9,22 +9,22 @@
 #    planned by: Nhomar Hernandez <nhomar@vauxoo.com>
 ############################################################################
 
-from openerp.tests import common
-from openerp import fields
 from dateutil.relativedelta import relativedelta
+
+from openerp import fields
+from openerp.tests import common
 
 
 class TestForecastDemand(common.TransactionCase):
 
-    def setUp(self):
+  def setUp(self):
         super(TestForecastDemand, self).setUp()
         self.history_obj = self.env['stock.history']
         self.demand_obj = self.env['wizard.stock.demand']
         self.move_obj = self.env['stock.move']
 
     def create_and_run_demand_wizard(self, create_filter):
-        """
-        - Create a stock demand wizard with random product and location
+        """ - Create a stock demand wizard with random product and location
         - Run demand wizard to activate the stock.history
         - If create_filter True/False indicate if create forecast rule filter
         - Search for the filter created.

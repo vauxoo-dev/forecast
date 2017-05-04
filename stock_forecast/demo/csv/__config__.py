@@ -1,3 +1,4 @@
+# coding: utf-8
 {'xml_files': [
     {'name': 'stock_picking',
      'depends': [],
