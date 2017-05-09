@@ -154,7 +154,7 @@ class IrFilters(models.Model):
         data = pd.DataFrame(values)
 
         # Order by date
-        if len(data):
+        if not data.empty:
             data[order] = pd.to_datetime(data[order])
             data = data.set_index(order)
 

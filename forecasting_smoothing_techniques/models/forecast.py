@@ -43,6 +43,7 @@ class ForecastData(models.Model):
     forecast_id = fields.Many2one(
         'forecast',
         required=True,
+        index=True,
         default=_default_forecast,
         help="Forecast which this data is related to")
 
@@ -102,8 +103,7 @@ class Forecast(models.Model):
         help='List of values to be used to compute this forecast')
 
     # Moving Average
-    period = fields.Integer(
-        'Period', default=5, help="Moving Average Period")
+    period = fields.Integer(default=5, help="Moving Average Period")
 
     # Simple Moving Average
     sma_forecast = fields.Float(
@@ -190,7 +190,7 @@ class Forecast(models.Model):
         help="Holt's Alpha Parameter"
     )
     beta = fields.Float(
-        'Beta', default=0.03,
+        default=0.03,
         help="Holt's Beta Parameter"
     )
     holt_period = fields.Float(
@@ -317,7 +317,7 @@ class Forecast(models.Model):
         :returns: DataFrame object with the datas value.
         """
         values = []
-        for value in self.env['forecast'].browse(self._ids).value_ids:
+        for value in self.value_ids:
             values.append(
                 {'id': value.id,
                  'label': value.label,
@@ -365,8 +365,7 @@ class Forecast(models.Model):
         elif nvalues < minimum:
             self.write({warning_field: error})
             return False
-        else:
-            return True
+        return True
 
     @api.depends('period')
     def _compute_cma(self):
@@ -459,6 +458,55 @@ class Forecast(models.Model):
             forecast.sma_ma_error = sma_ma_error
             forecast.write({'value_ids': value_ids})
 
+    @api.multi
+    def _get_wma_values(self):
+        """ This method calculate the WEIGHTED MOVING AVERAGE forecasting
+        smoothing method (WMA) and Mean Absolute error.
+
+        :return: The WMA values and the absolute error for the forecast and its
+                 lines
+        :rtype: dict
+        """
+        # Get basic parameters to calculate
+        values = self.value_ids
+        period = self.period
+        vals = {}
+
+        # Check minimum data
+        if not self.minimun_data(len(values), period, 'wma_warning'):
+            return vals
+
+        # Transform value data to Dataframe pandas object
+        data = self.get_values_dataframe(['wma', 'wma_error'])
+
+        weight = (float(period) * (float(period) + 1.0)) / 2.0
+
+        # Calculate Forecasting for the other points
+        for index in range(period, len(data) + 1):
+            value_set = data[:index].tail(period)
+            wma = sum([
+                ((day) / weight) * value
+                for (day, value) in enumerate(value_set.value.values, 1)])
+            data.at[index, 'wma'] = wma
+
+        # Calculate mean errors
+        # TODO can be improve using mean() method
+        data = data.assign(
+            wma_error=lambda x: abs(x.wma - x.value),
+        )
+
+        # Save global results
+        wma_forecast = wma
+        wma_ma_error = data.wma_error.sum() / data.wma.count()
+
+        # Save individual values results
+        value_ids = self.get_value_ids_dict(data)
+        vals.update(
+            {'value_ids': value_ids,
+             'wma_forecast': wma_forecast,
+             'wma_ma_error': wma_ma_error})
+        return vals
+
     @api.depends('period')
     def _compute_wma(self):
         """ This method calculate the WEIGHTED MOVING AVERAGE forecasting
@@ -467,45 +515,13 @@ class Forecast(models.Model):
         Update the forecast fields ['wma_forecast', 'wma_ma_error']  and the
         forecast values ['wma', 'wma_error']
         """
-        for forecast in self.env['forecast'].browse(self._ids):
-            # Get basic parameters to calculate
-            values = forecast.value_ids
-            period = forecast.period
-
-            # Check minimum data
-            if not forecast.minimun_data(len(values), period, 'wma_warning'):
-                continue
-
-            # Transform value data to Dataframe pandas object
-            data = forecast.get_values_dataframe(['wma', 'wma_error'])
-
-            weight = (float(period) * (float(period) + 1.0)) / 2.0
-
-            # Calculate Forecasting for the other points
-            for index in range(period, len(data) + 1):
-                value_set = data[:index].tail(period)
-                wma = sum([
-                    ((day) / weight) * value
-                    for (day, value) in enumerate(value_set.value.values, 1)])
-                data.at[index, 'wma'] = wma
-
-            # Calculate mean errors
-            # TODO can be improve using mean() method
-            data = data.assign(
-                wma_error=lambda x: abs(x.wma - x.value),
-            )
-
-            # Save global results
-            wma_forecast = wma
-            wma_ma_error = data.wma_error.sum() / data.wma.count()
-
-            # Save individual values results
-            value_ids = forecast.get_value_ids_dict(data)
-
+        for forecast in self:
+            values = forecast._get_wma_values()
             # Write values
-            forecast.wma_forecast = wma_forecast
-            forecast.wma_ma_error = wma_ma_error
-            forecast.write({'value_ids': value_ids})
+            forecast.update(
+                {'wma_forecast': values.pop('wma_forecast', 0.0),
+                 'wma_ma_error': values.pop('wma_ma_error', 0.0)})
+            forecast.write(values)
 
     @api.depends('exp_alpha')
     def _compute_exp(self):
